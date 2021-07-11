@@ -1,0 +1,321 @@
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(lubridate)
+library(here)
+
+
+
+## Raw data of election results as supplied by Bundeswahlleiter
+raw <- read_xlsx(here("data-raw","ltw_erg_ab46_oF.xlsx"), sheet = 37, skip = 5)
+## My Party Names and Codes Data
+raw_partynames_wahlleiter <- read_xlsx(here("data-raw","Wahlleiter_Parteinamen.xlsx"))
+
+
+
+totals <- 
+  raw %>%
+  select(Hilf,Land, Nr., Wahltag, Bemerkungen, Wahlberechtigte,
+         Wähler, "Gültige Stimmen", "Sitze insgesamt", "Sitze Frauen",
+         gesamtstimmen_by_ausgefallene_stimmen_be_abgegebene_stimmen_hh = 8,
+         ungueltige_stimmen_ungueltige_stimmzettel_hh_hb = 9,
+         gueltige_stimmzettel_hh_hb = 10) %>%
+  clean_names() %>%
+  rename(
+    election_date = wahltag,
+    election_remarks = bemerkungen,
+    electorate = wahlberechtigte,
+    total_votes = wahler,
+    valid_votes = gultige_stimmen,
+    total_seats_parliament = sitze_insgesamt,
+    total_female_mps = sitze_frauen,
+  ) %>%
+  mutate(land = case_when(
+    land == "BW" & nr == 18 ~ "WB",
+    land == "BW" & nr == 19 ~ "BA",
+    land == "BW" & nr == 20 ~ "WH",
+    land == "BW" & nr == 21 ~ "WB",
+    TRUE ~ land
+  )) %>%
+  group_by(land) %>%
+  mutate(nr = case_when(
+    !(land %in% c("WB", "BA", "WH")) ~ -nr + max(nr) + 1,
+    land == "WB" & year(election_date) == 1950 ~ 2,
+    land == "WB" & year(election_date) == 1946 ~ 1,
+    TRUE ~ 1
+  )) %>%
+  ungroup() %>%
+  mutate(election_id = case_when(
+    nr < 10 ~ paste0(land, "0", nr),
+    TRUE ~ paste0(land, nr)
+  )) %>%
+  relocate(election_id, 1) %>%
+  mutate(election_date = as_date(election_date)) %>%
+  mutate(state_name_de = case_when(
+    land == "BB" ~ "Brandenburg",
+    land == "BE" ~ "Berlin",
+    land == "BW" ~ "Baden-Württemberg",
+    land == "BY" ~ "Bayern",
+    land == "HB" ~ "Bremen",
+    land == "HE" ~ "Hessen",
+    land == "HH" ~ "Hamburg",
+    land == "MV" ~ "Mecklenburg-Vorpommern",
+    land == "NI" ~ "Niedersachsen",
+    land == "NW" ~ "Nordrhein-Westfalen",
+    land == "RP" ~ "Rheinland-Pfalz",
+    land == "SH" ~ "Schleswig-Holstein",
+    land == "SL" ~ "Saarland",
+    land == "SN" ~ "Sachsen",
+    land == "ST" ~ "Sachsen-Anhalt",
+    land == "TH" ~ "Thüringen",
+    land == "WH" ~ "ehemaliges Land Württemberg-Hohenzollern",
+    land == "BA" ~ "ehemaliges Land Baden",
+    land == "WB" ~ "ehemaliges Land Württemberg-Baden"
+  )) %>%
+  mutate(state_name_en = case_when(
+    land == "BB" ~ "Brandenburg",
+    land == "BE" ~ "Berlin",
+    land == "BW" ~ "Baden-Württemberg",
+    land == "BY" ~ "Bavaria",
+    land == "HB" ~ "Bremen",
+    land == "HE" ~ "Hesse",
+    land == "HH" ~ "Hamburg",
+    land == "MV" ~ "Mecklenburg-Vorpommern",
+    land == "NI" ~ "Lower-Saxony",
+    land == "NW" ~ "North Rhine-Westphalia",
+    land == "RP" ~ "Rhineland-Palatine",
+    land == "SH" ~ "Schleswig-Holstein",
+    land == "SL" ~ "Saarland",
+    land == "SN" ~ "Saxony",
+    land == "ST" ~ "Saxony-Anhalt",
+    land == "TH" ~ "Thuringia",
+    land == "WH" ~ "former state Württemberg-Hohenzollern",
+    land == "BA" ~ "former state Baden",
+    land == "WB" ~ "former state Württemberg-Baden"
+  )) %>%
+  rename(state_id = land) %>%
+  relocate(state_name_de, state_name_en, .after = 3) %>%
+  rename(state_election_no = nr) %>%
+  mutate(election_remarks = case_when(
+    election_remarks == "0" ~ NA_character_,
+    TRUE ~ election_remarks
+  )) %>% 
+  relocate(hilf, 1) %>% 
+  select(-election_id, election_id = hilf) %>% 
+  mutate(election_remarks = case_when(
+    election_remarks == "–" ~ NA_character_,
+    TRUE ~ election_remarks
+  ))
+
+
+
+
+
+party_vote_counts <- 
+  raw %>%
+  clean_names() %>%
+  select(hilf, starts_with("x")) %>%
+  mutate(across(.cols = starts_with("x"), .fns = as.character)) %>%
+  pivot_longer(cols = starts_with("x")) %>%
+  mutate(type = case_when(
+    str_detect(name, "name") ~ "party_name",
+    str_detect(name, "ergeb") ~ "vote_count",
+    str_detect(name, "sitz_g") ~ "total_seat_count",
+    str_detect(name, "sitz_f") ~ "female_seat_count"
+  )) %>%
+  select(-name) %>%
+  group_by(hilf) %>%
+  mutate(id = paste0(hilf, c(rep(1:11, each = 4), rep(12:31, each = 2)))) %>% ## Für die ersten 10 Parteien sind 4 Werte, danach nur 2
+  ungroup() %>%
+  pivot_wider(
+    id_cols = id,
+    values_from = value,
+    names_from = type
+  ) %>%
+  filter(!is.na(party_name)) %>%
+  mutate(
+    vote_count = as.numeric(vote_count),
+    total_seat_count = case_when(
+      is.na(total_seat_count) ~ 0,
+      TRUE ~ as.numeric(total_seat_count)
+    ),
+    female_seat_count = case_when(
+      female_seat_count == "." ~ "0",
+      is.na(female_seat_count) ~ "0",
+      TRUE ~ female_seat_count
+    ) %>% as.numeric()
+  ) %>%
+  mutate(id = str_sub(id, start = 1, end = 4)) %>%
+  group_by(id) %>%
+  mutate(female_seats_available = max(female_seat_count) > 0) %>%
+  mutate(female_seat_count = case_when(
+    female_seats_available == FALSE ~ NA_real_,
+    female_seats_available == TRUE & total_seat_count == 0 ~ NA_real_, # Parteien ohne Sitz IMMER Female Seat Count = NA
+    female_seats_available == TRUE & total_seat_count > 0 & female_seat_count == 0 ~ 0,
+    female_seats_available == TRUE & total_seat_count > 0 & female_seat_count > 0 ~ female_seat_count
+  )) %>% 
+  left_join(
+    raw %>% 
+      select(id = Hilf, election_date = Wahltag) %>% 
+      mutate(election_date = as_date(election_date))
+  ) %>% 
+  mutate(land = str_sub(id, start = 1, end = 2),
+         nr = str_sub(id, start = 3, end = 4) %>% as.numeric()) %>% 
+  select(-id) %>% 
+  mutate(land = case_when(
+    land == "BW" & nr == 18 ~ "WB",
+    land == "BW" & nr == 19 ~ "BA",
+    land == "BW" & nr == 20 ~ "WH",
+    land == "BW" & nr == 21 ~ "WB",
+    TRUE ~ land
+  )) %>%
+  group_by(land) %>%
+  mutate(nr = case_when(
+    !(land %in% c("WB", "BA", "WH")) ~ -nr + max(nr) + 1,
+    land == "WB" & year(election_date) == 1950 ~ 2,
+    land == "WB" & year(election_date) == 1946 ~ 1,
+    TRUE ~ 1
+  )) %>%
+  ungroup() %>%
+  mutate(election_id = case_when(
+    nr < 10 ~ paste0(land, "0", nr),
+    TRUE ~ paste0(land, nr)
+  )) %>% 
+  select(-id, land, -nr) %>% 
+  relocate(election_id, 1) %>% 
+  relocate(election_date, .after = election_id) %>% 
+  rename(partyname_short = party_name)  %>% 
+  mutate(partyname_short = case_when( # Falsche Schreibweise der Parteikürzel im Ergebnis ggü. der Parteinamensliste
+    land == "NW" & partyname_short == "Bewusstsein" ~ "Bewußtsein",
+    land == "HE" & partyname_short == "Die Violetten" ~ "DIE VIOLETTEN",
+    partyname_short == "FORUM" ~ "Forum",
+    partyname_short == "für KINDER" ~ "Für Kinder",
+    partyname_short == "Graue" ~ "GRAUE",
+    partyname_short == "Grüne" ~ "GRÜNE",
+    partyname_short == "ZENTRUM" ~ "Zentrum",
+    partyname_short == "SCHILL" ~ "Schill",
+    land %in% c("BE", "SH", "SL", "TH") & partyname_short == "ÖDP" ~ "ödp",
+    land %in% c("BW", "BA", "WB", "WH") & partyname_short == "ödp" ~ "ÖDP",
+    land == "NI" & partyname_short == "ödp" ~ "ÖDP",
+    TRUE ~ partyname_short
+  )) %>% 
+  select(-land)
+
+
+
+
+
+
+partynames_wahlleiter <- 
+  raw_partynames_wahlleiter %>% 
+  rename(partyname_short = 1,
+         partyname = 2,
+         states = 3,
+         remarks = 4) %>% 
+  mutate(states = str_remove_all(states, pattern = " ")) %>% 
+  separate(states, sep = ",", into = paste0("state_", 1:16)) %>% 
+  pivot_longer(starts_with("state")) %>% 
+  filter(!is.na(value)) %>% 
+  rename(state_today = value)
+
+
+
+
+checkdaten <- party_vote_counts %>% 
+  separate(election_id, into = c("state", "election_term"), sep = 2) %>% 
+  mutate(state_today = case_when(
+    state %in% c("WB", "WH", "BA") ~ "BW",
+    TRUE ~ state
+  )) %>%
+  left_join(partynames_wahlleiter) %>%
+  filter(!(state == "HE" & election_date == as_date("1999-02-07") & partyname == "Verband der freien, unabhängigen und überparteilichen Wählergruppen für das Land Hessen")) %>% ## Die (Verband der...) sind 1978 angetreten (Partycode FWG 2x vergeben)
+  filter(!(state == "HE" & election_date == as_date("1978-10-08") & partyname == "Freie Wähler Gemeinschaft - Wählergruppe Hessen")) %>% 
+  select(-name, -state_today) %>% 
+  mutate(Parteikürzel_Harmonisiert = case_when(partyname_short == "BIG" & state == "HH" & year(election_date) == 1997 ~ paste(Parteikürzel_Harmonisiert, "(HH 1997)"), TRUE ~ Parteikürzel_Harmonisiert)) %>% 
+  mutate(Parteiname_Harmonisiert = case_when(partyname_short == "BIG" & state == "HH" & year(election_date) == 1997 ~ paste(Parteiname_Harmonisiert , "(HH 1997)"), TRUE ~ Parteiname_Harmonisiert)) %>% 
+  mutate(PartyfactsID = case_when(partyname_short == "BIG" & state == "HH" & year(election_date) == 1997 ~ NA_real_, TRUE ~ PartyfactsID)) %>% 
+  mutate(Partyname_CHES = case_when(partyname_short == "BIG" & state == "HH" & year(election_date) == 1997 ~ NA_real_, TRUE ~ Partyname_CHES)) %>% 
+  mutate(`MR Code` = case_when(partyname_short == "BIG" & state == "HH" & year(election_date) == 1997 ~ NA_real_, TRUE ~ `MR Code`)) %>% 
+  mutate(PartyWikipediaParteienlexikon = case_when(partyname_short == "BIG" & state == "HH" & year(election_date) == 1997 ~ NA_character_, TRUE ~ PartyWikipediaParteienlexikon)) %>% 
+  mutate(Remarks_Stelzle = case_when(partyname_short == "BIG" & state == "HH" & year(election_date) == 1997 ~ NA_character_, TRUE ~ Remarks_Stelzle)) %>% 
+  mutate(`In Parteienhandbuch` = case_when(partyname_short == "BIG" & state == "HH" & year(election_date) == 1997 ~ NA_character_, TRUE ~ `In Parteienhandbuch`)) %>% 
+  mutate(Parteiname_Harmonisiert = case_when(partyname_short == "CSU" & state == "SL" ~ "Christlich-Soziale Union im Saarland", TRUE ~ Parteiname_Harmonisiert)) %>% 
+  mutate(Parteiname_Harmonisiert = case_when(partyname_short == "CSU" & state == "MV" ~ "Christlich-Soziale Union in Mecklenburg-Vorpommern", TRUE ~ Parteiname_Harmonisiert)) %>% 
+  mutate(Parteikürzel_Harmonisiert = case_when(partyname_short == "CSU" & state == "SL" ~ "CSU-Saar", TRUE ~ Parteikürzel_Harmonisiert)) %>% 
+  mutate(Parteikürzel_Harmonisiert = case_when(partyname_short == "CSU" & state == "MV" ~ "CSU-MV", TRUE ~ Parteikürzel_Harmonisiert)) %>% 
+  mutate(PartyfactsID = case_when(partyname_short == "CSU" & state == "SL" ~ NA_real_, TRUE ~ PartyfactsID)) %>% 
+  mutate(PartyfactsID = case_when(partyname_short == "CSU" & state == "MV" ~ NA_real_, TRUE ~ PartyfactsID)) %>% 
+  mutate(Partyname_CHES = case_when(partyname_short == "CSU" & state == "SL" ~ NA_real_, TRUE ~ Partyname_CHES)) %>% 
+  mutate(Partyname_CHES = case_when(partyname_short == "CSU" & state == "MV" ~ NA_real_, TRUE ~ Partyname_CHES)) %>% 
+  mutate(`MR Code`  = case_when(partyname_short == "CSU" & state == "SL" ~ NA_real_, TRUE ~ `MR Code` )) %>% 
+  mutate(`MR Code`  = case_when(partyname_short == "CSU" & state == "MV" ~ NA_real_, TRUE ~ `MR Code` )) %>% 
+  mutate(PartyWikipediaParteienlexikon = case_when(partyname_short == "CSU" & state == "SL" ~ "https://de.wikipedia.org/wiki/Christlich-Soziale_Union_in_Bayern#Saarland", TRUE ~ PartyWikipediaParteienlexikon)) %>% 
+  mutate(PartyWikipediaParteienlexikon = case_when(partyname_short == "CSU" & state == "MV" ~ "https://de.wikipedia.org/wiki/Christlich-Soziale_Union_in_Bayern#Mecklenburg-Vorpommern", TRUE ~ PartyWikipediaParteienlexikon)) %>% 
+  mutate(Remarks_Stelzle = case_when(partyname_short == "CSU" & state == "SL" ~ NA_character_, TRUE ~ Remarks_Stelzle)) %>% 
+  mutate(Remarks_Stelzle = case_when(partyname_short == "CSU" & state == "MV" ~ NA_character_, TRUE ~ Remarks_Stelzle)) %>% 
+  mutate(`In Parteienhandbuch` = case_when(partyname_short == "CSU" & state == "SL" ~ NA_character_, TRUE ~ `In Parteienhandbuch`)) %>% 
+  mutate(`In Parteienhandbuch` = case_when(partyname_short == "CSU" & state == "MV" ~ NA_character_, TRUE ~ `In Parteienhandbuch`))
+
+
+
+
+
+
+ltw_election_results <-
+  checkdaten %>% 
+  mutate(election_term = as.numeric(election_term)) %>% 
+  left_join(totals, by = c("state" = "state_id",
+                           "election_term" = "state_election_no",
+                           "election_date" ="election_date")) %>% 
+  arrange(state, election_term, -vote_count) %>% 
+  select(state, state_name_de, state_name_en, state_election_term = election_term, election_date, election_id_bundeswahlleiter = election_id,
+         election_remarks_bundeswahlleiter = election_remarks,
+         electorate = electorate, total_votes, valid_votes,
+         total_seats_parliament, female_seats_available, total_female_mps_parliament = total_female_mps,
+         Parteikürzel_Harmonisiert, Parteiname_Harmonisiert,
+         partyname_short, partyname,
+         party_vote_count = vote_count, party_seat_count = total_seat_count, party_female_mps = female_seat_count,
+         WZB_Govelec_ID = `MR Code`, CHES_ID= Partyname_CHES,
+         Partyfacts_ID = PartyfactsID,
+         Decker_Neu =`In Parteienhandbuch`,
+         URLInfo = PartyWikipediaParteienlexikon,
+         Party_Remarks_Stelzle = Remarks_Stelzle,
+         party_remarks_bundeswahlleiter = remarks,
+         everything()) %>% 
+  mutate(total_votes = case_when(
+    state == "HB" & state_election_term == 1 ~ NA_character_, # Da stand was
+    TRUE ~ total_votes
+  )) %>% 
+  mutate(ungueltige_stimmen_ungueltige_stimmzettel_hh_hb = case_when(
+    state == "HB" & state_election_term == 1 ~ NA_character_, # Da stand was
+    TRUE ~ ungueltige_stimmen_ungueltige_stimmzettel_hh_hb
+  )) %>% 
+  mutate(election_remarks_bundeswahlleiter = case_when(
+    state == "HB" & state_election_term == 1 ~ paste(election_remarks_bundeswahlleiter, "Keine Angaben der Anzahl der Wähler und Ungültigen Stimmen möglich, da jeder Wähler 3 bis 5 Stimmen hatte und nur die Anzahl der gültigen Stimmzettel, nicht aber der Stimmen festgestellt werden konnte."), # Da stand was
+    TRUE ~ election_remarks_bundeswahlleiter
+  )) %>% 
+  mutate(total_votes = as.numeric(total_votes),
+         ungueltige_stimmen_ungueltige_stimmzettel_hh_hb = as.numeric(ungueltige_stimmen_ungueltige_stimmzettel_hh_hb)) %>% 
+  rename(number_of_voters = total_votes) %>%
+  mutate(gesamtstimmen_by = case_when(state == "BY" ~ gesamtstimmen_by_ausgefallene_stimmen_be_abgegebene_stimmen_hh, TRUE ~ NA_real_)) %>% 
+  mutate(ausgefallene_stimmen_be = case_when(state == "BE" ~ gesamtstimmen_by_ausgefallene_stimmen_be_abgegebene_stimmen_hh, TRUE ~ NA_real_)) %>% 
+  mutate(abgegebene_stimmen_hh = case_when(state == "HH" ~ gesamtstimmen_by_ausgefallene_stimmen_be_abgegebene_stimmen_hh, TRUE ~ NA_real_)) %>% 
+  select(-gesamtstimmen_by_ausgefallene_stimmen_be_abgegebene_stimmen_hh) %>% 
+  mutate(ungueltige_stimmen_except_hh_hb = case_when(!(state %in% c("HH", "HB")) ~ ungueltige_stimmen_ungueltige_stimmzettel_hh_hb, TRUE ~ NA_real_)) %>% 
+  mutate(ungueltige_stimmzettel_hh_hb = case_when(state %in% c("HH", "HB") ~ ungueltige_stimmen_ungueltige_stimmzettel_hh_hb, TRUE ~ NA_real_)) %>% 
+  select(-ungueltige_stimmen_ungueltige_stimmzettel_hh_hb) %>% 
+  mutate(turnout = number_of_voters / electorate) %>% 
+  relocate(turnout, .after = number_of_voters) %>% 
+  mutate(party_vshare = party_vote_count / valid_votes) %>% 
+  relocate(party_vshare, .after = party_vote_count) %>% 
+  mutate(party_sshare = party_seat_count / total_seats_parliament) %>% 
+  relocate(party_sshare, .after = party_seat_count) %>% 
+  rename(partyname_bundeswahlleiter = partyname,
+         partyname_short_bundeswahlleiter = partyname_short) %>% 
+  rename(partyname_short = Parteikürzel_Harmonisiert,
+         partyname = Parteiname_Harmonisiert) %>% 
+  clean_names()
+
+
+
+usethis::use_data(ltw_election_results, overwrite = TRUE)
