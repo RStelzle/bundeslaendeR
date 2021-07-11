@@ -1,7 +1,11 @@
 #' Election Results of Landtagswahlen in the German states (Bundeslaender) since 1946.
 #'
 #' Dataset containing election results of Landtagswahlen in the German states (Bundeslaender) since 1946.
+#'@docType data
 #'
+#' @usage data(grav)
+#'
+#' 
 #' @format A tibble containing one row per contesting party per election.
 #' \describe{
 #'   \item{state}{chr ISO 3166-2:DE-code of the state; including BA for the former state of Baden, WH for the former state of Württemberg-Hohenzollern and WB for the former state of Württemberg-Baden}
@@ -16,7 +20,7 @@
 #'   \item{turnout}{dbl Turnout. Share of eligible voters turning out.}
 #'   \item{valid_votes}{dbl Number of valid votes. Must not be equal to the number of ballots cast, as sometimes a ballot contains multiple votes! For more totals also see the last three columns.}
 #'   \item{total_seats_parliament}{dbl Total number of members of the newly elected Landtag.}
-#'   \item{female_seats_available}{lgl Denotes whether information on the no. of female members of the Landtag is available. Note that for parties not elected to the new Landtag party_female_mps always is.na() == TRUE.}
+#'   \item{female_party_seats_available }{lgl Denotes whether information on the no. of female members of the Landtag per party is available. Note that for parties not elected to the new Landtag party_female_mps always is.na() == TRUE.}
 #'   \item{total_female_mps_parliament}{dbl Number of newly elected female MPs.}
 #'   \item{partyname_short}{chr Harmonized abbreviation of the party's name.}
 #'   \item{partyname}{chr Harmonized name of the party.}

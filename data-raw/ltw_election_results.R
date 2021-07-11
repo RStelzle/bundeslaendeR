@@ -13,7 +13,7 @@ raw_partynames_wahlleiter <- read_xlsx(here("data-raw","Wahlleiter_Parteinamen.x
 
 
 
-totals <- 
+totals <-
   raw %>%
   select(Hilf,Land, Nr., Wahltag, Bemerkungen, Wahlberechtigte,
          Wähler, "Gültige Stimmen", "Sitze insgesamt", "Sitze Frauen",
@@ -29,7 +29,8 @@ totals <-
     valid_votes = gultige_stimmen,
     total_seats_parliament = sitze_insgesamt,
     total_female_mps = sitze_frauen,
-  ) %>%
+  ) %>% 
+  mutate(total_female_mps = ifelse(total_female_mps == ".", NA, as.numeric(total_female_mps))) %>% 
   mutate(land = case_when(
     land == "BW" & nr == 18 ~ "WB",
     land == "BW" & nr == 19 ~ "BA",
@@ -147,12 +148,12 @@ party_vote_counts <-
   ) %>%
   mutate(id = str_sub(id, start = 1, end = 4)) %>%
   group_by(id) %>%
-  mutate(female_seats_available = max(female_seat_count) > 0) %>%
+  mutate(female_party_seats_available = max(female_seat_count) > 0) %>%
   mutate(female_seat_count = case_when(
-    female_seats_available == FALSE ~ NA_real_,
-    female_seats_available == TRUE & total_seat_count == 0 ~ NA_real_, # Parteien ohne Sitz IMMER Female Seat Count = NA
-    female_seats_available == TRUE & total_seat_count > 0 & female_seat_count == 0 ~ 0,
-    female_seats_available == TRUE & total_seat_count > 0 & female_seat_count > 0 ~ female_seat_count
+    female_party_seats_available == FALSE ~ NA_real_,
+    female_party_seats_available == TRUE & total_seat_count == 0 ~ NA_real_, # Parteien ohne Sitz IMMER Female Seat Count = NA
+    female_party_seats_available == TRUE & total_seat_count > 0 & female_seat_count == 0 ~ 0,
+    female_party_seats_available == TRUE & total_seat_count > 0 & female_seat_count > 0 ~ female_seat_count
   )) %>% 
   left_join(
     raw %>% 
@@ -271,7 +272,7 @@ ltw_election_results <-
   select(state, state_name_de, state_name_en, state_election_term = election_term, election_date, election_id_bundeswahlleiter = election_id,
          election_remarks_bundeswahlleiter = election_remarks,
          electorate = electorate, total_votes, valid_votes,
-         total_seats_parliament, female_seats_available, total_female_mps_parliament = total_female_mps,
+         total_seats_parliament, female_party_seats_available, total_female_mps_parliament = total_female_mps,
          Parteikürzel_Harmonisiert, Parteiname_Harmonisiert,
          partyname_short, partyname,
          party_vote_count = vote_count, party_seat_count = total_seat_count, party_female_mps = female_seat_count,
@@ -315,6 +316,8 @@ ltw_election_results <-
   rename(partyname_short = Parteikürzel_Harmonisiert,
          partyname = Parteiname_Harmonisiert) %>% 
   clean_names()
+
+
 
 
 
