@@ -9,7 +9,8 @@ library(here)
 
 test_that("Did I select unique partyname_shorts?", {
   
-  expect_equal(read_xlsx('C:/Users/rober/Git_Projekte/bundeslaendeR.Rcheck/tests/testthat/data-raw/Wahlleiter_Parteinamen.xlsx') %>%  
+  expect_equal(system.file("extdata", "Wahlleiter_Parteinamen.xlsx", package = "bundeslaendeR") %>%  
+                 read_excel() %>% 
                  select(-1, -2, -3, -4) %>% 
                  rename(Parteikuerzel_Harmonisiert = 1) %>%
                  filter(!is.na(Parteikuerzel_Harmonisiert)) %>% 
@@ -24,7 +25,8 @@ test_that("Did I select unique partyname_shorts?", {
 
 test_that("Did I select unique partynames?", {
 
-  expect_equal(read_xlsx(here("data-raw", "Wahlleiter_Parteinamen.xlsx")) %>%
+  expect_equal(system.file("extdata", "Wahlleiter_Parteinamen.xlsx", package = "bundeslaendeR") %>%  
+                 read_excel() %>% 
                  select(-1, -2, -3, -4) %>% 
                  rename(Parteikuerzel_Harmonisiert = 1) %>%
                  filter(!is.na(Parteikuerzel_Harmonisiert)) %>% 
@@ -38,14 +40,16 @@ test_that("Did I select unique partynames?", {
   })
 
 test_that("Does every name have a abbreviation?", {
-  expect_equal(read_xlsx(here("data-raw", "Wahlleiter_Parteinamen.xlsx")) %>%
+  expect_equal(system.file("extdata", "Wahlleiter_Parteinamen.xlsx", package = "bundeslaendeR") %>%  
+                 read_excel() %>% 
                  rename(Parteikuerzel_Harmonisiert = 1) %>%
                  filter(!is.na(Parteikuerzel_Harmonisiert) & is.na(Parteikuerzel_Harmonisiert)) %>% nrow(),
                0)
 })
 
 test_that("Does every abbreviation have a name?", {
-  expect_equal(read_xlsx(here("data-raw", "Wahlleiter_Parteinamen.xlsx")) %>%
+  expect_equal(system.file("extdata", "Wahlleiter_Parteinamen.xlsx", package = "bundeslaendeR") %>%  
+                 read_excel() %>% 
                  rename(Parteikuerzel_Harmonisiert = 1) %>%
                  filter(is.na(Parteikuerzel_Harmonisiert) & !is.na(Parteikuerzel_Harmonisiert)) %>% nrow(),
                0)

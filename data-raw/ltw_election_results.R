@@ -7,9 +7,9 @@ library(here)
 
 
 ## Raw data of election results as supplied by Bundeswahlleiter
-raw <- read_xlsx(here("data-raw","ltw_erg_ab46_oF.xlsx"), sheet = 37, skip = 5)
+raw <- read_xlsx(here("inst", "extdata","ltw_erg_ab46_oF.xlsx"), sheet = 37, skip = 5)
 ## My Party Names and Codes Data
-raw_partynames_wahlleiter <- read_xlsx(here("data-raw","Wahlleiter_Parteinamen.xlsx"))
+raw_partynames_wahlleiter <- read_xlsx(here("inst", "extdata","Wahlleiter_Parteinamen.xlsx"))
 
 
 
