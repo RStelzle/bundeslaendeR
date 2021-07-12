@@ -6,6 +6,11 @@ library(here)
 
 
 
+##################################
+##### Landtagswahlergebnisse #####
+##################################
+
+
 ## Raw data of election results as supplied by Bundeswahlleiter
 raw <- read_xlsx(here("inst", "extdata","ltw_erg_ab46_oF.xlsx"), sheet = 37, skip = 5)
 ## My Party Names and Codes Data
@@ -322,3 +327,133 @@ ltw_election_results <-
 
 
 usethis::use_data(ltw_election_results, overwrite = TRUE)
+
+
+
+
+
+
+#####################################
+##### Regierungszusammensetzung #####
+#####################################
+
+
+## Note to self: Ich habe die Datei in  meinem Random Datensatz Ordner abgelegt, für falls sie offline geht!
+linhartetal_full_meta_raw <- rio::import("https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten/PVS_Portfolioauft_dataset.xlsx", which = 1)
+
+linhartetal_cabinetpos_raw <- rio::import("https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten/PVS_Portfolioauft_dataset.xlsx", which = 2)
+
+
+
+
+linhartetal_full_meta <- linhartetal_full_meta_raw %>% 
+  as_tibble() %>% 
+  select(gov_id = ID, state = Land, state_election_term = Legperiode, election_date = Wahltermin, state_gov_number = Regnr,
+         gov_start_date = Beginn, gov_end_date = Ende)
+
+linhartetal_cabinet <- linhartetal_cabinetpos_raw %>%
+  as_tibble() %>% 
+  select(gov_id = ID, party = Partei, nmin_party = Ministeranzahl)
+
+
+
+linhartetal <- linhartetal_cabinet %>% 
+  left_join(linhartetal_full_meta %>% mutate(gov_id = as.numeric(gov_id)))
+
+
+
+
+linhartetal_ready <- linhartetal %>% 
+  mutate(across(c(election_date, gov_start_date, gov_end_date), ~as_date(., format = "%d.%m.%Y"))) %>% 
+  select(gov_id, state, state_election_term, election_date, state_gov_number, gov_start_date, gov_end_date, party, nmin_party) %>% 
+  mutate(state = case_when(
+    state == "baden" ~ "BA",
+    state == "bawue" ~ "BW",
+    state == "bayern" ~ "BY",
+    state == "berlin" ~ "BE",
+    state == "brand" ~ "BB",
+    state == "bremen" ~ "HB",
+    state == "hessen" ~ "HE",
+    state == "hh" ~ "HH",
+    state == "meckpom" ~ "MV",
+    state == "nieders" ~ "NI",
+    state == "nrw" ~ "NW",
+    state == "rheinpf" ~ "RP",
+    state == "saar" ~ "SL",
+    state == "sachsen" ~ "SN",
+    state == "sachsena" ~ "ST",
+    state == "schlewi" ~ "SH",
+    state == "thuer" ~ "TH",
+    state == "wueba" ~ "WB",
+    state == "wueho" ~ "WH"
+  )) %>% 
+  mutate(party = case_when(
+    state == "HE" & state_election_term == 5 & party == "GB/BHE" ~ "GPD",
+    state == "HH" & state_election_term == 3 ~ "HamburgBlock/VBH",
+    party == "CDU/CSU" & state == "BY" ~ "CSU",
+    party == "CDU/CSU" & state != "BY" ~ "CDU",
+    party == "B'90/Grüne" ~ "Grüne",
+    party == "PDS" ~ "Linke",
+    party == "KPD" ~ "KPD (1919)",
+    party == "Schill-Partei" ~ "PRO (Schill)",
+    TRUE ~ party
+  )) %>% 
+  rename(partyname_short = party) %>% 
+  group_by(gov_id, state, state_election_term, election_date, state_gov_number, gov_start_date, gov_end_date, partyname_short) %>% 
+  summarise(nmin_party = sum(nmin_party)) %>% 
+  ungroup() %>% 
+  select(-election_date) # Damit ist iwie nicht das Datum der LTW gemeint
+
+
+
+election_term_gocount <-
+  linhartetal_ready %>% 
+  select(state, state_election_term, state_gov_number) %>% 
+  distinct() %>% 
+  count(state, state_election_term) %>% 
+  mutate(state_election_term = case_when(
+    state == "SL" ~ state_election_term + as.integer(3),
+    TRUE ~ state_election_term
+  ))
+  
+
+
+
+Das klappt alles noch nicht
+# ltw_election_results %>% 
+#   left_join(election_term_gocount) %>% 
+#   rename(ngovs_state_election_term = n) %>% 
+#   filter(!is.na(ngovs_state_election_term)) %>% 
+#   uncount(weights = ngovs_state_election_term) %>% 
+#   full_join(linhartetal_ready, copy = TRUE) %>% 
+#   select(state, state_election_term, state_gov_number, election_date, gov_start_date, gov_end_date,
+#          partyname_short, party_vshare, party_sshare, nmin_party) %>% 
+#   arrange(state, state_election_term, state_gov_number, party_vshare) %>% view
+#   
+# 
+# 
+# 
+# 
+# 
+# ltw_election_results %>% 
+#   filter(state == "SL") %>% 
+#   count(election_date)
+# 
+# 
+# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
