@@ -3,7 +3,7 @@
 #' Dataset containing election results of Landtagswahlen in the German states (Bundeslaender) since 1946.
 #'@docType data
 #'
-#' @usage data(grav)
+#' @usage data(ltw_election_results)
 #'
 #' 
 #' @format A tibble containing one row per contesting party per election.
