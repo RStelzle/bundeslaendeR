@@ -320,10 +320,13 @@ ltw_election_results <-
          partyname_short_bundeswahlleiter = partyname_short) %>% 
   rename(partyname_short = Parteikürzel_Harmonisiert,
          partyname = Parteiname_Harmonisiert) %>% 
-  clean_names()
-
-
-
+  clean_names() %>% 
+  mutate(partyname_short = case_when(partyname_short_bundeswahlleiter == "GRÜNE" & state == "BB" & state_election_term == 1 ~ "Grüne (BB 1990)", TRUE ~ partyname_short)) %>% 
+  mutate(partyname = case_when(partyname_short_bundeswahlleiter == "GRÜNE" & state == "BB" & state_election_term == 1 ~ "Grüne (BB 1990)", TRUE ~ partyname))%>% 
+  mutate(wzb_govelec_id = case_when(partyname_short_bundeswahlleiter == "GRÜNE" & state == "BB" & state_election_term == 1 ~ NA_real_, TRUE ~ wzb_govelec_id)) %>% 
+  mutate(ches_id = case_when(partyname_short_bundeswahlleiter == "GRÜNE" & state == "BB" & state_election_term == 1 ~ NA_real_, TRUE ~ ches_id)) %>% 
+  mutate(partyfacts_id = case_when(partyname_short_bundeswahlleiter == "GRÜNE" & state == "BB" & state_election_term == 1 ~ NA_real_, TRUE ~ partyfacts_id))
+  
 
 
 usethis::use_data(ltw_election_results, overwrite = TRUE)
@@ -411,7 +414,7 @@ election_term_gocount <-
   select(state, state_election_term, state_gov_number) %>% 
   distinct() %>% 
   count(state, state_election_term) %>% 
-  mutate(state_election_term = case_when(
+  mutate(state_election_term = case_when( ### ACHTUNG hier muss ich bei den anderen ggf auch noch ran
     state == "SL" ~ state_election_term + as.integer(3),
     TRUE ~ state_election_term
   ))
@@ -419,34 +422,37 @@ election_term_gocount <-
 
 
 
-Das klappt alles noch nicht
-# ltw_election_results %>% 
-#   left_join(election_term_gocount) %>% 
-#   rename(ngovs_state_election_term = n) %>% 
-#   filter(!is.na(ngovs_state_election_term)) %>% 
-#   uncount(weights = ngovs_state_election_term) %>% 
-#   full_join(linhartetal_ready, copy = TRUE) %>% 
-#   select(state, state_election_term, state_gov_number, election_date, gov_start_date, gov_end_date,
-#          partyname_short, party_vshare, party_sshare, nmin_party) %>% 
-#   arrange(state, state_election_term, state_gov_number, party_vshare) %>% view
-#   
-# 
-# 
-# 
-# 
-# 
-# ltw_election_results %>% 
-#   filter(state == "SL") %>% 
-#   count(election_date)
-# 
-# 
-# 
+ltw_election_results %>%
+  left_join(election_term_gocount) %>%
+  rename(ngovs_state_election_term = n) %>%
+  filter(!is.na(ngovs_state_election_term)) %>% #### WICHTIG; DAS SIND DIE NEUEN WAHLEN NICHT IN LINHART ET AL und FRÜHE SAAR
+  uncount(weights = ngovs_state_election_term) %>% 
+  group_by(across(everything())) %>% 
+  mutate(gov_no_within_legterm = row_number()) %>% 
+  ungroup() %>% 
+  left_join(
+    linhartetal_ready %>% 
+      group_by(state, state_election_term) %>% 
+      mutate(gov_no_within_legterm = dense_rank(gov_start_date))
+  ) %>% 
+  mutate(gov_party = !is.na(nmin_party)) %>%
+  relocate(gov_party, .before = nmin_party) %>% 
+  group_by(state, state_election_term, gov_no_within_legterm) %>%
+  fill(gov_id, state_gov_number, gov_start_date, gov_end_date) %>% 
+  ungroup() %>% 
+  filter(gov_party == TRUE) %>% 
+  filter(party_seat_count == 0) # gut, dass ich das gecheckt hab ey
 
 
 
+## Legislaturperiodenzählung ist zwischen mir und Linhart et al off...
+## Siehe etwa Berlin die Zählen erst ab 1951
 
+## Notable: nmin_party ist NA, wenn die partei nicht an der Regierung ist.
+## Um die Möglichkeit offen zu halten Regierungsparteien mit 0 Ministerposten zu haben.
 
-
+## Check Idee: Parteizusammensetzung paste partyname_short, wenn gov_party == TRUE
+## identisch mit Zusammensetzung Linhart et al
 
 
 
