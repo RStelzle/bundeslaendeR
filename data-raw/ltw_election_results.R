@@ -366,6 +366,8 @@ linhartetal <- linhartetal_cabinet %>%
 
 
 
+
+
 linhartetal_ready <- linhartetal %>% 
   mutate(across(c(election_date, gov_start_date, gov_end_date), ~as_date(., format = "%d.%m.%Y"))) %>% 
   select(gov_id, state, state_election_term, election_date, state_gov_number, gov_start_date, gov_end_date, party, nmin_party) %>% 
@@ -405,7 +407,40 @@ linhartetal_ready <- linhartetal %>%
   group_by(gov_id, state, state_election_term, election_date, state_gov_number, gov_start_date, gov_end_date, partyname_short) %>% 
   summarise(nmin_party = sum(nmin_party)) %>% 
   ungroup() %>% 
-  select(-election_date) # Damit ist iwie nicht das Datum der LTW gemeint
+  select(-election_date) %>%   # Damit ist iwie nicht das Datum der LTW gemeint
+  mutate(state_election_term = case_when(
+    state == "HB" & gov_start_date >= as.Date("1967-11-28") ~ state_election_term + 1,
+    TRUE ~ state_election_term # Da ist bei Linhart et al ein Fehler und es wird nicht eine Legislatur hochgezählt.
+  )) %>% 
+  mutate(source = "LinhartEtAl")
+  
+  
+## Bei meinen: Außer Baden, Württemberg Baden, Württemberg Hohenzollern:
+## Linhart et al hören 31.12.2005 auf. Das ist auch als Enddate der je letzten Gov.
+## eingetragen. Ich habe die neu nochmal kodiert.
+!!!
+## also erst (bis auf in 3 Ländern oben) die jeweils letzte Regierung aus Linhart
+## rausfiltern, dann mit meinen Daten joinen
+
+  
+  
+# 1. linhartetal letzte filtern (bis auf in 3 Ländern oben)
+# 2. join_rows mit meinen
+# 3. state_election_term und state_gov_number reskalieren, dass das mit 1 startet
+
+# Irgendwie überlegen, was ich mit dem Parteilosen Kabinett im Saarland mache...
+
+## Auch notable: Ich zähle bei der gov_id einfach hoch, auch wenn ich erst die
+## früheren Landesregierungen vor Linhart et als bereich code.
+## deshalb ist da die Zählung 1. nicht matchend mit state_gov_number und 
+##                            2. nicht notwendigerweise mit der Zeit aufsteigend
+
+
+
+
+
+
+
 
 
 
@@ -445,18 +480,23 @@ ltw_election_results %>%
 
 
 
-## Legislaturperiodenzählung ist zwischen mir und Linhart et al off...
-## Siehe etwa Berlin die Zählen erst ab 1951
 
 ## Notable: nmin_party ist NA, wenn die partei nicht an der Regierung ist.
 ## Um die Möglichkeit offen zu halten Regierungsparteien mit 0 Ministerposten zu haben.
 
+
+
+
+
+
 ## Check Idee: Parteizusammensetzung paste partyname_short, wenn gov_party == TRUE
 ## identisch mit Zusammensetzung Linhart et al
 
+## Check Idee: Habe ich für jeden Landtag mind. eine Regierung?
 
+## Check Idee: Ist das gov_start_date innerhalb vom election_date der Wahl und dem election_date der nächsten Wahl?
 
-
+## Check Idee: Identische Wahl Totals pro GovID
 
 
 
