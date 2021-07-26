@@ -6,6 +6,11 @@ library(here)
 
 
 
+##################################
+##### Landtagswahlergebnisse #####
+##################################
+
+
 ## Raw data of election results as supplied by Bundeswahlleiter
 raw <- read_xlsx(here("inst", "extdata","ltw_erg_ab46_oF.xlsx"), sheet = 37, skip = 5)
 ## My Party Names and Codes Data
@@ -315,10 +320,234 @@ ltw_election_results <-
          partyname_short_bundeswahlleiter = partyname_short) %>% 
   rename(partyname_short = Parteikürzel_Harmonisiert,
          partyname = Parteiname_Harmonisiert) %>% 
-  clean_names()
-
-
-
+  clean_names() %>% 
+  mutate(partyname_short = case_when(partyname_short_bundeswahlleiter == "GRÜNE" & state == "BB" & state_election_term == 1 ~ "Grüne (BB 1990)", TRUE ~ partyname_short)) %>% 
+  mutate(partyname = case_when(partyname_short_bundeswahlleiter == "GRÜNE" & state == "BB" & state_election_term == 1 ~ "Grüne (BB 1990)", TRUE ~ partyname))%>% 
+  mutate(wzb_govelec_id = case_when(partyname_short_bundeswahlleiter == "GRÜNE" & state == "BB" & state_election_term == 1 ~ NA_real_, TRUE ~ wzb_govelec_id)) %>% 
+  mutate(ches_id = case_when(partyname_short_bundeswahlleiter == "GRÜNE" & state == "BB" & state_election_term == 1 ~ NA_real_, TRUE ~ ches_id)) %>% 
+  mutate(partyfacts_id = case_when(partyname_short_bundeswahlleiter == "GRÜNE" & state == "BB" & state_election_term == 1 ~ NA_real_, TRUE ~ partyfacts_id))
+  
 
 
 usethis::use_data(ltw_election_results, overwrite = TRUE)
+
+
+
+
+
+
+#####################################
+##### Regierungszusammensetzung #####
+#####################################
+
+
+## Note to self: Ich habe die Datei in  meinem Random Datensatz Ordner abgelegt, für falls sie offline geht!
+linhartetal_full_meta_raw <- rio::import("https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten/PVS_Portfolioauft_dataset.xlsx", which = 1)
+
+linhartetal_cabinetpos_raw <- rio::import("https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten/PVS_Portfolioauft_dataset.xlsx", which = 2)
+
+
+
+
+linhartetal_full_meta <- linhartetal_full_meta_raw %>% 
+  as_tibble() %>% 
+  select(gov_id = ID, state = Land, state_election_term = Legperiode, election_date = Wahltermin, state_gov_number = Regnr,
+         gov_start_date = Beginn, gov_end_date = Ende)
+
+linhartetal_cabinet <- linhartetal_cabinetpos_raw %>%
+  as_tibble() %>% 
+  select(gov_id = ID, party = Partei, nmin_party = Ministeranzahl)
+
+
+
+linhartetal <- linhartetal_cabinet %>% 
+  left_join(linhartetal_full_meta %>% mutate(gov_id = as.numeric(gov_id))) %>% 
+  mutate(gov_start_date = case_when(
+    gov_id == 11110 ~ "01.12.1966",
+    TRUE ~ gov_start_date
+  )) %>% 
+  mutate(gov_end_date = case_when(
+    gov_id == 11109 ~ "01.12.1966",
+    gov_id == 11110 ~ "08.12.1966",
+    TRUE ~ gov_end_date
+  ))
+
+
+# %>% 
+#   mutate(gov_end_date = case_when(
+#     gov_id == 11109 ~ as.Date("1966-12-01"),
+#     gov_id == 11110 ~ as.Date("1966-12-08"),
+#     TRUE ~ gov_end_date
+#   )) %>% 
+#   mutate(gov_start_date = case_when(
+#     gov_id == 11110 ~ as.Date("1966-12-08"),
+#     TRUE ~ gov_start_date
+#   ))
+# 
+
+
+linhartetal_ready <- linhartetal %>% 
+  mutate(across(c(election_date, gov_start_date, gov_end_date), ~as_date(., format = "%d.%m.%Y"))) %>% 
+  select(gov_id, state, state_election_term, election_date, state_gov_number, gov_start_date, gov_end_date, party, nmin_party) %>% 
+  mutate(state = case_when(
+    state == "baden" ~ "BA",
+    state == "bawue" ~ "BW",
+    state == "bayern" ~ "BY",
+    state == "berlin" ~ "BE",
+    state == "brand" ~ "BB",
+    state == "bremen" ~ "HB",
+    state == "hessen" ~ "HE",
+    state == "hh" ~ "HH",
+    state == "meckpom" ~ "MV",
+    state == "nieders" ~ "NI",
+    state == "nrw" ~ "NW",
+    state == "rheinpf" ~ "RP",
+    state == "saar" ~ "SL",
+    state == "sachsen" ~ "SN",
+    state == "sachsena" ~ "ST",
+    state == "schlewi" ~ "SH",
+    state == "thuer" ~ "TH",
+    state == "wueba" ~ "WB",
+    state == "wueho" ~ "WH"
+  )) %>% 
+  mutate(party = case_when(
+    state == "HE" & state_election_term == 5 & party == "GB/BHE" ~ "GDP",
+    state == "HH" & state_election_term == 3 & party == "FDP" ~ "HamburgBlock/VBH",
+    party == "CDU/CSU" & state == "BY" ~ "CSU",
+    party == "CDU/CSU" & state != "BY" ~ "CDU",
+    party == "B'90/Grüne" ~ "Grüne",
+    party == "PDS" ~ "Linke",
+    party == "KPD" ~ "KPD (1919)",
+    party == "Schill-Partei" ~ "PRO (Schill)",
+    TRUE ~ party
+  )) %>% 
+  rename(partyname_short = party) %>% 
+  group_by(gov_id, state, state_election_term, election_date, state_gov_number, gov_start_date, gov_end_date, partyname_short) %>% 
+  summarise(nmin_party = sum(nmin_party)) %>% 
+  ungroup() %>% 
+  select(-election_date) %>%   # Damit ist iwie nicht das Datum der LTW gemeint
+  mutate(state_election_term = case_when(
+    state == "HB" & gov_start_date >= as.Date("1967-11-28") ~ state_election_term + 1,
+    TRUE ~ state_election_term # Da ist bei Linhart et al ein Fehler und es wird nicht eine Legislatur hochgezählt.
+  )) %>% 
+  mutate(source = "LinhartEtAl") %>% 
+  filter(!(month(gov_end_date) == 12 & day(gov_end_date) == 31)) %>% 
+  mutate(state_election_term = case_when(
+    state == "HE" & gov_id == 10710 ~ 8, ## Fehler bei linhart et al
+    TRUE ~ state_election_term
+  ))
+  
+  
+## Bei meinen: Außer Baden, Württemberg Baden, Württemberg Hohenzollern:
+## Linhart et al hören 31.12.2005 auf. Das ist auch als Enddate der je letzten Gov.
+## eingetragen. Ich habe die neu nochmal kodiert.
+
+## also erst (bis auf in 3 Ländern oben) die jeweils letzte Regierung aus Linhart
+## rausfiltern, dann mit meinen Daten joinen
+
+  
+  
+# 1. linhartetal letzte filtern (bis auf in 3 Ländern oben)
+# 2. join_rows mit meinen
+# 3. state_election_term und state_gov_number reskalieren, dass das mit 1 startet
+
+# Irgendwie überlegen, was ich mit dem Parteilosen Kabinett im Saarland mache...
+
+## Auch notable: Ich zähle bei der gov_id einfach hoch, auch wenn ich erst die
+## früheren Landesregierungen vor Linhart et als bereich code.
+## deshalb ist da die Zählung 1. nicht matchend mit state_gov_number und 
+##                            2. nicht notwendigerweise mit der Zeit aufsteigend
+
+
+
+
+
+
+my_gov_data <- 
+  read_xlsx(here("inst", "extdata", "additional_govdata.xlsx")) %>% 
+  mutate(gov_end_date = str_replace(gov_end_date, "2999-31-12", "2999-12-31")) %>% ## Ich bin ein Idiot :O
+  mutate(across(c(gov_start_date, gov_end_date), as.Date))
+
+
+
+gov_data <- 
+bind_rows(
+  linhartetal_ready,
+  my_gov_data 
+    ) %>% 
+  group_by(state) %>% 
+  mutate(state_election_term = case_when(
+    min(state_election_term) == 1 ~ state_election_term,
+    min(state_election_term) < 1 ~ state_election_term + abs(min(state_election_term)) + 1
+  )) %>% 
+  mutate(state_gov_number = case_when(
+    min(state_gov_number) == 1 ~ state_gov_number,
+    min(state_gov_number) < 1 ~ state_gov_number + abs(min(state_gov_number)) + 1
+  )) %>% ungroup() %>%
+  mutate(partyname_short = case_when(
+    state == "HH" &  state_election_term == 2 & state_gov_number == 3 & partyname_short == "FDP" ~ "HamburgBlock/VBH",
+    state == "HH" &  state_election_term == 3 & state_gov_number == 5 & partyname_short == "CDU" ~ "HamburgBlock/VBH",
+    state == "HH" &  state_election_term == 3 & state_gov_number == 5 & partyname_short == "DP" ~ "HamburgBlock/VBH",
+    TRUE ~ partyname_short
+  )) %>% 
+  group_by(gov_id, state, state_election_term, state_gov_number, gov_start_date,
+           gov_end_date, partyname_short, source) %>% 
+  summarise(nmin_party = sum(nmin_party)) %>% 
+  ungroup()
+
+
+
+
+
+# # 
+# %>%
+#   mutate(partyname_short =case_when(
+#     state == "HH", state_election_term == 2, state_gov_number == 3, partyname_short == "FDP", ~ "HamburgBlock/VBH",
+#     TRUE ~ partyname_short
+#   ))
+
+
+election_term_gocount <-
+gov_data %>% 
+  select(state, state_election_term, state_gov_number) %>% 
+  distinct() %>% 
+  count(state, state_election_term) 
+  
+
+
+ltw_election_results_and_gov <-
+ltw_election_results %>%
+  left_join(election_term_gocount) %>%
+  rename(ngovs_state_election_term = n) %>% 
+  filter(!is.na(ngovs_state_election_term)) %>% #### WICHTIG; DAS SIND DIE NEUEN WAHLEN NICHT IN LINHART ET AL und FRÜHE SAAR
+  uncount(weights = ngovs_state_election_term) %>% 
+  group_by(across(everything())) %>% 
+  mutate(gov_no_within_legterm = row_number()) %>% 
+  ungroup() %>% 
+  full_join(
+    gov_data %>% 
+      group_by(state, state_election_term) %>% 
+      mutate(gov_no_within_legterm = dense_rank(gov_start_date))
+  ) %>% 
+  mutate(gov_party = !is.na(nmin_party)) %>%
+  relocate(gov_party, .before = nmin_party) %>% 
+  group_by(state, state_election_term, gov_no_within_legterm) %>%
+  fill(gov_id, state_gov_number, gov_start_date, gov_end_date, source, .direction = "downup") %>% 
+  ungroup() %>% 
+  mutate(gov_remarks_stelzle = case_when(
+    state == "SL" & state_election_term == 2 & state_gov_number == 5 ~ "Fully Independent Cabinet",
+    TRUE ~ NA_character_
+  )) %>%  filter(partyname_short != "Independent_Cabinet") %>% 
+  rename(gov_source = source)
+
+
+usethis::use_data(ltw_election_results_and_gov, overwrite = TRUE)
+
+## Notable: nmin_party ist NA, wenn die partei nicht an der Regierung ist.
+## Um die Möglichkeit offen zu halten Regierungsparteien mit 0 Ministerposten zu haben.
+
+
+
+
+
+
