@@ -133,6 +133,13 @@ gov_data <-
 
 
 
+election_term_gocount <-
+  gov_data %>% 
+  select(state, state_election_term, state_gov_number) %>% 
+  distinct() %>% 
+  count(state, state_election_term) 
+
+
 
 
 
@@ -322,12 +329,17 @@ test_that("gleiche Anzahl Parteien je gov innerhalb leg per über mehrere gov", 
 
 
 
-
-
-
-
-
-
+test_that("Reihen LCGov identisch mit anzahl parteien je legper * anzahl govs je legper", {
+  expect_equal(
+    full_join(
+      election_term_gocount,
+      ltw_election_results %>% count(state, state_election_term, name = "n2")
+    ) %>% mutate(product = n * n2) %>% pull(product) %>% sum(),
+    
+    ltw_election_results_and_gov %>% nrow()
+    
+  )
+})
 
 
 

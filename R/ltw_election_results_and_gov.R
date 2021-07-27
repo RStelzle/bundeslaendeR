@@ -6,9 +6,10 @@
 #' @usage data(ltw_election_results)
 #'
 #' 
-#' @format A tibble containing one row per contesting party per election.
+#' @format A tibble containing one row per contesting party per election and per cabinet.
 #' \describe{
 #'   \item{state}{chr ISO 3166-2:DE-code of the state; including BA for the former state of Baden, WH for the former state of Württemberg-Hohenzollern and WB for the former state of Württemberg-Baden}
+#'   \item{nuts1}{chr NUTS1 code of state. NA for former states Baden, Württemberg-Baden, Württemberg-Hohenzollern.}
 #'   \item{state_name_de}{chr German name of the state}
 #'   \item{state_name_en}{chr English name of the state}
 #'   \item{state_election_term}{dbl Election term in the state}

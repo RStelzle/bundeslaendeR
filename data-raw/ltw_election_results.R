@@ -5,6 +5,18 @@ library(lubridate)
 library(here)
 
 
+## NUTS
+
+
+nutsdf <- 
+tibble(
+  state = c("BW", "BY", "BE", "BB", "HB", "HH", "HE", "MV", "NI", "NW", "RP", "SL", "SN", "ST", "SH", "TH", "WH", "BA", "WB"),
+  nuts1 = c("DE1", "DE2", "DE3", "DE4", "DE5", "DE6", "DE7", "DE8", "DE9", "DEA", "DEB", "DEC", "DED", "DEE", "DEF", "DEG", NA, NA, NA)     
+  )
+
+
+
+
 
 ##################################
 ##### Landtagswahlergebnisse #####
@@ -328,6 +340,10 @@ ltw_election_results <-
   mutate(partyfacts_id = case_when(partyname_short_bundeswahlleiter == "GRÜNE" & state == "BB" & state_election_term == 1 ~ NA_real_, TRUE ~ partyfacts_id))
   
 
+ltw_election_results <- 
+ltw_election_results %>% 
+  left_join(nutsdf) %>% relocate(nuts1, .after = "state")
+
 
 usethis::use_data(ltw_election_results, overwrite = TRUE)
 
@@ -539,6 +555,11 @@ ltw_election_results %>%
     TRUE ~ NA_character_
   )) %>%  filter(partyname_short != "Independent_Cabinet") %>% 
   rename(gov_source = source)
+
+
+
+ltw_election_results_and_gov %>% 
+  left_join(nutsdf) %>% relocate(nuts1, .after = "state")
 
 
 usethis::use_data(ltw_election_results_and_gov, overwrite = TRUE)
