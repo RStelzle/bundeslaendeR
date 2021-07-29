@@ -21,6 +21,8 @@ knitr::opts_chunk$set(
 
 The goal of bundeslaendeR is to ...
 
+Dies ist ein Test.
+
 ## Installation
 
 You can install the released version of bundeslaendeR from [CRAN](https://CRAN.R-project.org) with:
