@@ -35,6 +35,8 @@ devtools::install_github("RStelzle/bundeslaendeR")
 
 This is a basic example which shows you how to solve a common problem:
 
+Hier beispielsweise einfach mal die Daten.
+
 ```{r include=FALSE}
 if(!require(devtools)) install.packages("devtools",repos = "http://cran.us.r-project.org")
 if(!require(tidyverse)) install.packages("tidyverse",repos = "http://cran.us.r-project.org")
@@ -42,7 +44,7 @@ devtools::install_local()
 ```
 
 
-```{r example, fig.width=9, fig.height=10}
+```{r example, fig.height=10, fig.width=9, message=FALSE, warning=FALSE}
 library(tidyverse)
 
 library(bundeslaendeR)
