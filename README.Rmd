@@ -36,6 +36,7 @@ devtools::install_github("RStelzle/bundeslaendeR")
 This is a basic example which shows you how to solve a common problem:
 
 ```{r include=FALSE}
+install.packages("devtools")
 devtools::install_local()
 ```
 
