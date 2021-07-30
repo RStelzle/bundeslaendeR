@@ -37,16 +37,13 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r include=FALSE}
 install.packages("devtools")
+install.packages("tidyverse")
 devtools::install_local()
 ```
 
 
 ```{r example, fig.width=9, fig.height=10}
-library(dplyr)
-library(ggplot2)
-library(scales)
-library(stringr)
-library(forcats)
+library(tidyverse)
 
 library(bundeslaendeR)
 
