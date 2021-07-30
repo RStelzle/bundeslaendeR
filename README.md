@@ -1,25 +1,13 @@
----
-output: github_document
----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
-
 # bundeslaendeR
 
- <!-- badges: start -->
-  [![R-CMD-check](https://github.com/RStelzle/bundeslaendeR/workflows/R-CMD-check/badge.svg)](https://github.com/RStelzle/bundeslaendeR/actions)
-  <!-- badges: end -->
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/RStelzle/bundeslaendeR/workflows/R-CMD-check/badge.svg)](https://github.com/RStelzle/bundeslaendeR/actions)
+<!-- badges: end -->
 
-The goal of bundeslaendeR is to ...
+The goal of bundeslaendeR is to …
 
 Dies ist ein Test.
 
@@ -31,18 +19,12 @@ And the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("RStelzle/bundeslaendeR")
 ```
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r include=FALSE}
-if(!require(devtools)) install.packages("devtools",repos = "http://cran.us.r-project.org")
-if(!require(tidyverse)) install.packages("tidyverse",repos = "http://cran.us.r-project.org")
-devtools::install_local()
-```
-
-
-```{r example, fig.width=9, fig.height=10}
+``` r
 library(tidyverse)
 
 library(bundeslaendeR)
@@ -74,8 +56,11 @@ ltw_election_results %>%
     labs(x = NULL,
          y = "Party Voteshare",
          col = NULL)
-  
-  
-
+#> `summarise()` has grouped output by 'state_name_en', 'election_date'. You can override using the `.groups` argument.
+#> geom_path: Each group consists of only one observation. Do you need to adjust
+#> the group aesthetic?
+#> geom_path: Each group consists of only one observation. Do you need to adjust
+#> the group aesthetic?
 ```
 
+<img src="man/figures/README-example-1.png" width="100%" />
