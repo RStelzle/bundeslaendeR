@@ -17,13 +17,17 @@ Depends:
 Imports: 
     tibble
 Suggests: 
+    devtools,
     tidyr,
     dplyr,
+    ggplot2,
+    forcats,
     readxl,
     here,
     magrittr,
     lubridate,
     rio,
     stringr,
+    scales,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

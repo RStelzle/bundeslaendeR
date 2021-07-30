@@ -25,12 +25,6 @@ Dies ist ein Test.
 
 ## Installation
 
-You can install the released version of bundeslaendeR from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("bundeslaendeR")
-```
-
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
@@ -41,23 +35,49 @@ devtools::install_github("RStelzle/bundeslaendeR")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r include=FALSE}
+devtools::install_local()
+```
+
+
+```{r example, fig.width=9, fig.height=10}
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(stringr)
+library(forcats)
+
 library(bundeslaendeR)
-## basic example code
+
+
+ltw_election_results %>% 
+  select(state_name_en, election_date, partyname_short, party_vshare) %>% 
+  mutate(partyname_short = case_when(
+    partyname_short %in% c("SPD", "FDP", "Grüne", "Linke", "AfD") ~ partyname_short,
+    partyname_short %in% c("CDU", "CSU") ~ "CDU/CSU", 
+    TRUE ~ "Others"
+         )) %>% 
+  mutate(partyname_short = as_factor(partyname_short) %>% 
+                            fct_relevel("CDU/CSU", "SPD", "FDP", "Grüne", "Linke", "AfD", "Others")) %>%
+  mutate(state_name_en = str_replace(state_name_en, "former state ", "Former state\n")) %>% 
+  group_by(state_name_en, election_date, partyname_short) %>% 
+  summarise(party_vshare = sum(party_vshare)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = election_date, y = party_vshare, col = partyname_short)) +
+    geom_point() +
+    geom_line() +
+    facet_wrap(~state_name_en) +
+    scale_color_manual(values = c("black", "#E3000F", "#ffed00", "#51bc4a", "#b47ab5", "#00adef", "grey"),
+                       guide = guide_legend(nrow = 1)) +
+    scale_y_continuous(labels = scales::percent) +
+    theme_minimal() +
+    theme(strip.text = element_text(face = "bold"),
+          legend.position = "bottom") +
+    labs(x = NULL,
+         y = "Party Voteshare",
+         col = NULL)
+  
+  
+
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
