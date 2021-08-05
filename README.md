@@ -33,6 +33,8 @@ most of the time, wikipedia with election of new cabinet in the Landtag.
 
 \[ \] Maybe get some data regarding the Bundesrat?
 
+\[ \] Vlt. Link mit den Parlamentsvorgangsdaten von Stecker et al.?
+
 ## Installation
 
 (While the project is still under development in a private repository, I
@@ -205,7 +207,9 @@ Show Code:
         theme(strip.text = element_markdown(),
               legend.position = c(0.8, 0.15)) +
         labs(color = NULL,
-             title = "Current Seat Composition of the 16 Landtage - Government Parties highlighted in Dark Green")
+             title = "Current Seat Composition of the 16 Landtage",
+             subtitle = "Government Parties highlighted in Dark Green\n")
+
 
 
 
