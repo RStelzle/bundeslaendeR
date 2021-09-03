@@ -27,28 +27,27 @@ election results as well as government constellations in the German states.
 
 Todo:
 
-[ ] Keep data up to date. (LTW Sachsen-Anhalt 2021 missing)
+* [ ] Keep data up to date. (LTW Sachsen-Anhalt 2021 missing)
 
-[ ] Maybe think of a better name...
+* [ ] Maybe think of a better name...
 
-[ ] Make a less shitty Hex Sticker
+* [ ] Make a less shitty Hex Sticker
 
-[ ] Provide cleaned up version of only the election totals
+* [ ] Provide cleaned up version of only the election totals
 
-[ ] Add information of Ministerpräsidenten name and party to government data
+* [ ] Add information of Ministerpräsidenten name and party to government data
 
-[ ] Add information of cabinet type to government data
+* [ ] Add information of cabinet type to government data
 
-[ ] Provide cleaned up version of only the government data
+* [ ] Provide cleaned up version of only the government data
 
-[ ] Clean up gov_end_dates. Linhart et al stop with election date most of the time,
-wikipedia with election of new cabinet in the Landtag.
+* [ ] Clean up gov_end_dates. Linhart et al stop with election date most of the time, wikipedia with election of new cabinet in the Landtag.
 
-[ ] Maybe get some data regarding the Bundesrat?
+* [ ] Maybe get some data regarding the Bundesrat?
 
-[ ] Vlt. Link mit den Parlamentsvorgangsdaten von Stecker et al.?
+* [ ] Vlt. Link mit den Parlamentsvorgangsdaten von Stecker et al.?
 
-[ ] Vlt. Link mit daten-ids von polidoc.net
+* [ ] Vlt. Link mit daten-ids von polidoc.net
 
 
 
