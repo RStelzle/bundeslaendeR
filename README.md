@@ -32,7 +32,7 @@ Todo:
     most of the time, wikipedia with election of new cabinet in the
     Landtag.
 
--   [ ] Maybe get some data regarding the Bundesrat?
+-   [ ] Maybe get some data regarding the Bundesrat? Maybe Link to Data on Bundesrat Committee Voting Behaviour, see: doi.org/10.5771/0340-1758-2017-4-773
 
 -   [ ] Vlt. Link mit den Parlamentsvorgangsdaten von Stecker et al.?
 
