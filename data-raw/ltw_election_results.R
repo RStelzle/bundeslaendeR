@@ -279,7 +279,7 @@ checkdaten <- party_vote_counts %>%
 
 
 
-ltw_election_results <-
+ltw_election_results_bwl <-
   checkdaten %>% 
   mutate(election_term = as.numeric(election_term)) %>% 
   left_join(totals, by = c("state" = "state_id",
@@ -340,9 +340,40 @@ ltw_election_results <-
   mutate(partyfacts_id = case_when(partyname_short_bundeswahlleiter == "GRÜNE" & state == "BB" & state_election_term == 1 ~ NA_real_, TRUE ~ partyfacts_id))
   
 
-ltw_election_results <- 
-ltw_election_results %>% 
+ltw_election_results_bwl <- 
+  ltw_election_results_bwl %>% 
   left_join(nutsdf) %>% relocate(nuts1, .after = "state")
+
+
+
+
+additional_elecdata_raw <- read_xlsx(here("inst", "extdata","additional_elecdata.xlsx"))
+newparties_raw <- read_xlsx(here("inst", "extdata","newparties.xlsx"))
+
+ltw_election_results <- 
+ltw_election_results_bwl %>% 
+  bind_rows(
+    additional_elecdata_raw %>% 
+      left_join(
+        ltw_election_results_bwl %>% 
+          select(state, state_name_de, state_name_en, nuts1) %>% 
+          distinct()
+        ) %>% 
+      mutate(turnout = number_of_voters / electorate) %>% 
+      mutate(party_vshare = party_vote_count / valid_votes) %>% 
+      mutate(party_sshare = party_seat_count / total_seats_parliament) %>% 
+      mutate(female_party_seats_available = FALSE) %>% 
+      mutate(election_date = as.Date(election_date)) %>% 
+      left_join(
+        ltw_election_results_bwl %>% 
+          select(partyname_short, partyname, wzb_govelec_id, ches_id, partyfacts_id,
+                 decker_neu, url_info, party_remarks_stelzle) %>% 
+          distinct() %>% 
+          bind_rows(newparties_raw))
+  )
+
+
+
 
 
 usethis::use_data(ltw_election_results, overwrite = TRUE)
