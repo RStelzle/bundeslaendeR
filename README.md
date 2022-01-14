@@ -32,7 +32,7 @@ Todo:
     most of the time, wikipedia with election of new cabinet in the
     Landtag.
 
--   [ ] Maybe get some data regarding the Bundesrat? Maybe Link to Data on Bundesrat Committee Voting Behaviour, see: doi.org/10.5771/0340-1758-2017-4-773
+-   [ ] Maybe get some data regarding the Bundesrat?
 
 -   [ ] Vlt. Link mit den Parlamentsvorgangsdaten von Stecker et al.?
 
@@ -61,39 +61,41 @@ devtools::install_github("RStelzle/bundeslaendeR")
 Show Code:
 </summary>
 
-    library(tidyverse)
+``` r
+library(tidyverse)
 
-    library(bundeslaendeR)
+library(bundeslaendeR)
 
 
-    ltw_election_results %>% 
-      select(state_name_en, election_date, partyname_short, party_vshare) %>% 
-      mutate(partyname_short = case_when(
-        partyname_short %in% c("SPD", "FDP", "Grüne", "Linke", "AfD") ~ partyname_short,
-        partyname_short %in% c("CDU", "CSU") ~ "CDU/CSU", 
-        TRUE ~ "Others"
-             )) %>% 
-      mutate(partyname_short = as_factor(partyname_short) %>% 
-                                fct_relevel("CDU/CSU", "SPD", "FDP", "Grüne", "Linke", "AfD", "Others")) %>%
-      mutate(state_name_en = str_replace(state_name_en, "former state ", "Former state of\n") %>% 
-                              fct_reorder(str_detect(., "Former state"))) %>% 
-      group_by(state_name_en, election_date, partyname_short) %>% 
-      summarise(party_vshare = sum(party_vshare)) %>% 
-      ungroup() %>% 
-      ggplot(aes(x = election_date, y = party_vshare, col = partyname_short)) +
-        geom_point() +
-        geom_line() +
-        facet_wrap(~state_name_en) +
-        scale_color_manual(values = c("black", "#E3000F", "#ffed00", "#51bc4a", "#b47ab5", "#00adef", "grey"),
-                           guide = guide_legend(nrow = 1)) +
-        scale_y_continuous(labels = scales::percent) +
-        theme_minimal() +
-        theme(strip.text = element_text(face = "bold"),
-              legend.position = "bottom") +
-        labs(x = NULL,
-             y = "Party Voteshare",
-             col = NULL,
-             title = "Party Voteshares in the German States")
+ltw_election_results %>% 
+  select(state_name_en, election_date, partyname_short, party_vshare) %>% 
+  mutate(partyname_short = case_when(
+    partyname_short %in% c("SPD", "FDP", "Grüne", "Linke", "AfD") ~ partyname_short,
+    partyname_short %in% c("CDU", "CSU") ~ "CDU/CSU", 
+    TRUE ~ "Others"
+         )) %>% 
+  mutate(partyname_short = as_factor(partyname_short) %>% 
+                            fct_relevel("CDU/CSU", "SPD", "FDP", "Grüne", "Linke", "AfD", "Others")) %>%
+  mutate(state_name_en = str_replace(state_name_en, "former state ", "Former state of\n") %>% 
+                          fct_reorder(str_detect(., "Former state"))) %>% 
+  group_by(state_name_en, election_date, partyname_short) %>% 
+  summarise(party_vshare = sum(party_vshare)) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = election_date, y = party_vshare, col = partyname_short)) +
+    geom_point() +
+    geom_line() +
+    facet_wrap(~state_name_en) +
+    scale_color_manual(values = c("black", "#E3000F", "#ffed00", "#51bc4a", "#b47ab5", "#00adef", "grey"),
+                       guide = guide_legend(nrow = 1)) +
+    scale_y_continuous(labels = scales::percent) +
+    theme_minimal() +
+    theme(strip.text = element_text(face = "bold"),
+          legend.position = "bottom") +
+    labs(x = NULL,
+         y = "Party Voteshare",
+         col = NULL,
+         title = "Party Voteshares in the German States")
+```
 
 </details>
 

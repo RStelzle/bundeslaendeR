@@ -90,7 +90,7 @@ devtools::install_local()
 <details>
   <summary>Show Code:</summary>
   
-```
+```R
 library(tidyverse)
 
 library(bundeslaendeR)
@@ -185,7 +185,7 @@ ltw_election_results %>%
 <details>
   <summary>Show Code:</summary>
   
-```
+```R
 library(ggfocus)
 
 
@@ -277,7 +277,7 @@ ltw_election_results_and_gov %>%
 <details>
   <summary>Show Code:</summary>
   
-```
+```R
 library(ggparliament)
 library(lubridate)
 library(ggtext)

@@ -562,7 +562,7 @@ gov_data %>%
   
 
 
-ltw_election_results_and_gov <-
+ltw_election_results_and_gov_expm <-
 ltw_election_results %>%
   left_join(election_term_gocount) %>%
   rename(ngovs_state_election_term = n) %>% 
@@ -589,8 +589,28 @@ ltw_election_results %>%
 
 
 
-ltw_election_results_and_gov %>% 
+ltw_election_results_and_gov_expm %>% 
   left_join(nutsdf) %>% relocate(nuts1, .after = "state")
+
+
+
+
+pms_raw <- read_xlsx(here("inst", "extdata","primeministers.xlsx"))
+
+
+
+
+ltw_election_results_and_gov <- 
+ltw_election_results_and_gov_expm %>% 
+  left_join(
+    pms_raw %>% 
+      select(gov_id, minister_president, mp_party)
+    ) %>% 
+  mutate(is_mp_party = partyname_short == mp_party)
+
+
+
+
 
 
 usethis::use_data(ltw_election_results_and_gov, overwrite = TRUE)
