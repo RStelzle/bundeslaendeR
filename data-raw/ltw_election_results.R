@@ -600,13 +600,14 @@ pms_raw <- read_xlsx(here("inst", "extdata","primeministers.xlsx"))
 
 
 
-ltw_election_results_and_gov <- 
+ltw_election_results_and_gov <-
 ltw_election_results_and_gov_expm %>% 
   left_join(
     pms_raw %>% 
       select(gov_id, minister_president, mp_party)
     ) %>% 
-  mutate(is_mp_party = partyname_short == mp_party)
+  mutate(is_mp_party = partyname_short == mp_party) %>% 
+  select(-gov_end_date)
 
 
 

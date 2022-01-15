@@ -201,7 +201,7 @@ test_that("gleiche anzahl distincte gov ids zwischen nur gov ids und mit gov tot
       
       ltw_election_results_and_gov %>% 
         select(state, state_election_term, gov_no_within_legterm, gov_id, state_gov_number,
-               gov_start_date, gov_end_date, gov_source) %>% distinct()
+               gov_start_date, gov_source, minister_president, mp_party) %>% distinct()
       
     ) %>% count(gov_id) %>% filter(n != 1) %>% nrow(), 0
   )
@@ -223,7 +223,7 @@ test_that("Identische Wahl und Gov Totals pro GovID", {
     ltw_election_results_and_gov %>% 
       select(state:total_female_mps_parliament,
              gueltige_stimmzettel_hh_hb:ungueltige_stimmzettel_hh_hb,gov_no_within_legterm, gov_id, state_gov_number,
-             gov_start_date, gov_end_date, gov_source) %>% 
+             gov_start_date, gov_source, minister_president, mp_party) %>% 
       distinct() %>% count(gov_id)%>% filter(n != 1) %>% nrow(), 0
   )
 })
@@ -250,10 +250,9 @@ test_that("Gov Start Date innerhalb Wahltag und nächstem Wahltag", {
         )),
       
       ltw_election_results_and_gov %>% 
-        select(state, state_election_term, gov_id, gov_start_date, gov_end_date, gov_source) %>% 
+        select(state, state_election_term, gov_id, gov_start_date, gov_source) %>% 
         distinct()
     ) %>% 
-      select(-gov_end_date) %>% 
       filter(!(election_date <= gov_start_date & gov_start_date <= next_election_date)) %>% 
       nrow(), 0
   )

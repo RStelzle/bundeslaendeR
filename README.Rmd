@@ -27,27 +27,31 @@ election results as well as government constellations in the German states.
 
 Todo:
 
-* [ ] Keep data up to date. (LTW Sachsen-Anhalt 2021 missing)
+- [x] Keep data up to date. (LTW Sachsen-Anhalt 2021 missing)
 
-* [ ] Maybe think of a better name...
+- [x] Add information of Ministerpräsidenten name and party to government data
 
-* [ ] Make a less shitty Hex Sticker
+- [ ] Clean up gov_end_dates. Linhart et al stop with election date most of the time, wikipedia with election of new cabinet in the Landtag.
 
-* [ ] Provide cleaned up version of only the election totals
+- [ ] Link my party-within-election observations with IDs for state parties' manifestos form polidoc.net
 
-* [ ] Add information of Ministerpräsidenten name and party to government data
+- [ ] Link governments to coalition agreements from polidoc.net
 
-* [ ] Add information of cabinet type to government data
+- [ ] Provide non R outputs for the data (csv, dta)
 
-* [ ] Provide cleaned up version of only the government data
+- [ ] Provide a nicer pdf version of a codebook
 
-* [ ] Clean up gov_end_dates. Linhart et al stop with election date most of the time, wikipedia with election of new cabinet in the Landtag.
+Maybe:
 
-* [ ] Maybe get some data regarding the Bundesrat?
+- [ ] Provide cleaned up version of only the election totals & add some more (ENP, etc.)
 
-* [ ] Vlt. Link mit den Parlamentsvorgangsdaten von Stecker et al.?
+- [ ] Add information of cabinet type to government data. (Not sure if this is a good idea. I can only
+get to the status within the legislature not to factors external to this that are needed
+to provide Woldendorp et al.-esque information on the type of government)
 
-* [ ] Vlt. Link mit daten-ids von polidoc.net
+- [ ] Provide cleaned up version of only the government data
+
+
 
 
 
@@ -267,151 +271,6 @@ ltw_election_results_and_gov %>%
 ```
 
 
-
-
-
-
-
-### Here is a quick example showing the current composition of the state parliaments.
-
-<details>
-  <summary>Show Code:</summary>
-  
-```R
-library(ggparliament)
-library(lubridate)
-library(ggtext)
-
-
-full <- 
-ltw_election_results_and_gov %>% 
-  filter(!(state %in% c("WH", "BA", "WB"))) %>% 
-  group_by(state) %>% 
-  filter(gov_end_date == max(gov_end_date)) %>% 
-  ungroup() %>% 
-  select(state_name_en, state_election_term, election_date,
-         partyname_short, total_seats_parliament,
-         seats = party_seat_count, party_female_mps, gov_party) %>% 
-  filter(seats > 0) %>% 
-  mutate(state_label = paste0("**", state_name_en, "**<br>",
-                              state_election_term,
-                              ifelse(state_election_term == 22, "nd", "th"), " LTW<br>on ",
-                              day(election_date),".",month(election_date),".",year(election_date))) %>% 
-  relocate(state_label)
-  
-results <- 
-full %>% 
-  select(state_label, partyname_short, seats, gov_party)
-
-partycolors <- 
-full %>% 
-  select(partyname_short) %>% 
-  distinct() %>% 
-  mutate(party_color = c("#E3000F", "#00adef", "black", "#51bc4a",
-                         "#b47ab5", "orange", "#ffed00", "black",
-                         "orange", "#015995", "orange", "#003c8f"))
-
-
-results %>% 
-  split(.$state_label) %>% 
-  map(~parliament_data(
-    election_data = .,
-    parl_rows = 5,
-    plot_order = .$gov_party,
-    type = "semicircle"
-  )) %>% 
-  bind_rows() %>% 
-  ggplot(aes(x, y, col = partyname_short)) +
-    draw_majoritythreshold(n = 999, type = "semicircle", label = FALSE) +
-    geom_parliament_seats(size = 1.8) +
-    geom_highlight_government(gov_party == TRUE, colour = "darkgreen", size = 1.8) +
-    facet_wrap(~state_label, nrow = 3) +
-    scale_color_manual(values = partycolors$party_color,
-                       limits = partycolors$partyname_short,
-                       guide = guide_legend(ncol = 3,override.aes = list(size = 6))) +
-    theme_ggparliament() +
-    theme(strip.text = element_markdown(),
-          legend.position = c(0.8, 0.15)) +
-    labs(color = NULL,
-         title = "Current Seat Composition of the 16 Landtage",
-         subtitle = "Government Parties highlighted in Dark Green\n")
-
-
-
-
-
-
-```
-
-</details>
-
-<br><br>
-
-
-
-```{r example3, echo=FALSE, fig.asp=2.2/4, fig.width=12, message=FALSE, warning=FALSE, dpi=1600}
-library(ggparliament)
-library(lubridate)
-library(ggtext)
-
-
-full <- 
-ltw_election_results_and_gov %>% 
-  filter(!(state %in% c("WH", "BA", "WB"))) %>% 
-  group_by(state) %>% 
-  filter(gov_end_date == max(gov_end_date)) %>% 
-  ungroup() %>% 
-  select(state_name_en, state_election_term, election_date,
-         partyname_short, total_seats_parliament,
-         seats = party_seat_count, party_female_mps, gov_party) %>% 
-  filter(seats > 0) %>% 
-  mutate(state_label = paste0("**", state_name_en, "**<br>",
-                              state_election_term,
-                              ifelse(state_election_term == 22, "nd", "th"), " LTW<br>on ",
-                              day(election_date),".",month(election_date),".",year(election_date))) %>% 
-  relocate(state_label)
-  
-results <- 
-full %>% 
-  select(state_label, partyname_short, seats, gov_party)
-
-partycolors <- 
-full %>% 
-  select(partyname_short) %>% 
-  distinct() %>% 
-  mutate(party_color = c("#E3000F", "#00adef", "black", "#51bc4a",
-                         "#b47ab5", "orange", "#ffed00", "black",
-                         "orange", "#015995", "orange", "#003c8f"))
-
-
-results %>% 
-  split(.$state_label) %>% 
-  map(~parliament_data(
-    election_data = .,
-    parl_rows = 5,
-    plot_order = .$gov_party,
-    type = "semicircle"
-  )) %>% 
-  bind_rows() %>% 
-  ggplot(aes(x, y, col = partyname_short)) +
-    draw_majoritythreshold(n = 999, type = "semicircle", label = FALSE) +
-    geom_parliament_seats(size = 1.8) +
-    geom_highlight_government(gov_party == TRUE, colour = "darkgreen", size = 1.8) +
-    facet_wrap(~state_label, nrow = 3) +
-    scale_color_manual(values = partycolors$party_color,
-                       limits = partycolors$partyname_short,
-                       guide = guide_legend(ncol = 3,override.aes = list(size = 6))) +
-    theme_ggparliament() +
-    theme(strip.text = element_markdown(),
-          legend.position = c(0.8, 0.15)) +
-    labs(color = NULL,
-         title = "Current Seat Composition of the 16 Landtage",
-         subtitle = "Government Parties highlighted in Dark Green\n")
-
-
-
-
-```
 
 
 
