@@ -237,12 +237,20 @@ library(ggfocus)
 
 ltw_election_results_and_gov %>% 
   select(state_name_en, election_date, partyname_short,
-         gov_party, gov_start_date, gov_end_date) %>% 
+         gov_party, gov_start_date, gov_id) %>% 
   filter(gov_party == TRUE) %>% 
-  mutate(gov_end_date = case_when(
-      gov_end_date == as.Date("2999-12-31") ~ Sys.Date(),
-      TRUE ~ gov_end_date
-    )) %>% 
+  left_join(
+    ltw_election_results_and_gov %>% 
+      select(state_name_en, gov_id, gov_start_date) %>% 
+      distinct() %>% 
+      arrange(state_name_en, gov_start_date) %>% 
+      group_by(state_name_en) %>% 
+      mutate(gov_end_date = lead(gov_start_date)) %>%
+      ungroup() %>%
+      mutate(gov_end_date = case_when(
+        is.na(gov_end_date) ~ Sys.Date(),
+        TRUE ~ gov_end_date
+      ))) %>% 
   mutate(state_name_en = str_replace(state_name_en, "former state ", "Former state of\n") %>% 
                             fct_reorder(str_detect(., "Former state"))) %>% 
   ggplot(aes(col = partyname_short)) +

@@ -500,10 +500,11 @@ ltw_election_results %>%
     ub == max(ub) ~ paste0("[", lb, ",", ub, "]"),
     TRUE ~ paste0("[", lb, ",", ub, ")")
   )) %>% 
+  mutate(int = as_factor(int) %>% fct_reorder(lb) %>% fct_expand("NA")) %>% 
   count(int) %>% 
   bind_rows(
     tibble(
-      int = "NA",
+      int = as_factor("NA"),
       n = ltw_election_results %>% 
           select(total_female_mps_parliament, state, state_election_term) %>% 
           distinct() %>% 
@@ -792,36 +793,157 @@ item_end()
 
 
 
-
 ```{r, results="asis"}
-short_item(item_name_code = "wzb_govelec_id",
+item_start(item_name_code = "wzb_govelec_id", 
            item_name = "WZB DD GovElec ID",
-           item_desc = "If available, MR-Code of the party in the internal govelec database of the WZB department Democracy and Democratization.",
-           desc_left = FALSE)
+           item_desc = "If available, MR-Code of the party in the internal govelec database of the WZB department Democracy and Democratization.")
+```
+
+
+```{r, results="asis"}
+govelecplot <- 
+ltw_election_results %>% 
+  select(partyname_short, wzb_govelec_id) %>% 
+  distinct() %>% 
+  mutate(avail = !is.na(wzb_govelec_id)) %>% 
+  count(avail) %>% 
+  ggplot(aes(y = avail, x = n)) +
+    geom_col() +
+    theme_minimal() +
+    labs(x = "Number of parties",
+         y = "GovElec ID available")
+
+item_image(ggobj = govelecplot,
+           filenameimg = "cbelec/govelecplot.pdf",
+           width = 5,
+           height = 5/1.7)
+
 ```
 
 ```{r, results="asis"}
-short_item(item_name_code = "ches_id",
+item_end()
+```
+
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "ches_id", 
            item_name = "CHES ID",
-           item_desc = "If available, ID of the party in the Chapel-Hill Expert Survey.",
-           desc_left = FALSE)
+           item_desc = "If available, ID of the party in the Chapel-Hill Expert Survey.")
 ```
 
 
 ```{r, results="asis"}
-short_item(item_name_code = "partyfacts_id",
+chesplot <- 
+ltw_election_results %>% 
+  select(partyname_short, ches_id) %>% 
+  distinct() %>% 
+  mutate(avail = !is.na(ches_id)) %>% 
+  count(avail) %>% 
+  ggplot(aes(y = avail, x = n)) +
+    geom_col() +
+    theme_minimal() +
+    labs(x = "Number of parties",
+         y = "CHES ID available")
+
+item_image(ggobj = chesplot,
+           filenameimg = "cbelec/chesplot.pdf",
+           width = 5,
+           height = 5/1.7)
+
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "partyfacts_id",
            item_name = "PartyFacts ID",
-           item_desc = "If available, ID of the party in the partyfacts database.",
-           desc_left = FALSE)
+           item_desc = "If available, ID of the party in the partyfacts database.")
+```
+
+```{r, results="asis"}
+partyfactsplot <- 
+ltw_election_results %>% 
+  select(partyname_short, partyfacts_id) %>% 
+  distinct() %>% 
+  mutate(avail = !is.na(partyfacts_id)) %>% 
+  count(avail) %>% 
+  ggplot(aes(y = avail, x = n)) +
+    geom_col() +
+    theme_minimal() +
+    labs(x = "Number of parties",
+         y = "PartyFacts ID available")
+
+item_image(ggobj = chesplot,
+           filenameimg = "cbelec/partyfactsplot.pdf",
+           width = 5,
+           height = 5/1.7)
+
 ```
 
 
 ```{r, results="asis"}
-short_item(item_name_code = "decker_neu",
+item_end()
+```
+
+
+
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "decker_neu",
            item_name = "Chapter Parteienhandbuch",
            item_desc = "Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by Decker and Neu has a chapter on the party.",
            desc_left = FALSE)
 ```
+
+```{r, results="asis"}
+deckerneuplot <- 
+ltw_election_results %>% 
+  select(partyname_short, decker_neu) %>% 
+  distinct() %>% 
+  mutate(avail = !is.na(decker_neu)) %>% 
+  count(avail) %>% 
+  ggplot(aes(y = avail, x = n)) +
+    geom_col() +
+    theme_minimal() +
+    labs(x = "Number of parties",
+         y = "Decker & Neu Chapter available")
+
+item_image(ggobj = chesplot,
+           filenameimg = "cbelec/deckerneuplot.pdf",
+           width = 5,
+           height = 5/1.7)
+
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+
+
 
 ```{r, results="asis"}
 short_item(item_name_code = "url_info",
