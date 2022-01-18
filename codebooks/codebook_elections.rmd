@@ -262,8 +262,7 @@ item_end()
 ```{r, results="asis"}
 short_item(item_name_code = "election_id_\nbundeswahlleiter",
            item_name = "Election ID Bundeswahlleiter",
-           item_desc = "Specific election\\_id as denoted by the Bundeswahlleiter.
-           Note that BA, WH and WH are named as BW and the number counts down.",
+           item_desc = "Specific election\\_id as denoted by the Bundeswahlleiter. Note that BA, WH and WH are named as BW and the number counts down. NA for cases taken from Landeswahlleiters (ie elections after ST 2021).",
            desc_left = FALSE)
 ```
 

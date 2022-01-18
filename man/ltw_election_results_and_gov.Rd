@@ -13,7 +13,7 @@ A tibble containing one row per contesting party per election and per cabinet.
 \item{state_name_en}{chr English name of the state}
 \item{state_election_term}{dbl Election term in the state}
 \item{election_date}{date Election date}
-\item{election_id_bundeswahlleiter}{chr Specific election_id as denoted by the Bundeswahlleiter. Note that BA, WH and WH are named as BW and the number counts down}
+\item{election_id_bundeswahlleiter}{chr Specific election_id as denoted by the Bundeswahlleiter. Note that BA, WH and WH are named as BW and the number counts down. NA for cases taken from Landeswahlleiters (ie elections after ST 2021).}
 \item{election_remarks_bundeswahlleiter}{chr Remarks on the election as given by the Bundeswahlleiter}
 \item{electorate}{dbl Number of eligible voters. For more totals also see the last three columns.}
 \item{number_of_voters}{dbl Number of voters turning out. For more totals also see the last three columns.}

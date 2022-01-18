@@ -14,7 +14,7 @@
 #'   \item{state_name_en}{chr English name of the state}
 #'   \item{state_election_term}{dbl Election term in the state}
 #'   \item{election_date}{date Election date}
-#'   \item{election_id_bundeswahlleiter}{chr Specific election_id as denoted by the Bundeswahlleiter. Note that BA, WH and WH are named as BW and the number counts down}
+#'   \item{election_id_bundeswahlleiter}{chr Specific election_id as denoted by the Bundeswahlleiter. Note that BA, WH and WH are named as BW and the number counts down. NA for cases taken from Landeswahlleiters (ie elections after ST 2021).}
 #'   \item{election_remarks_bundeswahlleiter}{chr Remarks on the election as given by the Bundeswahlleiter}
 #'   \item{electorate}{dbl Number of eligible voters. For more totals also see the last three columns.}
 #'   \item{number_of_voters}{dbl Number of voters turning out. For more totals also see the last three columns.}
@@ -46,7 +46,7 @@
 #'   \item{ungueltige_stimmen_except_hh_hb}{chr Messy totals.}
 #'   \item{ungueltige_stimmzettel_hh_hb}{chr Messy totals.}
 #'   \item{gov_no_within_legterm}{int Order of cabinets within the legislative session of the state.}
-#'   \item{gov_id}{dbl Unique ID of government. Taken from Linhart et al. However, this ID is not counting up within state by time. In cases where Governments were missing from Linhart et al. before the timeframe covered by Linhart et al. (eg. in Berlin) these earlyer governments have an higher ID than later cabinets contained in Linhart et al. data.}
+#'   \item{gov_id}{dbl Unique ID of government. Taken from Linhart et al. However, this ID is not counting up within state by time. In cases where Governments were missing from Linhart et al. before the timeframe covered by Linhart et al. (eg. in Berlin) these earlier governments have an higher ID than later cabinets contained in Linhart et al. data.}
 #'   \item{state_gov_number}{int Order of cabinets within the state.}
 #'   \item{gov_start_date}{int Start date of the government.}
 #'   \item{gov_party}{lgl Boolean wether the party was a cabinet party. Note: There is a single cabinet where no party is marked as part of the cabinet: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.}
