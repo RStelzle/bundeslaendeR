@@ -624,3 +624,60 @@ usethis::use_data(ltw_election_results_and_gov, overwrite = TRUE)
 
 
 
+
+link_polidoc_parties_raw <- 
+read_xlsx(here("inst", "extdata", "link_polidoc_parties.xlsx"))
+
+link_polidoc_parties <-
+link_polidoc_parties_raw %>% 
+  mutate(election_date = as.Date(election_date)) %>% 
+  filter(!is.na(polidoc_id) | !is.na(polidoc_id_2)) %>% 
+  rename(polidoc_filename = polidoc_id) %>% 
+  rename(polidoc_filename_2 = polidoc_id_2)
+
+
+usethis::use_data(link_polidoc_parties, overwrite = TRUE)
+
+
+
+
+link_polidoc_governments_raw <- 
+read_xlsx(here("inst/extdata/link_polidoc_governments.xlsx"))
+
+
+link_polidoc_governments <- 
+link_polidoc_governments_raw %>% 
+  mutate(election_date = as.Date(election_date)) %>% 
+  filter(!is.na(polidoc_filename)) %>% 
+  select(-coalition)
+  
+
+
+usethis::use_data(link_polidoc_governments, overwrite = TRUE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

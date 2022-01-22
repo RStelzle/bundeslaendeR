@@ -45,7 +45,7 @@ A tibble containing one row per contesting party per election and per cabinet.
 \item{ungueltige_stimmen_except_hh_hb}{chr Messy totals.}
 \item{ungueltige_stimmzettel_hh_hb}{chr Messy totals.}
 \item{gov_no_within_legterm}{int Order of cabinets within the legislative session of the state.}
-\item{gov_id}{dbl Unique ID of government. Taken from Linhart et al. However, this ID is not counting up within state by time. In cases where Governments were missing from Linhart et al. before the timeframe covered by Linhart et al. (eg. in Berlin) these earlyer governments have an higher ID than later cabinets contained in Linhart et al. data.}
+\item{gov_id}{dbl Unique ID of government. Taken from Linhart et al. However, this ID is not counting up within state by time. In cases where Governments were missing from Linhart et al. before the timeframe covered by Linhart et al. (eg. in Berlin) these earlier governments have an higher ID than later cabinets contained in Linhart et al. data.}
 \item{state_gov_number}{int Order of cabinets within the state.}
 \item{gov_start_date}{int Start date of the government.}
 \item{gov_party}{lgl Boolean wether the party was a cabinet party. Note: There is a single cabinet where no party is marked as part of the cabinet: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.}
