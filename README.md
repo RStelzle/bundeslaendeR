@@ -11,38 +11,20 @@ The goal of `bundeslaendeR` is to provide easy and cleaned up access to
 data regarding election results as well as government constellations in
 the German states.
 
-Todo:
-
--   [x] Keep data up to date. (LTW Sachsen-Anhalt 2021 missing)
-
--   [x] Add information of Ministerpräsidenten name and party to
-    government data
-
--   [ ] Clean up gov\_end\_dates. Linhart et al stop with election date
-    most of the time, wikipedia with election of new cabinet in the
-    Landtag.
-
--   [ ] Link my party-within-election observations with IDs for state
-    parties’ manifestos form polidoc.net
-
--   [ ] Link governments to coalition agreements from polidoc.net
-
--   [ ] Provide non R outputs for the data (csv, dta)
-
--   [ ] Provide a nicer pdf version of a codebook
-
-Maybe:
-
--   [ ] Provide cleaned up version of only the election totals & add
-    some more (ENP, etc.)
-
--   [ ] Add information of cabinet type to government data. (Not sure if
-    this is a good idea. I can only get to the status within the
-    legislature not to factors external to this that are needed to
-    provide Woldendorp et al.-esque information on the type of
-    government)
-
--   [ ] Provide cleaned up version of only the government data
+<!-- Todo: -->
+<!-- - [x] Keep data up to date. (LTW Sachsen-Anhalt 2021 missing) -->
+<!-- - [x] Add information of Ministerpräsidenten name and party to government data -->
+<!-- - [x] Clean up gov_end_dates. Linhart et al stop with election date most of the time, wikipedia with election of new cabinet in the Landtag. -->
+<!-- - [x] Link my party-within-election observations with IDs for state parties' manifestos form polidoc.net -->
+<!-- - [x] Link governments to coalition agreements from polidoc.net -->
+<!-- - [x] Provide a nicer pdf version of a codebook -->
+<!-- - [ ] Provide non R outputs for the data (csv, dta) -->
+<!-- Maybe: -->
+<!-- - [ ] Provide cleaned up version of only the election totals & add some more (ENP, etc.) -->
+<!-- - [ ] Add information of cabinet type to government data. (Not sure if this is a good idea. I can only -->
+<!-- get to the status within the legislature not to factors external to this that are needed -->
+<!-- to provide Woldendorp et al.-esque information on the type of government) -->
+<!-- - [ ] Provide cleaned up version of only the government data -->
 
 ## Installation
 

@@ -1,7 +1,7 @@
 ---
 title: "Codebook bundeslaendeR polidoc Link"
 author: "Robert Stelzle"
-date: "15 1 2022"
+date: "21.01.2022"
 output:
   pdf_document:
     keep_tex: true
@@ -118,7 +118,7 @@ While file names from polidoc.net follow a naming pattern
 
 Note that polidoc.net provides a manifesto for the Neue Liberale in the HB 2015 election (41441.005.2015.1.1). Since the party withdrew it's candidacy before the election and is thus not included in the election results in `ltw_election_results`, the manifesto id is not included in link_polidoc_parties.
 
-Note that polidoc.net provides a coalition agreement between the SPD and the Greens following the 2008 HE election (41001.006.2008.1.1). Since this potential coalition under leadership of SPD politician Andrea Ypsilanti never came to be due to several SPD MP's opposing the red-green minority cabinet being externally supported by Die Linke the coalition agreement can't be matched with a government in `ltw_election_results_and_gov` and is thus not included.
+Note that polidoc.net provides a coalition agreement between the SPD and the Greens following the 2008 HE election (41001.006.2008.1.1). Since this potential coalition under leadership of SPD politician Andrea Ypsilanti never came to be due to several SPD MPs opposing the red-green minority cabinet being externally supported by Die Linke the coalition agreement can't be matched with a government in `ltw_election_results_and_gov` and is thus not included.
 
 
 \newpage
@@ -173,9 +173,9 @@ ltw_election_results %>%
   ) %>% 
   ungroup() %>% 
   mutate(no_cat = fct_case_when(
-    number_of_manif == 0 ~ "No manifesto available",
-    number_of_manif > 0 & number_of_extra_manif == 0 ~ "At least one manifesto available",
-    number_of_extra_manif > 0 ~ "At least one party with two available manifestos"
+    number_of_manif == 0 ~ "No manifesto\navailable",
+    number_of_manif > 0 & number_of_extra_manif == 0 ~ "At least one\nmanifesto available",
+    number_of_extra_manif > 0 ~ "At least one party with\ntwo available manifestos"
   )) %>% 
   mutate(number_of_manif_cat = fct_case_when(
     number_of_manif == 0 ~ "0",

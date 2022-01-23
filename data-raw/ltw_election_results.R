@@ -660,14 +660,22 @@ usethis::use_data(link_polidoc_governments, overwrite = TRUE)
 
 
 
+## Grid, um einzelne Plot-Panels für die 16 Bundesländer mit Geofacet zu plotten.
+## Die geografische Platzierung der Bundesländer passt so ungefähr.
+## Ist halt kompakter als de_states_grid1 und ich finde immernoch erkennbar.
 
+int_grid <- data.frame(
+  row = c(1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4),
+  col = c(3, 4, 1, 2, 1, 4, 3, 2, 1, 2, 3, 4, 2, 1, 3, 4),
+  code = c("SH", "MV", "HB", "HH", "NI", "BE", "BB", "ST", "NW", "HE", "TH", "SN", "RP", "SL", "BW", "BY"),
+  name = c("Schleswig-Holstein", "Mecklenburg-Vorpommern", "Bremen", "Hamburg", "Lower Saxony", "Berlin", "Brandenburg", "Saxony-Anhalt", "North Rhine-Westphalia", 
+           "Hesse", "Thuringia", "Saxony", "Rhineland-Palatinate", "Saarland", "Baden-Württemberg", "Bavaria"),
+  name_de = c("Schleswig-Holstein", "Mecklenburg-Vorpommern", "Bremen", "Hamburg", "Niedersachsen", "Berlin", "Brandenburg", "Sachsen-Anhalt", "Nordrhein-Westfalen", 
+              "Hessen", "Thüringen", "Sachsen", "Rheinland-Pfalz", "Saarland", "Baden-Württemberg", "Bayern"),
+  stringsAsFactors = FALSE
+)
 
-
-
-
-
-
-
+usethis::use_data(int_grid, overwrite = TRUE, internal = TRUE)
 
 
 
