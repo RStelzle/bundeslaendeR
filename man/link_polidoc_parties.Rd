@@ -3,7 +3,7 @@
 \docType{data}
 \name{link_polidoc_parties}
 \alias{link_polidoc_parties}
-\title{ID Links between ltw_election_results and state parties' manifestos from polidoc.net- The Political Documents Archive}
+\title{ID Links between ltw_election_results and state parties' manifestos from polidoc.net - The Political Documents Archive}
 \format{
 A tibble containing one row per party for which a manifesto is available.
 \describe{

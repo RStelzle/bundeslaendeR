@@ -3,7 +3,7 @@
 \docType{data}
 \name{link_polidoc_governments}
 \alias{link_polidoc_governments}
-\title{ID Links between ltw_election_results_and_gov and coalition agreements from polidoc.net- The Political Documents Archive}
+\title{ID Links between ltw_election_results_and_gov and coalition agreements from polidoc.net - The Political Documents Archive}
 \format{
 A tibble containing one row per government for which a coalition agreement is available.
 \describe{
