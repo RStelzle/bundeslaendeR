@@ -4,7 +4,7 @@ author: "Robert Stelzle"
 date: "21.01.2022"
 output:
   pdf_document:
-  keep_tex: true
+    keep_tex: true
 header-includes:
 - \usepackage{longtable}
 - \usepackage{float}
