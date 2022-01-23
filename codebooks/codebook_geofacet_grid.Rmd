@@ -15,6 +15,7 @@ header-includes:
 ---
   
 ```{r include=FALSE}
+if(!require(here)) install.packages("here",repos = "http://cran.us.r-project.org")
 library(here)
 library(tidyverse)
 library(bundeslaendeR)
