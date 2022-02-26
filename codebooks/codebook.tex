@@ -1,0 +1,929 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{scrartcl}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Codebook bundeslaendeR},
+  pdfauthor={Robert Stelzle},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[lmargin=2.5cm, rmargin=3.5cm, tmargin=2.5cm, bmargin=2.5cm,
+includeheadfoot]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
+\usepackage{fontspec}
+\usepackage{libertinus}
+\setmonofont[Scale=MatchLowercase,FakeStretch=0.9]{Consolas}
+\setkomafont{captionlabel}{\bfseries\small\sffamily}
+\setkomafont{caption}{\small\sffamily}
+\usepackage[automark, headsepline=1pt, footsepline=1pt]{scrlayer-scrpage}
+\ohead{Codebook bundeslaendeR}
+\ofoot*{23.09.2021} \ihead{\headmark}
+\setkomafont{pagenumber}{\itshape}
+\ifoot*{Seite \pagemark}
+\chead{}
+\cfoot*{}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[backref,style=ext-authoryear-comp,minnames=1,maxnames=3,isbn=false,date=year,sorting=nyt]{biblatex}
+\addbibresource{literature.bib}
+
+\title{Codebook bundeslaendeR}
+\author{Robert Stelzle}
+\date{21.01.2022}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\noindent
+
+\rule{\linewidth}{1pt}
+\vspace{1.5cm}
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Hallo dies ist ein Test. \newpage
+
+\hypertarget{ltw_election_results}{%
+\section{\texorpdfstring{\texttt{ltw\_election\_results}}{ltw\_election\_results}}\label{ltw_election_results}}
+
+\texttt{bundeslaendeR::ltw\_election\_results} returns data frame
+(tibble if the tibble package is loaded) containing one row per
+contesting party per election.
+
+Most election results data are provided by the Bundeswahlleiter. A
+machine-readable version of the Bundeswahlleiter's compiled data
+contained in the -periodically published- pdf available here
+(\url{https://www.bundeswahlleiter.de/service/landtagswahlen.html}) was
+kindly provided to me. Election data outside the timeframe covered by
+Bundeswahlleiter's data provided to me was collected from the states'
+local election authorities' (Landeswahlleiter) websites. More
+information on parties and the continuity of parties under different
+labels was collected by me.
+
+The Bundeswahlleiter's election data in many cases contains differing
+names for the same party. Both between states (eg. ``Christlich
+Demokratische Union Deutschlands'' vs.~``Christlich Demokratische Union
+Deutschlands in Niedersachsen'') as well as within states between
+elections -in many cases due to parties being renamed- (``BÜNDNIS 90/DIE
+GRÜNEN, Landesverband Hamburg, Grün-Alternative Liste'' vs.~``BÜNDNIS
+90/DIE GRÜNEN, Landesverband Hamburg''). Efforts were made to reconcile
+both of these inconsistencies by adding two new, harmonized variables
+identifying parties (\texttt{partyname\_short} and \texttt{partyname}).
+This harmonized party identifier also covers merging of parties. The
+partyname given to the resulting party (eg. ``Linke'', ``Grüne'') is
+given to the largest of the preceding parties contesting an election
+unless a smaller party joined a government following the election. The
+original names provided by the Bundeswahlleiter (and Landeswahlleiters
+in elections after June 2021) are still available
+(\texttt{partyname\_short\_bundeswahlleiter} and
+\texttt{partyname\_bundeswahlleiter}).
+
+\begin{table}
+\caption{Structure of \texttt{ltw\_election\_results}}
+\centering
+\tiny
+\texttt{
+\begin{tabular}{llrllrllrllr}
+            \toprule
+            \multicolumn{3}{c}{\textbf{\textsf{State Variables}}} & \multicolumn{3}{c}{\textbf{\textsf{Election Variables}}} & \multicolumn{3}{c}{\textbf{\textsf{Party Variables}}} & \multicolumn{3}{c}{\textbf{\textsf{Party-Election Variables}}}\\
+            \multicolumn{3}{c}{\textsf{Name, Abbreviation, NUTS1 Code}} & \multicolumn{3}{c}{\textsf{Election date, Size Electorate, Turnout, ...}} & \multicolumn{3}{c}{\textsf{Names, Abbreviations, several IDs}} & \multicolumn{3}{c}{\textsf{Vote Count, -Share, Seat Count, -Share, ...}}\\
+            \cmidrule(r){1-3}\cmidrule(lr){4-6}\cmidrule(lr){7-9}\cmidrule(l){10-12}
+            \textbf{state} & \textbf{nuts1} & \textbf{...} & \textbf{election\_date} & \textbf{turnout} & \textbf{...} & \textbf{partyname\_short} & \textbf{ches\_id} & \textbf{...} & \textbf{party\_vshare} & \textbf{party\_seat\_count} & \textbf{...} \\
+            \midrule
+            BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party A & 001 & ... & 0.45 & 46 & ...\\
+            BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party B & 002 & ... & 0.30 & 12 & ...\\
+            BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party C & 003 & ... & 0.25 & 18 & ...\\
+        &&&&&&&&&&&\\[-2ex]
+            NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party A & 001 & ... & 0.17 & 12 & ...\\
+            NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party B & 002 & ... & 0.33 & 27 & ...\\
+            NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party D & 004 & ... & 0.50 & 46 & ...\\
+            \bottomrule
+    \end{tabular}}
+    \normalsize
+        \caption{State-level Variables}
+        
+\tiny
+\texttt{
+\begin{tabular}{llll}
+\toprule
+\textbf{state} & \textbf{nuts1} & \textbf{state\_name\_de} & \textbf{state\_name\_en} \\
+\midrule
+BA & NA & ehemaliges Land Baden & former state Baden \\
+BB & DE4 & Brandenburg & Brandenburg \\
+BE & DE3 & Berlin & Berlin \\
+BW & DE1 & Baden-Württemberg & Baden-Württemberg \\
+BY & DE2 & Bayern & Bavaria \\
+HB & DE5 & Bremen & Bremen \\
+HE & DE7 & Hessen & Hesse \\
+HH & DE6 & Hamburg & Hamburg\\
+MV & DE8 & Mecklenburg-Vorpommern & Mecklenburg-Vorpommern\\
+NI & DE9 & Niedersachsen & Lower-Saxony \\
+NW & DEA & Nordrhein-Westfalen & North Rhine-Westphalia\\
+RP & DEB & Rheinland-Pfalz & Rhineland-Palatine\\
+SH & DEF & Schleswig-Holstein & Schleswig-Holstein\\
+SL & DEC & Saarland & Saarland \\
+SN & DED & Sachsen & Saxony\\
+ST & DEE & Sachsen-Anhalt & Saxony-Anhalt\\
+TH & DEG & Thüringen & Thuringia\\
+WB & NA & ehemaliges Land Württemberg-Baden & former state Württemberg-Baden\\
+WH & NA &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-Hohenzollern\\
+\bottomrule
+\end{tabular}}
+
+
+\end{table}
+
+\clearpage
+
+\hypertarget{election-results-variables}{%
+\subsection{Election Results
+Variables}\label{election-results-variables}}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{state} &\textbf{State Abbreviation}\newline 
+ISO 3166-2:DE-code of the state;
+           including BA for the former state of Baden, WH for the former state
+           of Württemberg-Hohenzollern and WB for the former state of
+           Württemberg-Baden.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{nuts1} &\textbf{NUTS1 Code of State}\newline 
+NUTS1 code of state. NA for former states Baden, Württemberg-Baden, Württemberg-Hohenzollern.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{state\_name\_de} &\textbf{German Name of State}\newline 
+German name of the state.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{state\_name\_en} &\textbf{English Name of State.}\newline 
+English name of the state.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{state\_election\_
+term} &\textbf{Election Term of State}\newline 
+Election term in the state. Counts up from 1.
+
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/electiontermplot.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{election\_date} &\textbf{Election Date}\newline 
+Date of the election.  ISO 8601 or R-Date format.
+
+
+
+
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/electiondatesplot.pdf}
+\end{minipage}
+
+
+
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{election\_id\_
+bundeswahlleiter} &\textbf{Election ID Bundeswahlleiter}\newline 
+Specific election\_id as denoted by the Bundeswahlleiter. Note that BA, WH and WH are named as BW and the number counts down. NA for cases taken from Landeswahlleiters (ie elections after ST 2021).
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{election\_remarks\_
+bundeswahlleiter} &\textbf{Election Remarks Bundeswahlleiter}\newline 
+Remarks on the election as given by the Bundeswahlleiter.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{electorate} &\textbf{Size of the Electorate}\newline 
+Number of eligible voters. For more totals also see the last three columns.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/electorateplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{number\_of\_voters} &\textbf{Number of Voters}\newline 
+Number of voters turning out. For more totals also see the last three columns.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/nvotersplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{turnout} &\textbf{Turnout}\newline 
+Turnout. Share of eligible voters turning out.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/turnoutplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{valid\_votes} &\textbf{Valid Votes}\newline 
+Number of valid votes. Does not have to be equal to the number of ballots cast, as sometimes a ballot contains multiple votes! For more totals also see the last three columns.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/validvoteplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{total\_seats\_
+parliament} &\textbf{Total Seats in Parliament}\newline 
+Total number of members of the newly elected Landtag.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/tseatsparlplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{female\_party\_
+seats\_available} &\textbf{Number of female MdLs available per party}\newline 
+Denotes whether information on the no. of female members of the Landtag per party is available for this election. Note that for parties not elected to the new Landtag party\_female\_mps always is.na() == TRUE.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/fpsaplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{total\_female\_
+mps\_parliament} &\textbf{Number of Female MPs in Parliament}\newline 
+Number of newly elected female MPs.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/totfemmpsplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{partyname\_short} &\textbf{Abbreviated Party Name}\newline 
+Harmonized abbreviation of the party's name. 372 unique parties.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{partyname} &\textbf{Party Name}\newline 
+Harmonized name of the party. 372 unique parties.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{partyname\_short\_
+bundeswahlleiter} &\textbf{Party Name Abbreviation from Bundeswahlleiter}\newline 
+Partyname abbreviation as documented by the Bundeswahlleiter. 459 different abbreviations.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{partyname\_
+bundeswahlleiter} &\textbf{Party Name from Bundeswahlleiter}\newline 
+Partyname as documented by the Bundeswahlleiter. 495 different names.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{party\_vote\_count} &\textbf{Party Vote Count}\newline 
+Number of votes recieved by the party.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/pvcplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{party\_vshare} &\textbf{Party Vote Share}\newline 
+Share of votes recieved by the party.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/pvsplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{party\_seat\_count} &\textbf{Party Seat Count}\newline 
+Number of seats recieved by the party.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/pscplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{party\_sshare} &\textbf{Party Seat Share}\newline 
+Share of seats recieved by the party.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/pssplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{party\_female\_mps} &\textbf{Number of female MPs from party}\newline 
+Number of female MPs elected for the party. Note that for parties not elected to the new Landtag party\_female\_mps always is.na() == TRUE.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/pfmpcplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{wzb\_govelec\_id} &\textbf{WZB DD GovElec ID}\newline 
+If available, MR-Code of the party in the internal govelec database of the WZB department Democracy and Democratization \parencite{wzbDatabasePartiesElections2021}. These party IDs are chiefly based on party IDs from \textcite{mackieInternationalAlmanacElectoral1991}.
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/govelecplot.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{ches\_id} &\textbf{CHES ID}\newline 
+If available, ID of the party in the Chapel-Hill Expert Survey \parencite{jollyChapelHillExpert2022}.
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/chesplot.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{partyfacts\_id} &\textbf{PartyFacts ID}\newline 
+If available, ID of the party in the partyfacts database \parencite{doringPartyFactsDatabase2019}.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/partyfactsplot.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{decker\_neu} &\textbf{Chapter Parteienhandbuch}\newline 
+Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by Decker and Neu \parencite{deckerHandbuchDeutschenParteien2018b} has a chapter on the party.
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/deckerneuplot.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{url\_info} &\textbf{URL with additional info on the party}\newline 
+URL to informaton on the party on the web. Can contain multiple URLs!
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{party\_remarks\_
+stelzle} &\textbf{Party remarks Stelzle}\newline 
+Remarks on the party by me.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{party\_remarks\_
+bundeswahlleiter} &\textbf{Party remarks Bundeswahlleiter}\newline 
+Remarks on the party as listed by the Bundeswahlleiter.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{gueltige\_stimm
+-zettel\_hh\_hb} &\textbf{Gültige Stimmzettel HH and HB}\newline 
+Messy totals.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{gesamtstimmen\_by} &\textbf{Gesamtstimmen BY}\newline 
+Messy totals.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{ausgefallene\_
+stimmen\_be} &\textbf{Ausgefallene Stimmen BE}\newline 
+Messy totals.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{abgegebene\_
+stimmen\_hh} &\textbf{Abgegebene Stimmen HH}\newline 
+Messy totals.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{ungueltige\_
+stimmen\_except\_
+hh\_hb} &\textbf{Ungültige Stimmen except in HH and HB}\newline 
+Messy totals.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{ungueltige\_
+stimmzettel\_hh\_hb} &\textbf{Ungültige Stimmzettel in HH and HB}\newline 
+Messy totals.
+\end{longtable}
+
+\newpage
+
+\hypertarget{ltw_election_results_and_governments}{%
+\section{\texorpdfstring{\texttt{ltw\_election\_results\_and\_governments}}{ltw\_election\_results\_and\_governments}}\label{ltw_election_results_and_governments}}
+
+This codebook only concerns variables specific to the
+\texttt{ltw\_election\_results\_and\_governments} dataset. For further
+variables plese refer to the \texttt{ltw\_election\_results} dataset's
+codebook.
+
+\texttt{ltw\_election\_results\_and\_governments} returns a returns data
+frame (tibble if the tibble package is loaded) containing both election
+results as well as linked information on governments in the German
+states. Each row contains information on one party during the time in
+office of one cabinet.
+
+Election results data are provided by the Bundeswahlleiter. A
+machine-readable version of the data in the pdf available here
+(\url{https://www.bundeswahlleiter.de/service/landtagswahlen.html}) was
+kindly provided to me. Election data outside the timeframe covered by
+Bundeswahlleiter's data provided to me was collected from the states'
+local election authorities' (Landeswahlleiter) websites. More
+information on parties and the continuity of parties under different
+labels was collected by me. Information on Governments mainly taken from
+the replication data of Linhart, Eric, Franz U. Pappi und Ralf Schmitt
+(2008): Die proportionale Ministerienaufteilung in deutschen
+Koalitionsregierungen: Akzeptierte Norm oder das Ausnutzen strategischer
+Vorteile?, Politische Vierteljahresschrift 49(1): 46-67. To be found
+online here:
+\url{https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten.php}.
+Information outside the timeframe of Linhart et al.~as well as
+information on the names and party affiliations of the
+Ministerpräsidenten was collected by me, mainly from German Wikipedia.
+
+\begin{landscape}
+
+\begin{table}
+
+\normalsize
+\caption{sdsdsd}
+\centering
+\tiny
+\texttt{
+    \begin{tabular}{llrllrllrllrllrllr}
+        \toprule
+        \multicolumn{3}{c}{\textbf{\textsf{State Variables}}} & \multicolumn{3}{c}{\textbf{\textsf{Election Variables}}} & \multicolumn{3}{c}{\textbf{\textsf{Party Variables}}} & \multicolumn{3}{c}{\textbf{\textsf{Party-Election Variables}}} &
+        \multicolumn{3}{c}{\textbf{\textsf{Government Variables}}} &
+        \multicolumn{3}{c}{\textbf{\textsf{Government-Party Variables}}} \\
+        \multicolumn{3}{c}{\textsf{Name, Abbreviation,}} & \multicolumn{3}{c}{\textsf{Election date, Size}} & \multicolumn{3}{c}{\textsf{Names, Abbreviations, several IDs}} & \multicolumn{3}{c}{\textsf{Vote Count, -Share, Seat}}&
+        \multicolumn{3}{c}{\textsf{Inauguration date, PM Name, gov.}} &
+        \multicolumn{3}{c}{\textsf{Status in government, number of}}\\
+        \multicolumn{3}{c}{\textsf{NUTS1 Code}} &
+        \multicolumn{3}{c}{\textsf{Electorate, Turnout, ...}} &
+        \multicolumn{3}{c}{\textsf{several IDs}} &
+        \multicolumn{3}{c}{\textsf{Count, -Share, ...}} &
+        \multicolumn{3}{c}{\textsf{numbering, gov\_id, ...}} &
+        \multicolumn{3}{c}{\textsf{party ministers, ...}} \\
+        \cmidrule(r){1-3}\cmidrule(lr){4-6}\cmidrule(lr){7-9}
+        \cmidrule(lr){10-12}\cmidrule(lr){13-15}\cmidrule(l){16-18}
+        \textbf{state} & \textbf{nuts1} & \textbf{...} & \textbf{election\_date} & \textbf{turnout} & \textbf{...} & \textbf{partyname\_short} & \textbf{ches\_id} & \textbf{...} & \textbf{party\_vshare} & \textbf{party\_seat\_count} & \textbf{...} & \textbf{gov\_start\_date} & \textbf{minister\_president} & \textbf{...} & \textbf{gov\_party} & \textbf{nmin\_party} & \textbf{...} \\
+        \midrule
+        BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party A & 001 & ... & 0.45 & 46 & ... & 2015-10-07 & Mustermann, Max & ... & TRUE & 7 & ... \\
+        BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party B & 002 & ... & 0.30 & 12 & ... & 2015-10-07 & Mustermann, Max & ... & TRUE & 4 & ... \\
+        BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party C & 003 & ... & 0.25 & 18 & ...& 2015-10-07 & Mustermann, Max & ... & FALSE & NA & ... \\
+        &&&&&&&&&&&\\[-2ex]
+        BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party A & 001 & ... & 0.45 & 46 & ... & 2017-02-28 & Mustermann, Max & ... & TRUE & 11 & ... \\
+        BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party B & 002 & ... & 0.30 & 12 & ... & 2017-02-28 & Mustermann, Max & ... & FALSE & NA & ...\\
+        BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party C & 003 & ... & 0.25 & 18 & ... & 2017-02-28 & Mustermann, Max & ... & FALSE & NA & ...\\
+        &&&&&&&&&&&\\
+        NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party A & 001 & ... & 0.17 & 12 & ... & 2013-01-07 & Musterfrau, Erika & ... & FALSE & NA & ...\\
+        NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party B & 002 & ... & 0.33 & 27 & ... & 2013-01-07 & Musterfrau, Erika & ... & FALSE & NA & ...\\
+        NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party D & 004 & ... & 0.50 & 46 & ... & 2013-01-07 & Musterfrau, Erika & ... & TRUE & 13 & ...\\
+        \bottomrule
+\end{tabular}}
+\end{table}
+
+\end{landscape}
+
+\hypertarget{governments-variables}{%
+\subsection{Governments Variables}\label{governments-variables}}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{gov\_no\_within\_
+legterm} &\textbf{Number of cabinet within legislative term}\newline 
+Number of cabinet within legislative term (i.e. First cabinet in the 1990-1994 legislative term of state X).
+
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/govnolegperplot.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{gov\_id} &\textbf{Government ID}\newline 
+Unique ID of government. Taken from Linhart et al. However, this ID is not counting up within state by time. In cases where Governments were 
+           missing from Linhart et al. before the timeframe covered by Linhart et al. (eg. in Berlin) these earlyer governments have an higher ID than later cabinets 
+           contained in Linhart et al. data.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{state\_gov\_
+number} &\textbf{Number of government in state.}\newline 
+Number of government in state.
+
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/stategovnumplot.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{gov\_party} &\textbf{Government Party}\newline 
+Boolean wether the party was a cabinet party. Note: There is a single cabinet where no party is marked as part of the cabinet: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{nmin\_party} &\textbf{Number of Ministers of Party}\newline 
+Number of Ministers of Party.
+
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/nminpartyplot.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{gov\_source} &\textbf{Government Source}\newline 
+Source of the information on the government. Either Linhart et al. or the URL of the German Wikipedia Page containing information on the cabinet.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{gov\_remarks\_
+stelzle} &\textbf{Governments remarks Stelzle}\newline 
+My remarks on governments.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{minister\_president} &\textbf{Name of minister president}\newline 
+Name of minister president.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{mp\_party} &\textbf{Minister President's Party}\newline 
+Party of the minister president. partyname\_short format used. Note: There is a single cabinet with an independent minister president: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{is\_mp\_party} &\textbf{Is MP Party?}\newline 
+ the governments minister president from this party? Note: There is a single cabinet where the minister president is not part of any party: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.
+\end{longtable}
+
+\newpage
+
+\hypertarget{link_polidoc_parties-and-link_polidoc_governments}{%
+\section{\texorpdfstring{\texttt{link\_polidoc\_parties} and
+\texttt{link\_polidoc\_governments}}{link\_polidoc\_parties and link\_polidoc\_governments}}\label{link_polidoc_parties-and-link_polidoc_governments}}
+
+\texttt{link\_polidoc\_parties} and \texttt{link\_polidoc\_governments}
+provide easy links of \texttt{ltw\_election\_results} or
+\texttt{ltw\_election\_results\_and\_gov} with party manifestos and
+coalition agreements made available from polidoc.net - The Political
+Documents Archive
+\parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocNetCodebook2018}.
+While file names from polidoc.net follow a naming pattern
+(\texttt{{partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}}),
+the provided links make joining the data easier.
+
+Note that polidoc.net provides a manifesto for the Neue Liberale in the
+HB 2015 election (41441.005.2015.1.1). Since the party withdrew it's
+candidacy before the election and is thus not included in the election
+results in \texttt{ltw\_election\_results}, the manifesto id is not
+included in link\_polidoc\_parties.
+
+Note that polidoc.net provides a coalition agreement between the SPD and
+the Greens following the 2008 HE election (41001.006.2008.1.1). Since
+this potential coalition under leadership of SPD politician Andrea
+Ypsilanti never came to be due to several SPD MPs opposing the red-green
+minority cabinet being externally supported by Die Linke the coalition
+agreement can't be matched with a government in
+\texttt{ltw\_election\_results\_and\_gov} and is thus not included.
+
+\hypertarget{polidoc-link-variables}{%
+\section{Polidoc Link Variables}\label{polidoc-link-variables}}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{state} &\textbf{State Abbreviation}\newline 
+ISO 3166-2:DE-code of the state;
+           including BA for the former state of Baden, WH for the former state
+           of Württemberg-Hohenzollern and WB for the former state of
+           Württemberg-Baden.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{election\_date} &\textbf{Election Date}\newline 
+Date of the election.  ISO 8601 or R-Date format.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{polidoc\_filename and polidoc\_filename\_2 in link\_polidoc\_
+parties} &\textbf{Polidoc File Name of Party Manifesto}\newline 
+File name of state party manifesto (or 2nd manifesto if available) available in The Political Documents Archive (polidoc.net).
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/pltpolidocparties.pdf}
+\end{minipage}
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{polidoc\_filename in link\_polidoc\_
+governments} &\textbf{Polidoc File Name of Coalition Agreement}\newline 
+File name of coalition agreement available in The Political Documents Archive (polidoc.net).
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/pltpolidocgov.pdf}
+\end{minipage}
+
+
+
+
+
+\end{longtable}
+
+\newpage
+
+\hypertarget{de_states_grid_4x4}{%
+\section{\texorpdfstring{\texttt{de\_states\_grid\_4x4()}}{de\_states\_grid\_4x4()}}\label{de_states_grid_4x4}}
+
+\texttt{de\_states\_grid\_4x4()} exports a data frame containing state
+IDs, german and english state names and approximate state locations on a
+4x4 grid. The exported data frame can be used to approximately plot
+state-facets in their approximate locations using \texttt{ggplot2}
+extension \texttt{geofacet} \autocite{hafenGeofacetGgplot2Faceting2020}.
+
+Please find a comparison of state locations and the grid layout below.
+
+\hypertarget{example-code}{%
+\subsubsection{Example Code:}\label{example-code}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(bundeslaendeR)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(geofacet)}
+
+\NormalTok{turnout\_plot }\OtherTok{\textless{}{-}}
+\NormalTok{ltw\_election\_results }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(state, election\_date, turnout) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{distinct}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\NormalTok{(state }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"WB"}\NormalTok{, }\StringTok{"BA"}\NormalTok{, }\StringTok{"WH"}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(turnout)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ election\_date, }\AttributeTok{y =}\NormalTok{ turnout)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{facet\_geo}\NormalTok{(}\AttributeTok{grid =} \FunctionTok{de\_states\_geofacet\_grid\_4x4}\NormalTok{(}\AttributeTok{linebreak =}\NormalTok{ T),}
+              \AttributeTok{facets =} \SpecialCharTok{\textasciitilde{}}\NormalTok{state, }\AttributeTok{label =} \StringTok{"name"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}
+                       \AttributeTok{labels =}\NormalTok{ scales}\SpecialCharTok{::}\NormalTok{percent) }\SpecialCharTok{+}
+    \FunctionTok{theme}\NormalTok{(}\AttributeTok{strip.text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{)) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{y =} \StringTok{"Turnout"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\nocite{runfolaGeoBoundariesGlobalDatabase2020}
+
+\newpage
+
+\begin{landscape}
+
+\begin{figure}
+
+{\centering \includegraphics{cbfiles/map-vs-grid-plot-1} 
+
+}
+
+\caption{Comparison of state location and grid layout}\label{fig:map-vs-grid-plot}
+\end{figure}
+
+\end{landscape}
+
+\printbibliography[title=References]
+
+\end{document}
