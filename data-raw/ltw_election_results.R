@@ -370,8 +370,8 @@ ltw_election_results_bwl %>%
                  decker_neu, url_info, party_remarks_stelzle) %>% 
           distinct() %>% 
           bind_rows(newparties_raw))
-  )
-
+  ) %>% 
+  mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
 
 
 
@@ -607,7 +607,8 @@ ltw_election_results_and_gov_expm %>%
       select(gov_id, minister_president, mp_party)
     ) %>% 
   mutate(is_mp_party = partyname_short == mp_party) %>% 
-  select(-gov_end_date)
+  select(-gov_end_date) %>% 
+  mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
 
 
 
@@ -633,7 +634,8 @@ link_polidoc_parties_raw %>%
   mutate(election_date = as.Date(election_date)) %>% 
   filter(!is.na(polidoc_id) | !is.na(polidoc_id_2)) %>% 
   rename(polidoc_filename = polidoc_id) %>% 
-  rename(polidoc_filename_2 = polidoc_id_2)
+  rename(polidoc_filename_2 = polidoc_id_2) %>% 
+  mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
 
 
 usethis::use_data(link_polidoc_parties, overwrite = TRUE)
@@ -649,7 +651,8 @@ link_polidoc_governments <-
 link_polidoc_governments_raw %>% 
   mutate(election_date = as.Date(election_date)) %>% 
   filter(!is.na(polidoc_filename)) %>% 
-  select(-coalition)
+  select(-coalition) %>% 
+  mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
   
 
 
@@ -673,7 +676,8 @@ int_grid <- data.frame(
   name_de = c("Schleswig-Holstein", "Mecklenburg-Vorpommern", "Bremen", "Hamburg", "Niedersachsen", "Berlin", "Brandenburg", "Sachsen-Anhalt", "Nordrhein-Westfalen", 
               "Hessen", "Thüringen", "Sachsen", "Rheinland-Pfalz", "Saarland", "Baden-Württemberg", "Bayern"),
   stringsAsFactors = FALSE
-)
+) %>% 
+  mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
 
 usethis::use_data(int_grid, overwrite = TRUE, internal = TRUE)
 
