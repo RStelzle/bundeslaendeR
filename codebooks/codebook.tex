@@ -194,13 +194,13 @@ WH & NA &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-H
 \end{tabular}}
 \end{table}
 
-\hypertarget{ltw_election_results}{%
-\section{\texorpdfstring{\texttt{ltw\_election\_results}}{ltw\_election\_results}}\label{ltw_election_results}}
+\hypertarget{ltw_elections}{%
+\section{\texorpdfstring{\texttt{ltw\_elections}}{ltw\_elections}}\label{ltw_elections}}
 
-\texttt{bundeslaendeR::ltw\_election\_results} returns data frame
-(tibble if the tibble package is loaded) containing one row per
-contesting party per election. For a schematic version of
-\texttt{bundeslaendeR::ltw\_election\_results}'s structure see
+\texttt{bundeslaendeR::ltw\_elections} returns data frame (tibble if the
+tibble package is loaded) containing one row per contesting party per
+election. For a schematic version of
+\texttt{bundeslaendeR::ltw\_elections}'s structure see
 table\(~\)\ref{strltwelecres}.
 
 Most election results data are provided by the Bundeswahlleiter. A
@@ -233,7 +233,7 @@ in elections after June 2021) are still available
 
 \begin{table}
 \centering
-\caption{Structure of \texttt{ltw\_election\_results}}
+\caption{Structure of \texttt{ltw\_elections}}
 \label{strltwelecres}
 \tiny
 \texttt{
@@ -630,19 +630,19 @@ Messy totals.
 
 \newpage
 
-\hypertarget{ltw_election_results_and_gov}{%
-\section{\texorpdfstring{\texttt{ltw\_election\_results\_and\_gov}}{ltw\_election\_results\_and\_gov}}\label{ltw_election_results_and_gov}}
+\hypertarget{ltw_combined}{%
+\section{\texorpdfstring{\texttt{ltw\_combined}}{ltw\_combined}}\label{ltw_combined}}
 
 This codebook only concerns variables specific to the
-\texttt{ltw\_election\_results\_and\_gov} dataset. For further variables
-plese refer to the \texttt{ltw\_election\_results} dataset's codebook.
+\texttt{ltw\_combined} dataset. For further variables plese refer to the
+\texttt{ltw\_elections} dataset's codebook.
 
-\texttt{ltw\_election\_results\_and\_gov} returns a returns data frame
-(tibble if the tibble package is loaded) containing both election
-results as well as linked information on governments in the German
-states. Each row contains information on one party during the time in
-office of one cabinet. For a schematic version of
-\texttt{bundeslaendeR::ltw\_election\_results\_and\_gov}'s structure see
+\texttt{ltw\_combined} returns a returns data frame (tibble if the
+tibble package is loaded) containing both election results as well as
+linked information on governments in the German states. Each row
+contains information on one party during the time in office of one
+cabinet. For a schematic version of
+\texttt{bundeslaendeR::ltw\_combined}'s structure see
 table\(~\)\ref{strltwelecgov}.
 
 Election results data are provided by the Bundeswahlleiter. A
@@ -669,7 +669,7 @@ Ministerpräsidenten was collected by me, mainly from German Wikipedia.
 \begin{table}
 
 \normalsize
-\caption{Structure of \texttt{ltw\_election\_results\_and\_gov}}
+\caption{Structure of \texttt{ltw\_combined}}
 \label{strltwelecgov}
 \centering
 \tiny
@@ -802,15 +802,14 @@ Party of the minister president. partyname\_short format used. Note: There is a 
 
 \newpage
 
-\hypertarget{link_polidoc_parties-and-link_polidoc_governments}{%
-\section{\texorpdfstring{\texttt{link\_polidoc\_parties} and
-\texttt{link\_polidoc\_governments}}{link\_polidoc\_parties and link\_polidoc\_governments}}\label{link_polidoc_parties-and-link_polidoc_governments}}
+\hypertarget{link_manifestos-and-link_coalitionagreements}{%
+\section{\texorpdfstring{\texttt{link\_manifestos} and
+\texttt{link\_coalitionagreements}}{link\_manifestos and link\_coalitionagreements}}\label{link_manifestos-and-link_coalitionagreements}}
 
-\texttt{link\_polidoc\_parties} and \texttt{link\_polidoc\_governments}
-provide easy links of \texttt{ltw\_election\_results} or
-\texttt{ltw\_election\_results\_and\_gov} with party manifestos and
-coalition agreements made available from polidoc.net - The Political
-Documents Archive
+\texttt{link\_manifestos} and \texttt{link\_coalitionagreements} provide
+easy links of \texttt{ltw\_elections} or \texttt{ltw\_combined} with
+party manifestos and coalition agreements made available from
+polidoc.net - The Political Documents Archive
 \parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocNetCodebook2018}.
 While file names from polidoc.net follow a naming pattern
 (\texttt{{partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}}),
@@ -819,16 +818,16 @@ the provided links make joining the data easier.
 Note that polidoc.net provides a manifesto for the Neue Liberale in the
 HB 2015 election (41441.005.2015.1.1). Since the party withdrew it's
 candidacy before the election and is thus not included in the election
-results in \texttt{ltw\_election\_results}, the manifesto id is not
-included in link\_polidoc\_parties.
+results in \texttt{ltw\_elections}, the manifesto id is not included in
+link\_manifestos.
 
 Note that polidoc.net provides a coalition agreement between the SPD and
 the Greens following the 2008 HE election (41001.006.2008.1.1). Since
 this potential coalition under leadership of SPD politician Andrea
 Ypsilanti never came to be due to several SPD MPs opposing the red-green
 minority cabinet being externally supported by Die Linke the coalition
-agreement can't be matched with a government in
-\texttt{ltw\_election\_results\_and\_gov} and is thus not included.
+agreement can't be matched with a government in \texttt{ltw\_combined}
+and is thus not included.
 
 \hypertarget{polidoc-link-variables}{%
 \section{Polidoc Link Variables}\label{polidoc-link-variables}}
@@ -902,7 +901,7 @@ Please find a comparison of state locations and the grid layout below.
 \FunctionTok{library}\NormalTok{(geofacet)}
 
 \NormalTok{turnout\_plot }\OtherTok{\textless{}{-}}
-\NormalTok{ltw\_election\_results }\SpecialCharTok{\%\textgreater{}\%} 
+\NormalTok{ltw\_elections }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{select}\NormalTok{(state, election\_date, turnout) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{distinct}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\NormalTok{(state }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"WB"}\NormalTok{, }\StringTok{"BA"}\NormalTok{, }\StringTok{"WH"}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%} 

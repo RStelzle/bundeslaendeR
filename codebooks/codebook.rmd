@@ -226,11 +226,11 @@ WH & NA &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-H
 ```
 
 
-# `ltw_election_results`
+# `ltw_elections`
 
-`bundeslaendeR::ltw_election_results` returns data frame (tibble if the tibble
+`bundeslaendeR::ltw_elections` returns data frame (tibble if the tibble
 package is loaded) containing one row per contesting party per election.
-For a schematic version of `bundeslaendeR::ltw_election_results`'s structure see table$~$\ref{strltwelecres}.
+For a schematic version of `bundeslaendeR::ltw_elections`'s structure see table$~$\ref{strltwelecres}.
 
 Most election results data are provided by the Bundeswahlleiter.
 A machine-readable version of the Bundeswahlleiter's compiled data contained in
@@ -265,7 +265,7 @@ elections after June 2021) are still available
 
 \begin{table}
 \centering
-\caption{Structure of \texttt{ltw\_election\_results}}
+\caption{Structure of \texttt{ltw\_elections}}
 \label{strltwelecres}
 \tiny
 \texttt{
@@ -348,7 +348,7 @@ item_start(item_name_code = "state_election_\nterm",
 
 ```{r, results="asis"}
 electiontermplot <- 
-ltw_election_results %>% 
+ltw_elections %>% 
   select(state_election_term, election_date, state) %>%
   distinct() %>% 
   ggplot(aes(x = state_election_term)) +
@@ -384,7 +384,7 @@ item_start(item_name_code = "election_date",
 
 ```{r, results="asis"}
 electiondatesplot <- 
-ltw_election_results %>% 
+ltw_elections %>% 
   select(election_date, state) %>%
   distinct() %>% 
   mutate(year = lubridate::year(election_date)) %>% 
@@ -441,7 +441,7 @@ item_start(item_name_code = "electorate",
 
 ```{r, results="asis"}
 electorateplot <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(electorate, state, state_election_term) %>% 
   distinct() %>% 
   ggplot(aes(x = electorate)) +
@@ -473,7 +473,7 @@ item_start(item_name_code = "number_of_voters",
 
 ```{r, results="asis"}
 nvotersplot <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(number_of_voters, state, state_election_term) %>% 
   distinct() %>% 
   filter(!is.na(number_of_voters)) %>% 
@@ -505,7 +505,7 @@ item_start(item_name_code = "turnout",
 
 ```{r, results="asis"}
 turnoutplot <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(turnout, state, state_election_term) %>% 
   distinct() %>% 
   filter(!is.na(turnout)) %>%
@@ -537,7 +537,7 @@ item_start(item_name_code = "valid_votes",
 
 ```{r, results="asis"}
 validvoteplot <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(valid_votes, state, state_election_term) %>% 
   distinct() %>% 
   # filter(!is.na(valid_votes)) %>%
@@ -570,7 +570,7 @@ item_start(item_name_code = "total_seats_\nparliament",
 
 ```{r, results="asis"}
 tseatsparlplot <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(total_seats_parliament, state, state_election_term) %>% 
   distinct() %>% 
   # filter(!is.na(valid_votes)) %>%
@@ -602,7 +602,7 @@ item_start(item_name_code = "female_party_\nseats_available",
 
 ```{r, results="asis"}
 fpsaplot <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(female_party_seats_available, state, state_election_term) %>% 
   distinct() %>% 
   ggplot(aes(y = female_party_seats_available)) +
@@ -633,7 +633,7 @@ item_start(item_name_code = "total_female_\nmps_parliament",
 
 ```{r, results="asis"}
 totfemmpsplot <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(total_female_mps_parliament, state, state_election_term) %>% 
   distinct() %>% 
   filter(!is.na(total_female_mps_parliament)) %>% 
@@ -652,7 +652,7 @@ ltw_election_results %>%
   bind_rows(
     tibble(
       int = as_factor("NA"),
-      n = ltw_election_results %>% 
+      n = ltw_elections %>% 
           select(total_female_mps_parliament, state, state_election_term) %>% 
           distinct() %>% 
           filter(is.na(total_female_mps_parliament)) %>% 
@@ -690,7 +690,7 @@ item_end()
 short_item(item_name_code = "partyname_short",
            item_name = "Abbreviated Party Name",
            item_desc = paste("Harmonized abbreviation of the party's name.", 
-                             length(unique(ltw_election_results$partyname_short)),
+                             length(unique(ltw_elections$partyname_short)),
                              "unique parties."),
            desc_left = FALSE)
 ```
@@ -701,7 +701,7 @@ short_item(item_name_code = "partyname_short",
 short_item(item_name_code = "partyname",
            item_name = "Party Name",
            item_desc = paste("Harmonized name of the party.", 
-                             length(unique(ltw_election_results$partyname_short)),
+                             length(unique(ltw_elections$partyname_short)),
                              "unique parties."),
            desc_left = FALSE)
 ```
@@ -710,7 +710,7 @@ short_item(item_name_code = "partyname",
 short_item(item_name_code = "partyname_short_\nbundeswahlleiter",
            item_name = "Party Name Abbreviation from Bundeswahlleiter",
            item_desc = paste("Partyname abbreviation as documented by the Bundeswahlleiter.", 
-                             length(unique(ltw_election_results$partyname_short_bundeswahlleiter)),
+                             length(unique(ltw_elections$partyname_short_bundeswahlleiter)),
                              "different abbreviations."),
            desc_left = FALSE)
 ```
@@ -719,7 +719,7 @@ short_item(item_name_code = "partyname_short_\nbundeswahlleiter",
 short_item(item_name_code = "partyname_\nbundeswahlleiter",
            item_name = "Party Name from Bundeswahlleiter",
            item_desc = paste("Partyname as documented by the Bundeswahlleiter.", 
-                             length(unique(ltw_election_results$partyname_bundeswahlleiter)),
+                             length(unique(ltw_elections$partyname_bundeswahlleiter)),
                              "different names."),
            desc_left = FALSE)
 ```
@@ -737,7 +737,7 @@ item_start(item_name_code = "party_vote_count",
 
 ```{r, results="asis"}
 pvcplot <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(party_vote_count, state, state_election_term) %>% 
   filter(party_vote_count > 0) %>% 
   ggplot(aes(x = party_vote_count)) +
@@ -768,7 +768,7 @@ item_start(item_name_code = "party_vshare",
 
 ```{r, results="asis"}
 pvsplot <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(party_vshare, state, state_election_term) %>% 
   filter(party_vshare > 0) %>% 
   ggplot(aes(x = party_vshare)) +
@@ -800,7 +800,7 @@ item_start(item_name_code = "party_seat_count",
 ```{r, results="asis"}
 xlabstring <- 
 paste0("Number of seats recieved by the party\n(",
-ltw_election_results %>% 
+ltw_elections %>% 
   filter(party_seat_count > 0) %>% 
   pull(party_seat_count) %>%
   length(), " parties without seats not plotted)")
@@ -808,12 +808,12 @@ ltw_election_results %>%
 
 
 pscplot <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(party_seat_count, state, state_election_term) %>% 
   filter(party_seat_count > 0) %>%
   ggplot(aes(x = party_seat_count)) +
     geom_histogram(bins = 30) +
-    scale_x_continuous(breaks = seq(1,max(ltw_election_results$party_seat_count),5)) +
+    scale_x_continuous(breaks = seq(1,max(ltw_elections$party_seat_count),5)) +
     theme(axis.text.x = element_text(angle = 45)) +
     labs(x = xlabstring, y = "N")
 
@@ -841,7 +841,7 @@ item_start(item_name_code = "party_sshare",
 ```{r, results="asis"}
 xlabstring <-
 paste0("Share of seats recieved by the party\n(",
-ltw_election_results %>% 
+ltw_elections %>% 
   filter(party_sshare > 0) %>% 
   pull(party_sshare) %>%
   length(), " parties without seats not plotted)")
@@ -849,12 +849,12 @@ ltw_election_results %>%
 
 
 pssplot <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(party_sshare, state, state_election_term) %>% 
   filter(party_sshare > 0) %>%
   ggplot(aes(x = party_sshare)) +
     geom_histogram(bins = 30) +
-    scale_x_continuous(breaks = seq(0.01,max(ltw_election_results$party_sshare),0.05),
+    scale_x_continuous(breaks = seq(0.01,max(ltw_elections$party_sshare),0.05),
                        labels = scales::percent) +
     theme(axis.text.x = element_text(angle = 45)) +
     labs(x = xlabstring, y = "N")
@@ -884,7 +884,7 @@ item_start(item_name_code = "party_female_mps",
 ```{r, results="asis"}
 
 wbarplot <- 
-ltw_election_results %>% 
+ltw_elections %>% 
   select(party_seat_count, party_female_mps, female_party_seats_available) %>% 
   mutate(reason = case_when(
     party_female_mps == 0 ~ "Party in parl., but no female MPs",
@@ -901,7 +901,7 @@ ltw_election_results %>%
 
 
 whist <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(party_female_mps, state, state_election_term, party_sshare) %>% 
   filter(!is.na(party_female_mps)) %>% 
   filter(party_sshare > 0) %>%
@@ -942,7 +942,7 @@ item_start(item_name_code = "wzb_govelec_id",
 
 ```{r, results="asis"}
 govelecplot <- 
-ltw_election_results %>% 
+ltw_elections %>% 
   select(partyname_short, wzb_govelec_id) %>% 
   distinct() %>% 
   mutate(avail = !is.na(wzb_govelec_id)) %>% 
@@ -978,7 +978,7 @@ item_start(item_name_code = "ches_id",
 
 ```{r, results="asis"}
 chesplot <- 
-ltw_election_results %>% 
+ltw_elections %>% 
   select(partyname_short, ches_id) %>% 
   distinct() %>% 
   mutate(avail = !is.na(ches_id)) %>% 
@@ -1013,7 +1013,7 @@ item_start(item_name_code = "partyfacts_id",
 
 ```{r, results="asis"}
 partyfactsplot <- 
-ltw_election_results %>% 
+ltw_elections %>% 
   select(partyname_short, partyfacts_id) %>% 
   distinct() %>% 
   mutate(avail = !is.na(partyfacts_id)) %>% 
@@ -1052,7 +1052,7 @@ item_start(item_name_code = "decker_neu",
 
 ```{r, results="asis"}
 deckerneuplot <- 
-ltw_election_results %>% 
+ltw_elections %>% 
   select(partyname_short, decker_neu) %>% 
   distinct() %>% 
   mutate(avail = !is.na(decker_neu)) %>% 
@@ -1150,18 +1150,18 @@ short_item(item_name_code = "ungueltige_\nstimmzettel_hh_hb",
 
 
 
-# `ltw_election_results_and_gov`
+# `ltw_combined`
 
 
 This codebook only concerns variables specific to the 
-`ltw_election_results_and_gov` dataset. For further variables
-plese refer to the `ltw_election_results` dataset's codebook.
+`ltw_combined` dataset. For further variables
+plese refer to the `ltw_elections` dataset's codebook.
 
-`ltw_election_results_and_gov` returns a returns data frame (tibble if the tibble
+`ltw_combined` returns a returns data frame (tibble if the tibble
 package is loaded) containing both election results as well as linked information
 on governments in the German states.
 Each row contains information on one party during the time in office of one cabinet.
-For a schematic version of `bundeslaendeR::ltw_election_results_and_gov`'s structure see table$~$\ref{strltwelecgov}.
+For a schematic version of `bundeslaendeR::ltw_combined`'s structure see table$~$\ref{strltwelecgov}.
 
 
 Election results data are provided by the Bundeswahlleiter.
@@ -1188,7 +1188,7 @@ was collected by me, mainly from German Wikipedia.
 \begin{table}
 
 \normalsize
-\caption{Structure of \texttt{ltw\_election\_results\_and\_gov}}
+\caption{Structure of \texttt{ltw\_combined}}
 \label{strltwelecgov}
 \centering
 \tiny
@@ -1247,7 +1247,7 @@ item_start(item_name_code = "gov_no_within_\nlegterm",
 
 ```{r, results="asis"}
 govnolegperplot <- 
-ltw_election_results_and_gov %>% 
+ltw_combined %>% 
   select(state, election_date, gov_id, gov_no_within_legterm) %>% 
   distinct() %>% 
   ggplot(aes(x = gov_no_within_legterm)) +
@@ -1290,7 +1290,7 @@ item_start(item_name_code = "state_gov_\nnumber",
 
 ```{r, results="asis"}
 stategovnumplot <-
-ltw_election_results_and_gov %>% 
+ltw_combined %>% 
   select(state, election_date, gov_id, state_gov_number) %>% 
   distinct() %>% 
   ggplot(aes(x = state_gov_number)) +
@@ -1332,7 +1332,7 @@ item_start(item_name_code = "nmin_party",
 
 ```{r, results="asis"}
 nminpartyplot <-
-ltw_election_results_and_gov %>% 
+ltw_combined %>% 
   filter(gov_party == TRUE) %>% 
   select(state, election_date, gov_id, nmin_party) %>% 
   distinct() %>% 
@@ -1402,9 +1402,9 @@ short_item(item_name_code = "is_mp_party",
 
 
 
-# `link_polidoc_parties` and `link_polidoc_governments`
+# `link_manifestos` and `link_coalitionagreements`
 
-<!-- `link_polidoc_parties` and `link_polidoc_governments` provide easy links of either `ltw_election_results` or `ltw_election_results_and_gov` -->
+<!-- `link_manifestos` and `link_coalitionagreements` provide easy links of either `ltw_elections` or `ltw_combined` -->
 <!-- with party manifestos and coalition agreements made available from polidoc.net - The Political Documents Archive. -->
 <!-- While file names from polidoc.net follow a naming pattern -->
 <!-- ({partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}), the provided links make joining the data easier. -->
@@ -1413,7 +1413,7 @@ short_item(item_name_code = "is_mp_party",
 
 ```{r, results='asis'}
 
-cat("\\texttt{link\\_polidoc\\_parties} and \\texttt{link\\_polidoc\\_governments} provide easy links of \\texttt{ltw\\_election\\_results} or \\texttt{ltw\\_election\\_results\\_and\\_gov} with party manifestos and coalition agreements made available from polidoc.net - The Political Documents Archive \\parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocNetCodebook2018}.
+cat("\\texttt{link\\_manifestos} and \\texttt{link\\_coalitionagreements} provide easy links of \\texttt{ltw\\_elections} or \\texttt{ltw\\_combined} with party manifestos and coalition agreements made available from polidoc.net - The Political Documents Archive \\parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocNetCodebook2018}.
 While file names from polidoc.net follow a naming pattern
 (\\texttt{{partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}}), the provided links make joining the data easier.")
 
@@ -1421,9 +1421,9 @@ While file names from polidoc.net follow a naming pattern
 
 
 
-Note that polidoc.net provides a manifesto for the Neue Liberale in the HB 2015 election (41441.005.2015.1.1). Since the party withdrew it's candidacy before the election and is thus not included in the election results in `ltw_election_results`, the manifesto id is not included in link_polidoc_parties.
+Note that polidoc.net provides a manifesto for the Neue Liberale in the HB 2015 election (41441.005.2015.1.1). Since the party withdrew it's candidacy before the election and is thus not included in the election results in `ltw_elections`, the manifesto id is not included in link_manifestos.
 
-Note that polidoc.net provides a coalition agreement between the SPD and the Greens following the 2008 HE election (41001.006.2008.1.1). Since this potential coalition under leadership of SPD politician Andrea Ypsilanti never came to be due to several SPD MPs opposing the red-green minority cabinet being externally supported by Die Linke the coalition agreement can't be matched with a government in `ltw_election_results_and_gov` and is thus not included.
+Note that polidoc.net provides a coalition agreement between the SPD and the Greens following the 2008 HE election (41001.006.2008.1.1). Since this potential coalition under leadership of SPD politician Andrea Ypsilanti never came to be due to several SPD MPs opposing the red-green minority cabinet being externally supported by Die Linke the coalition agreement can't be matched with a government in `ltw_combined` and is thus not included.
 
 
 
@@ -1465,8 +1465,8 @@ item_start(item_name_code = "polidoc_filename and polidoc_filename_2 in link_pol
 
 ```{r, results="asis"}
 top_pltpolidocparties <-
-ltw_election_results %>% 
-  left_join(link_polidoc_parties,
+ltw_elections %>% 
+  left_join(link_manifestos,
             by = c("state", "election_date", "partyname_short")) %>% 
   select(state, election_date, partyname_short, polidoc_filename, polidoc_filename_2) %>% 
   mutate(polidoc_filename = !is.na(polidoc_filename)) %>% 
@@ -1503,8 +1503,8 @@ ltw_election_results %>%
 
 
 bot_pltpolidocparties <- 
-ltw_election_results %>% 
-  left_join(link_polidoc_parties,
+ltw_elections %>% 
+  left_join(link_manifestos,
             by = c("state", "election_date", "partyname_short")) %>% 
   mutate(manif_avail = !is.na(polidoc_filename)) %>% 
   select(state, election_date, partyname_short, manif_avail, party_vshare) %>% 
@@ -1575,9 +1575,9 @@ item_start(item_name_code = "polidoc_filename in link_polidoc_\ngovernments",
 
 ```{r, results="asis"}
 pltpolidocgov <-
-ltw_election_results_and_gov %>% 
+ltw_combined %>% 
   left_join(
-    link_polidoc_governments,
+    link_coalitionagreements,
     by = c("state", "election_date", "gov_id")
   ) %>% 
   mutate(coalagreement_avail = !is.na(polidoc_filename)) %>% 
@@ -1588,7 +1588,7 @@ ltw_election_results_and_gov %>%
   mutate(gov_end_date = lead(gov_start_date)) %>% 
   ungroup() %>% 
   mutate(gov_end_date = case_when(
-    is.na(gov_end_date) & state %in% c("BA", "WH", "WB") ~ ltw_election_results %>% 
+    is.na(gov_end_date) & state %in% c("BA", "WH", "WB") ~ ltw_elections %>% 
                                                             select(state, election_date) %>% 
                                                             filter(state == "BW") %>% 
                                                             filter(election_date == min(election_date)) %>% 
@@ -1607,7 +1607,7 @@ ltw_election_results_and_gov %>%
                  col = "white",
                  size = 5) +
     geom_segment(
-      data = ltw_election_results %>%
+      data = ltw_elections %>%
               select(state, election_date) %>%
               distinct() %>% 
               mutate(xend = election_date + lubridate::duration(4, units = "weeks")),
@@ -1659,7 +1659,7 @@ library(tidyverse)
 library(geofacet)
 
 turnout_plot <-
-ltw_election_results %>% 
+ltw_elections %>% 
   select(state, election_date, turnout) %>% 
   distinct() %>% 
   filter(!(state %in% c("WB", "BA", "WH"))) %>% 

@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (format=lualatex 2021.11.24)  1 MAY 2022 02:04
+This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (format=lualatex 2021.11.24)  1 MAY 2022 02:34
  restricted system commands enabled.
 **codebook.tex
 (./codebook.tex
@@ -2928,9 +2928,15 @@ LaTeX Font Info:    Font shape `TU/Consolas(0)/b/n' will be
 LaTeX Font Info:    Font shape `TU/Consolas(0)/b/n' will be
 (Font)              scaled to size 12.6013pt on input line 198.
 
-Underfull \hbox (badness 2781) in paragraph at lines 200--205
-\TU/Consolas(0)/b/n/10.95 bundeslaendeR::ltw_election_results \TU/LibertinusSer
-if(0)/m/n/10.95 re-turns data frame (tib-ble if the tib-ble pack-age is
+Underfull \hbox (badness 1681) in paragraph at lines 200--205
+\TU/Consolas(0)/b/n/10.95 bundeslaendeR::ltw_elections \TU/LibertinusSerif(0)/m
+/n/10.95 re-turns data frame (tib-ble if the tib-ble pack-age is loaded)
+ []
+
+
+Underfull \hbox (badness 3168) in paragraph at lines 200--205
+\TU/LibertinusSerif(0)/m/n/10.95 con-tain-ing one row per con-test-ing party per
+ elec-tion. For a schematic ver-sion of
  []
 
 LaTeX Font Info:    Font shape `TU/Consolas(0)/m/n' will be
@@ -3535,81 +3541,92 @@ Overfull \hbox (1.6376pt too wide) in alignment at lines 798--801
  []
 
 [16<./cbfiles/nminpartyplot.pdf>]
+Underfull \hbox (badness 7362) in paragraph at lines 809--817
+\TU/Consolas(0)/m/sl/10.95 link_manifestos \TU/LibertinusSerif(0)/m/n/10.95 and \TU/Consolas(0)/m/sl/10.95 link_coalitionagreements \TU/LibertinusSerif(0)/m/n/10.95 pro-vide easy links of \TU/Consolas(0)/m/sl/10.95 ltw_elections \TU/LibertinusSerif(0)/m/n/10.95 or
+ []
+
+
+Underfull \hbox (badness 1348) in paragraph at lines 809--817
+\TU/Consolas(0)/m/sl/10.95 ltw_combined \TU/LibertinusSerif(0)/m/n/10.95 with pa
+rty man-i-festos and coali-tion agree-ments made avail-able from poli-
+ []
+
+
 warning  (pdf backend): ignoring duplicate destination with the name 'table.14'
 
-Overfull \hbox (1.6376pt too wide) in alignment at lines 836--842
+Overfull \hbox (1.6376pt too wide) in alignment at lines 835--841
  [][] 
  []
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'table.15'
 
-Overfull \hbox (1.6376pt too wide) in alignment at lines 844--847
+Overfull \hbox (1.6376pt too wide) in alignment at lines 843--846
  [][] 
  []
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'table.16'
 
-Underfull \hbox (badness 10000) in paragraph at lines 850--851
+Underfull \hbox (badness 10000) in paragraph at lines 849--850
 []|\TU/Consolas(0)/m/sl/10.95 polidoc_filename
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 850--851
+Underfull \hbox (badness 10000) in paragraph at lines 849--850
 \TU/Consolas(0)/m/sl/10.95 and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 850--851
+Underfull \hbox (badness 10000) in paragraph at lines 849--850
 \TU/Consolas(0)/m/sl/10.95 polidoc_filename_2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 850--851
+Underfull \hbox (badness 10000) in paragraph at lines 849--850
 \TU/Consolas(0)/m/sl/10.95 in link_polidoc_
  []
 
 <cbfiles/pltpolidocparties.pdf, id=228, 505.89pt x 650.43pt>
 File: cbfiles/pltpolidocparties.pdf Graphic file (type pdf)
 <use cbfiles/pltpolidocparties.pdf>
-Package luatex.def Info: cbfiles/pltpolidocparties.pdf  used on input line 858.
+Package luatex.def Info: cbfiles/pltpolidocparties.pdf  used on input line 857.
 
 (luatex.def)             Requested size: 312.9847pt x 402.4089pt.
 
-Overfull \hbox (8.93817pt too wide) in paragraph at lines 855--860
+Overfull \hbox (8.93817pt too wide) in paragraph at lines 854--859
 []|  [] 
  []
 
 
-Overfull \hbox (1.6376pt too wide) in alignment at lines 849--862
+Overfull \hbox (1.6376pt too wide) in alignment at lines 848--861
  [][] 
  []
 
 [17]
 warning  (pdf backend): ignoring duplicate destination with the name 'table.17'
 
-Underfull \hbox (badness 10000) in paragraph at lines 865--866
+Underfull \hbox (badness 10000) in paragraph at lines 864--865
 []|\TU/Consolas(0)/m/sl/10.95 polidoc_filename
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 865--866
+Underfull \hbox (badness 10000) in paragraph at lines 864--865
 \TU/Consolas(0)/m/sl/10.95 in link_polidoc_
  []
 
 <cbfiles/pltpolidocgov.pdf, id=243, 505.89pt x 361.35pt>
 File: cbfiles/pltpolidocgov.pdf Graphic file (type pdf)
 <use cbfiles/pltpolidocgov.pdf>
-Package luatex.def Info: cbfiles/pltpolidocgov.pdf  used on input line 873.
+Package luatex.def Info: cbfiles/pltpolidocgov.pdf  used on input line 872.
 (luatex.def)             Requested size: 312.9847pt x 223.5605pt.
 
-Overfull \hbox (8.93817pt too wide) in paragraph at lines 870--875
+Overfull \hbox (8.93817pt too wide) in paragraph at lines 869--874
 []|  [] 
  []
 
 
-Overfull \hbox (1.6376pt too wide) in alignment at lines 864--880
+Overfull \hbox (1.6376pt too wide) in alignment at lines 863--879
  [][] 
  []
 
@@ -3617,14 +3634,14 @@ Overfull \hbox (1.6376pt too wide) in alignment at lines 864--880
 <cbfiles/map-vs-grid-plot-1.pdf, id=268, 701.62125pt x 408.52625pt>
 File: cbfiles/map-vs-grid-plot-1.pdf Graphic file (type pdf)
 <use cbfiles/map-vs-grid-plot-1.pdf>
-Package luatex.def Info: cbfiles/map-vs-grid-plot-1.pdf  used on input line 929
+Package luatex.def Info: cbfiles/map-vs-grid-plot-1.pdf  used on input line 928
 .
 (luatex.def)             Requested size: 617.82472pt x 359.73485pt.
 [21
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.1'
 <./cbfiles/map-vs-grid-plot-1.pdf>]
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/sc' will be
-(Font)              scaled to size 10.95pt on input line 938.
+(Font)              scaled to size 10.95pt on input line 937.
 [22
 
 
@@ -3643,10 +3660,10 @@ Here is how much of LuaTeX's memory you used:
  681 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 13 attribute, 79 glue_spec
 , 13 attribute_list, 1 write, 1 user_defined, 5 pdf_action nodes
-   avail lists: 1:3,2:1862,3:522,4:283,5:399,6:145,7:8400,8:103,9:1563,10:15,11:
+   avail lists: 1:3,2:1862,3:522,4:283,5:399,6:145,7:8339,8:103,9:1563,10:15,11:
 330,12:1
  54691 multiletter control sequences out of 65536+600000
- 133 fonts using 40033047 bytes
+ 133 fonts using 40032735 bytes
  108i,20n,149p,10630b,2029s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/opentype/public/libertinus-fonts/Liber
 tinusSerif-Bold.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/li
@@ -3655,7 +3672,7 @@ nts/opentype/public/libertinus-fonts/LibertinusSerif-Italic.otf></Users/robertst
 elzle/Library/Fonts/Consolas.ttf></usr/local/texlive/2021/texmf-dist/fonts/opent
 ype/public/libertinus-fonts/LibertinusSerif-Regular.otf></usr/local/texlive/2021
 /texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusSans-Bold.otf>
-Output written on codebook.pdf (22 pages, 2803898 bytes).
+Output written on codebook.pdf (22 pages, 2803731 bytes).
 
 PDF statistics: 376 PDF objects out of 1000 (max. 8388607)
  282 compressed objects within 3 object streams
