@@ -9,22 +9,9 @@
 
 The goal of `bundeslaendeR` is to provide easy and cleaned up access to
 data regarding election results as well as government constellations in
-the German states.
-
-<!-- Todo: -->
-<!-- - [x] Keep data up to date. (LTW Sachsen-Anhalt 2021 missing) -->
-<!-- - [x] Add information of Ministerpräsidenten name and party to government data -->
-<!-- - [x] Clean up gov_end_dates. Linhart et al stop with election date most of the time, wikipedia with election of new cabinet in the Landtag. -->
-<!-- - [x] Link my party-within-election observations with IDs for state parties' manifestos form polidoc.net -->
-<!-- - [x] Link governments to coalition agreements from polidoc.net -->
-<!-- - [x] Provide a nicer pdf version of a codebook -->
-<!-- - [ ] Provide non R outputs for the data (csv, dta) -->
-<!-- Maybe: -->
-<!-- - [ ] Provide cleaned up version of only the election totals & add some more (ENP, etc.) -->
-<!-- - [ ] Add information of cabinet type to government data. (Not sure if this is a good idea. I can only -->
-<!-- get to the status within the legislature not to factors external to this that are needed -->
-<!-- to provide Woldendorp et al.-esque information on the type of government) -->
-<!-- - [ ] Provide cleaned up version of only the government data -->
+the German states. Further, data is provided in order to easily link the
+election/government data with state parties’ manifestos/state
+governments’ coalition agreements available from other sources.
 
 ## Installation
 
@@ -55,7 +42,7 @@ library(tidyverse)
 library(bundeslaendeR)
 
 
-ltw_election_results %>% 
+ltw_elections %>% 
   select(state_name_en, election_date, partyname_short, party_vshare) %>% 
   mutate(partyname_short = case_when(
     partyname_short %in% c("SPD", "FDP", "Grüne", "Linke", "AfD") ~ partyname_short,
@@ -102,7 +89,7 @@ Show Code:
 library(ggfocus)
 
 
-ltw_election_results_and_gov %>% 
+ltw_combined %>% 
   select(state_name_en, election_date, partyname_short,
          gov_party, gov_start_date, gov_end_date) %>% 
   filter(gov_party == TRUE) %>% 
