@@ -160,12 +160,12 @@ election_term_gocount <-
 test_that("Für jeden Landtag mind. eine Regieung", {
   expect_equal(
     full_join(
-      ltw_election_results %>% 
+      ltw_elections %>% 
         select(state, state_election_term) %>% 
         distinct()
       # %>% bind_rows(tibble(state = "NI", state_election_term = 19)) # Testweise
       ,
-      ltw_election_results_and_gov %>% 
+      ltw_combined %>% 
         select(state, state_election_term, gov_id) %>% 
         distinct()
     ) %>% filter(is.na(gov_id)) %>% nrow(), 0
@@ -178,7 +178,7 @@ test_that("Für jeden Landtag mind. eine Regieung", {
 
 test_that("In jeder Regierung (außer indep. cab. im SL) mind. eine Regierungspartei", {
   expect_equal(
-    ltw_election_results_and_gov %>% 
+    ltw_combined %>% 
       select(state, state_election_term, gov_id, gov_party) %>% 
       group_by(state, state_election_term, gov_id) %>% 
       summarise(n_gov_parties = sum(gov_party)) %>% 
@@ -199,7 +199,7 @@ test_that("gleiche anzahl distincte gov ids zwischen nur gov ids und mit gov tot
       gov_data %>% select(gov_id) %>% distinct(),
       
       
-      ltw_election_results_and_gov %>% 
+      ltw_combined %>% 
         select(state, state_election_term, gov_no_within_legterm, gov_id, state_gov_number,
                gov_start_date, gov_source, minister_president, mp_party) %>% distinct()
       
@@ -220,7 +220,7 @@ test_that("gleiche anzahl distincte gov ids zwischen nur gov ids und mit gov tot
 
 test_that("Identische Wahl und Gov Totals pro GovID", {
   expect_equal(
-    ltw_election_results_and_gov %>% 
+    ltw_combined %>% 
       select(state:total_female_mps_parliament,
              gueltige_stimmzettel_hh_hb:ungueltige_stimmzettel_hh_hb,gov_no_within_legterm, gov_id, state_gov_number,
              gov_start_date, gov_source, minister_president, mp_party) %>% 
@@ -235,21 +235,21 @@ test_that("Identische Wahl und Gov Totals pro GovID", {
 test_that("Gov Start Date innerhalb Wahltag und nächstem Wahltag", {
   expect_equal(
     right_join(
-      ltw_election_results_and_gov %>% 
+      ltw_combined %>% 
         select(state, state_election_term, election_date) %>% 
         distinct() %>% 
         group_by(state) %>% 
         mutate(next_election_date = lead(election_date)) %>% 
         ungroup() %>% 
         mutate(next_election_date = case_when(
-          is.na(next_election_date) & state %in% c("BA", "WB", "WH") ~ ltw_election_results_and_gov %>% 
+          is.na(next_election_date) & state %in% c("BA", "WB", "WH") ~ ltw_combined %>% 
             filter(state == "BW") %>% 
             pull(election_date) %>% min(),
           is.na(next_election_date) & !(state %in% c("BA", "WB", "WH")) ~ as.Date("3005-01-01"),
           TRUE ~ next_election_date
         )),
       
-      ltw_election_results_and_gov %>% 
+      ltw_combined %>% 
         select(state, state_election_term, gov_id, gov_start_date, gov_source) %>% 
         distinct()
     ) %>% 
@@ -266,7 +266,7 @@ test_that("Gov Start Date innerhalb Wahltag und nächstem Wahltag", {
 
 test_that("Jede Kombination Partei::GovID nur einmal", {
   expect_equal(
-    ltw_election_results_and_gov %>% 
+    ltw_combined %>% 
       count(partyname_short, gov_id) %>% 
       filter(n != 1) %>% nrow(), 0
   )
@@ -280,7 +280,7 @@ test_that("Jede Kombination Partei::GovID nur einmal", {
 
 test_that("gleiche Anzahl Parteien je gov innerhalb leg per über mehrere gov", {
   expect_equal(
-    ltw_election_results_and_gov %>% 
+    ltw_combined %>% 
       select(state, state_election_term, gov_id, partyname_short) %>% 
       group_by(state, state_election_term, gov_id) %>% 
       summarise(n_parties = length(unique(partyname_short))) %>% 
@@ -309,7 +309,7 @@ test_that("gleiche Anzahl Parteien je gov innerhalb leg per über mehrere gov", 
         summarise(regzusammensetzung = paste0(sort(partyname_short), collapse = "---")),
       
       
-      ltw_election_results_and_gov %>% 
+      ltw_combined %>% 
         select(gov_id, partyname_short, gov_party) %>% 
         filter(gov_party == TRUE)%>% 
         group_by(gov_id) %>% 
@@ -332,10 +332,10 @@ test_that("Reihen LCGov identisch mit anzahl parteien je legper * anzahl govs je
   expect_equal(
     full_join(
       election_term_gocount,
-      ltw_election_results %>% count(state, state_election_term, name = "n2")
+      ltw_elections %>% count(state, state_election_term, name = "n2")
     ) %>% mutate(product = n * n2) %>% pull(product) %>% sum(),
     
-    ltw_election_results_and_gov %>% nrow()
+    ltw_combined %>% nrow()
     
   )
 })

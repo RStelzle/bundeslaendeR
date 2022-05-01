@@ -1,9 +1,9 @@
 #' ID Links between ltw_election_results and state parties' manifestos from polidoc.net - The Political Documents Archive
 #'
-#' Dataset providing a link between ltw_election_results and state parties' manifestos from polidoc.net- The Political Documents Archive. Note that polidoc.net provides a manifesto for the Neue Liberale in the HB 2015 election (41441.005.2015.1.1). Since the party withdrew it's candidacy before the election and is thus not included in the election results in ltw_election_results, the manifesto id is not included in link_polidoc_parties.
+#' Dataset providing a link between ltw_elections and state parties' manifestos from polidoc.net- The Political Documents Archive. Note that polidoc.net provides a manifesto for the Neue Liberale in the HB 2015 election (41441.005.2015.1.1). Since the party withdrew it's candidacy before the election and is thus not included in the election results in ltw_elections, the manifesto id is not included in link_polidoc_parties.
 #'@docType data
 #'
-#' @usage data(link_polidoc_parties)
+#' @usage data(link_manifestos)
 #'
 #' 
 #' @format A tibble containing one row per party for which a manifesto is available.
@@ -16,12 +16,12 @@
 #' }
 #' @examples
 #' \dontrun{
-#' merge(ltw_election_results, link_polidoc_parties)
+#' merge(ltw_elections, link_manifestos)
 #' 
-#' ltw_election_results %>% 
+#' ltw_elections %>% 
 #'  left_join(
-#'    link_polidoc_parties,
+#'    link_manifestos,
 #'    by = c("state", "election_date", "partyname_short")
 #'      )
 #' }
-"link_polidoc_parties"
+"link_manifestos"

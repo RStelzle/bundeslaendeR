@@ -374,9 +374,9 @@ ltw_election_results_bwl %>%
   mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
 
 
+ltw_elections <- ltw_election_results
 
-
-usethis::use_data(ltw_election_results, overwrite = TRUE)
+usethis::use_data(ltw_elections, overwrite = TRUE)
 
 
 
@@ -612,10 +612,10 @@ ltw_election_results_and_gov_expm %>%
 
 
 
+ltw_combined <- ltw_election_results_and_gov
 
 
-
-usethis::use_data(ltw_election_results_and_gov, overwrite = TRUE)
+usethis::use_data(ltw_combined, overwrite = TRUE)
 
 ## Notable: nmin_party ist NA, wenn die partei nicht an der Regierung ist.
 ## Um die Möglichkeit offen zu halten Regierungsparteien mit 0 Ministerposten zu haben.
@@ -638,7 +638,9 @@ link_polidoc_parties_raw %>%
   mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
 
 
-usethis::use_data(link_polidoc_parties, overwrite = TRUE)
+link_manifestos<- link_polidoc_parties
+
+usethis::use_data(link_manifestos, overwrite = TRUE)
 
 
 
@@ -655,8 +657,10 @@ link_polidoc_governments_raw %>%
   mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
   
 
+link_coalitionagreements <- link_polidoc_governments
 
-usethis::use_data(link_polidoc_governments, overwrite = TRUE)
+
+usethis::use_data(link_coalitionagreements, overwrite = TRUE)
 
 
 

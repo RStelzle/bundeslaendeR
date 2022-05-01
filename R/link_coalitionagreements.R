@@ -1,9 +1,9 @@
-#' ID Links between ltw_election_results_and_gov and coalition agreements from polidoc.net - The Political Documents Archive
+#' ID Links between ltw_combined and coalition agreements from polidoc.net - The Political Documents Archive
 #'
-#' Dataset providing a link between ltw_election_results_and_gov and coalition agreements from polidoc.net- The Political Documents Archive. Note that polidoc.net provides a coalition agreement between the SPD and the Greens following the 2008 HE election (41001.006.2008.1.1). Since this potential coalition under leadership of SPD politician Andrea Ypsilanti never came to be due to several SPD MP's opposing the red-green minority cabinet being externally supported by Die Linke the coalition agreement can't be matched with a government in ltw_election_results_and_gov and is thus not included.
+#' Dataset providing a link between ltw_combined and coalition agreements from polidoc.net- The Political Documents Archive. Note that polidoc.net provides a coalition agreement between the SPD and the Greens following the 2008 HE election (41001.006.2008.1.1). Since this potential coalition under leadership of SPD politician Andrea Ypsilanti never came to be due to several SPD MP's opposing the red-green minority cabinet being externally supported by Die Linke the coalition agreement can't be matched with a government in ltw_combined and is thus not included.
 #'@docType data
 #'
-#' @usage data(link_polidoc_governments)
+#' @usage data(link_coalitionagreements)
 #'
 #' 
 #' @format A tibble containing one row per government for which a coalition agreement is available.
@@ -15,11 +15,11 @@
 #' }
 #' @examples
 #' \dontrun{
-#' merge(ltw_election_results_and_gov, link_polidoc_governments)
+#' merge(ltw_combined, link_coalitionagreements)
 #' 
-#'ltw_election_results_and_gov %>% 
-#'  left_join(link_polidoc_governments,
+#'ltw_combined %>% 
+#'  left_join(link_coalitionagreements,
 #'    by = c("state", "election_date", "gov_id")
 #'     )
 #'}
-"link_polidoc_governments"
+"link_coalitionagreements"

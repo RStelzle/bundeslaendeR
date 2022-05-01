@@ -3,7 +3,7 @@
 #' Dataset containing election results of Landtagswahlen in the German states (Bundeslaender) since 1946 as well as linked information on government constellation.
 #'@docType data
 #'
-#' @usage data(ltw_election_results)
+#' @usage data(ltw_combined)
 #'
 #' 
 #' @format A tibble containing one row per contesting party per election and per cabinet.
@@ -58,4 +58,4 @@
 #'   \item{is_mp_party}{lgl Is the governments minister president from this party? Note: There is a single cabinet where the minister president is not part of any party: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.}
 #' }
 #' @source Election results data provided by the Bundeswahlleiter. A machine-readable version of the data in the pdf available here (\url{https://www.bundeswahlleiter.de/service/landtagswahlen.html}) was kindly provided to me. Election data outside the timeframe covered by Bundeswahlleiter's data provided to me was collected from the states' local election authorities' (Landeswahlleiter) websites. More information on parties and the continuity of parties under different labels was collected by me. Information on Governments mainly taken from the replication data of Linhart, Eric, Franz U. Pappi und Ralf Schmitt (2008): Die proportionale Ministerienaufteilung in deutschen Koalitionsregierungen: Akzeptierte Norm oder das Ausnutzen strategischer Vorteile?, Politische Vierteljahresschrift 49(1): 46-67. To be found online here: \url{https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten.php}. Information outside the timeframe of Linhart et al. was collected by me, mainly from German Wikipedia.
-"ltw_election_results_and_gov"
+"ltw_combined"

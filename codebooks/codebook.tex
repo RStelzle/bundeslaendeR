@@ -6,8 +6,8 @@
 ]{scrartcl}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -132,7 +132,7 @@ includeheadfoot]{geometry}
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[backref,style=ext-authoryear-comp,minnames=1,maxnames=3,isbn=false,date=year,sorting=nyt]{biblatex}
@@ -159,12 +159,49 @@ includeheadfoot]{geometry}
 
 Hallo dies ist ein Test. \newpage
 
+\begin{table}
+\centering
+    \normalsize
+        \caption{State-level Variables}
+        \label{statevars}
+        
+\tiny
+\texttt{
+\begin{tabular}{llll}
+\toprule
+\textbf{state} & \textbf{nuts1} & \textbf{state\_name\_de} & \textbf{state\_name\_en} \\
+\midrule
+BA & NA & ehemaliges Land Baden & former state Baden \\
+BB & DE4 & Brandenburg & Brandenburg \\
+BE & DE3 & Berlin & Berlin \\
+BW & DE1 & Baden-Württemberg & Baden-Württemberg \\
+BY & DE2 & Bayern & Bavaria \\
+HB & DE5 & Bremen & Bremen \\
+HE & DE7 & Hessen & Hesse \\
+HH & DE6 & Hamburg & Hamburg\\
+MV & DE8 & Mecklenburg-Vorpommern & Mecklenburg-Vorpommern\\
+NI & DE9 & Niedersachsen & Lower-Saxony \\
+NW & DEA & Nordrhein-Westfalen & North Rhine-Westphalia\\
+RP & DEB & Rheinland-Pfalz & Rhineland-Palatine\\
+SH & DEF & Schleswig-Holstein & Schleswig-Holstein\\
+SL & DEC & Saarland & Saarland \\
+SN & DED & Sachsen & Saxony\\
+ST & DEE & Sachsen-Anhalt & Saxony-Anhalt\\
+TH & DEG & Thüringen & Thuringia\\
+WB & NA & ehemaliges Land Württemberg-Baden & former state Württemberg-Baden\\
+WH & NA &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-Hohenzollern\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
 \hypertarget{ltw_election_results}{%
 \section{\texorpdfstring{\texttt{ltw\_election\_results}}{ltw\_election\_results}}\label{ltw_election_results}}
 
 \texttt{bundeslaendeR::ltw\_election\_results} returns data frame
 (tibble if the tibble package is loaded) containing one row per
-contesting party per election.
+contesting party per election. For a schematic version of
+\texttt{bundeslaendeR::ltw\_election\_results}'s structure see
+table\(~\)\ref{strltwelecres}.
 
 Most election results data are provided by the Bundeswahlleiter. A
 machine-readable version of the Bundeswahlleiter's compiled data
@@ -195,8 +232,9 @@ in elections after June 2021) are still available
 \texttt{partyname\_bundeswahlleiter}).
 
 \begin{table}
-\caption{Structure of \texttt{ltw\_election\_results}}
 \centering
+\caption{Structure of \texttt{ltw\_election\_results}}
+\label{strltwelecres}
 \tiny
 \texttt{
 \begin{tabular}{llrllrllrllr}
@@ -215,36 +253,6 @@ in elections after June 2021) are still available
             NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party D & 004 & ... & 0.50 & 46 & ...\\
             \bottomrule
     \end{tabular}}
-    \normalsize
-        \caption{State-level Variables}
-        
-\tiny
-\texttt{
-\begin{tabular}{llll}
-\toprule
-\textbf{state} & \textbf{nuts1} & \textbf{state\_name\_de} & \textbf{state\_name\_en} \\
-\midrule
-BA & NA & ehemaliges Land Baden & former state Baden \\
-BB & DE4 & Brandenburg & Brandenburg \\
-BE & DE3 & Berlin & Berlin \\
-BW & DE1 & Baden-Württemberg & Baden-Württemberg \\
-BY & DE2 & Bayern & Bavaria \\
-HB & DE5 & Bremen & Bremen \\
-HE & DE7 & Hessen & Hesse \\
-HH & DE6 & Hamburg & Hamburg\\
-MV & DE8 & Mecklenburg-Vorpommern & Mecklenburg-Vorpommern\\
-NI & DE9 & Niedersachsen & Lower-Saxony \\
-NW & DEA & Nordrhein-Westfalen & North Rhine-Westphalia\\
-RP & DEB & Rheinland-Pfalz & Rhineland-Palatine\\
-SH & DEF & Schleswig-Holstein & Schleswig-Holstein\\
-SL & DEC & Saarland & Saarland \\
-SN & DED & Sachsen & Saxony\\
-ST & DEE & Sachsen-Anhalt & Saxony-Anhalt\\
-TH & DEG & Thüringen & Thuringia\\
-WB & NA & ehemaliges Land Württemberg-Baden & former state Württemberg-Baden\\
-WH & NA &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-Hohenzollern\\
-\bottomrule
-\end{tabular}}
 
 
 \end{table}
@@ -320,7 +328,7 @@ Date of the election.  ISO 8601 or R-Date format.
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{election\_id\_
 bundeswahlleiter} &\textbf{Election ID Bundeswahlleiter}\newline 
-Specific election\_id as denoted by the Bundeswahlleiter. Note that BA, WH and WH are named as BW and the number counts down. NA for cases taken from Landeswahlleiters (ie elections after ST 2021).
+Specific election\_id as denoted by the Bundeswahlleiter. Note that BA, WH and WH are named as BW and the number counts down. NA for cases taken from Landeswahlleiters (i.e. elections after ST 2021).
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
@@ -425,24 +433,24 @@ Number of newly elected female MPs.
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_short} &\textbf{Abbreviated Party Name}\newline 
-Harmonized abbreviation of the party's name. 372 unique parties.
+Harmonized abbreviation of the party's name. 374 unique parties.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname} &\textbf{Party Name}\newline 
-Harmonized name of the party. 372 unique parties.
+Harmonized name of the party. 374 unique parties.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_short\_
 bundeswahlleiter} &\textbf{Party Name Abbreviation from Bundeswahlleiter}\newline 
-Partyname abbreviation as documented by the Bundeswahlleiter. 459 different abbreviations.
+Partyname abbreviation as documented by the Bundeswahlleiter. 461 different abbreviations.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_
 bundeswahlleiter} &\textbf{Party Name from Bundeswahlleiter}\newline 
-Partyname as documented by the Bundeswahlleiter. 495 different names.
+Partyname as documented by the Bundeswahlleiter. 499 different names.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
@@ -622,19 +630,20 @@ Messy totals.
 
 \newpage
 
-\hypertarget{ltw_election_results_and_governments}{%
-\section{\texorpdfstring{\texttt{ltw\_election\_results\_and\_governments}}{ltw\_election\_results\_and\_governments}}\label{ltw_election_results_and_governments}}
+\hypertarget{ltw_election_results_and_gov}{%
+\section{\texorpdfstring{\texttt{ltw\_election\_results\_and\_gov}}{ltw\_election\_results\_and\_gov}}\label{ltw_election_results_and_gov}}
 
 This codebook only concerns variables specific to the
-\texttt{ltw\_election\_results\_and\_governments} dataset. For further
-variables plese refer to the \texttt{ltw\_election\_results} dataset's
-codebook.
+\texttt{ltw\_election\_results\_and\_gov} dataset. For further variables
+plese refer to the \texttt{ltw\_election\_results} dataset's codebook.
 
-\texttt{ltw\_election\_results\_and\_governments} returns a returns data
-frame (tibble if the tibble package is loaded) containing both election
+\texttt{ltw\_election\_results\_and\_gov} returns a returns data frame
+(tibble if the tibble package is loaded) containing both election
 results as well as linked information on governments in the German
 states. Each row contains information on one party during the time in
-office of one cabinet.
+office of one cabinet. For a schematic version of
+\texttt{bundeslaendeR::ltw\_election\_results\_and\_gov}'s structure see
+table\(~\)\ref{strltwelecgov}.
 
 Election results data are provided by the Bundeswahlleiter. A
 machine-readable version of the data in the pdf available here
@@ -656,10 +665,12 @@ Ministerpräsidenten was collected by me, mainly from German Wikipedia.
 
 \begin{landscape}
 
+    \setcounter{table}{2}
 \begin{table}
 
 \normalsize
-\caption{sdsdsd}
+\caption{Structure of \texttt{ltw\_election\_results\_and\_gov}}
+\label{strltwelecgov}
 \centering
 \tiny
 \texttt{

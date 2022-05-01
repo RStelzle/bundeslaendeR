@@ -180,17 +180,57 @@ fct_case_when <- function(...) {
 \vspace{1.5cm}
 
 
+
 # Introduction
 Hallo dies ist ein Test. 
 \newpage
 
+```{=latex}
 
+\begin{table}
+\centering
+	\normalsize
+		\caption{State-level Variables}
+		\label{statevars}
+		
+\tiny
+\texttt{
+\begin{tabular}{llll}
+\toprule
+\textbf{state} & \textbf{nuts1} & \textbf{state\_name\_de} & \textbf{state\_name\_en} \\
+\midrule
+BA & NA & ehemaliges Land Baden & former state Baden \\
+BB & DE4 & Brandenburg & Brandenburg \\
+BE & DE3 & Berlin & Berlin \\
+BW & DE1 & Baden-Württemberg & Baden-Württemberg \\
+BY & DE2 & Bayern & Bavaria \\
+HB & DE5 & Bremen & Bremen \\
+HE & DE7 & Hessen & Hesse \\
+HH & DE6 & Hamburg & Hamburg\\
+MV & DE8 & Mecklenburg-Vorpommern & Mecklenburg-Vorpommern\\
+NI & DE9 & Niedersachsen & Lower-Saxony \\
+NW & DEA & Nordrhein-Westfalen & North Rhine-Westphalia\\
+RP & DEB & Rheinland-Pfalz & Rhineland-Palatine\\
+SH & DEF & Schleswig-Holstein & Schleswig-Holstein\\
+SL & DEC & Saarland & Saarland \\
+SN & DED & Sachsen & Saxony\\
+ST & DEE & Sachsen-Anhalt & Saxony-Anhalt\\
+TH & DEG & Thüringen & Thuringia\\
+WB & NA & ehemaliges Land Württemberg-Baden & former state Württemberg-Baden\\
+WH & NA &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-Hohenzollern\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+
+```
 
 
 # `ltw_election_results`
 
 `bundeslaendeR::ltw_election_results` returns data frame (tibble if the tibble
 package is loaded) containing one row per contesting party per election.
+For a schematic version of `bundeslaendeR::ltw_election_results`'s structure see table$~$\ref{strltwelecres}.
 
 Most election results data are provided by the Bundeswahlleiter.
 A machine-readable version of the Bundeswahlleiter's compiled data contained in
@@ -221,9 +261,12 @@ elections after June 2021) are still available
 
 ```{=latex}
 
+
+
 \begin{table}
-\caption{Structure of \texttt{ltw\_election\_results}}
 \centering
+\caption{Structure of \texttt{ltw\_election\_results}}
+\label{strltwelecres}
 \tiny
 \texttt{
 \begin{tabular}{llrllrllrllr}
@@ -242,36 +285,6 @@ elections after June 2021) are still available
 			NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party D & 004 & ... & 0.50 & 46 & ...\\
 			\bottomrule
 	\end{tabular}}
-	\normalsize
-		\caption{State-level Variables}
-		
-\tiny
-\texttt{
-\begin{tabular}{llll}
-\toprule
-\textbf{state} & \textbf{nuts1} & \textbf{state\_name\_de} & \textbf{state\_name\_en} \\
-\midrule
-BA & NA & ehemaliges Land Baden & former state Baden \\
-BB & DE4 & Brandenburg & Brandenburg \\
-BE & DE3 & Berlin & Berlin \\
-BW & DE1 & Baden-Württemberg & Baden-Württemberg \\
-BY & DE2 & Bayern & Bavaria \\
-HB & DE5 & Bremen & Bremen \\
-HE & DE7 & Hessen & Hesse \\
-HH & DE6 & Hamburg & Hamburg\\
-MV & DE8 & Mecklenburg-Vorpommern & Mecklenburg-Vorpommern\\
-NI & DE9 & Niedersachsen & Lower-Saxony \\
-NW & DEA & Nordrhein-Westfalen & North Rhine-Westphalia\\
-RP & DEB & Rheinland-Pfalz & Rhineland-Palatine\\
-SH & DEF & Schleswig-Holstein & Schleswig-Holstein\\
-SL & DEC & Saarland & Saarland \\
-SN & DED & Sachsen & Saxony\\
-ST & DEE & Sachsen-Anhalt & Saxony-Anhalt\\
-TH & DEG & Thüringen & Thuringia\\
-WB & NA & ehemaliges Land Württemberg-Baden & former state Württemberg-Baden\\
-WH & NA &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-Hohenzollern\\
-\bottomrule
-\end{tabular}}
 
 
 \end{table}
@@ -403,7 +416,7 @@ item_end()
 ```{r, results="asis"}
 short_item(item_name_code = "election_id_\nbundeswahlleiter",
            item_name = "Election ID Bundeswahlleiter",
-           item_desc = "Specific election\\_id as denoted by the Bundeswahlleiter. Note that BA, WH and WH are named as BW and the number counts down. NA for cases taken from Landeswahlleiters (ie elections after ST 2021).",
+           item_desc = "Specific election\\_id as denoted by the Bundeswahlleiter. Note that BA, WH and WH are named as BW and the number counts down. NA for cases taken from Landeswahlleiters (i.e. elections after ST 2021).",
            desc_left = FALSE)
 ```
 
@@ -1137,17 +1150,18 @@ short_item(item_name_code = "ungueltige_\nstimmzettel_hh_hb",
 
 
 
-# `ltw_election_results_and_governments`
+# `ltw_election_results_and_gov`
 
 
 This codebook only concerns variables specific to the 
-`ltw_election_results_and_governments` dataset. For further variables
+`ltw_election_results_and_gov` dataset. For further variables
 plese refer to the `ltw_election_results` dataset's codebook.
 
-`ltw_election_results_and_governments` returns a returns data frame (tibble if the tibble
+`ltw_election_results_and_gov` returns a returns data frame (tibble if the tibble
 package is loaded) containing both election results as well as linked information
 on governments in the German states.
 Each row contains information on one party during the time in office of one cabinet.
+For a schematic version of `bundeslaendeR::ltw_election_results_and_gov`'s structure see table$~$\ref{strltwelecgov}.
 
 
 Election results data are provided by the Bundeswahlleiter.
@@ -1170,10 +1184,12 @@ was collected by me, mainly from German Wikipedia.
 \blandscape
 
 ```{=latex}
+    \setcounter{table}{2}
 \begin{table}
 
 \normalsize
-\caption{sdsdsd}
+\caption{Structure of \texttt{ltw\_election\_results\_and\_gov}}
+\label{strltwelecgov}
 \centering
 \tiny
 \texttt{

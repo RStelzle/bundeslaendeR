@@ -3,7 +3,7 @@
 #' Dataset containing election results of Landtagswahlen in the German states (Bundeslaender) since 1946.
 #'@docType data
 #'
-#' @usage data(ltw_election_results)
+#' @usage data(ltw_elections)
 #'
 #' 
 #' @format A tibble containing one row per contesting party per election.
@@ -47,4 +47,4 @@
 #'   \item{ungueltige_stimmzettel_hh_hb}{chr Messy totals.}
 #' }
 #' @source Election results data provided by the Bundeswahlleiter. A machine-readable version of the data in the pdf available here (\url{https://www.bundeswahlleiter.de/service/landtagswahlen.html}) was kindly provided to me. Election data outside the timeframe covered by Bundeswahlleiter's data provided to me was collected from the states' local election authorities' (Landeswahlleiter) websites. More information on parties and the continuity of parties under different labels was collected by me.
-"ltw_election_results"
+"ltw_elections"
