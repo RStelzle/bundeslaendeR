@@ -1455,7 +1455,7 @@ short_item(item_name_code = "election_date",
 
 
 ```{r, results="asis"}
-item_start(item_name_code = "polidoc_filename and polidoc_filename_2 in link_polidoc_\nparties",
+item_start(item_name_code = "polidoc_filename and polidoc_filename_2 in link_manifestos",
            item_name = "Polidoc File Name of Party Manifesto",
            item_desc = "File name of state party manifesto (or 2nd manifesto if available) available in The Political Documents Archive (polidoc.net).",
            desc_left = FALSE)
@@ -1565,7 +1565,7 @@ item_end()
 
 
 ```{r, results="asis"}
-item_start(item_name_code = "polidoc_filename in link_polidoc_\ngovernments",
+item_start(item_name_code = "polidoc_filename in link_\ncoalitionagreements",
            item_name = "Polidoc File Name of Coalition Agreement",
            item_desc = "File name of coalition agreement available in The Political Documents Archive (polidoc.net).",
            desc_left = FALSE)

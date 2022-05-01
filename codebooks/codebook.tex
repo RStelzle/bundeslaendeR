@@ -6,8 +6,8 @@
 ]{scrartcl}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{iftex}
-\ifPDFTeX
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -132,7 +132,7 @@ includeheadfoot]{geometry}
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\ifLuaTeX
+\ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[backref,style=ext-authoryear-comp,minnames=1,maxnames=3,isbn=false,date=year,sorting=nyt]{biblatex}
@@ -846,8 +846,7 @@ Date of the election.  ISO 8601 or R-Date format.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
-\texttt{polidoc\_filename and polidoc\_filename\_2 in link\_polidoc\_
-parties} &\textbf{Polidoc File Name of Party Manifesto}\newline 
+\texttt{polidoc\_filename and polidoc\_filename\_2 in link\_manifestos} &\textbf{Polidoc File Name of Party Manifesto}\newline 
 File name of state party manifesto (or 2nd manifesto if available) available in The Political Documents Archive (polidoc.net).
 
 
@@ -861,8 +860,8 @@ File name of state party manifesto (or 2nd manifesto if available) available in 
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
-\texttt{polidoc\_filename in link\_polidoc\_
-governments} &\textbf{Polidoc File Name of Coalition Agreement}\newline 
+\texttt{polidoc\_filename in link\_
+coalitionagreements} &\textbf{Polidoc File Name of Coalition Agreement}\newline 
 File name of coalition agreement available in The Political Documents Archive (polidoc.net).
 
 
