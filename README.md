@@ -13,6 +13,21 @@ the German states. Further, data is provided in order to easily link the
 election/government data with state parties’ manifestos/state
 governments’ coalition agreements available from other sources.
 
+## Todo
+
+\[ \] Add standalone government dataset
+
+\[ \] Add standalone elections meta dataset (ENP, etc.)
+
+\[ \] Change govelec remarks to PPEG
+
+\[ \] Write out codebook
+
+\[ \] Write brief dataset note
+
+\[ \] Change link_manifestos to properly include abgeordnetenwatch
+manifesto urls
+
 ## Installation
 
 (While the project is still under development in a private repository, I

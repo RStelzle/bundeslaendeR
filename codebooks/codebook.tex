@@ -6,8 +6,8 @@
 ]{scrartcl}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -132,7 +132,7 @@ includeheadfoot]{geometry}
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[backref,style=ext-authoryear-comp,minnames=1,maxnames=3,isbn=false,date=year,sorting=nyt]{biblatex}
@@ -520,7 +520,7 @@ Number of female MPs elected for the party. Note that for parties not elected to
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{wzb\_govelec\_id} &\textbf{WZB DD GovElec ID}\newline 
-If available, MR-Code of the party in the internal govelec database of the WZB department Democracy and Democratization \parencite{wzbDatabasePartiesElections2021}. These party IDs are chiefly based on party IDs from \textcite{mackieInternationalAlmanacElectoral1991}.
+If available, party id of the party in the PPEG database \parencite{ppegDatabasePoliticalParties2022}. These party IDs are chiefly based on party IDs from \textcite{mackieInternationalAlmanacElectoral1991}.
 
 
 \hspace*{.25cm}

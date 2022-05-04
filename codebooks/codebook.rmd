@@ -936,7 +936,7 @@ item_end()
 ```{r, results="asis"}
 item_start(item_name_code = "wzb_govelec_id", 
            item_name = "WZB DD GovElec ID",
-           item_desc = "If available, MR-Code of the party in the internal govelec database of the WZB department Democracy and Democratization \\parencite{wzbDatabasePartiesElections2021}. These party IDs are chiefly based on party IDs from \\textcite{mackieInternationalAlmanacElectoral1991}.")
+           item_desc = "If available, party id of the party in the PPEG database \\parencite{ppegDatabasePoliticalParties2022}. These party IDs are chiefly based on party IDs from \\textcite{mackieInternationalAlmanacElectoral1991}.")
 ```
 
 
