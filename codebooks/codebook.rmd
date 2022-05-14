@@ -22,6 +22,7 @@ header-includes:
 - \newcommand{\elandscape}{\end{landscape}}
 - \usepackage{fontspec}
 - \usepackage{libertinus}
+- \usepackage{enumitem}
 - \setmonofont[Scale=MatchLowercase,FakeStretch=0.9]{Consolas}
 - \setkomafont{captionlabel}{\bfseries\small\sffamily}
 - \setkomafont{caption}{\small\sffamily}
@@ -58,10 +59,16 @@ knitr::opts_chunk$set(fig.align="center",
 
 
 ```{r, include=FALSE}
-dir.create(here("codebooks", "fntdl"))
+
+if (isFALSE(here("codebooks", "fntdl", "libertinus.zip"))) {
+  dir.create(here("codebooks", "fntdl"))
 curl::curl_download("http://mirrors.ctan.org/fonts/libertinus-fonts.zip",
                     here("codebooks", "fntdl", "libertinus.zip"))
-unzip(zipfile =  here("codebooks", "fntdl", "libertinus.zip"), exdir = here("codebooks", "fntdl"))
+  unzip(zipfile =  here("codebooks", "fntdl", "libertinus.zip"), exdir = here("codebooks", "fntdl"))
+}
+
+
+
 
 
 library(showtext)
@@ -182,55 +189,6 @@ fct_case_when <- function(...) {
 
 
 # Introduction
-Hallo dies ist ein Test. 
-\newpage
-
-```{=latex}
-
-\begin{table}
-\centering
-	\normalsize
-		\caption{State-level Variables}
-		\label{statevars}
-		
-\tiny
-\texttt{
-\begin{tabular}{llll}
-\toprule
-\textbf{state} & \textbf{nuts1} & \textbf{state\_name\_de} & \textbf{state\_name\_en} \\
-\midrule
-BA & NA & ehemaliges Land Baden & former state Baden \\
-BB & DE4 & Brandenburg & Brandenburg \\
-BE & DE3 & Berlin & Berlin \\
-BW & DE1 & Baden-Württemberg & Baden-Württemberg \\
-BY & DE2 & Bayern & Bavaria \\
-HB & DE5 & Bremen & Bremen \\
-HE & DE7 & Hessen & Hesse \\
-HH & DE6 & Hamburg & Hamburg\\
-MV & DE8 & Mecklenburg-Vorpommern & Mecklenburg-Vorpommern\\
-NI & DE9 & Niedersachsen & Lower-Saxony \\
-NW & DEA & Nordrhein-Westfalen & North Rhine-Westphalia\\
-RP & DEB & Rheinland-Pfalz & Rhineland-Palatine\\
-SH & DEF & Schleswig-Holstein & Schleswig-Holstein\\
-SL & DEC & Saarland & Saarland \\
-SN & DED & Sachsen & Saxony\\
-ST & DEE & Sachsen-Anhalt & Saxony-Anhalt\\
-TH & DEG & Thüringen & Thuringia\\
-WB & NA & ehemaliges Land Württemberg-Baden & former state Württemberg-Baden\\
-WH & NA &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-Hohenzollern\\
-\bottomrule
-\end{tabular}}
-\end{table}
-
-
-```
-
-
-# `ltw_elections`
-
-`bundeslaendeR::ltw_elections` returns data frame (tibble if the tibble
-package is loaded) containing one row per contesting party per election.
-For a schematic version of `bundeslaendeR::ltw_elections`'s structure see table$~$\ref{strltwelecres}.
 
 Most election results data are provided by the Bundeswahlleiter.
 A machine-readable version of the Bundeswahlleiter's compiled data contained in
@@ -258,6 +216,73 @@ government following the election.
 The original names provided by the Bundeswahlleiter (and Landeswahlleiters in 
 elections after June 2021) are still available
 (`partyname_short_bundeswahlleiter` and `partyname_bundeswahlleiter`).
+
+
+
+Information on Governments is mainly taken from replication data from
+@linhartProportionaleMinisterienaufteilungDeutschen2008
+which can be found online here:
+https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten.php.
+Information outside the timeframe of Linhart et al. as well as information on
+the names and party affiliations of the Ministerpräsidenten
+was collected by me, mainly from German Wikipedia.
+
+
+
+
+
+
+
+```{=latex}
+
+\begin{table}
+\centering
+	\normalsize
+		\caption{State-level Variables}
+		\label{statevars}
+		
+\tiny
+\texttt{
+\begin{tabular}{llll}
+\toprule
+\textbf{state} & \textbf{nuts1} & \textbf{state\_name\_de} & \textbf{state\_name\_en} \\
+\midrule
+BB & DE4 & Brandenburg & Brandenburg \\
+BE & DE3 & Berlin & Berlin \\
+BW & DE1 & Baden-Württemberg & Baden-Württemberg \\
+BY & DE2 & Bayern & Bavaria \\
+HB & DE5 & Bremen & Bremen \\
+HE & DE7 & Hessen & Hesse \\
+HH & DE6 & Hamburg & Hamburg\\
+MV & DE8 & Mecklenburg-Vorpommern & Mecklenburg-Vorpommern\\
+NI & DE9 & Niedersachsen & Lower-Saxony \\
+NW & DEA & Nordrhein-Westfalen & North Rhine-Westphalia\\
+RP & DEB & Rheinland-Pfalz & Rhineland-Palatine\\
+SH & DEF & Schleswig-Holstein & Schleswig-Holstein\\
+SL & DEC & Saarland & Saarland \\
+SN & DED & Sachsen & Saxony\\
+ST & DEE & Sachsen-Anhalt & Saxony-Anhalt\\
+TH & DEG & Thüringen & Thuringia\\
+BA &  & ehemaliges Land Baden & former state Baden \\
+WB &  & ehemaliges Land Württemberg-Baden & former state Württemberg-Baden\\
+WH &  &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-Hohenzollern\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+
+```
+
+\newpage
+
+
+# `ltw_elections`
+
+`bundeslaendeR::ltw_elections` returns data frame (tibble if the tibble
+package is loaded) containing one row per contesting party per election.
+For a schematic version of `bundeslaendeR::ltw_elections`'s structure see table$~$\ref{strltwelecres}.
+
+
 
 ```{=latex}
 
@@ -291,8 +316,7 @@ elections after June 2021) are still available
 ```
 
 
-\clearpage
-## Election Results Variables
+## `ltw_elections` Variable Information
 
 ```{r, results="asis"}
 short_item(item_name_code = "state",
@@ -359,7 +383,7 @@ ltw_elections %>%
 item_image(ggobj = electiontermplot,
            filenameimg = "cbfiles/electiontermplot.pdf",
            width = 5,
-           height = 5/3)
+           height = 5/3.5)
 
 ```
 
@@ -399,7 +423,7 @@ ltw_elections %>%
 item_image(ggobj = electiondatesplot,
            filenameimg = "cbfiles/electiondatesplot.pdf",
            width = 5,
-           height = 5/3)
+           height = 5/3.5)
 ```
 
 
@@ -453,7 +477,7 @@ ltw_elections %>%
 item_image(ggobj = electorateplot,
            filenameimg = "cbfiles/electorateplot.pdf",
            width = 5,
-           height = 5/3)
+           height = 5/3.5)
 ```
 
 ```{r, results="asis"}
@@ -487,7 +511,7 @@ ltw_elections %>%
 item_image(ggobj = nvotersplot,
            filenameimg = "cbfiles/nvotersplot.pdf",
            width = 5,
-           height = 5/3)
+           height = 5/3.5)
 ```
 
 ```{r, results="asis"}
@@ -519,7 +543,7 @@ ltw_elections %>%
 item_image(ggobj = turnoutplot,
            filenameimg = "cbfiles/turnoutplot.pdf",
            width = 5,
-           height = 5/3)
+           height = 5/3.8)
 ```
 
 ```{r, results="asis"}
@@ -550,7 +574,7 @@ ltw_elections %>%
 item_image(ggobj = validvoteplot,
            filenameimg = "cbfiles/validvoteplot.pdf",
            width = 5,
-           height = 5/3)
+           height = 5/3.8)
 ```
 
 ```{r, results="asis"}
@@ -583,7 +607,7 @@ ltw_elections %>%
 item_image(ggobj = tseatsparlplot,
            filenameimg = "cbfiles/tseatsparlplot.pdf",
            width = 5,
-           height = 5/3)
+           height = 5/3.8)
 ```
 
 ```{r, results="asis"}
@@ -612,7 +636,7 @@ ltw_elections %>%
 item_image(ggobj = fpsaplot,
            filenameimg = "cbfiles/fpsaplot.pdf",
            width = 5,
-           height = 5/3)
+           height = 5/3.3)
 ```
 
 ```{r, results="asis"}
@@ -749,7 +773,7 @@ ltw_elections %>%
 item_image(ggobj = pvcplot,
            filenameimg = "cbfiles/pvcplot.pdf",
            width = 5,
-           height = 5/2.5)
+           height = 5/3.5)
 ```
 
 ```{r, results="asis"}
@@ -934,8 +958,8 @@ item_end()
 
 
 ```{r, results="asis"}
-item_start(item_name_code = "wzb_govelec_id", 
-           item_name = "WZB DD GovElec ID",
+item_start(item_name_code = "ppeg_id", 
+           item_name = "PPEG ID",
            item_desc = "If available, party id of the party in the PPEG database \\parencite{ppegDatabasePoliticalParties2022}. These party IDs are chiefly based on party IDs from \\textcite{mackieInternationalAlmanacElectoral1991}.")
 ```
 
@@ -943,19 +967,19 @@ item_start(item_name_code = "wzb_govelec_id",
 ```{r, results="asis"}
 govelecplot <- 
 ltw_elections %>% 
-  select(partyname_short, wzb_govelec_id) %>% 
+  select(partyname_short, ppeg_id) %>% 
   distinct() %>% 
-  mutate(avail = !is.na(wzb_govelec_id)) %>% 
+  mutate(avail = !is.na(ppeg_id)) %>% 
   count(avail) %>% 
   ggplot(aes(y = avail, x = n)) +
     geom_col() +
     labs(x = "Number of parties",
-         y = "GovElec ID available")
+         y = "PPEG ID available")
 
 item_image(ggobj = govelecplot,
            filenameimg = "cbfiles/govelecplot.pdf",
            width = 5,
-           height = 5/1.7)
+           height = 5/3)
 
 ```
 
@@ -991,7 +1015,7 @@ ltw_elections %>%
 item_image(ggobj = chesplot,
            filenameimg = "cbfiles/chesplot.pdf",
            width = 5,
-           height = 5/1.7)
+           height = 5/3)
 
 ```
 
@@ -1023,10 +1047,10 @@ ltw_elections %>%
     labs(x = "Number of parties",
          y = "PartyFacts ID available")
 
-item_image(ggobj = chesplot,
+item_image(ggobj = partyfactsplot,
            filenameimg = "cbfiles/partyfactsplot.pdf",
            width = 5,
-           height = 5/1.7)
+           height = 5/2.8)
 
 ```
 
@@ -1060,12 +1084,12 @@ ltw_elections %>%
   ggplot(aes(y = avail, x = n)) +
     geom_col() +
     labs(x = "Number of parties",
-         y = "Decker & Neu Chapter available")
+         y = "Decker/Neu Chapter")
 
-item_image(ggobj = chesplot,
+item_image(ggobj = deckerneuplot,
            filenameimg = "cbfiles/deckerneuplot.pdf",
            width = 5,
-           height = 5/1.7)
+           height = 5/3)
 
 ```
 
@@ -1147,15 +1171,317 @@ short_item(item_name_code = "ungueltige_\nstimmzettel_hh_hb",
 
 \newpage
 
+# `ltw_governments`
+
+
+This section of the codebook only concerns variables specific to the 
+`ltw_governments` dataset. For further variables
+please refer to the `ltw_elections` section.
+
+`ltw_governments` returns a data frame (tibble if the tibble
+package is loaded) containing information
+on governments in the German states.
+Each row contains information on one state government. 
+<!-- For a schematic version of `bundeslaendeR::ltw_combined`'s structure see table$~$\ref{strltwelecgov}. -->
+
+
+
+## `ltw_elections` Variable Information
+
+
+```{r, results="asis"}
+item_start(item_name_code = "gov_no_within_\nlegterm",
+           item_name = "Number of cabinet within legislative term",
+           item_desc = "Number of cabinet within legislative term (i.e. First cabinet in the 1990-1994 legislative term of state X).",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+govnolegperplot <- 
+ltw_governments %>% 
+  select(state, election_date, gov_id, gov_no_within_legterm) %>% 
+  distinct() %>% 
+  ggplot(aes(x = gov_no_within_legterm)) +
+    geom_bar() +
+    labs(y = "N")
+
+
+item_image(ggobj = govnolegperplot,
+           filenameimg = "cbfiles/govnolegperplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_id",
+           item_name = "Government ID",
+           item_desc = "Unique ID of government. Taken from Linhart et al. However, this ID is not counting up within state by time. In cases where Governments were 
+           missing from Linhart et al. before the timeframe covered by Linhart et al. (eg. in Berlin) these earlyer governments have a higher ID than later cabinets 
+           contained in Linhart et al. data.",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "state_gov_number",
+           item_name = "Number of government in state.",
+           item_desc = "Number of government in state.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+stategovnumplot <-
+ltw_governments %>% 
+  select(state, election_date, gov_id, state_gov_number) %>% 
+  distinct() %>% 
+  ggplot(aes(x = state_gov_number)) +
+    geom_bar() +
+    labs(y = "N")
+
+
+item_image(ggobj = stategovnumplot,
+           filenameimg = "cbfiles/stategovnumplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+```{r, results="asis"}
+item_start(item_name_code = "gov_start_date",
+           item_name = "Government Starting Date",
+           item_desc = "Starting date of the government.  ISO 8601 or R-Date format.",
+           desc_left = FALSE)
+
+```
+
+
+
+
+
+
+```{r, results="asis"}
+govstartdatesplot <- 
+ltw_governments %>% 
+  select(gov_start_date, state) %>%
+  distinct() %>% 
+  mutate(year = lubridate::year(gov_start_date)) %>% 
+  count(year) %>% 
+  ggplot(aes(x = year, y = n)) +
+    geom_col() +
+    scale_y_continuous(breaks= scales::pretty_breaks()) +
+    scale_x_continuous(breaks= scales::pretty_breaks()) +
+    labs(x = "Year", y = "N")
+
+
+item_image(ggobj = govstartdatesplot,
+           filenameimg = "cbfiles/govstartdatesplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_source",
+           item_name = "Government Source",
+           item_desc = "Source of the information on the government. Either Linhart et al. or the URL of the German Wikipedia Page containing information on the cabinet.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_remarks_\nstelzle",
+           item_name = "Governments remarks Stelzle",
+           item_desc = "My remarks on governments.",
+           desc_left = FALSE)
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "minister_president",
+           item_name = "Name of minister president",
+           item_desc = "Name of minister president.",
+           desc_left = FALSE)
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "mp_party",
+           item_name = "Minister President's Party",
+           item_desc = "Party of the minister president. partyname\\_short format used. Note: There is a single cabinet with an independent minister president: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_parties",
+           item_name = "Names of Government Parties",
+           item_desc = "String containing the names (partyname\\_short format) of all government parties separated by ' test '. The MP's party first, followed by other government parties in the order of their seatshare.",
+           desc_left = FALSE)
+```
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "gov_vshare",
+           item_name = "Government Vote Share",
+           item_desc = "Collective vote share of government parties.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+gvsplot <-
+  ltw_governments %>%
+  filter(!is.na(gov_vshare)) %>% 
+  select(gov_vshare, state) %>%
+  ggplot(aes(x = gov_vshare)) +
+  geom_histogram(bins = 20) +
+  scale_x_continuous(breaks = seq(0,1,0.1), labels = scales::percent) +
+  labs(x = "Collective vote share of government parties", y = "N")
+
+
+item_image(ggobj = gvsplot,
+           filenameimg = "cbfiles/gvsplot.pdf",
+           width = 6.5,
+           height = 6/3.9)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "gov_seat_count",
+           item_name = "Government Seat Count",
+           item_desc = "Collective number of seats of government parties.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+
+gscplot <-
+  ltw_governments %>%
+  select(gov_seat_count, state) %>%
+  filter(!is.na(gov_seat_count)) %>%
+  ggplot(aes(x = gov_seat_count)) +
+  geom_histogram(bins = 30) +
+  scale_x_continuous(breaks = seq(0,max(ltw_governments$gov_seat_count, na.rm = TRUE),20)) +
+  theme(axis.text.x = element_text(angle = 45)) +
+  labs(x = "Collective number of seats of government parties", y = "N")
+
+
+item_image(ggobj = gscplot,
+           filenameimg = "cbfiles/gscplot.pdf",
+           width = 5,
+           height = 5/3)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "gov_sshare",
+           item_name = "Government Seat Share",
+           item_desc = "Share of seats of government parties.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+
+
+
+gssplot <-
+  ltw_governments %>%
+  select(gov_sshare, state) %>%
+  filter(!is.na(gov_sshare)) %>%
+  ggplot(aes(x = gov_sshare)) +
+  geom_histogram(bins = 30) +
+  scale_x_continuous(breaks = seq(0,1,0.1),
+                     labels = scales::percent) +
+  # theme(axis.text.x = element_text(angle = 45)) +
+  labs(x = "Share of seats of government parties", y = "N")
+
+
+item_image(ggobj = gssplot,
+           filenameimg = "cbfiles/gssplot.pdf",
+           width = 5,
+           height = 5/3.5)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_tog",
+           item_name = "Type of Government",
+           item_desc = "\\vspace{-0.8cm}Type of Government:\\setlist{nolistsep}\\begin{itemize}[noitemsep]\\item Single Party Majority \\item Oversized Coalition \\item Minimal Winning Coalition \\item Single Party Minority \\item Multi Party Majority \\item Caretaker. \\end{itemize}",
+           desc_left = TRUE)
+```
+
+
+
+
+
+
+\newpage
 
 
 
 # `ltw_combined`
 
 
-This codebook only concerns variables specific to the 
+This section of the codebook only concerns variables specific to the 
 `ltw_combined` dataset. For further variables
-plese refer to the `ltw_elections` dataset's codebook.
+please refer to the sections on `ltw_elections` and `ltw_governments`.
 
 `ltw_combined` returns a returns data frame (tibble if the tibble
 package is loaded) containing both election results as well as linked information
@@ -1164,22 +1490,72 @@ Each row contains information on one party during the time in office of one cabi
 For a schematic version of `bundeslaendeR::ltw_combined`'s structure see table$~$\ref{strltwelecgov}.
 
 
-Election results data are provided by the Bundeswahlleiter.
-A machine-readable version of the data in the pdf available here
-(https://www.bundeswahlleiter.de/service/landtagswahlen.html) was kindly provided to me.
-Election data outside the timeframe covered by Bundeswahlleiter's data provided to me
-was collected from the states' local election authorities' (Landeswahlleiter) websites.
-More information on parties and the continuity of parties under different labels was
-collected by me.
-Information on Governments mainly taken from the replication data of
-Linhart, Eric, Franz U. Pappi und Ralf Schmitt (2008): Die proportionale
-Ministerienaufteilung in deutschen Koalitionsregierungen: Akzeptierte Norm oder
-das Ausnutzen strategischer Vorteile?, Politische Vierteljahresschrift 49(1): 46-67.
-To be found online here:
-https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten.php.
-Information outside the timeframe of Linhart et al. as well as information on
-the names and party affiliations of the Ministerpräsidenten
-was collected by me, mainly from German Wikipedia.
+
+
+
+
+
+
+
+## `ltw_combined` Variable Information
+
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_party",
+           item_name = "Government Party",
+           item_desc = "Boolean wether the party was a cabinet party. Note: There is a single cabinet where no party is marked as part of the cabinet: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.",
+           desc_left = FALSE)
+```
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "nmin_party",
+           item_name = "Number of Ministers of Party",
+           item_desc = "Number of ministers of party. Note that the number of party-independent ministers is not collected. Thus, the sum of the number of ministers of all government parties can not reliably be understood as the size of the cabinet.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+nminpartyplot <-
+ltw_combined %>% 
+  filter(gov_party == TRUE) %>% 
+  select(state, election_date, gov_id, nmin_party) %>% 
+  distinct() %>% 
+  ggplot(aes(x = nmin_party)) +
+    geom_bar() +
+    labs(y = "N")
+
+
+item_image(ggobj = nminpartyplot,
+           filenameimg = "cbfiles/nminpartyplot.pdf",
+           width = 5,
+           height = 5/3)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "is_mp_party",
+           item_name = "Is MP Party?",
+           item_desc = " the governments minister president from this party? Note: There is a single cabinet where the minister president is not part of any party: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.",
+           desc_left = FALSE)
+```
+
+
+
+
+\newpage
 
 \blandscape
 
@@ -1232,172 +1608,6 @@ was collected by me, mainly from German Wikipedia.
 
 \elandscape
 
-
-## Governments Variables
-
-
-```{r, results="asis"}
-item_start(item_name_code = "gov_no_within_\nlegterm",
-           item_name = "Number of cabinet within legislative term",
-           item_desc = "Number of cabinet within legislative term (i.e. First cabinet in the 1990-1994 legislative term of state X).",
-           desc_left = FALSE)
-```
-
-
-
-```{r, results="asis"}
-govnolegperplot <- 
-ltw_combined %>% 
-  select(state, election_date, gov_id, gov_no_within_legterm) %>% 
-  distinct() %>% 
-  ggplot(aes(x = gov_no_within_legterm)) +
-    geom_bar() +
-    labs(y = "N")
-
-
-item_image(ggobj = govnolegperplot,
-           filenameimg = "cbfiles/govnolegperplot.pdf",
-           width = 5,
-           height = 5/3)
-```
-
-
-```{r, results="asis"}
-item_end()
-```
-
-
-```{r, results="asis"}
-short_item(item_name_code = "gov_id",
-           item_name = "Government ID",
-           item_desc = "Unique ID of government. Taken from Linhart et al. However, this ID is not counting up within state by time. In cases where Governments were 
-           missing from Linhart et al. before the timeframe covered by Linhart et al. (eg. in Berlin) these earlyer governments have an higher ID than later cabinets 
-           contained in Linhart et al. data.",
-           desc_left = FALSE)
-```
-
-
-
-
-```{r, results="asis"}
-item_start(item_name_code = "state_gov_\nnumber",
-           item_name = "Number of government in state.",
-           item_desc = "Number of government in state.",
-           desc_left = FALSE)
-```
-
-
-
-```{r, results="asis"}
-stategovnumplot <-
-ltw_combined %>% 
-  select(state, election_date, gov_id, state_gov_number) %>% 
-  distinct() %>% 
-  ggplot(aes(x = state_gov_number)) +
-    geom_bar() +
-    labs(y = "N")
-
-
-item_image(ggobj = stategovnumplot,
-           filenameimg = "cbfiles/stategovnumplot.pdf",
-           width = 5,
-           height = 5/3)
-```
-
-
-```{r, results="asis"}
-item_end()
-```
-
-
-```{r, results="asis"}
-short_item(item_name_code = "gov_party",
-           item_name = "Government Party",
-           item_desc = "Boolean wether the party was a cabinet party. Note: There is a single cabinet where no party is marked as part of the cabinet: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.",
-           desc_left = FALSE)
-```
-
-
-
-
-
-```{r, results="asis"}
-item_start(item_name_code = "nmin_party",
-           item_name = "Number of Ministers of Party",
-           item_desc = "Number of Ministers of Party.",
-           desc_left = FALSE)
-```
-
-
-
-```{r, results="asis"}
-nminpartyplot <-
-ltw_combined %>% 
-  filter(gov_party == TRUE) %>% 
-  select(state, election_date, gov_id, nmin_party) %>% 
-  distinct() %>% 
-  ggplot(aes(x = nmin_party)) +
-    geom_bar() +
-    labs(y = "N")
-
-
-item_image(ggobj = nminpartyplot,
-           filenameimg = "cbfiles/nminpartyplot.pdf",
-           width = 5,
-           height = 5/3)
-```
-
-
-```{r, results="asis"}
-item_end()
-```
-
-
-
-
-```{r, results="asis"}
-short_item(item_name_code = "gov_source",
-           item_name = "Government Source",
-           item_desc = "Source of the information on the government. Either Linhart et al. or the URL of the German Wikipedia Page containing information on the cabinet.",
-           desc_left = FALSE)
-```
-
-
-
-```{r, results="asis"}
-short_item(item_name_code = "gov_remarks_\nstelzle",
-           item_name = "Governments remarks Stelzle",
-           item_desc = "My remarks on governments.",
-           desc_left = FALSE)
-```
-
-
-```{r, results="asis"}
-short_item(item_name_code = "minister_president",
-           item_name = "Name of minister president",
-           item_desc = "Name of minister president.",
-           desc_left = FALSE)
-```
-
-
-```{r, results="asis"}
-short_item(item_name_code = "mp_party",
-           item_name = "Minister President's Party",
-           item_desc = "Party of the minister president. partyname\\_short format used. Note: There is a single cabinet with an independent minister president: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.",
-           desc_left = FALSE)
-```
-
-
-
-```{r, results="asis"}
-short_item(item_name_code = "is_mp_party",
-           item_name = "Is MP Party?",
-           item_desc = " the governments minister president from this party? Note: There is a single cabinet where the minister president is not part of any party: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.",
-           desc_left = FALSE)
-```
-
-
-
 \newpage
 
 
@@ -1413,7 +1623,7 @@ short_item(item_name_code = "is_mp_party",
 
 ```{r, results='asis'}
 
-cat("\\texttt{link\\_manifestos} and \\texttt{link\\_coalitionagreements} provide easy links of \\texttt{ltw\\_elections} or \\texttt{ltw\\_combined} with party manifestos and coalition agreements made available from polidoc.net - The Political Documents Archive \\parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocNetCodebook2018}.
+cat("\\texttt{link\\_manifestos} and \\texttt{link\\_coalitionagreements} provide easy links of \\texttt{bundeslaendeR} data with party manifestos and coalition agreements made available from polidoc.net - The Political Documents Archive \\parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocNetCodebook2018}.
 While file names from polidoc.net follow a naming pattern
 (\\texttt{{partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}}), the provided links make joining the data easier.")
 
@@ -1428,19 +1638,18 @@ Note that polidoc.net provides a coalition agreement between the SPD and the Gre
 
 
 
-# Polidoc Link Variables
+## Linking-Variables Information
+
+
+The variables `state`, `election_date`, and `partyname_short` can be used in order to link manifestos to the `bundeslaendeR` data.
+
 
 ```{r, results="asis"}
 short_item(item_name_code = "state",
            item_name = "State Abbreviation",
-           item_desc = "ISO 3166-2:DE-code of the state;
-           including BA for the former state of Baden, WH for the former state
-           of Württemberg-Hohenzollern and WB for the former state of
-           Württemberg-Baden.",
+           item_desc = "ISO 3166-2:DE-code of the state.",
            desc_left = FALSE)
 ```
-
-
 
 
 
@@ -1450,6 +1659,28 @@ short_item(item_name_code = "election_date",
            item_desc = "Date of the election.  ISO 8601 or R-Date format.",
            desc_left = FALSE)
 
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "partyname_short",
+           item_name = "Abbreviated Party Name",
+           item_desc = paste("Harmonized abbreviation of the party's name.", 
+                             length(unique(ltw_elections$partyname_short)),
+                             "unique parties."),
+           desc_left = FALSE)
+```
+
+The variable `gov_id` can be used in order to link manifestos to the `bundeslaendeR` data.
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_id",
+           item_name = "Government ID",
+           item_desc = "Unique ID of government. Taken from Linhart et al. However, this ID is not counting up within state by time. In cases where Governments were 
+           missing from Linhart et al. before the timeframe covered by Linhart et al. (eg. in Berlin) these earlyer governments have a higher ID than later cabinets 
+           contained in Linhart et al. data.",
+           desc_left = FALSE)
 ```
 
 
@@ -1645,10 +1876,10 @@ item_end()
 
 # `de_states_grid_4x4()`
 
-`de_states_grid_4x4()` exports a data frame containing state IDs, german and english state names and approximate state locations on a 4x4 grid.
-The exported data frame can be used to approximately plot state-facets in their approximate locations using `ggplot2` extension `geofacet` [@hafenGeofacetGgplot2Faceting2020].
+`de_states_grid_4x4()` exports a data frame containing state IDs, German and English state names and approximate state locations on a 4x4 grid.
+The exported data frame can be used to approximately plot state-facets in their approximate locations using the `ggplot2` extension `geofacet` [@hafenGeofacetGgplot2Faceting2020].
 
-Please find a comparison of state locations and the grid layout below.
+Please find a comparison of state locations and the grid layout as well as some example code below.
 
 ### Example Code:
 
