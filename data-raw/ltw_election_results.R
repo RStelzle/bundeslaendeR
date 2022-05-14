@@ -694,14 +694,229 @@ usethis::use_data(ltw_governments, overwrite = TRUE)
 
 
 
+### Indices
+
+
+ 
+pedersen <- 
+  ltw_elections %>% 
+  select(state, election_date, partyname_short, party_vshare) %>% 
+  complete(partyname_short, nesting(state, election_date)) %>% 
+  group_by(state) %>% 
+  ungroup() %>% 
+  arrange(state, election_date) %>% 
+  group_by(state, partyname_short) %>% 
+  mutate(prev_vshare = lag(party_vshare)) %>% 
+  filter(!is.na(party_vshare) | !is.na(prev_vshare)) %>% 
+  ungroup() %>% 
+  group_by(state) %>% 
+  filter(election_date != min(election_date)) %>%
+  ungroup() %>% 
+  mutate(
+    party_vshare = ifelse(is.na(party_vshare), 0, party_vshare),
+    prev_vshare = ifelse(is.na(prev_vshare), 0, prev_vshare)
+  ) %>% 
+  mutate(vsdiff = abs(party_vshare - prev_vshare)) %>% 
+  group_by(state, election_date) %>% 
+  summarise(pedersen_index = sum(vsdiff) / 2) %>% 
+  ungroup()
+
+
+
+
+psystem_format <- 
+ltw_elections %>% 
+  select(state, election_date, partyname_short) %>%
+  count(state, election_date, name = "psystem_format")
+
+
+psystem_format_parliament <- 
+ltw_elections %>% 
+  select(state, election_date, partyname_short, party_seat_count) %>%
+  filter(party_seat_count > 0) %>% 
+  count(state, election_date, name = "psystem_format_parliament")
+
+
+
+
+
+psyste_frac_enep <- 
+ltw_elections %>% 
+  select(state, election_date, party_vshare) %>% 
+  group_by(state, election_date) %>% 
+  summarise(
+    psyste_frac_enep = 1 / sum(party_vshare^2)
+  ) %>% 
+  ungroup()
+  
 
 
 
 
 
 
+psyste_frac_enpp <- 
+ltw_elections %>% 
+  select(state, election_date, party_sshare) %>% 
+  group_by(state, election_date) %>% 
+  summarise(
+    psyste_frac_enpp = 1 / sum(party_sshare^2)
+  ) %>% 
+  ungroup()
+
+psyste_frac_rae <- 
+ltw_elections %>% 
+  select(state, election_date, party_vshare) %>% 
+  group_by(state, election_date) %>% 
+  summarise(psyste_frac_rae = 1 - sum(party_vshare^2)) %>% 
+  ungroup()
 
 
+
+
+
+
+max_deviation <- 
+ltw_elections %>% 
+  select(state, election_date, party_sshare, party_vshare) %>% 
+  mutate(deviation = abs(party_sshare - party_vshare)) %>%
+  group_by(state, election_date) %>% 
+  summarise(maximum_deviation_index = max(deviation)) %>% 
+  ungroup()
+
+
+  
+
+rae_index <-
+ltw_elections %>% 
+  select(state, election_date, party_sshare, party_vshare) %>% 
+  mutate(deviation = abs(party_sshare - party_vshare)) %>%
+  group_by(state, election_date) %>% 
+  summarise(rae_index = mean(deviation)) %>% 
+  ungroup()
+  
+
+
+
+loosmore_hanby <- 
+ltw_elections %>% 
+  select(state, election_date, party_sshare, party_vshare) %>% 
+  mutate(deviation = abs(party_sshare - party_vshare)) %>%
+  group_by(state, election_date) %>% 
+  summarise(loosmore_hanby_index = sum(deviation) / 2) %>% 
+  ungroup()
+
+
+grofman_index <- 
+ltw_elections %>% 
+  select(state, election_date, party_vshare, party_sshare) %>% 
+  mutate(deviation = abs(party_sshare - party_vshare)) %>%
+  group_by(state, election_date) %>% 
+  summarise(
+    enep = 1 / sum(party_vshare^2),
+    grofman_index = sum(deviation) / enep
+  ) %>% 
+  ungroup() %>% 
+  select(-enep)
+
+
+lijphart_index <- 
+ltw_elections %>% 
+  select(state, election_date, party_vshare, party_sshare) %>% 
+  arrange(state, election_date, desc(party_vshare)) %>% 
+  group_by(state, election_date) %>% 
+  filter(row_number() %in% 1:2) %>% 
+  mutate(deviation = abs(party_sshare - party_vshare)) %>%
+  summarise(lijphart_index = sum(deviation) / 2) %>% 
+  ungroup()
+
+
+
+
+gallagher_index <- 
+  ltw_elections %>% 
+  select(state, election_date, party_vshare, party_sshare) %>% 
+  mutate(deviation = abs(party_sshare - party_vshare)) %>%
+  group_by(state, election_date) %>% 
+  summarise(
+    gallagher_index = sqrt(sum(deviation^2) / 2)
+  ) %>% 
+  ungroup()
+
+
+gatev_index <- 
+ltw_elections %>%
+  select(state, election_date, party_vshare, party_sshare) %>%
+  mutate(deviation = abs(party_sshare - party_vshare)) %>% 
+  group_by(state, election_date) %>% 
+  summarise(
+    gatev_index = sqrt(sum(deviation)^2 / sum(party_sshare^2 + party_vshare^2))
+  ) %>% 
+  ungroup()
+
+
+
+ryabtsev_index <- 
+ltw_elections %>%
+  select(state, election_date, party_vshare, party_sshare) %>%
+  mutate(deviation = abs(party_sshare - party_vshare)) %>% 
+  group_by(state, election_date) %>% 
+  summarise(
+    ryabtsev_index = sqrt(sum(deviation^2) / sum((party_vshare + party_sshare)^2))
+  ) %>% 
+  ungroup()
+
+
+
+szalai_index <- 
+ltw_elections %>%
+  select(state, election_date, party_vshare, party_sshare) %>%
+  group_by(state, election_date) %>% 
+  summarise(
+    szalai_index = sqrt(sum(((party_sshare - party_vshare)  / (party_sshare + party_vshare))^2) / n())
+  )
+
+
+wheighted_szalai_index <- 
+ltw_elections %>%
+  select(state, election_date, party_vshare, party_sshare) %>%
+  group_by(state, election_date) %>% 
+  summarise(
+    wheighted_szalai_index = sqrt(0.5 * sum((party_sshare - party_vshare)^2 / (party_sshare + party_vshare)))
+  )
+
+
+
+
+aleskerov_platonov_index <- 
+ltw_elections %>%
+  select(state, election_date, party_vshare, party_sshare) %>%
+  filter(party_sshare > party_vshare) %>% 
+  group_by(state, election_date) %>% 
+  summarise(
+    aleskerov_platonov_index = (1/n()) * sum(party_sshare/party_vshare)
+  )
+
+
+
+dhondt_index <- 
+ltw_elections %>%
+  select(state, election_date, party_vshare, party_sshare) %>%
+  group_by(state, election_date) %>% 
+  summarise(dhondt_index = max(party_sshare/party_vshare)) %>% 
+  ungroup()
+
+
+
+sainte_lague_index <- 
+ltw_elections %>%
+  filter(party_vshare != 0) %>% 
+  select(state, election_date, party_vshare, party_sshare) %>%
+  group_by(state, election_date) %>% 
+  summarise(
+    sainte_lague_index = sum((party_sshare - party_vshare)^2 / party_vshare)
+  ) %>% 
+  ungroup()
 
 
 
