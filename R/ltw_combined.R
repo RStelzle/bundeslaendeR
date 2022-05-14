@@ -32,7 +32,7 @@
 #'   \item{party_seat_count}{dbl Number of seats recieved by the party.}
 #'   \item{party_sshare}{dbl Share of seats recieved by the party.}
 #'   \item{party_female_mps}{dbl Number of female MPs elected for the party. Note that for parties not elected to the new Landtag party_female_mps always is.na() == TRUE.}
-#'   \item{wzb_govelec_id}{dbl If available, MR-Code of the party in the internal govelec database of the WZB department Democracy and Democratization}
+#'   \item{ppeg_id}{chr If available, party ID in the PPEG database.}
 #'   \item{ches_id}{dbl If available, ID of the party in the Chapel-Hill Expert Survey.}
 #'   \item{partyfacts_id}{dbl If available, ID of the party in the partyfacts database.}
 #'   \item{decker_neu}{lgl Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by Decker and Neu has a chapter on the party.}
@@ -49,13 +49,18 @@
 #'   \item{gov_id}{dbl Unique ID of government. Taken from Linhart et al. However, this ID is not counting up within state by time. In cases where Governments were missing from Linhart et al. before the timeframe covered by Linhart et al. (eg. in Berlin) these earlier governments have an higher ID than later cabinets contained in Linhart et al. data.}
 #'   \item{state_gov_number}{int Order of cabinets within the state.}
 #'   \item{gov_start_date}{int Start date of the government.}
+#'   \item{gov_source}{chr Source of the information on the government. Either Linhart et al. or the URL of the German Wikipedia Page containing information on the cabinet.}
 #'   \item{gov_party}{lgl Boolean wether the party was a cabinet party. Note: There is a single cabinet where no party is marked as part of the cabinet: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.}
 #'   \item{nmin_party}{dbl Number of ministers of the party in the cabinet. NA for parties not in government!}
-#'   \item{gov_source}{chr Source of the information on the government. Either Linhart et al. or the URL of the German Wikipedia Page containing information on the cabinet.}
 #'   \item{gov_remarks_stelzle}{chr My remarks on governments.}
 #'   \item{minister_president}{chr Name of minister president}
 #'   \item{mp_party}{chr Party of the minister president. partyname_short format used. Note: There is a single cabinet with an independent minister president: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.}
 #'   \item{is_mp_party}{lgl Is the governments minister president from this party? Note: There is a single cabinet where the minister president is not part of any party: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.}
+#'   \item{gov_parties}{chr String containing the names (partyname_short format) of all government parties separated by " ~ ". The MP's party first, followed by other government parties in order of their seatshare.}
+#'   \item{gov_vshare}{dbl Collective vote share of government parties.}
+#'   \item{gov_seat_count}{dbl Collective seat count of government parties.}
+#'   \item{gov_sshare}{dbl Collective seat share of government parties.}
+#'   \item{gov_tog}{chr Type of Government.}
 #' }
-#' @source Election results data provided by the Bundeswahlleiter. A machine-readable version of the data in the pdf available here (\url{https://www.bundeswahlleiter.de/service/landtagswahlen.html}) was kindly provided to me. Election data outside the timeframe covered by Bundeswahlleiter's data provided to me was collected from the states' local election authorities' (Landeswahlleiter) websites. More information on parties and the continuity of parties under different labels was collected by me. Information on Governments mainly taken from the replication data of Linhart, Eric, Franz U. Pappi und Ralf Schmitt (2008): Die proportionale Ministerienaufteilung in deutschen Koalitionsregierungen: Akzeptierte Norm oder das Ausnutzen strategischer Vorteile?, Politische Vierteljahresschrift 49(1): 46-67. To be found online here: \url{https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten.php}. Information outside the timeframe of Linhart et al. was collected by me, mainly from German Wikipedia.
+#' @source Election results data provided by the Bundeswahlleiter. A machine-readable version of the data in the pdf available here (\url{https://www.bundeswahlleiter.de/service/landtagswahlen.html}) was kindly provided to me. Election data outside the timeframe covered by Bundeswahlleiter's data provided to me was collected from the states' local election authorities' (Landeswahlleiter) websites. Further election data was collected from the respective Landeswahlleiters. More information on parties and the continuity of parties under different labels was collected by me. Information on Governments mainly taken from the replication data of Linhart, Eric, Franz U. Pappi und Ralf Schmitt (2008): Die proportionale Ministerienaufteilung in deutschen Koalitionsregierungen: Akzeptierte Norm oder das Ausnutzen strategischer Vorteile?, Politische Vierteljahresschrift 49(1): 46-67. To be found online here: \url{https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten.php}. Information outside the timeframe of Linhart et al. was collected by me, mainly from German Wikipedia.
 "ltw_combined"

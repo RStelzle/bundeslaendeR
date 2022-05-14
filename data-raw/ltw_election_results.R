@@ -370,7 +370,9 @@ ltw_election_results_bwl %>%
                  decker_neu, url_info, party_remarks_stelzle) %>% 
           distinct() %>% 
           bind_rows(newparties_raw))
-  ) %>% 
+  ) %>%
+  mutate(wzb_govelec_id = ifelse(!is.na(wzb_govelec_id), paste0("DE", wzb_govelec_id), NA)) %>%
+  rename(ppeg_id = wzb_govelec_id) %>% 
   mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
 
 
@@ -607,18 +609,95 @@ ltw_election_results_and_gov_expm %>%
       select(gov_id, minister_president, mp_party)
     ) %>% 
   mutate(is_mp_party = partyname_short == mp_party) %>% 
-  select(-gov_end_date) %>% 
+  select(-gov_end_date) %>%
+  # mutate(wzb_govelec_id = ifelse(!is.na(wzb_govelec_id), paste0("DE", wzb_govelec_id), NA)) %>%
+  # rename(ppeg_id = wzb_govelec_id) %>% 
   mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
 
 
 
-ltw_combined <- ltw_election_results_and_gov
+ltw_combined_int <- ltw_election_results_and_gov
+
+
+
+
+## Notable: nmin_party ist NA, wenn die partei nicht an der Regierung ist.
+## Um die Möglichkeit offen zu halten Regierungsparteien mit 0 Ministerposten zu haben.
+
+
+
+
+ltw_governments <- 
+ltw_combined_int %>% 
+  select(state, nuts1, state_name_de, state_name_en, election_date, total_seats_parliament, partyname_short,
+         party_vshare, party_seat_count, party_sshare, gov_no_within_legterm, gov_id, state_gov_number, gov_start_date,
+         gov_source, gov_party, nmin_party, gov_remarks_stelzle, minister_president, mp_party, is_mp_party) %>% 
+  filter(gov_party == TRUE) %>% 
+  group_by(gov_id) %>% 
+  arrange(state, election_date, gov_start_date, -is_mp_party, party_sshare) %>% 
+  mutate(
+    coalition_parties = paste0(partyname_short, collapse = "~"),
+    coalition_vshare = sum(party_vshare),
+    coalition_seat_count = sum(party_seat_count),
+    coalition_sshare = sum(party_sshare)
+    ) %>% 
+  mutate(
+    tmp_nparties = n(),
+    tmp_smallestsshare = min(party_sshare)
+  ) %>% 
+  mutate(tog = case_when(
+    tmp_nparties == 1 & coalition_sshare > 0.5 ~ "Single Party Majority",
+    tmp_nparties == 1 & coalition_sshare <= 0.5 ~ "Single Party Minority",
+    tmp_nparties > 1 & coalition_sshare  <= 0.5 ~ "Multi Party Minority",
+    tmp_nparties > 1 & coalition_sshare > 0.5 & coalition_sshare - tmp_smallestsshare <= 0.5 ~ "Minimal Winning Coalition",
+    tmp_nparties > 1 & coalition_sshare > 0.5 & coalition_sshare - tmp_smallestsshare > 0.5 ~ "Oversized Coalition"
+    )) %>%
+  ungroup() %>% 
+  select(-starts_with("tmp_"), -starts_with("party_"), -partyname_short, -is_mp_party, -nmin_party, -gov_party) %>% 
+  distinct() %>% 
+  bind_rows(
+    ltw_combined_int %>% 
+      select(state, nuts1, state_name_de, state_name_en, election_date, total_seats_parliament, gov_no_within_legterm,
+             gov_id, state_gov_number, gov_start_date,
+             gov_source, gov_remarks_stelzle, minister_president, mp_party) %>% 
+      filter(gov_id == 11318) %>% 
+      distinct() %>% 
+      mutate(tog = "Caretaker Government")
+    ) %>% 
+  rename(
+    gov_vshare = coalition_vshare,
+    gov_parties = coalition_parties,
+    gov_seat_count = coalition_seat_count,
+    gov_sshare = coalition_sshare,
+    gov_tog = tog
+  ) %>% 
+  arrange(state, gov_start_date)
+
+
+
+
+
+ltw_combined <- 
+left_join(
+  ltw_combined_int,
+  ltw_governments %>% select(state, election_date, gov_id, gov_parties, gov_vshare, gov_seat_count, gov_sshare, gov_tog)
+)
 
 
 usethis::use_data(ltw_combined, overwrite = TRUE)
 
-## Notable: nmin_party ist NA, wenn die partei nicht an der Regierung ist.
-## Um die Möglichkeit offen zu halten Regierungsparteien mit 0 Ministerposten zu haben.
+usethis::use_data(ltw_governments, overwrite = TRUE)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -690,7 +769,13 @@ usethis::use_data(int_grid, overwrite = TRUE, internal = TRUE)
 
 
 
+## Todo:
 
+# Add Stata Labels
+# -> Export datasets to csv rds dta
+# -> include labelled dataframes as unexported bundeslaendeR:::xxx
+
+# election indices
 
 
 

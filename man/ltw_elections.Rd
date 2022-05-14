@@ -31,7 +31,7 @@ A tibble containing one row per contesting party per election.
 \item{party_seat_count}{dbl Number of seats recieved by the party.}
 \item{party_sshare}{dbl Share of seats recieved by the party.}
 \item{party_female_mps}{dbl Number of female MPs elected for the party. Note that for parties not elected to the new Landtag party_female_mps always is.na() == TRUE.}
-\item{wzb_govelec_id}{dbl If available, MR-Code of the party in the internal govelec database of the WZB department Democracy and Democratization}
+\item{ppeg_id}{chr If available, party ID in the PPEG database.}
 \item{ches_id}{dbl If available, ID of the party in the Chapel-Hill Expert Survey.}
 \item{partyfacts_id}{dbl If available, ID of the party in the partyfacts database.}
 \item{decker_neu}{lgl Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by Decker and Neu has a chapter on the party.}
@@ -47,7 +47,7 @@ A tibble containing one row per contesting party per election.
 }
 }
 \source{
-Election results data provided by the Bundeswahlleiter. A machine-readable version of the data in the pdf available here (\url{https://www.bundeswahlleiter.de/service/landtagswahlen.html}) was kindly provided to me. Election data outside the timeframe covered by Bundeswahlleiter's data provided to me was collected from the states' local election authorities' (Landeswahlleiter) websites. More information on parties and the continuity of parties under different labels was collected by me.
+Election results data provided by the Bundeswahlleiter. A machine-readable version of the data in the pdf available here (\url{https://www.bundeswahlleiter.de/service/landtagswahlen.html}) was kindly provided to me. Election data outside the timeframe covered by Bundeswahlleiter's data provided to me was collected from the states' local election authorities' (Landeswahlleiter) websites. Further election data was collected from the respective Landeswahlleiters. More information on parties and the continuity of parties under different labels was collected by me.
 }
 \usage{
 data(ltw_elections)
