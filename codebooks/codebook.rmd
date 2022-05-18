@@ -1,7 +1,7 @@
 ---
 title: "Codebook bundeslaendeR"
 author: "Robert Stelzle"
-date: "21.01.2022"
+date: "14.05.2022"
 documentclass: scrartcl
 output:
   pdf_document:
@@ -28,12 +28,16 @@ header-includes:
 - \setkomafont{caption}{\small\sffamily}
 - \usepackage[automark, headsepline=1pt, footsepline=1pt]{scrlayer-scrpage} 
 - \ohead{Codebook bundeslaendeR}
-- \ofoot*{23.09.2021} 
+- \ofoot*{14.05.2022} 
  \ihead{\headmark}
 - \setkomafont{pagenumber}{\itshape}
 - \ifoot*{Seite \pagemark}
 - \chead{}
 - \cfoot*{}
+- \usepackage{titling}
+- \pretitle{\begin{center}
+  \includegraphics[width=2in,height=2in]{../man/figures/hex_light_clipart.png}\LARGE\\}
+- \posttitle{\end{center}}
 ---
 
 
@@ -89,6 +93,10 @@ showtext.auto()
 
 theme_set(theme_minimal())
 theme_update(text = element_text(family = "LibertinusSansSerif"))
+update_geom_defaults("bar", list(fill = "#810a26"))
+# update_geom_defaults("histogramm", list(fill = "#810a26"))
+update_geom_defaults("col", list(fill = "#810a26"))
+update_geom_defaults("rug", list(fill = "#810a26", col = "#810a26"))
 
 ```
 
@@ -182,9 +190,7 @@ fct_case_when <- function(...) {
 
 ```
 
-
-\noindent\rule{\linewidth}{1pt}
-\vspace{1.5cm}
+\clearpage
 
 
 
@@ -371,7 +377,7 @@ item_start(item_name_code = "state_election_\nterm",
 
 
 ```{r, results="asis"}
-electiontermplot <- 
+electiontermplot <-
 ltw_elections %>% 
   select(state_election_term, election_date, state) %>%
   distinct() %>% 
@@ -1345,7 +1351,7 @@ short_item(item_name_code = "mp_party",
 ```{r, results="asis"}
 short_item(item_name_code = "gov_parties",
            item_name = "Names of Government Parties",
-           item_desc = "String containing the names (partyname\\_short format) of all government parties separated by ' test '. The MP's party first, followed by other government parties in the order of their seatshare.",
+           item_desc = "String containing the names (partyname\\_short format) of all government parties separated by ' $\\sim$ '. The MP's party first, followed by other government parties in the order of their seatshare.",
            desc_left = FALSE)
 ```
 
@@ -1548,7 +1554,7 @@ item_end()
 ```{r, results="asis"}
 short_item(item_name_code = "is_mp_party",
            item_name = "Is MP Party?",
-           item_desc = " the governments minister president from this party? Note: There is a single cabinet where the minister president is not part of any party: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.",
+           item_desc = "Is the governments minister president from this party? Note: There is a single cabinet where the minister president is not part of any party: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.",
            desc_left = FALSE)
 ```
 
@@ -1610,7 +1616,440 @@ short_item(item_name_code = "is_mp_party",
 
 \newpage
 
+# `ltw_elections_meta`
 
+This section of the codebook only concerns variables specific to the 
+`ltw_elections_meta` dataset. For further variables
+please refer to the sections on `ltw_elections`.
+
+
+`ltw_elections_meta` returns a returns data frame (tibble if the tibble
+package is loaded) containing both meta information on election results.
+Each row contains information on one election.
+
+
+For a discussion of the various measures quantifying party system properties see @niedermayerAnalyseParteiensystemen2013.
+For descriptions of the various measures of electoral disproportionality see @karpovMeasurementDisproportionalityProportional2008.
+
+
+## `ltw_elections_meta` Variable Information
+
+In the following section $v_i$ refers to party $i$'s vote share, $s_i$ to party $i$'s seat share and $n$ refers to the number of parties contesting a given election.
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "number_parties",
+           item_name = "Number of parties contesting the election",
+           item_desc = "Number of parties $n$ contesting the election.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+npartiesplot <-
+ltw_elections_meta %>% 
+  select(state, election_date, number_parties) %>% 
+  distinct() %>% 
+  ggplot(aes(x = number_parties)) +
+    geom_bar() +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Number of parties contesting the election")
+
+
+item_image(ggobj = npartiesplot,
+           filenameimg = "cbfiles/npartiesplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "number_parties_\nparliament",
+           item_name = "Number of parties gaining seats in the state parliament",
+           item_desc = "Number of parties gaining seats in the state parliament.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+npartiesparlplot <-
+ltw_elections_meta %>% 
+  select(state, election_date, number_parties_parliament) %>% 
+  distinct() %>% 
+  ggplot(aes(x = number_parties_parliament)) +
+    geom_histogram(binwidth = 1) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Number of parties gaining seats in the state parliament")
+
+
+item_image(ggobj = npartiesparlplot,
+           filenameimg = "cbfiles/npartiesparlplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "fragmentation_enep",
+           item_name = "Effective number of parties in the electorate",
+           item_desc = "Effective number of parties in the electorate $N_{2 electorate}$ \\parencite{laaksoEffectiveNumberParties1979}:
+           \\begin{equation}N_{2 electorate} = \\frac{1}{\\sum_{i = 1}^{n}v_{i}^{2}}. \\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+enepplot <-
+ltw_elections_meta %>% 
+  select(state, election_date, fragmentation_enep) %>%
+  # distinct() %>%
+  ggplot(aes(x = fragmentation_enep)) +
+    geom_histogram(bins = 20) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Effective number of parties in the electorate")
+
+
+item_image(ggobj = enepplot,
+           filenameimg = "cbfiles/enepplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "fragmentation_enpp",
+           item_name = "Effective number of parties in parliament",
+           item_desc = "Effective number of parties in parliament $N_{2 parliament}$ \\parencite{laaksoEffectiveNumberParties1979}:
+           \\begin{equation}N_{2 parliament} = \\frac{1}{\\sum_{i = 1}^{n}s_{i}^{2}}. \\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+enppplot <-
+ltw_elections_meta %>% 
+  select(state, election_date, fragmentation_enpp) %>%
+  # distinct() %>%
+  ggplot(aes(x = fragmentation_enpp)) +
+    geom_histogram(bins = 20) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Effective number of parties parliament")
+
+
+item_image(ggobj = enppplot,
+           filenameimg = "cbfiles/enppplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "fragmentation_rae",
+           item_name = "Rae's index of fragmentation",
+           item_desc = "Rae's index of fragmentation \\parencite{raeNoteFractionalizationEuropean1968}:
+           \\begin{equation}F = 1 - \\sum_{i = 1}^{n}v_{i}^{2}.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+fragrae <-
+ltw_elections_meta %>% 
+  select(state, election_date, fragmentation_rae) %>%
+  # distinct() %>%
+  ggplot(aes(x = fragmentation_rae)) +
+    geom_histogram(bins = 20) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Rae's index of fragmentation")
+
+
+item_image(ggobj = fragrae,
+           filenameimg = "cbfiles/fragrae.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+```{r, results="asis"}
+item_start(item_name_code = "volatility_pedersen",
+           item_name = "Pederson Index of electoral volatility",
+           item_desc = "Pederson Index of electoral volatility \\parencite{pedersenDynamicsEuropeanParty1979}:
+           \\begin{equation} V_t = \\sum_{i = 1}^{n_t \\wedge n_{t-1}}|v_{i,t} - v_{i,t-1}|.  \\end{equation} 
+           If a party did not contest an election $t$ or $t-1$ it's voteshare for the respective election $v_t$ or $v_{t-1}$ is $0$.
+           Attention: These figures probably slightly overestimate the real extent of electoral volatility, as party splits/mergers are not considered: If parties A ($7\\%$ at $t-1$) and B ($4\\%$ at $t-1$) contest election $t-1$ separately but merge before contesting election $t$ and gaining $15\\%$ under the label of party A, they really only contribute $|(7\\% + 4\\%) - 15\\%| = 4\\%$ to the calculation of the Pedersen Index. Here, they would contribute $|7\\% - 15\\%| + |4\\% - 0\\%| = 12\\%$ to the calculation as the merger is not properly accounted for.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+pedersenplot <-
+ltw_elections_meta %>% 
+  select(state, election_date, volatility_pedersen) %>%
+  filter(!is.na(volatility_pedersen)) %>% 
+  # distinct() %>%
+  ggplot(aes(x = volatility_pedersen)) +
+    geom_histogram(bins = 30) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Pederson Index of electoral volatility")
+
+
+item_image(ggobj = pedersenplot,
+           filenameimg = "cbfiles/pedersenplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+All of the disproportionality measures presented here, their calculation and properties  are presented and discussed in @karpovMeasurementDisproportionalityProportional2008.
+The distributions of these measures are presented in figure \ref{fig:distdisp} below.
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_\nmax_deviation",
+           item_name = "Maximum deviation index of electoral disproportionality",
+           item_desc = "Maximum deviation index of electoral disproportionality:
+           \\begin{equation}MD = \\max_{i=\\overline{1,n}} |s_i - v_i|.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_rae",
+           item_name = "Rae's index of electoral disproportionality",
+           item_desc = "Rae's index of electoral disproportionality \\parencite{raePoliticalConsequencesElectoral1971}:
+           \\begin{equation}I_{Rae} = \\frac{1}{n}\\sum_{i = 1}^{n}|s_i - v_i|.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_\nloosmore_hanby",
+           item_name = "Loosemore-Hanby index of electoral disproportionality",
+           item_desc = "Loosemore-Hanby index of electoral disproportionality \\parencite{loosemoreTheoreticalLimitsMaximum1971}:
+           \\begin{equation}I_{LH} = \\frac{1}{2}\\sum_{i = 1}^{n}|s_i - v_i|.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_grofman",
+           item_name = "Grofman index of electoral disproportionality",
+           item_desc = "Grofman index of electoral disproportionality.",
+           desc_left = FALSE)
+```
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_lijphart",
+           item_name = "Lijphart index of electoral disproportionality",
+           item_desc = "Lijphart index of electoral disproportionality.",
+           desc_left = FALSE)
+```
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_gallagher",
+           item_name = "Gallagher index of electoral disproportionality",
+           item_desc = "Gallagher index of electoral disproportionality.",
+           desc_left = FALSE)
+```
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_monroe",
+           item_name = "Monroe index of electoral disproportionality",
+           item_desc = "Monroe index of electoral disproportionality.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_gatev",
+           item_name = "Gatev index of electoral disproportionality",
+           item_desc = "Gatev index of electoral disproportionality.",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_ryabtsev",
+           item_name = "Ryabtsev  index of electoral disproportionality",
+           item_desc = "Ryabtsev  index of electoral disproportionality.",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_szalai",
+           item_name = "Szalai index of electoral disproportionality",
+           item_desc = "Szalai index of electoral disproportionality.",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_\nszalai_weighted",
+           item_name = "Weighted Szalai index of electoral disproportionality",
+           item_desc = "Weighted Szalai index of electoral disproportionality.",
+           desc_left = FALSE)
+```
+
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_\naleskerov_platonov",
+           item_name = "Aleskerov-Platonov index of electoral disproportionality",
+           item_desc = "Aleskerov-Platonov index of electoral disproportionality.",
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_dhondt",
+           item_name = "D'Hondt index of electoral disproportionality",
+           item_desc = "D'Hondt index of electoral disproportionality.",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_sainte_lague",
+           item_name = "Sainte-Lague index of electoral disproportionality",
+           item_desc = "Sainte-Lague index of electoral disproportionality.",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:distdisp}Distribution of Disproportionality Measures", fig.width=8*1.1, fig.height=7*1.1}
+
+pdists <-
+ltw_elections_meta %>% 
+  select(election_date, state, starts_with("disprop_")) %>% 
+  pivot_longer(cols = starts_with("disprop_"), names_to = "measure", values_to = "value") %>%
+  mutate(measure = as_factor(measure)) %>% 
+  ggplot(aes(x = value)) +
+    geom_histogram(bins = 30) +
+    # geom_rug(alpha = 0.6) +
+    facet_wrap(~measure, scales = "free", ncol = 3) +
+    theme(
+      strip.text = element_text(family = "mono", face = "bold"),
+      panel.background = element_rect(colour = "black")
+    ) +
+  labs(
+    x = "Disproportionality",
+    y = "Frequency"
+  )
+
+
+
+pzdist <- 
+ltw_elections_meta %>% 
+  select(election_date, state, starts_with("disprop_")) %>% 
+  pivot_longer(cols = starts_with("disprop_"), names_to = "measure", values_to = "value") %>% 
+  filter(!is.nan(value)) %>% 
+  group_by(measure) %>% 
+  mutate(valstd = (value - mean(value)) / sd(value)) %>% 
+  ggplot(aes(x = valstd, group = measure)) +
+    geom_density(alpha = 0.6, col = "#810a26") +
+    theme(panel.background = element_rect(colour = "black")) +
+    labs(x = "z-standardized disprop. measure", y = NULL, subtitle = "z-Standardized Dist. per measure")
+  
+
+pdists + patchwork::inset_element(pzdist, align_to = "full",
+                                  right = 1,
+                                  left = 0.7,
+                                  top = 0.22,
+                                  bottom = 0
+                                    )
+
+
+
+
+```
+
+
+
+
+
+
+
+\clearpage
 
 # `link_manifestos` and `link_coalitionagreements`
 
@@ -1896,7 +2335,7 @@ ltw_elections %>%
   filter(!(state %in% c("WB", "BA", "WH"))) %>% 
   filter(!is.na(turnout)) %>% 
   ggplot(aes(x = election_date, y = turnout)) +
-    geom_line() +
+    geom_line(col = "#810a26", size = 1.2) +
     facet_geo(grid = de_states_geofacet_grid_4x4(linebreak = T),
               facets = ~state, label = "name") +
     scale_y_continuous(limits = c(0,1),

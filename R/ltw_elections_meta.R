@@ -22,20 +22,19 @@
 #'   \item{fragmentation_enep}{dbl Effective number of parties in the electorate.}
 #'   \item{fragmentation_enpp}{dbl Effective number of parties parliament.}
 #'   \item{fragmentation_rae}{dbl Rae's index of fragmentation.}
-#'   \item{pedersen_index}{dbl Pederson Index of electoral volatility. These figures probably slightly overestimate the real extent of electoral volatility, as party splits/mergers are not considered: If parties A (7% at t-1) and B (4% at t-1) contest election t-1 separately but merge before contesting election t and gaining 15% under the label of party A, they really only contribute |(7% + 4%) - 15%| = 4% to the calculation of the Pedersen Index. Here, they would contribute |7% - 15%| + |4% - 0%| = 12% to the calculation as the merger is not properly accounted for.}
+#'   \item{volatility_pedersen}{dbl Pederson Index of electoral volatility. These figures probably slightly overestimate the real extent of electoral volatility, as party splits/mergers are not considered: If parties A (7% at t-1) and B (4% at t-1) contest election t-1 separately but merge before contesting election t and gaining 15% under the label of party A, they really only contribute |(7% + 4%) - 15%| = 4% to the calculation of the Pedersen Index. Here, they would contribute |7% - 15%| + |4% - 0%| = 12% to the calculation as the merger is not properly accounted for.}
 #'   \item{disprop_max_deviation}{dbl Maximum deviation index of electoral disproportionality.}
 #'   \item{disprop_rae}{dbl Rae's index of electoral disproportionality.}
-#'   \item{disprop_loosmore_hanby}{dbl Loosmore–Hanby index of electoral disproportionality.}
+#'   \item{disprop_loosmore_hanby}{dbl Loosmore-Hanby index of electoral disproportionality.}
 #'   \item{disprop_grofman}{dbl Grofman index of electoral disproportionality.}
 #'   \item{disprop_lijphart}{dbl Lijphart index of electoral disproportionality.}
 #'   \item{disprop_gallagher}{dbl Gallagher index of electoral disproportionality.}
 #'   \item{disprop_monroe}{dbl Monroe index of electoral disproportionality.}
 #'   \item{disprop_gatev}{dbl Gatev index of electoral disproportionality.}
 #'   \item{disprop_ryabtsev}{dbl Ryabtsev index of electoral disproportionality.}
-#'   \item{disprop_ryabtsev}{dbl Ryabtsev index of electoral disproportionality.}
 #'   \item{disprop_szalai}{dbl Szalai index of electoral disproportionality.}
 #'   \item{disprop_szalai_weighted}{dbl Weighted Szalai index of electoral disproportionality.}
-#'   \item{disprop_aleskerov_platonov}{dbl Aleskerov–Platonov index of electoral disproportionality.}
+#'   \item{disprop_aleskerov_platonov}{dbl Aleskerov-Platonov index of electoral disproportionality.}
 #'   \item{disprop_dhondt}{dbl D'Hondt index of electoral disproportionality.}
 #'   \item{disprop_sainte_lague}{dbl Sainte-Lague index of electoral disproportionality.}
 

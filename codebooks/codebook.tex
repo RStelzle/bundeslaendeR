@@ -114,11 +114,14 @@ includeheadfoot]{geometry}
 \setkomafont{caption}{\small\sffamily}
 \usepackage[automark, headsepline=1pt, footsepline=1pt]{scrlayer-scrpage}
 \ohead{Codebook bundeslaendeR}
-\ofoot*{23.09.2021} \ihead{\headmark}
+\ofoot*{14.05.2022} \ihead{\headmark}
 \setkomafont{pagenumber}{\itshape}
 \ifoot*{Seite \pagemark}
 \chead{}
 \cfoot*{}
+\usepackage{titling}
+\pretitle{\begin{center} \includegraphics[width=2in,height=2in]{../man/figures/hex_light_clipart.png}\LARGE\\}
+\posttitle{\end{center}}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -141,7 +144,7 @@ includeheadfoot]{geometry}
 
 \title{Codebook bundeslaendeR}
 \author{Robert Stelzle}
-\date{21.01.2022}
+\date{14.05.2022}
 
 \begin{document}
 \maketitle
@@ -150,10 +153,7 @@ includeheadfoot]{geometry}
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\noindent
-
-\rule{\linewidth}{1pt}
-\vspace{1.5cm}
+\clearpage
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -737,7 +737,7 @@ Party of the minister president. partyname\_short format used. Note: There is a 
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{gov\_parties} &\textbf{Names of Government Parties}\newline 
-String containing the names (partyname\_short format) of all government parties separated by ' test '. The MP's party first, followed by other government parties in the order of their seatshare.
+String containing the names (partyname\_short format) of all government parties separated by ' $\sim$ '. The MP's party first, followed by other government parties in the order of their seatshare.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
@@ -829,7 +829,7 @@ Number of ministers of party. Note that the number of party-independent minister
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{is\_mp\_party} &\textbf{Is MP Party?}\newline 
- the governments minister president from this party? Note: There is a single cabinet where the minister president is not part of any party: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.
+Is the governments minister president from this party? Note: There is a single cabinet where the minister president is not part of any party: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.
 \end{longtable}
 
 \newpage
@@ -881,6 +881,227 @@ Number of ministers of party. Note that the number of party-independent minister
 \end{landscape}
 
 \newpage
+
+\hypertarget{ltw_elections_meta}{%
+\section{\texorpdfstring{\texttt{ltw\_elections\_meta}}{ltw\_elections\_meta}}\label{ltw_elections_meta}}
+
+This section of the codebook only concerns variables specific to the
+\texttt{ltw\_elections\_meta} dataset. For further variables please
+refer to the sections on \texttt{ltw\_elections}.
+
+\texttt{ltw\_elections\_meta} returns a returns data frame (tibble if
+the tibble package is loaded) containing both meta information on
+election results. Each row contains information on one election.
+
+For a discussion of the various measures quantifying party system
+properties see \textcite{niedermayerAnalyseParteiensystemen2013}. For
+descriptions of the various measures of electoral disproportionality see
+\textcite{karpovMeasurementDisproportionalityProportional2008}.
+
+\hypertarget{ltw_elections_meta-variable-information}{%
+\subsection{\texorpdfstring{\texttt{ltw\_elections\_meta} Variable
+Information}{ltw\_elections\_meta Variable Information}}\label{ltw_elections_meta-variable-information}}
+
+In the following section \(v_i\) refers to party \(i\)'s vote share,
+\(s_i\) to party \(i\)'s seat share and \(n\) refers to the number of
+parties contesting a given election.
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{number\_parties} &\textbf{Number of parties contesting the election}\newline 
+Number of parties $n$ contesting the election.
+
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/npartiesplot.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{number\_parties\_
+parliament} &\textbf{Number of parties gaining seats in the state parliament}\newline 
+Number of parties gaining seats in the state parliament.
+
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/npartiesparlplot.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{fragmentation\_enep} &\textbf{Effective number of parties in the electorate}\newline 
+Effective number of parties in the electorate $N_{2 electorate}$ \parencite{laaksoEffectiveNumberParties1979}:
+           \begin{equation}N_{2 electorate} = \frac{1}{\sum_{i = 1}^{n}v_{i}^{2}}. \end{equation}
+
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/enepplot.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{fragmentation\_enpp} &\textbf{Effective number of parties in parliament}\newline 
+Effective number of parties in parliament $N_{2 parliament}$ \parencite{laaksoEffectiveNumberParties1979}:
+           \begin{equation}N_{2 parliament} = \frac{1}{\sum_{i = 1}^{n}s_{i}^{2}}. \end{equation}
+
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/enppplot.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{fragmentation\_rae} &\textbf{Rae's index of fragmentation}\newline 
+Rae's index of fragmentation \parencite{raeNoteFractionalizationEuropean1968}:
+           \begin{equation}F = 1 - \sum_{i = 1}^{n}v_{i}^{2}.\end{equation}
+
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/fragrae.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{volatility\_pedersen} &\textbf{Pederson Index of electoral volatility}\newline 
+Pederson Index of electoral volatility \parencite{pedersenDynamicsEuropeanParty1979}:
+           \begin{equation} V_t = \sum_{i = 1}^{n_t \wedge n_{t-1}}|v_{i,t} - v_{i,t-1}|.  \end{equation} 
+           If a party did not contest an election $t$ or $t-1$ it's voteshare for the respective election $v_t$ or $v_{t-1}$ is $0$.
+           Attention: These figures probably slightly overestimate the real extent of electoral volatility, as party splits/mergers are not considered: If parties A ($7\%$ at $t-1$) and B ($4\%$ at $t-1$) contest election $t-1$ separately but merge before contesting election $t$ and gaining $15\%$ under the label of party A, they really only contribute $|(7\% + 4\%) - 15\%| = 4\%$ to the calculation of the Pedersen Index. Here, they would contribute $|7\% - 15\%| + |4\% - 0\%| = 12\%$ to the calculation as the merger is not properly accounted for.
+
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/pedersenplot.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+All of the disproportionality measures presented here, their calculation
+and properties are presented and discussed in
+\textcite{karpovMeasurementDisproportionalityProportional2008}. The
+distributions of these measures are presented in figure
+\ref{fig:distdisp} below.
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_
+max\_deviation} &\textbf{Maximum deviation index of electoral disproportionality}\newline 
+Maximum deviation index of electoral disproportionality:
+           \begin{equation}MD = \max_{i=\overline{1,n}} |s_i - v_i|.\end{equation}
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_rae} &\textbf{Rae's index of electoral disproportionality}\newline 
+Rae's index of electoral disproportionality \parencite{raePoliticalConsequencesElectoral1971}:
+           \begin{equation}I_{Rae} = \frac{1}{n}\sum_{i = 1}^{n}|s_i - v_i|.\end{equation}
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_
+loosmore\_hanby} &\textbf{Loosemore-Hanby index of electoral disproportionality}\newline 
+Loosemore-Hanby index of electoral disproportionality \parencite{loosemoreTheoreticalLimitsMaximum1971}:
+           \begin{equation}I_{LH} = \frac{1}{2}\sum_{i = 1}^{n}|s_i - v_i|.\end{equation}
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_grofman} &\textbf{Grofman index of electoral disproportionality}\newline 
+Grofman index of electoral disproportionality.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_lijphart} &\textbf{Lijphart index of electoral disproportionality}\newline 
+Lijphart index of electoral disproportionality.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_gallagher} &\textbf{Gallagher index of electoral disproportionality}\newline 
+Gallagher index of electoral disproportionality.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_monroe} &\textbf{Monroe index of electoral disproportionality}\newline 
+Monroe index of electoral disproportionality.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_gatev} &\textbf{Gatev index of electoral disproportionality}\newline 
+Gatev index of electoral disproportionality.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_ryabtsev} &\textbf{Ryabtsev  index of electoral disproportionality}\newline 
+Ryabtsev  index of electoral disproportionality.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_szalai} &\textbf{Szalai index of electoral disproportionality}\newline 
+Szalai index of electoral disproportionality.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_
+szalai\_weighted} &\textbf{Weighted Szalai index of electoral disproportionality}\newline 
+Weighted Szalai index of electoral disproportionality.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_
+aleskerov\_platonov} &\textbf{Aleskerov-Platonov index of electoral disproportionality}\newline 
+Aleskerov-Platonov index of electoral disproportionality.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_dhondt} &\textbf{D'Hondt index of electoral disproportionality}\newline 
+D'Hondt index of electoral disproportionality.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_sainte\_lague} &\textbf{Sainte-Lague index of electoral disproportionality}\newline 
+Sainte-Lague index of electoral disproportionality.
+\end{longtable}
+
+\begin{figure}
+
+{\centering \includegraphics{cbfiles/unnamed-chunk-139-1} 
+
+}
+
+\caption{\label{fig:distdisp}Distribution of Disproportionality Measures}\label{fig:unnamed-chunk-139}
+\end{figure}
+
+\clearpage
 
 \hypertarget{link_manifestos-and-link_coalitionagreements}{%
 \section{\texorpdfstring{\texttt{link\_manifestos} and
@@ -1004,7 +1225,7 @@ as some example code below.
   \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\NormalTok{(state }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"WB"}\NormalTok{, }\StringTok{"BA"}\NormalTok{, }\StringTok{"WH"}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(turnout)) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ election\_date, }\AttributeTok{y =}\NormalTok{ turnout)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{col =} \StringTok{"\#810a26"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
     \FunctionTok{facet\_geo}\NormalTok{(}\AttributeTok{grid =} \FunctionTok{de\_states\_geofacet\_grid\_4x4}\NormalTok{(}\AttributeTok{linebreak =}\NormalTok{ T),}
               \AttributeTok{facets =} \SpecialCharTok{\textasciitilde{}}\NormalTok{state, }\AttributeTok{label =} \StringTok{"name"}\NormalTok{) }\SpecialCharTok{+}
     \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}

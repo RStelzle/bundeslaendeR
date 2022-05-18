@@ -1,0 +1,27 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\nonumberline Introduction}{2}{section*.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\nonumberline \texttt {ltw\_elections}}{3}{section*.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\nonumberline \texttt {ltw\_elections} Variable Information}{3}{section*.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\nonumberline \texttt {ltw\_governments}}{12}{section*.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\nonumberline \texttt {ltw\_elections} Variable Information}{12}{section*.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\nonumberline \texttt {ltw\_combined}}{15}{section*.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\nonumberline \texttt {ltw\_combined} Variable Information}{15}{section*.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\nonumberline \texttt {ltw\_elections\_meta}}{17}{section*.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\nonumberline \texttt {ltw\_elections\_meta} Variable Information}{17}{section*.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\nonumberline \texttt {link\_manifestos} and \texttt {link\_coalitionagreements}}{22}{section*.11}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\nonumberline Linking-Variables Information}{22}{section*.12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\nonumberline \texttt {de\_states\_grid\_4x4()}}{25}{section*.13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Example Code:}{25}{section*.14}%

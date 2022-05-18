@@ -718,7 +718,7 @@ volatility_pedersen <-
   ) %>% 
   mutate(vsdiff = abs(party_vshare - prev_vshare)) %>% 
   group_by(state, election_date) %>% 
-  summarise(pedersen_index = sum(vsdiff) / 2) %>% 
+  summarise(volatility_pedersen = sum(vsdiff) / 2) %>% 
   ungroup()
 
 
