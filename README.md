@@ -15,11 +15,13 @@ governments’ coalition agreements available from other sources.
 
 ## Todo
 
-\[ \] Add standalone government dataset
+\[x\] Add standalone government dataset
 
-\[ \] Add standalone elections meta dataset (ENP, etc.)
+\[x\] Add standalone elections meta dataset (ENP, etc.)
 
-\[ \] Change govelec remarks to PPEG
+\[\] Double Check calculation of these indices
+
+\[x\] Change govelec remarks to PPEG
 
 \[ \] Write out codebook
 
