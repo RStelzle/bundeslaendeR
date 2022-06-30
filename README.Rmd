@@ -28,6 +28,7 @@ knitr::opts_chunk$set(
 The goal of `bundeslaendeR` is to provide easy and cleaned up access to data regarding
 election results as well as government constellations in the German states.
 Further, data is provided in order to easily link the election/government data with state parties' manifestos/state governments' coalition agreements available from other sources.
+For a more detailed description, please refer to the codebook.
 
 
 
