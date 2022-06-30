@@ -863,7 +863,7 @@ ltw_elections %>%
   mutate(deviation = abs(party_sshare - party_vshare)) %>% 
   group_by(state, election_date) %>% 
   summarise(
-    disprop_gatev = sqrt(sum(deviation)^2 / sum(party_sshare^2 + party_vshare^2))
+    disprop_gatev = sqrt(sum(deviation^2) / sum(party_sshare^2 + party_vshare^2))
   ) %>% 
   ungroup()
 
@@ -921,15 +921,23 @@ ltw_elections %>%
 
 
 
-disprop_sainte_lague <- 
+disprop_sainte_lague <-
 ltw_elections %>%
-  filter(party_vshare != 0) %>% 
+  # filter(party_vshare != 0) %>% 
   select(state, election_date, party_vshare, party_sshare) %>%
   group_by(state, election_date) %>% 
   summarise(
-    disprop_sainte_lague = sum((party_sshare - party_vshare)^2 / party_vshare)
+    disprop_sainte_lague =sum(party_vshare * (((party_sshare/party_vshare) - 1)^2))
   ) %>% 
   ungroup()
+
+
+
+
+
+
+
+
 
 
 

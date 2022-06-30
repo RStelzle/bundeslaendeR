@@ -114,7 +114,7 @@ includeheadfoot]{geometry}
 \setkomafont{caption}{\small\sffamily}
 \usepackage[automark, headsepline=1pt, footsepline=1pt]{scrlayer-scrpage}
 \ohead{Codebook bundeslaendeR}
-\ofoot*{14.05.2022} \ihead{\headmark}
+\ofoot*{30.06.2022} \ihead{\headmark}
 \setkomafont{pagenumber}{\itshape}
 \ifoot*{Seite \pagemark}
 \chead{}
@@ -144,7 +144,7 @@ includeheadfoot]{geometry}
 
 \title{Codebook bundeslaendeR}
 \author{Robert Stelzle}
-\date{14.05.2022}
+\date{30.06.2022}
 
 \begin{document}
 \maketitle
@@ -186,7 +186,7 @@ in elections after June 2021) are still available
 (\texttt{partyname\_short\_bundeswahlleiter} and
 \texttt{partyname\_bundeswahlleiter}).
 
-Information on Governments is mainly taken from replication data from
+Information on governments is mainly taken from replication data from
 \textcite{linhartProportionaleMinisterienaufteilungDeutschen2008} which
 can be found online here:
 \url{https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten.php}.
@@ -346,7 +346,7 @@ Remarks on the election as given by the Bundeswahlleiter.
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{electorate} &\textbf{Size of the Electorate}\newline 
-Number of eligible voters. For more totals also see the last three columns.
+Number of eligible voters. For more totals also see the last six columns.
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -359,7 +359,7 @@ Number of eligible voters. For more totals also see the last three columns.
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{number\_of\_voters} &\textbf{Number of Voters}\newline 
-Number of voters turning out. For more totals also see the last three columns.
+Number of voters turning out. For more totals also see the last six columns.
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -385,7 +385,7 @@ Turnout. Share of eligible voters turning out.
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{valid\_votes} &\textbf{Valid Votes}\newline 
-Number of valid votes. Does not have to be equal to the number of ballots cast, as sometimes a ballot contains multiple votes! For more totals also see the last three columns.
+Number of valid votes. Does not have to be equal to the number of ballots cast, as sometimes a ballot contains multiple votes! For more totals also see the last six columns.
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -413,7 +413,7 @@ Total number of members of the newly elected Landtag.
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{female\_party\_
 seats\_available} &\textbf{Number of female MdLs available per party}\newline 
-Denotes whether information on the no. of female members of the Landtag per party is available for this election. Note that for parties not elected to the new Landtag party\_female\_mps always is.na() == TRUE.
+Denotes whether information on the no. of female members of the Landtag per party is available for this election. Note that for parties not elected to the new Landtag party\_female\_mps always is marked as missing.
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -440,24 +440,24 @@ Number of newly elected female MPs.
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_short} &\textbf{Abbreviated Party Name}\newline 
-Harmonized abbreviation of the party's name. 374 unique parties.
+Harmonized abbreviation of the party's name. 379 unique parties.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname} &\textbf{Party Name}\newline 
-Harmonized name of the party. 374 unique parties.
+Harmonized name of the party. 379 unique parties.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_short\_
 bundeswahlleiter} &\textbf{Party Name Abbreviation from Bundeswahlleiter}\newline 
-Partyname abbreviation as documented by the Bundeswahlleiter. 461 different abbreviations.
+Partyname abbreviation as documented by the Bundeswahlleiter. 467 different abbreviations.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_
 bundeswahlleiter} &\textbf{Party Name from Bundeswahlleiter}\newline 
-Partyname as documented by the Bundeswahlleiter. 499 different names.
+Partyname as documented by the Bundeswahlleiter. 508 different names.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
@@ -514,7 +514,7 @@ Share of seats recieved by the party.
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{party\_female\_mps} &\textbf{Number of female MPs from party}\newline 
-Number of female MPs elected for the party. Note that for parties not elected to the new Landtag party\_female\_mps always is.na() == TRUE.
+Number of female MPs elected for the party. Note that for parties not elected to the new Landtag party\_female\_mps always is marked as missing.
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -648,14 +648,14 @@ the \texttt{ltw\_elections} section.
 package is loaded) containing information on governments in the German
 states. Each row contains information on one state government.
 
-\hypertarget{ltw_elections-variable-information-1}{%
-\subsection{\texorpdfstring{\texttt{ltw\_elections} Variable
-Information}{ltw\_elections Variable Information}}\label{ltw_elections-variable-information-1}}
+\hypertarget{ltw_governments-variable-information}{%
+\subsection{\texorpdfstring{\texttt{ltw\_governments} Variable
+Information}{ltw\_governments Variable Information}}\label{ltw_governments-variable-information}}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{gov\_no\_within\_
 legterm} &\textbf{Number of cabinet within legislative term}\newline 
-Number of cabinet within legislative term (i.e. First cabinet in the 1990-1994 legislative term of state X).
+Number of cabinet within legislative term (e.g. First/Second/Third/... cabinet in the 1990-1994 legislative term of state X).
 
 
 
@@ -781,7 +781,7 @@ Share of seats of government parties.
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{gov\_tog} &\textbf{Type of Government}\newline 
-\begin{flushleft}\vspace{-0.8cm}Type of Government:\setlist{nolistsep}\begin{itemize}[noitemsep]\item Single Party Majority \item Oversized Coalition \item Minimal Winning Coalition \item Single Party Minority \item Multi Party Majority \item Caretaker. \end{itemize}
+\begin{flushleft}\vspace{-0.8cm}Type of Government:\setlist{nolistsep}\begin{itemize}[noitemsep]\item Single Party Majority \item Oversized Coalition \item Minimal Winning Coalition \item Single Party Minority \item Multi Party Majority \item Caretaker. \end{itemize}Note that this classification is done automatically based on the number of seats of each governing party \emph{at the beginning of the legislative term}. MPs defecting between parties and thus potentially changing the majority status of governments can thus not be incorporated!
 \end{flushleft}
 \end{longtable}
 
@@ -890,8 +890,8 @@ This section of the codebook only concerns variables specific to the
 refer to the sections on \texttt{ltw\_elections}.
 
 \texttt{ltw\_elections\_meta} returns a returns data frame (tibble if
-the tibble package is loaded) containing both meta information on
-election results. Each row contains information on one election.
+the tibble package is loaded) containing meta information on election
+results. Each row contains information on one election.
 
 For a discussion of the various measures quantifying party system
 properties see \textcite{niedermayerAnalyseParteiensystemen2013}. For
@@ -902,9 +902,9 @@ descriptions of the various measures of electoral disproportionality see
 \subsection{\texorpdfstring{\texttt{ltw\_elections\_meta} Variable
 Information}{ltw\_elections\_meta Variable Information}}\label{ltw_elections_meta-variable-information}}
 
-In the following section \(v_i\) refers to party \(i\)'s vote share,
-\(s_i\) to party \(i\)'s seat share and \(n\) refers to the number of
-parties contesting a given election.
+Unless specified otherwise, in the following section \(v_i\) refers to
+party \(i\)'s vote share, \(s_i\) to party \(i\)'s seat share and \(n\)
+refers to the number of parties contesting a given election.
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{number\_parties} &\textbf{Number of parties contesting the election}\newline 
@@ -941,8 +941,8 @@ Number of parties gaining seats in the state parliament.
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{fragmentation\_enep} &\textbf{Effective number of parties in the electorate}\newline 
-Effective number of parties in the electorate $N_{2 electorate}$ \parencite{laaksoEffectiveNumberParties1979}:
-           \begin{equation}N_{2 electorate} = \frac{1}{\sum_{i = 1}^{n}v_{i}^{2}}. \end{equation}
+Effective number of parties in the electorate $N_{2 \text{ electorate}}$ \parencite{laaksoEffectiveNumberParties1979}:
+           \begin{equation}N_{2 \text{ electorate}} = \frac{1}{\sum_{i = 1}^{n}v_{i}^{2}}. \end{equation}
 
 
 
@@ -958,8 +958,8 @@ Effective number of parties in the electorate $N_{2 electorate}$ \parencite{laak
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{fragmentation\_enpp} &\textbf{Effective number of parties in parliament}\newline 
-Effective number of parties in parliament $N_{2 parliament}$ \parencite{laaksoEffectiveNumberParties1979}:
-           \begin{equation}N_{2 parliament} = \frac{1}{\sum_{i = 1}^{n}s_{i}^{2}}. \end{equation}
+Effective number of parties in parliament $N_{2 \text{ parliament}}$ \parencite{laaksoEffectiveNumberParties1979}:
+           \begin{equation}N_{2 \text{ parliament}} = \frac{1}{\sum_{i = 1}^{n}s_{i}^{2}}. \end{equation}
 
 
 
@@ -1025,71 +1025,84 @@ Maximum deviation index of electoral disproportionality:
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_rae} &\textbf{Rae's index of electoral disproportionality}\newline 
 Rae's index of electoral disproportionality \parencite{raePoliticalConsequencesElectoral1971}:
-           \begin{equation}I_{Rae} = \frac{1}{n}\sum_{i = 1}^{n}|s_i - v_i|.\end{equation}
+           \begin{equation}I_{\text{Rae}} = \frac{1}{n}\sum_{i = 1}^{n}|s_i - v_i|.\end{equation}
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_
 loosmore\_hanby} &\textbf{Loosemore-Hanby index of electoral disproportionality}\newline 
 Loosemore-Hanby index of electoral disproportionality \parencite{loosemoreTheoreticalLimitsMaximum1971}:
-           \begin{equation}I_{LH} = \frac{1}{2}\sum_{i = 1}^{n}|s_i - v_i|.\end{equation}
+           \begin{equation}I_{\text{LH}} = \frac{1}{2}\sum_{i = 1}^{n}|s_i - v_i|.\end{equation}
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_grofman} &\textbf{Grofman index of electoral disproportionality}\newline 
-Grofman index of electoral disproportionality.
+Grofman index of electoral disproportionality:
+           \begin{equation}I_{\text{G}} = \frac{1}{N_{2\text{ electorate}}}\sum_{i=1}^{n}|s_i - v_i|.\end{equation}
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_lijphart} &\textbf{Lijphart index of electoral disproportionality}\newline 
-Lijphart index of electoral disproportionality.
+Lijphart index of electoral disproportionality:
+           \begin{equation}I_{\text{L}} = \frac{|s_i - v_i| + |s_i - v_i|}{2}\end{equation}
+           where only the two largest parties are considered.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_gallagher} &\textbf{Gallagher index of electoral disproportionality}\newline 
-Gallagher index of electoral disproportionality.
+Gallagher index of electoral disproportionality / least squares index (Lsq):
+          \begin{equation}Lsq = \sqrt{\frac{1}{2}\sum_{i = 1}^{n}\left(s_i - v_i\right)}.\end{equation}
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_monroe} &\textbf{Monroe index of electoral disproportionality}\newline 
-Monroe index of electoral disproportionality.
+Monroe index of electoral disproportionality:
+           \begin{equation}I_{\text{Monroe}} = \sqrt{\frac{\sum_{i=1}^{n}\left(s_i - v_i\right)^2}{1 + \sum_{i=1}^{n}v_i^2}}.\end{equation}
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_gatev} &\textbf{Gatev index of electoral disproportionality}\newline 
-Gatev index of electoral disproportionality.
+Gatev index of electoral disproportionality:
+           \begin{equation}I_{\text{Gatev}} = \sqrt{\frac{\sum_{i=1}^{n}\left(s_i - v_i\right)^2}{\sum_{i=1}^{n}\left(s_i^2 + v_i^2\right)}}\end{equation}
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_ryabtsev} &\textbf{Ryabtsev  index of electoral disproportionality}\newline 
-Ryabtsev  index of electoral disproportionality.
+Ryabtsev  index of electoral disproportionality:
+           \begin{equation}I_{\text{Ryabtsev}} = \sqrt{\frac{\sum_{i=1}^{n}\left(s_i - v_i\right)^2}{\sum_{i=1}^{n}\left(s_i + v_i\right)^2}}.\end{equation}
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_szalai} &\textbf{Szalai index of electoral disproportionality}\newline 
-Szalai index of electoral disproportionality.
+Szalai index of electoral disproportionality:
+           \begin{equation}I_{\text{Szalai}} = \sqrt{\frac{\sum_{i=1}^{n}\left(\frac{s_i-v_i}{s_i+v_i}\right)^2}{n}}.\end{equation}
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_
 szalai\_weighted} &\textbf{Weighted Szalai index of electoral disproportionality}\newline 
-Weighted Szalai index of electoral disproportionality.
+Weighted Szalai index of electoral disproportionality:
+           \begin{equation}\tilde{I}_{\text{Szalai}} = \sqrt{\frac{1}{2}\sum_{i=1}^{n}\frac{\left(s_i-v_i\right)^2}{s_i+v_i}}.\end{equation}
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_
 aleskerov\_platonov} &\textbf{Aleskerov-Platonov index of electoral disproportionality}\newline 
-Aleskerov-Platonov index of electoral disproportionality.
+Aleskerov-Platonov index of electoral disproportionality:
+           \begin{equation}R = \frac{1}{k}\sum_{i=1}^{k}\frac{s_i}{v_i}\end{equation}
+           where only overrepresented parties are considered.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_dhondt} &\textbf{D'Hondt index of electoral disproportionality}\newline 
-D'Hondt index of electoral disproportionality.
+D'Hondt index of electoral disproportionality:
+           \begin{equation}H = \max_{i=\overline{1,n}}\frac{s_i}{v_i}.\end{equation}
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_sainte\_lague} &\textbf{Sainte-Lague index of electoral disproportionality}\newline 
-Sainte-Lague index of electoral disproportionality.
+Sainte-Lague index of electoral disproportionality:
+           \begin{equation}SL = \sum_{i=1}^{n}v_i\left(\frac{s_i}{v_i}-1\right)^2.\end{equation}
 \end{longtable}
 
 \begin{figure}
@@ -1150,7 +1163,7 @@ Date of the election.  ISO 8601 or R-Date format.
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_short} &\textbf{Abbreviated Party Name}\newline 
-Harmonized abbreviation of the party's name. 374 unique parties.
+Harmonized abbreviation of the party's name. 379 unique parties.
 \end{longtable}
 
 The variable \texttt{gov\_id} can be used in order to link manifestos to
