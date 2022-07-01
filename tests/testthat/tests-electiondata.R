@@ -31,7 +31,7 @@ test_that("Identische Totals innerhalb einer Wahl 1", {
   expect_equal(ltw_elections %>% 
                  select(state, state_election_term,
                         state_name_de, state_name_en, election_date, election_id_bundeswahlleiter,
-                        election_remarks_bundeswahlleiter, electorate, number_of_voters, turnout,
+                        election_remarks_wahlleiter, electorate, number_of_voters, turnout,
                         valid_votes, total_seats_parliament, female_party_seats_available, total_female_mps_parliament,
                         gueltige_stimmzettel_hh_hb, gesamtstimmen_by, ausgefallene_stimmen_be,
                         abgegebene_stimmen_hh, ungueltige_stimmen_except_hh_hb, ungueltige_stimmen_except_hh_hb) %>% 
@@ -50,7 +50,7 @@ expect_equal(
 ltw_elections %>%
   select(state, state_election_term,
          state_name_de, state_name_en, election_date, election_id_bundeswahlleiter,
-         election_remarks_bundeswahlleiter, electorate, number_of_voters, turnout,
+         election_remarks_wahlleiter, electorate, number_of_voters, turnout,
          valid_votes, total_seats_parliament, female_party_seats_available, total_female_mps_parliament,
          gueltige_stimmzettel_hh_hb, gesamtstimmen_by, ausgefallene_stimmen_be,
          abgegebene_stimmen_hh, ungueltige_stimmen_except_hh_hb, ungueltige_stimmen_except_hh_hb) %>%

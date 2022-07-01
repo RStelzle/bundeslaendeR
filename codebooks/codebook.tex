@@ -194,6 +194,16 @@ Information outside the timeframe of Linhart et al.~as well as
 information on the names and party affiliations of the
 Ministerpräsidenten was collected by me, mainly from German Wikipedia.
 
+All datasets can be accessed through the \texttt{R} Package
+\texttt{bundeslaendeR}.
+\footnote{Calling \texttt{bundeslaender::ltw\_elections}, \texttt{bundeslaender::ltw\_governments} , \texttt{bundeslaender::ltw\_combined},
+\texttt{bundeslaender::ltw\_elections\_meta}, \texttt{bundeslaender::link\_manifestos} and \texttt{bundeslaender::link\_coalitionagreements}.}
+This package further includes one function
+-\texttt{bundeslaendeR::de\_states\_geofacet\_grid\_4x4()}- that is
+documented below. Alternatively all datasets can be downloaded in a
+single \texttt{.zip} file including all six datasets as \texttt{.csv},
+\texttt{.rds} and \texttt{.dta} files.
+
 \begin{table}
 \centering
     \normalsize
@@ -234,11 +244,11 @@ WH &  &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-Hoh
 \hypertarget{ltw_elections}{%
 \section{\texorpdfstring{\texttt{ltw\_elections}}{ltw\_elections}}\label{ltw_elections}}
 
-\texttt{bundeslaendeR::ltw\_elections} returns data frame (tibble if the
-tibble package is loaded) containing one row per contesting party per
-election. For a schematic version of
-\texttt{bundeslaendeR::ltw\_elections}'s structure see
-table\(~\)\ref{strltwelecres}.
+\texttt{ltw\_elections} is a long-form dataset containing one row per
+contesting party per election. For a schematic version of
+\texttt{ltw\_elections}'s structure see table\(~\)\ref{strltwelecres}.
+The data can be accessed in \texttt{R} using
+\texttt{bundeslaendeR::ltw\_elections}.
 
 \begin{table}
 \centering
@@ -340,7 +350,7 @@ Specific election\_id as denoted by the Bundeswahlleiter. Note that BA, WH and W
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{election\_remarks\_
-bundeswahlleiter} &\textbf{Election Remarks Bundeswahlleiter}\newline 
+wahlleiter} &\textbf{Election Remarks Bundeswahlleiter}\newline 
 Remarks on the election as given by the Bundeswahlleiter.
 \end{longtable}
 
@@ -644,9 +654,10 @@ This section of the codebook only concerns variables specific to the
 \texttt{ltw\_governments} dataset. For further variables please refer to
 the \texttt{ltw\_elections} section.
 
-\texttt{ltw\_governments} returns a data frame (tibble if the tibble
-package is loaded) containing information on governments in the German
-states. Each row contains information on one state government.
+\texttt{ltw\_governments} is a long-form dataset containing information
+on governments in the German states. Each row contains information on
+one state government. The data can be accessed in \texttt{R} using
+\texttt{bundeslaendeR::ltw\_governments}.
 
 \hypertarget{ltw_governments-variable-information}{%
 \subsection{\texorpdfstring{\texttt{ltw\_governments} Variable
@@ -794,13 +805,13 @@ This section of the codebook only concerns variables specific to the
 \texttt{ltw\_combined} dataset. For further variables please refer to
 the sections on \texttt{ltw\_elections} and \texttt{ltw\_governments}.
 
-\texttt{ltw\_combined} returns a returns data frame (tibble if the
-tibble package is loaded) containing both election results as well as
-linked information on governments in the German states. Each row
-contains information on one party during the time in office of one
-cabinet. For a schematic version of
-\texttt{bundeslaendeR::ltw\_combined}'s structure see
-table\(~\)\ref{strltwelecgov}.
+\texttt{ltw\_combined} is a long-form dataset containing both election
+results as well as linked information on governments in the German
+states. Each row contains information on one party during the time in
+office of one cabinet. For a schematic version of
+\texttt{ltw\_combined}'s structure see table\(~\)\ref{strltwelecgov}.
+The data can be accessed in \texttt{R} using
+\texttt{bundeslaendeR::ltw\_combined}.
 
 \hypertarget{ltw_combined-variable-information}{%
 \subsection{\texorpdfstring{\texttt{ltw\_combined} Variable
@@ -889,9 +900,10 @@ This section of the codebook only concerns variables specific to the
 \texttt{ltw\_elections\_meta} dataset. For further variables please
 refer to the sections on \texttt{ltw\_elections}.
 
-\texttt{ltw\_elections\_meta} returns a returns data frame (tibble if
-the tibble package is loaded) containing meta information on election
-results. Each row contains information on one election.
+\texttt{ltw\_elections\_meta} is a long-format dataset containing meta
+information on election results. Each row contains information on one
+election. The data can be accessed in \texttt{R} using
+\texttt{bundeslaendeR::ltw\_elections\_meta}.
 
 For a discussion of the various measures quantifying party system
 properties see \textcite{niedermayerAnalyseParteiensystemen2013}. For

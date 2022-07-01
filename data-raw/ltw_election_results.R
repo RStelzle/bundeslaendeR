@@ -3,7 +3,7 @@ library(readxl)
 library(janitor)
 library(lubridate)
 library(here)
-
+library(labelled)
 
 
 ## NUTS
@@ -377,7 +377,9 @@ ltw_election_results_bwl %>%
   mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
 
 
-ltw_elections <- ltw_election_results
+ltw_elections <- 
+  ltw_election_results %>% 
+    rename(election_remarks_wahlleiter = election_remarks_bundeswahlleiter)
 
 usethis::use_data(ltw_elections, overwrite = TRUE)
 
@@ -683,7 +685,8 @@ ltw_combined <-
 left_join(
   ltw_combined_int,
   ltw_governments %>% select(state, election_date, gov_id, gov_parties, gov_vshare, gov_seat_count, gov_sshare, gov_tog)
-)
+) %>% 
+  rename(election_remarks_wahlleiter = election_remarks_bundeswahlleiter)
 
 
 usethis::use_data(ltw_combined, overwrite = TRUE)
@@ -1050,13 +1053,119 @@ usethis::use_data(int_grid, overwrite = TRUE, internal = TRUE)
 
 
 
-## Todo:
 
-# Add Stata Labels
-# -> Export datasets to csv rds dta
-# -> include labelled dataframes as unexported bundeslaendeR:::xxx
 
-# election indices
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+coldescsdf <- 
+  readxl::read_xlsx(here("inst", "extdata", "coldesc.xlsx")) %>% 
+  column_to_rownames(var = "colname")
+
+
+
+labelslist <- 
+  split(coldescsdf, seq(nrow(coldescsdf))) %>% 
+  setNames(rownames(coldescsdf)) %>% 
+  lapply(as.character)
+
+
+
+
+
+
+
+
+unlink(here("release", "bundeslaender_data_release/"), recursive = TRUE)
+dir.create(here("release", "bundeslaender_data_release"))
+
+dir.create(here("release", "bundeslaender_data_release", "ltw_elections"))
+write_rds(ltw_elections, here("release", "bundeslaender_data_release", "ltw_elections", "ltw_elections.rds"))
+write.csv(ltw_elections, here("release", "bundeslaender_data_release", "ltw_elections", "ltw_elections.csv"))
+ltw_elections %>% 
+  set_variable_labels(.labels = labelslist, .strict = FALSE) %>% 
+  haven::write_dta(here("release", "bundeslaender_data_release", "ltw_elections", "ltw_elections.dta"))
+
+dir.create(here("release", "bundeslaender_data_release", "ltw_governments"))
+write_rds(ltw_governments, here("release", "bundeslaender_data_release", "ltw_governments", "ltw_governments.rds"))
+write.csv(ltw_governments, here("release", "bundeslaender_data_release", "ltw_governments", "ltw_governments.csv"))
+ltw_governments %>% 
+  set_variable_labels(.labels = labelslist, .strict = FALSE) %>% 
+  haven::write_dta(here("release", "bundeslaender_data_release", "ltw_governments", "ltw_governments.dta"))
+
+dir.create(here("release", "bundeslaender_data_release", "ltw_combined"))
+write_rds(ltw_combined, here("release", "bundeslaender_data_release", "ltw_combined", "ltw_combined.rds"))
+write.csv(ltw_combined, here("release", "bundeslaender_data_release", "ltw_combined", "ltw_combined.csv"))
+ltw_combined %>% 
+  set_variable_labels(.labels = labelslist, .strict = FALSE) %>% 
+  haven::write_dta(here("release", "bundeslaender_data_release", "ltw_combined", "ltw_combined.dta"))
+
+dir.create(here("release", "bundeslaender_data_release", "ltw_elections_meta"))
+write_rds(ltw_elections_meta, here("release", "bundeslaender_data_release", "ltw_elections_meta", "ltw_elections_meta.rds"))
+write.csv(ltw_elections_meta, here("release", "bundeslaender_data_release", "ltw_elections_meta", "ltw_elections_meta.csv"))
+ltw_elections_meta %>% 
+  set_variable_labels(.labels = labelslist, .strict = FALSE) %>% 
+  haven::write_dta(here("release", "bundeslaender_data_release", "ltw_elections_meta", "ltw_elections_meta.dta"))
+
+dir.create(here("release", "bundeslaender_data_release", "link_manifestos"))
+write_rds(link_manifestos, here("release", "bundeslaender_data_release", "link_manifestos", "link_manifestos.rds"))
+write.csv(link_manifestos, here("release", "bundeslaender_data_release", "link_manifestos", "link_manifestos.csv"))
+link_manifestos %>% 
+  set_variable_labels(.labels = labelslist, .strict = FALSE) %>% 
+  haven::write_dta(here("release", "bundeslaender_data_release", "link_manifestos", "link_manifestos.dta"))
+
+
+dir.create(here("release", "bundeslaender_data_release", "link_coalitionagreements"))
+write_rds(link_coalitionagreements, here("release", "bundeslaender_data_release", "link_coalitionagreements", "link_coalitionagreements.rds"))
+write.csv(link_coalitionagreements, here("release", "bundeslaender_data_release", "link_coalitionagreements", "link_coalitionagreements.csv"))
+link_coalitionagreements %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_coalitionagreements", "link_coalitionagreements.dta"))
+
+
+
+rmarkdown::render(here("codebooks", "codebook.rmd"))
+
+file.copy(
+  from = here("codebooks", "codebook.pdf"),
+  to = here("release", "bundeslaender_data_release", "codebook_bundeslaender.pdf")
+)
+
+setwd(here("release", "bundeslaender_data_release"))
+
+zip::zip(
+  "../bundeslaender_data.zip",
+  list.files(".", recursive = T)
+ )
+
+setwd(here())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

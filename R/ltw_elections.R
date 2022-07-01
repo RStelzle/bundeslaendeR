@@ -25,7 +25,7 @@
 #'   \item{total_female_mps_parliament}{dbl Number of newly elected female MPs.}
 #'   \item{partyname_short}{chr Harmonized abbreviation of the party's name.}
 #'   \item{partyname}{chr Harmonized name of the party.}
-#'   \item{partyname_short_bundeswahlleiter}{chr Partyname abbreviation as documented by the Bundeswahlleiter.}
+#'   \item{partyname_short_wahlleiter}{chr Partyname abbreviation as documented by the Bundeswahlleiter.}
 #'   \item{partyname_bundeswahlleiter}{chr Partyname as documented by the Bundeswahlleiter.}
 #'   \item{party_vote_count}{dbl Number of votes recieved by the party.}
 #'   \item{party_vshare}{dbl Share of votes recieved by the party.}

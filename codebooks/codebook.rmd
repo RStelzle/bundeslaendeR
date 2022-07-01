@@ -235,6 +235,14 @@ the names and party affiliations of the Ministerpräsidenten
 was collected by me, mainly from German Wikipedia.
 
 
+All datasets can be accessed through the `R` Package `bundeslaendeR`.
+\footnote{Calling \texttt{bundeslaender::ltw\_elections}, \texttt{bundeslaender::ltw\_governments} , \texttt{bundeslaender::ltw\_combined},
+\texttt{bundeslaender::ltw\_elections\_meta}, \texttt{bundeslaender::link\_manifestos} and \texttt{bundeslaender::link\_coalitionagreements}.}
+This package further includes one function -`bundeslaendeR::de_states_geofacet_grid_4x4()`- that is documented below.
+Alternatively all datasets can be downloaded in a single `.zip` file including
+all six datasets as `.csv`, `.rds` and `.dta` files.
+
+
 
 
 
@@ -285,9 +293,9 @@ WH &  &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-Hoh
 
 # `ltw_elections`
 
-`bundeslaendeR::ltw_elections` returns data frame (tibble if the tibble
-package is loaded) containing one row per contesting party per election.
-For a schematic version of `bundeslaendeR::ltw_elections`'s structure see table$~$\ref{strltwelecres}.
+`ltw_elections` is a long-form dataset  containing one row per contesting party per election.
+For a schematic version of `ltw_elections`'s structure see table$~$\ref{strltwelecres}.
+The data can be accessed in `R` using `bundeslaendeR::ltw_elections`.
 
 
 
@@ -455,7 +463,7 @@ short_item(item_name_code = "election_id_\nbundeswahlleiter",
 
 
 ```{r, results="asis"}
-short_item(item_name_code = "election_remarks_\nbundeswahlleiter",
+short_item(item_name_code = "election_remarks_\nwahlleiter",
            item_name = "Election Remarks Bundeswahlleiter",
            item_desc = "Remarks on the election as given by the Bundeswahlleiter.",
            desc_left = FALSE)
@@ -1185,10 +1193,10 @@ This section of the codebook only concerns variables specific to the
 `ltw_governments` dataset. For further variables
 please refer to the `ltw_elections` section.
 
-`ltw_governments` returns a data frame (tibble if the tibble
-package is loaded) containing information
+`ltw_governments` is a long-form dataset containing information
 on governments in the German states.
-Each row contains information on one state government. 
+Each row contains information on one state government.
+The data can be accessed in `R` using `bundeslaendeR::ltw_governments`.
 <!-- For a schematic version of `bundeslaendeR::ltw_combined`'s structure see table$~$\ref{strltwelecgov}. -->
 
 
@@ -1490,11 +1498,11 @@ This section of the codebook only concerns variables specific to the
 `ltw_combined` dataset. For further variables
 please refer to the sections on `ltw_elections` and `ltw_governments`.
 
-`ltw_combined` returns a returns data frame (tibble if the tibble
-package is loaded) containing both election results as well as linked information
+`ltw_combined` is a long-form dataset containing both election results as well as linked information
 on governments in the German states.
 Each row contains information on one party during the time in office of one cabinet.
-For a schematic version of `bundeslaendeR::ltw_combined`'s structure see table$~$\ref{strltwelecgov}.
+For a schematic version of `ltw_combined`'s structure see table$~$\ref{strltwelecgov}.
+The data can be accessed in `R` using `bundeslaendeR::ltw_combined`.
 
 
 
@@ -1624,9 +1632,9 @@ This section of the codebook only concerns variables specific to the
 please refer to the sections on `ltw_elections`.
 
 
-`ltw_elections_meta` returns a returns data frame (tibble if the tibble
-package is loaded) containing meta information on election results.
-Each row contains information on one election.
+`ltw_elections_meta` is a long-format dataset containing meta information on election results.
+Each row contains information on one election. The data can be accessed in `R`
+using `bundeslaendeR::ltw_elections_meta`.
 
 
 For a discussion of the various measures quantifying party system properties see @niedermayerAnalyseParteiensystemen2013.
