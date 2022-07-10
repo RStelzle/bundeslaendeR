@@ -1001,7 +1001,39 @@ link_polidoc_parties_raw %>%
   mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
 
 
-link_manifestos<- link_polidoc_parties
+
+link_agwatch_raw <- 
+  read_xlsx(here("inst", "extdata", "agwatchlink.xlsx"))
+
+
+link_manifestos<-
+link_agwatch_raw %>% 
+  left_join(
+    ltw_election_results %>% 
+      select(state, election_date) %>% 
+      mutate(election_year = lubridate::year(election_date)) %>% 
+      distinct()
+  ) %>% 
+  select(state, election_date, partyname_short, election_manifesto, manifesto_url) %>% 
+  full_join(
+    link_polidoc_parties
+  ) %>% 
+  select(
+    state, election_date, partyname_short, 
+    polidoc_filename, polidoc_filename_2,
+    agwatch_pdf_url = manifesto_url,
+    agwatch_election_manifesto = election_manifesto
+  ) %>% 
+  arrange(election_date, state) %>% 
+  mutate(agwatch_election_manifesto = as.logical(agwatch_election_manifesto)) %>% 
+  mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
+
+
+
+
+
+
+
 
 usethis::use_data(link_manifestos, overwrite = TRUE)
 

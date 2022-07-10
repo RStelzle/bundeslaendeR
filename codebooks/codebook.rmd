@@ -1,7 +1,7 @@
 ---
 title: "Codebook bundeslaendeR"
 author: "Robert Stelzle"
-date: "30.06.2022"
+date: "10.07.2022"
 documentclass: scrartcl
 output:
   pdf_document:
@@ -28,7 +28,7 @@ header-includes:
 - \setkomafont{caption}{\small\sffamily}
 - \usepackage[automark, headsepline=1pt, footsepline=1pt]{scrlayer-scrpage} 
 - \ohead{Codebook bundeslaendeR}
-- \ofoot*{30.06.2022} 
+- \ofoot*{10.07.2022} 
  \ihead{\headmark}
 - \setkomafont{pagenumber}{\itshape}
 - \ifoot*{Seite \pagemark}
@@ -248,45 +248,45 @@ all six datasets as `.csv`, `.rds` and `.dta` files.
 
 
 
-```{=latex}
+<!-- ```{=latex} -->
 
-\begin{table}
-\centering
-	\normalsize
-		\caption{State-level Variables}
-		\label{statevars}
-		
-\tiny
-\texttt{
-\begin{tabular}{llll}
-\toprule
-\textbf{state} & \textbf{nuts1} & \textbf{state\_name\_de} & \textbf{state\_name\_en} \\
-\midrule
-BB & DE4 & Brandenburg & Brandenburg \\
-BE & DE3 & Berlin & Berlin \\
-BW & DE1 & Baden-Württemberg & Baden-Württemberg \\
-BY & DE2 & Bayern & Bavaria \\
-HB & DE5 & Bremen & Bremen \\
-HE & DE7 & Hessen & Hesse \\
-HH & DE6 & Hamburg & Hamburg\\
-MV & DE8 & Mecklenburg-Vorpommern & Mecklenburg-Vorpommern\\
-NI & DE9 & Niedersachsen & Lower-Saxony \\
-NW & DEA & Nordrhein-Westfalen & North Rhine-Westphalia\\
-RP & DEB & Rheinland-Pfalz & Rhineland-Palatine\\
-SH & DEF & Schleswig-Holstein & Schleswig-Holstein\\
-SL & DEC & Saarland & Saarland \\
-SN & DED & Sachsen & Saxony\\
-ST & DEE & Sachsen-Anhalt & Saxony-Anhalt\\
-TH & DEG & Thüringen & Thuringia\\
-BA &  & ehemaliges Land Baden & former state Baden \\
-WB &  & ehemaliges Land Württemberg-Baden & former state Württemberg-Baden\\
-WH &  &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-Hohenzollern\\
-\bottomrule
-\end{tabular}}
-\end{table}
+<!-- \begin{table} -->
+<!-- \centering -->
+<!-- 	\normalsize -->
+<!-- 		\caption{State-level Variables} -->
+<!-- 		\label{statevars} -->
+
+<!-- \tiny -->
+<!-- \texttt{ -->
+<!-- \begin{tabular}{llll} -->
+<!-- \toprule -->
+<!-- \textbf{state} & \textbf{nuts1} & \textbf{state\_name\_de} & \textbf{state\_name\_en} \\ -->
+<!-- \midrule -->
+<!-- BB & DE4 & Brandenburg & Brandenburg \\ -->
+<!-- BE & DE3 & Berlin & Berlin \\ -->
+<!-- BW & DE1 & Baden-Württemberg & Baden-Württemberg \\ -->
+<!-- BY & DE2 & Bayern & Bavaria \\ -->
+<!-- HB & DE5 & Bremen & Bremen \\ -->
+<!-- HE & DE7 & Hessen & Hesse \\ -->
+<!-- HH & DE6 & Hamburg & Hamburg\\ -->
+<!-- MV & DE8 & Mecklenburg-Vorpommern & Mecklenburg-Vorpommern\\ -->
+<!-- NI & DE9 & Niedersachsen & Lower-Saxony \\ -->
+<!-- NW & DEA & Nordrhein-Westfalen & North Rhine-Westphalia\\ -->
+<!-- RP & DEB & Rheinland-Pfalz & Rhineland-Palatine\\ -->
+<!-- SH & DEF & Schleswig-Holstein & Schleswig-Holstein\\ -->
+<!-- SL & DEC & Saarland & Saarland \\ -->
+<!-- SN & DED & Sachsen & Saxony\\ -->
+<!-- ST & DEE & Sachsen-Anhalt & Saxony-Anhalt\\ -->
+<!-- TH & DEG & Thüringen & Thuringia\\ -->
+<!-- BA &  & ehemaliges Land Baden & former state Baden \\ -->
+<!-- WB &  & ehemaliges Land Württemberg-Baden & former state Württemberg-Baden\\ -->
+<!-- WH &  &ehemaliges Land Württemberg-Hohenzollern & former state Württemberg-Hohenzollern\\ -->
+<!-- \bottomrule -->
+<!-- \end{tabular}} -->
+<!-- \end{table} -->
 
 
-```
+<!-- ``` -->
 
 \newpage
 
@@ -1575,7 +1575,7 @@ short_item(item_name_code = "is_mp_party",
 \blandscape
 
 ```{=latex}
-    \setcounter{table}{2}
+    \setcounter{table}{1}
 \begin{table}
 
 \normalsize
@@ -2084,15 +2084,16 @@ pdists + patchwork::inset_element(pzdist, align_to = "full",
 
 ```{r, results='asis'}
 
-cat("\\texttt{link\\_manifestos} and \\texttt{link\\_coalitionagreements} provide easy links of \\texttt{bundeslaendeR} data with party manifestos and coalition agreements made available from polidoc.net - The Political Documents Archive \\parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocNetCodebook2018}.
+cat("\\texttt{link\\_manifestos} and \\texttt{link\\_coalitionagreements} provide easy links of \\texttt{bundeslaendeR} data with party manifestos and coalition agreements made available from polidoc.net - The Political Documents Archive \\parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocNetCodebook2018} and party manifestos from abgeordnetenwatch.de.
 While file names from polidoc.net follow a naming pattern
-(\\texttt{{partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}}), the provided links make joining the data easier.")
+(\\texttt{{partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}}) and abgeordnetenwatch.de provides unique IDs through its API, the provided links make joining the data easier.")
 
 ```
 
 
 
 Note that polidoc.net provides a manifesto for the Neue Liberale in the HB 2015 election (41441.005.2015.1.1). Since the party withdrew it's candidacy before the election and is thus not included in the election results in `ltw_elections`, the manifesto id is not included in link_manifestos.
+Several party manifestos made available through abgeordnetenwatch.de's API are also not linked, as the respective parties only contested some nominal districts and not the state-wide list election and thus no election result is included in `ltw_elections`.
 
 Note that polidoc.net provides a coalition agreement between the SPD and the Greens following the 2008 HE election (41001.006.2008.1.1). Since this potential coalition under leadership of SPD politician Andrea Ypsilanti never came to be due to several SPD MPs opposing the red-green minority cabinet being externally supported by Die Linke the coalition agreement can't be matched with a government in `ltw_combined` and is thus not included.
 
@@ -2102,7 +2103,7 @@ Note that polidoc.net provides a coalition agreement between the SPD and the Gre
 ## Linking-Variables Information
 
 
-The variables `state`, `election_date`, and `partyname_short` can be used in order to link manifestos to the `bundeslaendeR` data.
+The variables `state`, `election_date`, and `partyname_short` can be used in order to link manifestos to the `bundeslaendeR` data. How many manifestos are available per election is plotted in figure$~$\ref{figure:manifestoavailability}.
 
 
 ```{r, results="asis"}
@@ -2133,6 +2134,231 @@ short_item(item_name_code = "partyname_short",
            desc_left = FALSE)
 ```
 
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "polidoc_filename and polidoc_filename_2 in link_manifestos",
+           item_name = "Polidoc File Name of Party Manifesto",
+           item_desc = "File name of state party manifesto (or 2nd manifesto if available) in \\texttt{.txt} format available in The Political Documents Archive (polidoc.net).",
+           desc_left = FALSE)
+
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "agwatch_pdf_url in link_manifestos",
+           item_name = "URL of Manifesto on \\texttt{abgeordnetenwatch.de}",
+           item_desc = "URL of the manifesto in \\texttt{.pdf} format on \\texttt{abgeordnetenwatch.de}.",
+           desc_left = FALSE
+)
+
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "agwatch_election_\nmanifesto in link_manifestos",
+           item_name = "Is an electoral manifesto not just a general manifesto",
+           item_desc = "TRUE if the linked manifesto is an electoral manifesto. FALSE if it appears to be a more general manifesto of the party (Grundsatzprogramm) independent of any specific state election.",
+           desc_left = FALSE
+)
+
+```
+
+
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+elec_polidoc <-
+ltw_elections %>%
+  left_join(link_manifestos,
+            by = c("state", "election_date", "partyname_short")) %>%
+  select(state, election_date, partyname_short, polidoc_filename, polidoc_filename_2) %>%
+  mutate(polidoc_filename = !is.na(polidoc_filename)) %>%
+  mutate(polidoc_filename_2 = !is.na(polidoc_filename_2)) %>%
+  group_by(state, election_date) %>%
+  summarise(
+    number_of_manif = sum(polidoc_filename),
+    number_of_extra_manif = sum(polidoc_filename_2), .groups = "keep"
+  ) %>%
+  ungroup() %>%
+  mutate(no_cat = fct_case_when(
+    number_of_manif == 0 ~ "No manifesto\navailable",
+    number_of_manif > 0 & number_of_extra_manif == 0 ~ "At least one\nmanifesto available",
+    number_of_extra_manif > 0 ~ "At least one party with\ntwo available manifestos"
+  )) %>%
+  mutate(number_of_manif_cat = fct_case_when(
+    number_of_manif == 0 ~ "0",
+    number_of_manif > 0 & number_of_manif <= 3 ~ "<= 3",
+    number_of_manif > 3 & number_of_manif  <= 5 ~ "<= 5",
+    number_of_manif > 5 ~ "> 5"
+  )) %>%
+  ggplot(aes(x = election_date, y = state, shape = no_cat, col = number_of_manif_cat)) +
+    geom_point(size = 4) +
+    scale_color_brewer(type = "qual", palette = "Set1") +
+    guides(shape = guide_legend(order = 1, nrow = 1),
+           col = guide_legend(order = 2, nrow = 1)) +
+    labs(x = "Election Date",
+         y = NULL,
+         shape = "",
+         title = "Polidoc.net",
+         col = "No. of parties with at least one manifesto") +
+    theme(legend.position = "bottom",
+          legend.box = "vertical",
+          axis.text.y = element_text(face = "bold", colour = "black"),
+          plot.title.position = "plot")
+
+
+scatter_polidoc <-
+ltw_elections %>%
+  left_join(link_manifestos,
+            by = c("state", "election_date", "partyname_short")) %>%
+  mutate(manif_avail = !is.na(polidoc_filename)) %>%
+  select(state, election_date, partyname_short, manif_avail, party_vshare) %>%
+  mutate(grp = paste0(as.character(election_date), "~~~",state)) %>%
+  select(grp, partyname_short, manif_avail, party_vshare) %>%
+  group_by(grp) %>%
+  mutate(n_parties_running = n()) %>%
+  group_by(grp, manif_avail, n_parties_running) %>%
+  summarise(n_avail_cat = n(),
+            sum_vshare_cat = sum(party_vshare), .groups = "keep") %>%
+  ungroup() %>%
+  complete(grp, manif_avail) %>%
+  group_by(grp) %>%
+  fill(n_parties_running, .direction = "downup") %>%
+  ungroup() %>%
+  filter(manif_avail == TRUE) %>%
+  mutate(n_avail_cat = ifelse(is.na(n_avail_cat), 0, n_avail_cat),
+         sum_vshare_cat = ifelse(is.na(sum_vshare_cat), 0, sum_vshare_cat)) %>%
+  mutate(share_of_running_parties = n_avail_cat / n_parties_running) %>%
+  separate(grp, into = c("election_date", "state"), sep = "~~~") %>%
+  mutate(election_date = as.Date(election_date)) %>%
+  select(election_date, sum_vshare_cat, share_of_running_parties) %>%
+  pivot_longer(cols = c(sum_vshare_cat, share_of_running_parties)) %>%
+  mutate(name = case_when(
+    name == "share_of_running_parties" ~ "Share of parties running",
+    name == "sum_vshare_cat" ~ "Voteshare of parties with available manifesto"
+  )) %>%
+  ggplot(aes(x = election_date, y = value)) +
+    geom_point() +
+    facet_wrap(~name) +
+    scale_y_continuous(labels = scales::percent) +
+    theme(strip.text = element_text(face = "bold")) +
+    labs(x = NULL, y = NULL)
+
+
+
+
+
+
+
+
+elec_agwatch <-
+ltw_elections %>%
+  left_join(link_manifestos,
+            by = c("state", "election_date", "partyname_short")) %>%
+  select(state, election_date, partyname_short, agwatch_pdf_url) %>%
+  mutate(agwatch_pdf_url = !is.na(agwatch_pdf_url)) %>%
+  group_by(state, election_date) %>%
+  summarise(
+    number_of_manif = sum(agwatch_pdf_url),
+  ) %>%
+  ungroup() %>%
+  mutate(no_cat = fct_case_when(
+    number_of_manif == 0 ~ "No manifesto\navailable",
+    number_of_manif > 0  ~ "At least one\nmanifesto available"
+  )) %>%
+  mutate(number_of_manif_cat = fct_case_when(
+    number_of_manif == 0 ~ "0",
+    number_of_manif > 0 & number_of_manif <= 8 ~ "<= 8",
+    number_of_manif > 8 & number_of_manif  <= 15 ~ "<= 15",
+    number_of_manif > 15 ~ "> 15"
+  )) %>% 
+  ggplot(aes(x = election_date, y = state, shape = no_cat, col = number_of_manif_cat)) +
+    geom_point(size = 4) +
+    scale_color_brewer(type = "qual", palette = "Set1") +
+    guides(shape = guide_legend(order = 1, nrow = 1),
+           col = guide_legend(order = 2, nrow = 1)) +
+    labs(x = "Election Date",
+         y = NULL,
+         shape = "",
+         title = "abgeordnetenwatch.de",
+         col = "No. of parties with at least one manifesto") +
+    theme(legend.position = "bottom",
+          legend.box = "vertical",
+          axis.text.y = element_text(face = "bold", colour = "black"),
+          plot.title.position = "plot")
+
+
+
+
+
+scatter_agwatch <-
+ltw_elections %>%
+  left_join(link_manifestos,
+            by = c("state", "election_date", "partyname_short")) %>%
+  mutate(manif_avail = !is.na(agwatch_pdf_url)) %>%
+  select(state, election_date, partyname_short, manif_avail, party_vshare) %>%
+  mutate(grp = paste0(as.character(election_date), "~~~",state)) %>%
+  select(grp, partyname_short, manif_avail, party_vshare) %>%
+  group_by(grp) %>%
+  mutate(n_parties_running = n()) %>%
+  group_by(grp, manif_avail, n_parties_running) %>%
+  summarise(n_avail_cat = n(),
+            sum_vshare_cat = sum(party_vshare), .groups = "keep") %>%
+  ungroup() %>%
+  complete(grp, manif_avail) %>%
+  group_by(grp) %>%
+  fill(n_parties_running, .direction = "downup") %>%
+  ungroup() %>%
+  filter(manif_avail == TRUE) %>%
+  mutate(n_avail_cat = ifelse(is.na(n_avail_cat), 0, n_avail_cat),
+         sum_vshare_cat = ifelse(is.na(sum_vshare_cat), 0, sum_vshare_cat)) %>%
+  mutate(share_of_running_parties = n_avail_cat / n_parties_running) %>%
+  separate(grp, into = c("election_date", "state"), sep = "~~~") %>%
+  mutate(election_date = as.Date(election_date)) %>%
+  select(election_date, sum_vshare_cat, share_of_running_parties) %>%
+  pivot_longer(cols = c(sum_vshare_cat, share_of_running_parties)) %>%
+  mutate(name = case_when(
+    name == "share_of_running_parties" ~ "Share of parties running",
+    name == "sum_vshare_cat" ~ "Voteshare of parties with available manifesto"
+  )) %>%
+  ggplot(aes(x = election_date, y = value)) +
+    geom_point() +
+    facet_wrap(~name) +
+    scale_y_continuous(labels = scales::percent) +
+    theme(strip.text = element_text(face = "bold")) +
+    labs(x = NULL, y = NULL)
+
+
+
+pltpolidocparties <-
+wrap_plots(elec_polidoc,
+           scatter_polidoc,
+           ncol = 1,
+           heights = c(2,1))
+  
+
+pltagwatch <-
+wrap_plots(elec_agwatch,
+           scatter_agwatch,
+           ncol = 1,
+           heights = c(2,1))
+
+manifestoplots <- 
+wrap_plots(
+  pltpolidocparties,
+  pltagwatch,
+  nrow = 1
+)
+
+
+
+
+```
+
+
 The variable `gov_id` can be used in order to link manifestos to the `bundeslaendeR` data.
 
 ```{r, results="asis"}
@@ -2143,117 +2369,6 @@ short_item(item_name_code = "gov_id",
            contained in Linhart et al. data.",
            desc_left = FALSE)
 ```
-
-
-
-```{r, results="asis"}
-item_start(item_name_code = "polidoc_filename and polidoc_filename_2 in link_manifestos",
-           item_name = "Polidoc File Name of Party Manifesto",
-           item_desc = "File name of state party manifesto (or 2nd manifesto if available) available in The Political Documents Archive (polidoc.net).",
-           desc_left = FALSE)
-
-```
-
-
-```{r, results="asis"}
-top_pltpolidocparties <-
-ltw_elections %>% 
-  left_join(link_manifestos,
-            by = c("state", "election_date", "partyname_short")) %>% 
-  select(state, election_date, partyname_short, polidoc_filename, polidoc_filename_2) %>% 
-  mutate(polidoc_filename = !is.na(polidoc_filename)) %>% 
-  mutate(polidoc_filename_2 = !is.na(polidoc_filename_2)) %>% 
-  group_by(state, election_date) %>% 
-  summarise(
-    number_of_manif = sum(polidoc_filename), 
-    number_of_extra_manif = sum(polidoc_filename_2), .groups = "keep"
-  ) %>% 
-  ungroup() %>% 
-  mutate(no_cat = fct_case_when(
-    number_of_manif == 0 ~ "No manifesto\navailable",
-    number_of_manif > 0 & number_of_extra_manif == 0 ~ "At least one\nmanifesto available",
-    number_of_extra_manif > 0 ~ "At least one party with\ntwo available manifestos"
-  )) %>% 
-  mutate(number_of_manif_cat = fct_case_when(
-    number_of_manif == 0 ~ "0",
-    number_of_manif > 0 & number_of_manif <= 3 ~ "<= 3",
-    number_of_manif > 3 & number_of_manif  <= 5 ~ "<= 5",
-    number_of_manif > 5 ~ "> 5"
-  )) %>% 
-  ggplot(aes(x = election_date, y = state, shape = no_cat, col = number_of_manif_cat)) +
-    geom_point(size = 4) +
-    scale_color_brewer(type = "qual", palette = "Set1") +
-    guides(shape = guide_legend(order = 1, nrow = 1),
-           col = guide_legend(order = 2, nrow = 1)) +
-    labs(x = "Election Date",
-         y = NULL,
-         shape = "",
-         col = "No. of parties with at least one manifesto") +
-    theme(legend.position = "bottom",
-          legend.box = "vertical",
-          axis.text.y = element_text(face = "bold", colour = "black"))
-
-
-bot_pltpolidocparties <- 
-ltw_elections %>% 
-  left_join(link_manifestos,
-            by = c("state", "election_date", "partyname_short")) %>% 
-  mutate(manif_avail = !is.na(polidoc_filename)) %>% 
-  select(state, election_date, partyname_short, manif_avail, party_vshare) %>% 
-  mutate(grp = paste0(as.character(election_date), "~~~",state)) %>% 
-  select(grp, partyname_short, manif_avail, party_vshare) %>% 
-  group_by(grp) %>% 
-  mutate(n_parties_running = n()) %>% 
-  group_by(grp, manif_avail, n_parties_running) %>% 
-  summarise(n_avail_cat = n(),
-            sum_vshare_cat = sum(party_vshare), .groups = "keep") %>% 
-  ungroup() %>% 
-  complete(grp, manif_avail) %>% 
-  group_by(grp) %>% 
-  fill(n_parties_running, .direction = "downup") %>% 
-  ungroup() %>% 
-  filter(manif_avail == TRUE) %>% 
-  mutate(n_avail_cat = ifelse(is.na(n_avail_cat), 0, n_avail_cat),
-         sum_vshare_cat = ifelse(is.na(sum_vshare_cat), 0, sum_vshare_cat)) %>% 
-  mutate(share_of_running_parties = n_avail_cat / n_parties_running) %>% 
-  separate(grp, into = c("election_date", "state"), sep = "~~~") %>% 
-  mutate(election_date = as.Date(election_date)) %>% 
-  select(election_date, sum_vshare_cat, share_of_running_parties) %>% 
-  pivot_longer(cols = c(sum_vshare_cat, share_of_running_parties)) %>% 
-  mutate(name = case_when(
-    name == "share_of_running_parties" ~ "Share of parties running",
-    name == "sum_vshare_cat" ~ "Voteshare of parties with available manifesto"
-  )) %>% 
-  ggplot(aes(x = election_date, y = value)) +
-    geom_point() +
-    facet_wrap(~name) +
-    scale_y_continuous(labels = scales::percent) +
-    theme(strip.text = element_text(face = "bold")) +
-    labs(x = NULL, y = NULL)
-
-
-pltpolidocparties <- 
-wrap_plots(top_pltpolidocparties,
-           bot_pltpolidocparties,
-           ncol = 1,
-           heights = c(2,1))
-
-
-
-
-
-item_image(ggobj = pltpolidocparties,
-           filenameimg = "cbfiles/pltpolidocparties.pdf",
-           width = 7,
-           height = 9)
-
-```
-
-```{r, results="asis"}
-item_end()
-```
-
-
 
 
 ```{r, results="asis"}
@@ -2330,7 +2445,21 @@ item_image(ggobj = pltpolidocgov,
 item_end()
 ```
 
+\newpage
 
+
+
+\blandscape
+
+
+```{r printmanifestoplot, fig.cap="\\label{figure:manifestoavailability}Availability of manifestos from polidoc.net and abgeordnetenwatch.de", fig.height=8, fig.width=12}
+manifestoplots
+
+```
+
+
+
+\elandscape
 
 \newpage
 
