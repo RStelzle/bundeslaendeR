@@ -15,6 +15,10 @@ governments’ coalition agreements available from other sources.
 
 ## Todo
 
+\[ \] Link Debus et al position data
+
+\[ \] Write brief dataset note
+
 \[x\] Add standalone government dataset
 
 \[x\] Add standalone elections meta dataset (ENP, etc.)
@@ -24,8 +28,6 @@ governments’ coalition agreements available from other sources.
 \[x\] Change govelec remarks to PPEG
 
 \[x\] Write out codebook
-
-\[ \] Write brief dataset note
 
 \[x\] Change link_manifestos to properly include abgeordnetenwatch
 manifesto urls
