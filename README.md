@@ -23,12 +23,16 @@ governments’ coalition agreements available from other sources.
 
 \[x\] Change govelec remarks to PPEG
 
-\[ \] Write out codebook
+\[x\] Write out codebook
 
 \[ \] Write brief dataset note
 
-\[ \] Change link_manifestos to properly include abgeordnetenwatch
+\[x\] Change link_manifestos to properly include abgeordnetenwatch
 manifesto urls
+
+\[x\] Export files to .zip.
+
+\[x\] add Stata Varlabels to stata output
 
 ## Installation
 
