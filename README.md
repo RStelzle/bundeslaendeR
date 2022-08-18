@@ -15,6 +15,8 @@ governments’ coalition agreements available from other sources.
 
 ## Todo
 
+\[ \] Fix Kurt Sieveking Error
+
 \[ \] Link Debus et al position data
 
 \[ \] Write brief dataset note
