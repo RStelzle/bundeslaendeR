@@ -1,7 +1,7 @@
 ---
 title: "Codebook bundeslaendeR"
 author: "Robert Stelzle"
-date: "10.07.2022"
+date: "20.08.2022"
 documentclass: scrartcl
 output:
   pdf_document:
@@ -28,7 +28,7 @@ header-includes:
 - \setkomafont{caption}{\small\sffamily}
 - \usepackage[automark, headsepline=1pt, footsepline=1pt]{scrlayer-scrpage} 
 - \ohead{Codebook bundeslaendeR}
-- \ofoot*{10.07.2022} 
+- \ofoot*{20.08.2022} 
  \ihead{\headmark}
 - \setkomafont{pagenumber}{\itshape}
 - \ifoot*{Seite \pagemark}
@@ -1351,7 +1351,7 @@ short_item(item_name_code = "minister_president",
 ```{r, results="asis"}
 short_item(item_name_code = "mp_party",
            item_name = "Minister President's Party",
-           item_desc = "Party of the minister president. partyname\\_short format used. Note: There is a single cabinet with an independent minister president: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.",
+           item_desc = "Party of the minister president. partyname\\_short format used. Note: There is a single cabinet with an independent minister president: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955. Further note that there is a single case where the party denoted as \\texttt{mp\\_party} is not part of the set of parties in \\texttt{gov\\_parties}. Hamburg's mayor Kurt Sieveking (1953-1957) was a member of the CDU and is denoted as such in \\texttt{mp\\_party}. However, the CDU contested the 1953 Hamburg election as part of the Hamburg-Block electoral alliance together with the FDP, the DP and the BHE. Thus, as there are no separate election results for the member-parties of the electoral alliance available, \\texttt{gov\\_parties} is here just denoted as \\texttt{HamburgBlock/VBH}.",
            desc_left = FALSE)
 ```
 
@@ -1563,7 +1563,7 @@ item_end()
 ```{r, results="asis"}
 short_item(item_name_code = "is_mp_party",
            item_name = "Is MP Party?",
-           item_desc = "Is the governments minister president from this party? Note: There is a single cabinet where the minister president is not part of any party: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.",
+           item_desc = "Is the governments minister president from this party? Note: There are two cases of cabinets where the minister president is not part of any party contesting the election: 1) Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955. 2) Hamburg's mayor Kurt Sieveking (1953-1957) was a member of the CDU and is denoted as such in \\texttt{mp\\_party}. However, the CDU contested the 1953 Hamburg election as part of the Hamburg-Block electoral alliance together with the FDP, the DP and the BHE. Thus, as there are no separate election results for the member-parties of the electoral alliance available and only the election result of the entire electoral alliance is reported, \\texttt{is\\_mp\\_party} is set to \\texttt{FALSE} for all parties during the cabinet's tenure, including for the Hamburg-Block.",
            desc_left = FALSE)
 ```
 
