@@ -1,4 +1,4 @@
-#' ID Links between ltw_election_results and state parties' manifestos from polidoc.net - The Political Documents Archive and abgeordnetenwatch.de
+#' ID Links between bundeslaendeR data and state parties' manifestos from polidoc.net and abgeordnetenwatch.de
 #'
 #' Dataset providing a link between ltw_elections (or ltw_combined) and state parties' manifestos from polidoc.net- The Political Documents Archive and from abgeordnetenwatch.de . For polidoc.net, the filename of the manifesto in .txt format when downloaded is provided. For abgeordnetenwatch.de the URL to the manifesto in .pdf format is provided. Note that polidoc.net provides a manifesto for the Neue Liberale in the HB 2015 election (41441.005.2015.1.1). Since the party withdrew it's candidacy before the election and is thus not included in the election results in ltw_elections, the manifesto id is not included in link_polidoc_parties.
 #' 

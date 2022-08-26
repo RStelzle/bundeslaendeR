@@ -1,6 +1,6 @@
-#' ID Links between ltw_combined and coalition agreements from polidoc.net - The Political Documents Archive
+#' ID Links between bundeslaendeR data and coalition agreements from polidoc.net - The Political Documents Archive
 #'
-#' Dataset providing a link between ltw_combined and coalition agreements from polidoc.net- The Political Documents Archive. Note that polidoc.net provides a coalition agreement between the SPD and the Greens following the 2008 HE election (41001.006.2008.1.1). Since this potential coalition under leadership of SPD politician Andrea Ypsilanti never came to be due to several SPD MP's opposing the red-green minority cabinet being externally supported by Die Linke the coalition agreement can't be matched with a government in ltw_combined and is thus not included.
+#' Dataset providing a link between bundeslaendeR data and coalition agreements from polidoc.net- The Political Documents Archive. Note that polidoc.net provides a coalition agreement between the SPD and the Greens following the 2008 HE election (41001.006.2008.1.1). Since this potential coalition under leadership of SPD politician Andrea Ypsilanti never came to be due to several SPD MP's opposing the red-green minority cabinet being externally supported by Die Linke the coalition agreement can't be matched with a government in ltw_combined and ltw_governments and is thus not included.
 #'@docType data
 #'
 #' @usage data(link_coalitionagreements)

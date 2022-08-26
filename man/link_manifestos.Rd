@@ -3,7 +3,7 @@
 \docType{data}
 \name{link_manifestos}
 \alias{link_manifestos}
-\title{ID Links between ltw_election_results and state parties' manifestos from polidoc.net - The Political Documents Archive and abgeordnetenwatch.de}
+\title{ID Links between bundeslaendeR data and state parties' manifestos from polidoc.net and abgeordnetenwatch.de}
 \format{
 A tibble containing one row per party for which a manifesto is available.
 \describe{

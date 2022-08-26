@@ -1062,6 +1062,26 @@ usethis::use_data(link_coalitionagreements, overwrite = TRUE)
 
 
 
+
+
+
+link_positions_raw <- 
+  read_xlsx(here("inst/extdata/link_positions.xlsx"))
+
+
+
+link_positions_pwib <- 
+link_positions_raw %>% 
+  select(-state_pwib, -election_date_pwib) %>% 
+  mutate(election_date = as.Date(election_date)) %>% 
+  mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
+
+
+
+usethis::use_data(link_positions_pwib, overwrite = TRUE)
+
+
+
 ## Grid, um einzelne Plot-Panels für die 16 Bundesländer mit Geofacet zu plotten.
 ## Die geografische Platzierung der Bundesländer passt so ungefähr.
 ## Ist halt kompakter als de_states_grid1 und ich finde immernoch erkennbar.
@@ -1166,6 +1186,13 @@ write_rds(link_coalitionagreements, here("release", "bundeslaender_data_release"
 write.csv(link_coalitionagreements, here("release", "bundeslaender_data_release", "link_coalitionagreements", "link_coalitionagreements.csv"))
 link_coalitionagreements %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_coalitionagreements", "link_coalitionagreements.dta"))
 
+
+
+
+dir.create(here("release", "bundeslaender_data_release", "link_positions_pwib"))
+write_rds(link_positions_pwib, here("release", "bundeslaender_data_release", "link_positions_pwib", "link_positions_pwib.rds"))
+write.csv(link_positions_pwib, here("release", "bundeslaender_data_release", "link_positions_pwib", "link_positions_pwib.csv"))
+link_positions_pwib %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_positions_pwib", "link_positions_pwib.dta"))
 
 
 rmarkdown::render(here("codebooks", "codebook.rmd"))
