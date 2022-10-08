@@ -2096,7 +2096,7 @@ pdists + patchwork::inset_element(pzdist, align_to = "full",
 <!-- ({partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}), the provided links make joining the data easier. -->
 
 
-Using the provided datasets `link_manifestos`, `link_coalitionagreements` and `link_positions_pwib` `bundeslaendeR` data can be linked to other datasets.
+Using the provided datasets `link_manifestos`, `link_coalitionagreements`, `link_positions_pwib` and `link_legcap_appeldorn_fortunato` `bundeslaendeR` data can be linked to other datasets.
 
 ## `link_manifestos`
 
@@ -2117,7 +2117,7 @@ Several party manifestos made available through abgeordnetenwatch.de's API are a
 The variables `state`, `election_date`, and `partyname_short` can be used in order to link manifestos to the `bundeslaendeR` data using `link_manifestos`. How many manifestos are available per election is plotted in figure$~$\ref{figure:manifestoavailability}.
 
 ```{r, results="asis"}
-short_item(item_name_code = "polidoc_filename and polidoc_filename_2 in link_manifestos",
+short_item(item_name_code = "polidoc_filename and polidoc_filename_2",
            item_name = "Polidoc File Name of Party Manifesto",
            item_desc = "File name of state party manifesto (or 2nd manifesto if available) in \\texttt{.txt} format available in The Political Documents Archive (polidoc.net).",
            desc_left = FALSE)
@@ -2125,7 +2125,7 @@ short_item(item_name_code = "polidoc_filename and polidoc_filename_2 in link_man
 ```
 
 ```{r, results="asis"}
-short_item(item_name_code = "agwatch_pdf_url in link_manifestos",
+short_item(item_name_code = "agwatch_pdf_url",
            item_name = "URL of Manifesto on \\texttt{abgeordnetenwatch.de}",
            item_desc = "URL of the manifesto in \\texttt{.pdf} format on \\texttt{abgeordnetenwatch.de}.",
            desc_left = FALSE
@@ -2135,7 +2135,7 @@ short_item(item_name_code = "agwatch_pdf_url in link_manifestos",
 
 
 ```{r, results="asis"}
-short_item(item_name_code = "agwatch_election_\nmanifesto in link_manifestos",
+short_item(item_name_code = "agwatch_election_\nmanifesto",
            item_name = "Is an electoral manifesto not just a general manifesto",
            item_desc = "TRUE if the linked manifesto is an electoral manifesto. FALSE if it appears to be a more general manifesto of the party (Grundsatzprogramm) independent of any specific state election.",
            desc_left = FALSE
@@ -2366,7 +2366,7 @@ The variables `state`, `election_date`, and `gov_id` can be used in order to lin
 
 
 ```{r, results="asis"}
-item_start(item_name_code = "polidoc_filename in link_\ncoalitionagreements",
+item_start(item_name_code = "polidoc_filename",
            item_name = "Polidoc File Name of Coalition Agreement",
            item_desc = "File name of coalition agreement available in The Political Documents Archive (polidoc.net).",
            desc_left = FALSE)
@@ -2453,7 +2453,7 @@ The variables `state`, `election_date`, and `partyname_short` can be used in ord
 
 
 ```{r, results="asis"}
-item_start(item_name_code = "party_pwib in link_positions_pwib",
+item_start(item_name_code = "party_pwib",
            item_name = "Party name in PWIB Data.",
            item_desc = "Name of the party in PWIB position data.",
            desc_left = FALSE)
@@ -2495,8 +2495,8 @@ ltw_elections %>%
                      "Number of parties with an available / no available policy position")
     ) %>%
   rename(
-    "Parties with an available policy position" = covered,
-    "Parties with no available policy position" = not_covered
+    "Policy position available" = covered,
+    "Policy position not available" = not_covered
   )
 
 pwibplot <-
@@ -2515,7 +2515,7 @@ posplotdata %>%
     ) +
   scatterpie::geom_scatterpie(
     data = posplotdata,
-    cols = rev(c("Parties with an available policy position", "Parties with no available policy position")), pie_scale = 0.8,
+    cols = rev(c("Policy position available", "Policy position not available")), pie_scale = 0.8,
     color = NA
     ) +
   coord_equal() +
@@ -2551,6 +2551,81 @@ item_end()
 
 
 
+\newpage
+
+## `link_legcap_appeldorn_fortunato`
+
+
+
+
+`link_legcap_appeldorn_fortunato` provides a link between `bundeslaendeR` data and data on Legislative Capacity in Germany's Parliaments (10.7910/DVN/BA8G7H) provided by \textcite{fortunatoReplicationDataLegislative2021} \parencite[for more details see][]{appeldornLegislativeCapacityGermany2022},
+consolidating minor differences in the spelling of state names and state abbreviations between the two datasets.
+
+Note that Appeldorn and Fortunato provide yearly time-series data, while bundeslaendeR data are based on elections/governments.
+
+Note that Appeldorn and Fortunato use the state-abbreviation `"BE"` twice, once for Berlin and once for the federal level.
+
+The variables `state`, and `state_name_en` can be used in order to link Appeldorn and Fortunato's data on legislative capacity to the `bundeslaendeR` data using `link_legcap_appeldorn_fortunato`.
+
+```{r, results="asis"}
+short_item(item_name_code = "state_abb_\nappeldorn_fortunato",
+           item_name = "State abbreviation in Appeldorn and Fortunato's data",
+           item_desc = "State abbreviation in Appeldorn and Fortunato's data.",
+           desc_left = FALSE
+)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "state_name_\nappeldorn_fortunato",
+           item_name = "State name in Appeldorn and Fortunato's data",
+           item_desc = "State name in Appeldorn and Fortunato's data.",
+           desc_left = FALSE
+)
+```
+
+
+### Example Code:
+
+Example code joining Appeldorn and Fortunato's legislative capacity data *in election years* -where available- to `ltw_elections_meta` in `R`:
+
+
+```{r, eval=F, echo=T}
+library(tidyverse)
+library(bundeslaendeR)
+library(dataverse)
+
+ltw_elections_meta %>% 
+  mutate(election_year = lubridate::year(election_date)) %>%
+  left_join(
+    link_legcap_appeldorn_fortunato,
+    by = c("state", "state_name_en")
+  ) %>%
+  left_join(
+    get_dataframe_by_name(
+      filename = "afScores.txt", 
+      dataset = "10.7910/DVN/BA8G7H",
+      server = "dataverse.harvard.edu",
+      .f = read.table) %>% 
+      left_join(
+        get_dataframe_by_name(
+          "replication.txt", 
+          dataset = "10.7910/DVN/BA8G7H", 
+          server = "dataverse.harvard.edu",
+          .f = (\(x) read.delim(x, sep = "|"))
+        ),
+        by = c("land", "year")
+      ) %>% 
+      select(-election.y) %>% 
+      rename(election = election.x) %>% 
+      filter(election == 1),
+    by = c(
+      "election_year" = "year",
+      "state_abb_appeldorn_fortunato" = "abbreviation",
+      "state_name_en_appeldorn_fortunato" = "land"
+    )
+  )
+
+```
 
 
 

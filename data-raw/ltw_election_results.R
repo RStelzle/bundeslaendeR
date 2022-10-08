@@ -1105,11 +1105,22 @@ usethis::use_data(int_grid, overwrite = TRUE, internal = TRUE)
 
 
 
+link_legcap_appeldorn_fortunato <-
+  tibble(
+    state = c("BA", "BB", "BE", "BW", "BY", "HB", "HE", "HH", "MV", "NI", "NW", "RP", "SH", "SK", "SN", "ST", "TH", "WB", "WH"),
+    state_name_en = c("former state Baden", "Brandenburg", "Berlin", "Baden-Württemberg", "Bavaria", "Bremen", "Hesse", "Hamburg",
+                      "Mecklenburg-Vorpommern", "Lower-Saxony", "North Rhine-Westphalia", "Rhineland-Palatine", "Schleswig-Holstein",
+                      "Saarland", "Saxony", "Saxony-Anhalt", "Thuringia", "former state Württemberg-Baden", "former state Württemberg-Hohenzollern"),
+    state_abb_appeldorn_fortunato = c(NA, "BB", "BE", "BW", "BY", "HB", "HE", "HH", "MV", "NI", "NW", "RP", "SH", "SL", "SX", "SA", "TH", NA, NA),
+    state_name_appeldorn_fortunato = c(NA, "Brandenburg", "Berlin", "Baden-Wurttemberg", "Bavaria", "Bremen", "Hesse", "Hamburg",
+                                          "Mecklenburg-Vorpommern", "Lower Saxony", "North Rhine-Westphalia", "Rhineland-Palatinate",
+                                          "Schleswig-Holstein", "Saarland", "Saxony", "Saxony-Anhalt", "Thuringia", NA, NA)
+  ) %>% 
+  mutate(across(where(is.character), .fns = ~stringi::stri_enc_toutf8(.)))
 
 
 
-
-
+usethis::use_data(link_legcap_appeldorn_fortunato, overwrite = TRUE)
 
 
 
@@ -1187,12 +1198,20 @@ write.csv(link_coalitionagreements, here("release", "bundeslaender_data_release"
 link_coalitionagreements %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_coalitionagreements", "link_coalitionagreements.dta"))
 
 
-
-
 dir.create(here("release", "bundeslaender_data_release", "link_positions_pwib"))
 write_rds(link_positions_pwib, here("release", "bundeslaender_data_release", "link_positions_pwib", "link_positions_pwib.rds"))
 write.csv(link_positions_pwib, here("release", "bundeslaender_data_release", "link_positions_pwib", "link_positions_pwib.csv"))
 link_positions_pwib %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_positions_pwib", "link_positions_pwib.dta"))
+
+
+
+dir.create(here("release", "bundeslaender_data_release", "link_legcap_appeldorn_fortunato"))
+write_rds(link_legcap_appeldorn_fortunato, here("release", "bundeslaender_data_release", "link_legcap_appeldorn_fortunato", "link_legcap_appeldorn_fortunato.rds"))
+write.csv(link_legcap_appeldorn_fortunato, here("release", "bundeslaender_data_release", "link_legcap_appeldorn_fortunato", "link_legcap_appeldorn_fortunato.csv"))
+link_legcap_appeldorn_fortunato %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_legcap_appeldorn_fortunato", "link_legcap_appeldorn_fortunato.dta"))
+
+
+
 
 
 rmarkdown::render(here("codebooks", "codebook.rmd"))
