@@ -15,28 +15,13 @@ governments’ coalition agreements available from other sources.
 
 ## Todo
 
-\[ \] Fix Kurt Sieveking Error
-
-\[ \] Link Debus et al position data
-
 \[ \] Write brief dataset note
-
-\[x\] Add standalone government dataset
-
-\[x\] Add standalone elections meta dataset (ENP, etc.)
-
-\[\] Double Check calculation of these indices
-
-\[x\] Change govelec remarks to PPEG
-
-\[x\] Write out codebook
 
 \[x\] Change link_manifestos to properly include abgeordnetenwatch
 manifesto urls
 
-\[x\] Export files to .zip.
+[ ] Add Links to LTW Surveys (see Gesis)
 
-\[x\] add Stata Varlabels to stata output
 
 ## Installation
 
