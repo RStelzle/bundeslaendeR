@@ -15,12 +15,13 @@ governments’ coalition agreements available from other sources.
 
 ## Todo
 
-\[ \] Write brief dataset note
-
-\[x\] Change link_manifestos to properly include abgeordnetenwatch
+- [ ] MercuryWrite brief dataset note
+- [x] Mercury Change link_manifestos to properly include abgeordnetenwatch
 manifesto urls
+- [ ] Mercury Add Links to LTW Surveys (see Gesis)
+- [ ] Add Link to State Party Finance data
 
-[ ] Add Links to LTW Surveys (see Gesis)
+
 
 
 ## Installation
