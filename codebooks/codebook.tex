@@ -33,14 +33,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Codebook bundeslaendeR},
-  pdfauthor={Robert Stelzle},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[lmargin=2.5cm, rmargin=3.5cm, tmargin=2.5cm, bmargin=2.5cm,
 includeheadfoot]{geometry}
 \usepackage{color}
@@ -141,6 +133,14 @@ includeheadfoot]{geometry}
 \fi
 \usepackage[backend=biber,backref,style=ext-authoryear-comp,maxbibnames=99,maxcitenames=3,isbn=false,date=year,sorting=nyt]{biblatex}
 \addbibresource{literature.bib}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Codebook bundeslaendeR},
+  pdfauthor={Robert Stelzle},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Codebook bundeslaendeR}
 \author{Robert Stelzle}
@@ -426,13 +426,13 @@ Harmonized name of the party. 379 unique parties.
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_short\_
 bundeswahlleiter} &\textbf{Party Name Abbreviation from Bundeswahlleiter}\newline 
-Partyname abbreviation as documented by the Bundeswahlleiter. 467 different abbreviations.
+Partyname abbreviation as documented by the Bundeswahlleiter. 468 different abbreviations.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_
 bundeswahlleiter} &\textbf{Party Name from Bundeswahlleiter}\newline 
-Partyname as documented by the Bundeswahlleiter. 508 different names.
+Partyname as documented by the Bundeswahlleiter. 510 different names.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
