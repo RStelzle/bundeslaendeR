@@ -940,8 +940,12 @@ ltw_elections %>%
 
 
 
-
-
+legislative_turnover <- 
+read_xlsx(here("inst", "extdata", "legislative_turnover.xlsx")) %>% 
+  mutate(election_date = as.Date(election_date)) %>% 
+  drop_na() %>% 
+  rename(legislative_turnover_heinsohn = legislative_turnover) %>% 
+  mutate(legislative_turnover_heinsohn = as.numeric(legislative_turnover_heinsohn))
 
 
 
@@ -968,12 +972,14 @@ ltw_elections %>%
   left_join(disprop_szalai_weighted, by = c("state", "election_date")) %>% 
   left_join(disprop_aleskerov_platonov, by = c("state", "election_date")) %>% 
   left_join(disprop_dhondt, by = c("state", "election_date")) %>% 
-  left_join(disprop_sainte_lague, by = c("state", "election_date"))
+  left_join(disprop_sainte_lague, by = c("state", "election_date")) %>% 
+  left_join(legislative_turnover, by = c("state", "election_date"))
 
 
 
 
 usethis::use_data(ltw_elections_meta, overwrite = TRUE)
+
 
 
 

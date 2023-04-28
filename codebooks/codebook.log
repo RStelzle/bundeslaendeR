@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.8.12)  28 APR 2023 00:16
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.8.12)  29 APR 2023 00:08
  restricted system commands enabled.
 **codebook.tex
 (./codebook.tex
@@ -3843,131 +3843,153 @@ File: cbfiles/unnamed-chunk-139-1.pdf Graphic file (type pdf)
 Package luatex.def Info: cbfiles/unnamed-chunk-139-1.pdf  used on input line 10
 87.
 (luatex.def)             Requested size: 426.80084pt x 367.71602pt.
+
+Overfull \hbox (3.7819pt too wide) in paragraph at lines 1095--1096
+[]|\TU/Consolas(0)/m/sl/10.95 legislative_turnover
+ []
+
+<cbfiles/turnoverplot.pdf, id=359, 361.35pt x 97.36375pt>
+File: cbfiles/turnoverplot.pdf Graphic file (type pdf)
+<use cbfiles/turnoverplot.pdf>
+Package luatex.def Info: cbfiles/turnoverplot.pdf  used on input line 1104.
+(luatex.def)             Requested size: 312.9825pt x 84.33138pt.
+
+Overfull \hbox (8.93817pt too wide) in paragraph at lines 1101--1106
+[]|  [] 
+ []
+
+
+Overfull \hbox (1.6376pt too wide) in alignment at lines 1094--1109
+ [][] 
+ []
+
 [23<./cbfiles/unnamed-chunk-139-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 1133--1133
+warning  (pdf backend): ignoring duplicate destination with the name 'table.23'
+[24<./cbfiles/turnoverplot.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 1150--1150
 []|\TU/Consolas(0)/m/sl/10.95 polidoc_filename
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1133--1133
+Underfull \hbox (badness 10000) in paragraph at lines 1150--1150
 \TU/Consolas(0)/m/sl/10.95 and
  []
 
 
-Overfull \hbox (1.6376pt too wide) in alignment at lines 1132--1135
- [][] 
- []
-
-
-warning  (pdf backend): ignoring duplicate destination with the name 'table.23'
-
-Overfull \hbox (1.6376pt too wide) in alignment at lines 1137--1140
+Overfull \hbox (1.6376pt too wide) in alignment at lines 1149--1152
  [][] 
  []
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'table.24'
 
-Underfull \hbox (badness 10000) in paragraph at lines 1143--1144
-[]|\TU/Consolas(0)/m/sl/10.95 agwatch_election_
- []
-
-
-Overfull \hbox (1.6376pt too wide) in alignment at lines 1142--1146
+Overfull \hbox (1.6376pt too wide) in alignment at lines 1154--1157
  [][] 
  []
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'table.25'
-[24
 
-]
-<cbfiles/printmanifestoplot-1.pdf, id=391, 846.16125pt x 556.0775pt>
-File: cbfiles/printmanifestoplot-1.pdf Graphic file (type pdf)
-<use cbfiles/printmanifestoplot-1.pdf>
-Package luatex.def Info: cbfiles/printmanifestoplot-1.pdf  used on input line 1
-154.
-(luatex.def)             Requested size: 617.79588pt x 406.00108pt.
-
-LaTeX Warning: Float too large for page by 4.32971pt on input line 1159.
-
-[25<./cbfiles/printmanifestoplot-1.pdf>]
-<cbfiles/pltpolidocgov.pdf, id=401, 505.89pt x 361.35pt>
-File: cbfiles/pltpolidocgov.pdf Graphic file (type pdf)
-<use cbfiles/pltpolidocgov.pdf>
-Package luatex.def Info: cbfiles/pltpolidocgov.pdf  used on input line 1193.
-(luatex.def)             Requested size: 312.9847pt x 223.5605pt.
-
-Overfull \hbox (8.93817pt too wide) in paragraph at lines 1190--1195
-[]|  [] 
+Underfull \hbox (badness 10000) in paragraph at lines 1160--1161
+[]|\TU/Consolas(0)/m/sl/10.95 agwatch_election_
  []
 
 
-Overfull \hbox (1.6376pt too wide) in alignment at lines 1185--1200
+Overfull \hbox (1.6376pt too wide) in alignment at lines 1159--1163
  [][] 
  []
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'table.26'
-[26
+[25
 
+]
+<cbfiles/printmanifestoplot-1.pdf, id=402, 846.16125pt x 556.0775pt>
+File: cbfiles/printmanifestoplot-1.pdf Graphic file (type pdf)
+<use cbfiles/printmanifestoplot-1.pdf>
+Package luatex.def Info: cbfiles/printmanifestoplot-1.pdf  used on input line 1
+171.
+(luatex.def)             Requested size: 617.79588pt x 406.00108pt.
 
-<./cbfiles/pltpolidocgov.pdf>]
-<cbfiles/pwibplot.pdf, id=415, 621.32124pt x 700.6175pt>
-File: cbfiles/pwibplot.pdf Graphic file (type pdf)
-<use cbfiles/pwibplot.pdf>
-Package luatex.def Info: cbfiles/pwibplot.pdf  used on input line 1241.
-(luatex.def)             Requested size: 312.9826pt x 352.92706pt.
+LaTeX Warning: Float too large for page by 4.32971pt on input line 1176.
 
-Overfull \hbox (8.93817pt too wide) in paragraph at lines 1238--1243
+[26<./cbfiles/printmanifestoplot-1.pdf>]
+<cbfiles/pltpolidocgov.pdf, id=412, 505.89pt x 361.35pt>
+File: cbfiles/pltpolidocgov.pdf Graphic file (type pdf)
+<use cbfiles/pltpolidocgov.pdf>
+Package luatex.def Info: cbfiles/pltpolidocgov.pdf  used on input line 1210.
+(luatex.def)             Requested size: 312.9847pt x 223.5605pt.
+
+Overfull \hbox (8.93817pt too wide) in paragraph at lines 1207--1212
 []|  [] 
  []
 
 
-Overfull \hbox (1.6376pt too wide) in alignment at lines 1227--1250
+Overfull \hbox (1.6376pt too wide) in alignment at lines 1202--1217
  [][] 
  []
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'table.27'
-[27<./cbfiles/pwibplot.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 1277--1278
-[]|\TU/Consolas(0)/m/sl/10.95 state_abb_
+[27
+
+
+<./cbfiles/pltpolidocgov.pdf>]
+<cbfiles/pwibplot.pdf, id=426, 621.32124pt x 700.6175pt>
+File: cbfiles/pwibplot.pdf Graphic file (type pdf)
+<use cbfiles/pwibplot.pdf>
+Package luatex.def Info: cbfiles/pwibplot.pdf  used on input line 1258.
+(luatex.def)             Requested size: 312.9826pt x 352.92706pt.
+
+Overfull \hbox (8.93817pt too wide) in paragraph at lines 1255--1260
+[]|  [] 
  []
 
 
-Overfull \hbox (1.6376pt too wide) in alignment at lines 1276--1280
+Overfull \hbox (1.6376pt too wide) in alignment at lines 1244--1267
  [][] 
  []
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'table.28'
-
-Underfull \hbox (badness 10000) in paragraph at lines 1283--1284
-[]|\TU/Consolas(0)/m/sl/10.95 state_name_
+[28<./cbfiles/pwibplot.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 1294--1295
+[]|\TU/Consolas(0)/m/sl/10.95 state_abb_
  []
 
 
-Overfull \hbox (1.6376pt too wide) in alignment at lines 1282--1286
+Overfull \hbox (1.6376pt too wide) in alignment at lines 1293--1297
  [][] 
  []
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'table.29'
-[28] [29] [30]
-<cbfiles/map-vs-grid-plot-1.pdf, id=460, 700.6175pt x 408.52625pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 1300--1301
+[]|\TU/Consolas(0)/m/sl/10.95 state_name_
+ []
+
+
+Overfull \hbox (1.6376pt too wide) in alignment at lines 1299--1303
+ [][] 
+ []
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'table.30'
+[29] [30] [31]
+<cbfiles/map-vs-grid-plot-1.pdf, id=472, 700.6175pt x 408.52625pt>
 File: cbfiles/map-vs-grid-plot-1.pdf Graphic file (type pdf)
 <use cbfiles/map-vs-grid-plot-1.pdf>
-Package luatex.def Info: cbfiles/map-vs-grid-plot-1.pdf  used on input line 138
-2.
+Package luatex.def Info: cbfiles/map-vs-grid-plot-1.pdf  used on input line 139
+9.
 (luatex.def)             Requested size: 617.82817pt x 360.25224pt.
-[31<./cbfiles/map-vs-grid-plot-1.pdf>]
+[32<./cbfiles/map-vs-grid-plot-1.pdf>]
 LaTeX Font Info:    Font shape `TU/LibertinusSerif(0)/m/sc' will be
-(Font)              scaled to size 10.95pt on input line 1391.
-[32
+(Font)              scaled to size 10.95pt on input line 1408.
+[33
 
 
-] [33] (./codebook.aux)
+] [34] (./codebook.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -3977,16 +3999,16 @@ Package logreq Info: Writing requests to 'codebook.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 36293 strings out of 477785
+ 36311 strings out of 477785
  125007,1977958 words of node,token memory allocated
  960 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 1 local_par, 5 glue, 4 kern, 1 penalty, 1 margin_ke
 rn, 3 glyph, 56 attribute, 83 glue_spec, 56 attribute_list, 1 write, 1 user_defi
 ned, 10 pdf_action nodes
-   avail lists: 1:12,2:1806,3:1587,4:304,5:527,6:172,7:9775,8:127,9:1570,10:27,1
-1:459,12:1
- 55437 multiletter control sequences out of 65536+600000
- 141 fonts using 42820423 bytes
+   avail lists: 1:16,2:1829,3:1402,4:306,5:514,6:209,7:9536,8:101,9:1570,10:27,1
+1:449,12:1
+ 55447 multiletter control sequences out of 65536+600000
+ 141 fonts using 42820735 bytes
  108i,20n,149p,10630b,2042s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2022/texmf-dist/fonts/opentype/public/libertinus-fonts/Liber
 tinusSerif-Regular.otf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public
@@ -4001,10 +4023,10 @@ f-dist/fonts/opentype/public/libertinus-fonts/LibertinusSerif-Italic.otf></Users
 nts/opentype/public/libertinus-fonts/LibertinusSans-Bold.otf></usr/local/texlive
 /2022/texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusSerif-Regular.
 otf>
-Output written on codebook.pdf (33 pages, 4621051 bytes).
+Output written on codebook.pdf (34 pages, 4647931 bytes).
 
-PDF statistics: 629 PDF objects out of 1000 (max. 8388607)
- 482 compressed objects within 5 object streams
- 186 named destinations out of 1000 (max. 131072)
+PDF statistics: 642 PDF objects out of 1000 (max. 8388607)
+ 492 compressed objects within 5 object streams
+ 188 named destinations out of 1000 (max. 131072)
  57 words of extra memory for PDF output out of 10000 (max. 100000000)
 

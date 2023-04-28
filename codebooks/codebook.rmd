@@ -2083,6 +2083,39 @@ pdists + patchwork::inset_element(pzdist, align_to = "full",
 
 
 
+```{r, results="asis"}
+item_start(item_name_code = "legislative_turnover\n_heinsohn",
+           item_name = "Legislative turnover \\parencite{heinsohnInstitutionalDeterminantsLegislative2014}",
+           item_desc = "Legislative turnover \\parencite{heinsohnInstitutionalDeterminantsLegislative2014}.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+turnoverplot <-
+ltw_elections_meta %>% 
+  select(state, election_date, legislative_turnover_heinsohn) %>%
+  filter(!is.na(legislative_turnover_heinsohn)) %>% 
+  # distinct() %>%
+  ggplot(aes(x = legislative_turnover_heinsohn)) +
+    geom_histogram(bins = 30) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Legislative turnover")
+
+
+item_image(ggobj = turnoverplot,
+           filenameimg = "cbfiles/turnoverplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
 
 
 

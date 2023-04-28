@@ -37,6 +37,7 @@
 #'   \item{disprop_aleskerov_platonov}{dbl Aleskerov-Platonov index of electoral disproportionality.}
 #'   \item{disprop_dhondt}{dbl D'Hondt index of electoral disproportionality.}
 #'   \item{disprop_sainte_lague}{dbl Sainte-Lague index of electoral disproportionality.}
+#'   \item{legislative_turnover_heinsohn}{dbl Legislative turnover as measured by Heinsohn (2014).}
 
 #' }
 #' @source Election results data provided by the Bundeswahlleiter. A machine-readable version of the data in the pdf available here (\url{https://www.bundeswahlleiter.de/service/landtagswahlen.html}) was kindly provided to me. Election data outside the timeframe covered by Bundeswahlleiter's data provided to me was collected from the states' local election authorities' (Landeswahlleiter) websites. Further election data was collected from the respective Landeswahlleiters. More information on parties and the continuity of parties under different labels was collected by me.

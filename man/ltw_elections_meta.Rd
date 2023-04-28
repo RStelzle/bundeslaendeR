@@ -36,6 +36,7 @@ A tibble containing one row per contesting party per election.
 \item{disprop_aleskerov_platonov}{dbl Aleskerov-Platonov index of electoral disproportionality.}
 \item{disprop_dhondt}{dbl D'Hondt index of electoral disproportionality.}
 \item{disprop_sainte_lague}{dbl Sainte-Lague index of electoral disproportionality.}
+\item{legislative_turnover_heinsohn}{dbl Legislative turnover as measured by Heinsohn (2014).}
 }
 }
 \source{
