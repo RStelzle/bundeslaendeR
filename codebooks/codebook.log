@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.11.12)  12 NOV 2023 07:32
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2023.11.12)  12 NOV 2023 09:11
  restricted system commands enabled.
 **codebook.tex
 (./codebook.tex
@@ -3629,7 +3629,7 @@ Here is how much of LuaTeX's memory you used:
  153 fonts using 51130939 bytes
  108i,20n,149p,10930b,2038s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/rober/AppData/Roaming/TinyTeX/texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusSerif-Regular.otf><c:/Users/rober/AppData/Roaming/TinyTeX/texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusMath-Regular.otf><c:/Users/rober/AppData/Roaming/TinyTeX/texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusMath-Regular.otf><c:/Users/rober/AppData/Roaming/TinyTeX/texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusMath-Regular.otf><c:/Users/rober/AppData/Roaming/TinyTeX/texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusSerif-Bold.otf><c:/Users/rober/AppData/Roaming/TinyTeX/texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusSans-Regular.otf><c:/Windows/Fonts/consolai.ttf><c:/Windows/Fonts/consola.ttf><c:/Users/rober/AppData/Roaming/TinyTeX/texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusSerif-Italic.otf><c:/Windows/Fonts/consolab.ttf><c:/Users/rober/AppData/Roaming/TinyTeX/texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusSans-Bold.otf><c:/Users/rober/AppData/Roaming/TinyTeX/texmf-dist/fonts/opentype/public/libertinus-fonts/LibertinusSerif-Regular.otf>
-Output written on codebook.pdf (35 pages, 4711934 bytes).
+Output written on codebook.pdf (35 pages, 4709197 bytes).
 
 PDF statistics: 662 PDF objects out of 1000 (max. 8388607)
  505 compressed objects within 6 object streams
