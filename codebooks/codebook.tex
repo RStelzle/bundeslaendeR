@@ -5,16 +5,19 @@
 \documentclass[
 ]{scrartcl}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -46,13 +49,13 @@ includeheadfoot]{geometry}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -60,7 +63,7 @@ includeheadfoot]{geometry}
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -69,7 +72,7 @@ includeheadfoot]{geometry}
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -93,6 +96,7 @@ includeheadfoot]{geometry}
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{longtable}
+\usepackage{booktabs}
 \usepackage{float}
 \usepackage{graphicx}
 \usepackage{pdflscape}
@@ -135,7 +139,7 @@ includeheadfoot]{geometry}
 \addbibresource{literature.bib}
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
 \hypersetup{
   pdftitle={Codebook bundeslaendeR},
   pdfauthor={Robert Stelzle},
@@ -1302,51 +1306,69 @@ appeldorn\_fortunato} &\textbf{State name in Appeldorn and Fortunato's data}\new
 State name in Appeldorn and Fortunato's data.
 \end{longtable}
 
-\hypertarget{example-code}{%
-\subsubsection{Example Code:}\label{example-code}}
+\newpage
 
-Example code joining Appeldorn and Fortunato's legislative capacity data
-\emph{in election years} -where available- to
-\texttt{ltw\_elections\_meta} in \texttt{R}:
+\hypertarget{link_integrated_state_election_surveys}{%
+\subsection{\texorpdfstring{\texttt{link\_integrated\_state\_election\_surveys}}{link\_integrated\_state\_election\_surveys}}\label{link_integrated_state_election_surveys}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
-\FunctionTok{library}\NormalTok{(bundeslaendeR)}
-\FunctionTok{library}\NormalTok{(dataverse)}
+Dataset providing a link between ltw\_elections (or ltw\_combined) and
+party names in vote choice in the integrated dataset of state election
+surveys availabel on GESIS (ZAZA4182)
+\parencite{scheuchGermanFederalState2015}.
 
-\NormalTok{ltw\_elections\_meta }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{election\_year =}\NormalTok{ lubridate}\SpecialCharTok{::}\FunctionTok{year}\NormalTok{(election\_date)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{left\_join}\NormalTok{(}
-\NormalTok{    link\_legcap\_appeldorn\_fortunato,}
-    \AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\StringTok{"state"}\NormalTok{, }\StringTok{"state\_name\_en"}\NormalTok{)}
-\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{left\_join}\NormalTok{(}
-    \FunctionTok{get\_dataframe\_by\_name}\NormalTok{(}
-      \AttributeTok{filename =} \StringTok{"afScores.txt"}\NormalTok{, }
-      \AttributeTok{dataset =} \StringTok{"10.7910/DVN/BA8G7H"}\NormalTok{,}
-      \AttributeTok{server =} \StringTok{"dataverse.harvard.edu"}\NormalTok{,}
-      \AttributeTok{.f =}\NormalTok{ read.table) }\SpecialCharTok{\%\textgreater{}\%} 
-      \FunctionTok{left\_join}\NormalTok{(}
-        \FunctionTok{get\_dataframe\_by\_name}\NormalTok{(}
-          \StringTok{"replication.txt"}\NormalTok{, }
-          \AttributeTok{dataset =} \StringTok{"10.7910/DVN/BA8G7H"}\NormalTok{, }
-          \AttributeTok{server =} \StringTok{"dataverse.harvard.edu"}\NormalTok{,}
-          \AttributeTok{.f =}\NormalTok{ (\textbackslash{}(x) }\FunctionTok{read.delim}\NormalTok{(x, }\AttributeTok{sep =} \StringTok{"|"}\NormalTok{))}
-\NormalTok{        ),}
-        \AttributeTok{by =} \FunctionTok{c}\NormalTok{(}\StringTok{"land"}\NormalTok{, }\StringTok{"year"}\NormalTok{)}
-\NormalTok{      ) }\SpecialCharTok{\%\textgreater{}\%} 
-      \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{election.y) }\SpecialCharTok{\%\textgreater{}\%} 
-      \FunctionTok{rename}\NormalTok{(}\AttributeTok{election =}\NormalTok{ election.x) }\SpecialCharTok{\%\textgreater{}\%} 
-      \FunctionTok{filter}\NormalTok{(election }\SpecialCharTok{==} \DecValTok{1}\NormalTok{),}
-    \AttributeTok{by =} \FunctionTok{c}\NormalTok{(}
-      \StringTok{"election\_year"} \OtherTok{=} \StringTok{"year"}\NormalTok{,}
-      \StringTok{"state\_abb\_appeldorn\_fortunato"} \OtherTok{=} \StringTok{"abbreviation"}\NormalTok{,}
-      \StringTok{"state\_name\_en\_appeldorn\_fortunato"} \OtherTok{=} \StringTok{"land"}
-\NormalTok{    )}
-\NormalTok{  )}
-\end{Highlighting}
-\end{Shaded}
+Note that not all parties running in an election were necessarily asked
+about in the election surcey. Vice versa, not all parties that were
+asked about in the election survey did necessarily actually contested
+the election.
+
+Note that for some state elections multiple surveys are available in the
+integrated survey dataset. See column za\_nr1 for GESIS ID of original
+survey. The GESIS ID is the sole variable identifying a specific
+election in the integrated dataset.
+
+Note that the integrated survey uses different variables for elections
+until 1970 (m7b) and after 1973 (m7).
+
+The variables \texttt{state}, and \texttt{election\_date} and
+\texttt{partyname\_short} can be used in order to link survey data from
+the integrated dataset of state election surveys to
+\texttt{bundeslaendeR} data using
+\texttt{link\_integrated\_state\_election\_surveys}.
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{bland} &\textbf{State name in integrated survey file}\newline 
+State name in integrated survey file.
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{za\_nr1} &\textbf{GESIS ID original state election survey}\newline 
+GESIS ID of original state election survey. The GESIS ID is the sole variable identifying a specific election in the integrated dataset.
+
+
+
+
+
+
+
+\hspace*{.25cm}
+\begin{minipage}[t]{\linewidth }
+\vspace{0pt}
+\includegraphics[width = \linewidth]{cbfiles/plot_surveys.pdf}
+\end{minipage}
+
+
+
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{m7} &\textbf{Party name integrated survey file (after 1973)}\newline 
+Party names in vote choice variable in integrated survey file (after 1973).
+\end{longtable}
+
+\begin{longtable}{p{3.2cm}| p{11cm}}
+\texttt{m7b} &\textbf{Party name integrated survey file (before 1970)}\newline 
+Party names in vote choice variable in integrated survey file (before 1970).
+\end{longtable}
 
 \newpage
 
@@ -1362,8 +1384,8 @@ extension \texttt{geofacet} \autocite{hafenGeofacetGgplot2Faceting2020}.
 Please find a comparison of state locations and the grid layout as well
 as some example code below.
 
-\hypertarget{example-code-1}{%
-\subsubsection{Example Code:}\label{example-code-1}}
+\hypertarget{example-code}{%
+\subsubsection{Example Code:}\label{example-code}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1378,7 +1400,7 @@ as some example code below.
   \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\NormalTok{(state }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"WB"}\NormalTok{, }\StringTok{"BA"}\NormalTok{, }\StringTok{"WH"}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(turnout)) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ election\_date, }\AttributeTok{y =}\NormalTok{ turnout)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{col =} \StringTok{"\#810a26"}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{col =} \StringTok{"\#810a26"}\NormalTok{, }\AttributeTok{linewidth =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
     \FunctionTok{facet\_geo}\NormalTok{(}\AttributeTok{grid =} \FunctionTok{de\_states\_geofacet\_grid\_4x4}\NormalTok{(}\AttributeTok{linebreak =}\NormalTok{ T),}
               \AttributeTok{facets =} \SpecialCharTok{\textasciitilde{}}\NormalTok{state, }\AttributeTok{label =} \StringTok{"name"}\NormalTok{) }\SpecialCharTok{+}
     \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}

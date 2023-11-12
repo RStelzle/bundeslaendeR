@@ -285,7 +285,7 @@ test_that("gleiche Anzahl Parteien je gov innerhalb leg per über mehrere gov", 
       group_by(state, state_election_term, gov_id) %>% 
       summarise(n_parties = length(unique(partyname_short))) %>% 
       group_by(state, state_election_term) %>% 
-      summarise(check = n_parties == mean(n_parties)) %>% 
+      mutate(check = n_parties == mean(n_parties)) %>% 
       ungroup() %>% 
       filter(check != TRUE) %>% nrow(), 0
   )

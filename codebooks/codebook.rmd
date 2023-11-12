@@ -15,6 +15,7 @@ biblatexoptions: [backend=biber,backref, style=ext-authoryear-comp,maxbibnames=9
 geometry: "lmargin=2.5cm, rmargin=3.5cm, tmargin=2.5cm, bmargin=2.5cm, includeheadfoot"
 header-includes:
 - \usepackage{longtable}
+- \usepackage{booktabs}
 - \usepackage{float}
 - \usepackage{graphicx}
 - \usepackage{pdflscape}
@@ -131,7 +132,7 @@ item_start <- function(item_name_code, item_name, item_desc, desc_left = FALSE) 
 
 item_image <- function(ggobj, filenameimg, width, height) {
   
-  ggsave(ggobj, filename = filenameimg, width = width, height = height)
+  ggsave(plot = ggobj, filename = filenameimg, width = width, height = height)
   
   cat("\\hspace*{.25cm}")
   cat("\n")
@@ -2435,11 +2436,11 @@ ltw_combined %>%
     geom_segment(aes(x = gov_start_date, xend = gov_end_date,
                      y = state, yend = state,
                      col = coalagreement_avail),
-                 size = 5) +
+                 linewidth = 5) +
     geom_segment(aes(x = gov_start_date, xend = gov_start_date + lubridate::duration(4, units = "weeks"),
                      y = state, yend = state),
                  col = "white",
-                 size = 5) +
+                 linewidth = 5) +
     geom_segment(
       data = ltw_elections %>%
               select(state, election_date) %>%
@@ -2447,7 +2448,7 @@ ltw_combined %>%
               mutate(xend = election_date + lubridate::duration(4, units = "weeks")),
       aes(x = election_date, xend = xend,
           y = state, yend = state),
-      size = 5,
+      linewidth = 5,
       col = "black"
     ) +
   scale_color_manual(values = c("grey", "#4dae49")) +
@@ -2617,52 +2618,110 @@ short_item(item_name_code = "state_name_\nappeldorn_fortunato",
 ```
 
 
-### Example Code:
 
-Example code joining Appeldorn and Fortunato's legislative capacity data *in election years* -where available- to `ltw_elections_meta` in `R`:
+\newpage
 
 
-```{r, eval=F, echo=T}
-library(tidyverse)
-library(bundeslaendeR)
-library(dataverse)
 
-ltw_elections_meta %>% 
-  mutate(election_year = lubridate::year(election_date)) %>%
-  left_join(
-    link_legcap_appeldorn_fortunato,
-    by = c("state", "state_name_en")
-  ) %>%
-  left_join(
-    get_dataframe_by_name(
-      filename = "afScores.txt", 
-      dataset = "10.7910/DVN/BA8G7H",
-      server = "dataverse.harvard.edu",
-      .f = read.table) %>% 
-      left_join(
-        get_dataframe_by_name(
-          "replication.txt", 
-          dataset = "10.7910/DVN/BA8G7H", 
-          server = "dataverse.harvard.edu",
-          .f = (\(x) read.delim(x, sep = "|"))
-        ),
-        by = c("land", "year")
-      ) %>% 
-      select(-election.y) %>% 
-      rename(election = election.x) %>% 
-      filter(election == 1),
-    by = c(
-      "election_year" = "year",
-      "state_abb_appeldorn_fortunato" = "abbreviation",
-      "state_name_en_appeldorn_fortunato" = "land"
-    )
-  )
+## `link_integrated_state_election_surveys`
+
+
+
+Dataset providing a link between ltw_elections (or ltw_combined) and party names in vote choice in the integrated dataset of state election surveys availabel on GESIS (ZAZA4182) \parencite{scheuchGermanFederalState2015}.
+
+
+
+Note that not all parties running in an election were necessarily asked about in the election surcey. Vice versa, not all parties that were asked about in the election survey did necessarily actually contested the election.
+
+
+Note that for some state elections multiple surveys are available in the integrated survey dataset. See column za_nr1 for GESIS ID of original survey. The GESIS ID is the sole variable identifying a specific election in the integrated dataset.
+
+
+Note that the integrated survey uses different variables for elections until 1970 (m7b) and after 1973 (m7).
+
+
+The variables `state`, and `election_date` and `partyname_short` can be used in order to link survey data from the integrated dataset of state election surveys to `bundeslaendeR` data using `link_integrated_state_election_surveys`.
+
+
+```{r, results="asis"}
+short_item(item_name_code = "bland",
+           item_name = "State name in integrated survey file",
+           item_desc = "State name in integrated survey file.",
+           desc_left = FALSE
+)
+```
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "za_nr1",
+           item_name = "GESIS ID original state election survey",
+           item_desc = "GESIS ID of original state election survey. The GESIS ID is the sole variable identifying a specific election in the integrated dataset.",
+           desc_left = FALSE)
 
 ```
 
 
 
+```{r createsurveyplot, include=FALSE}
+plot_surveys <- 
+ltw_elections_meta %>% 
+  select(state, election_date) %>% 
+  left_join(
+    link_integrated_state_election_surveys %>% 
+      select(state, election_date, za_nr1) %>% 
+      distinct() %>% 
+      count(state, election_date, name = "nsurveys")
+    ) %>% 
+  mutate(nsurveys = ifelse(is.na(nsurveys), 0, nsurveys)) %>% 
+  filter(!(state %in% c("BA", "WB", "WH"))) %>% 
+  ggplot(aes(y = state, x = election_date, col = as_factor(nsurveys))) +
+    geom_point(size = 2) +
+    scale_color_brewer(palette = "Set1") +
+    theme(legend.position = "bottom") +
+    labs(
+      x = NULL,
+      y = NULL,
+      col = "Number of surveys\nin integrated dataset"
+    )
 
+
+
+```
+
+
+
+```{r, results="asis"}
+
+
+item_image(ggobj = plot_surveys,
+           filenameimg = "cbfiles/plot_surveys.pdf",
+           width = 3.5*1.25,
+           height = 1.9*1.25)
+
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "m7",
+           item_name = "Party name integrated survey file (after 1973)",
+           item_desc = "Party names in vote choice variable in integrated survey file (after 1973).",
+           desc_left = FALSE
+)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "m7b",
+           item_name = "Party name integrated survey file (before 1970)",
+           item_desc = "Party names in vote choice variable in integrated survey file (before 1970).",
+           desc_left = FALSE
+)
+```
 
 
 \newpage
@@ -2690,7 +2749,7 @@ ltw_elections %>%
   filter(!(state %in% c("WB", "BA", "WH"))) %>% 
   filter(!is.na(turnout)) %>% 
   ggplot(aes(x = election_date, y = turnout)) +
-    geom_line(col = "#810a26", size = 1.2) +
+    geom_line(col = "#810a26", linewidth = 1.2) +
     facet_geo(grid = de_states_geofacet_grid_4x4(linebreak = T),
               facets = ~state, label = "name") +
     scale_y_continuous(limits = c(0,1),

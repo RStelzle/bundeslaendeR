@@ -1132,7 +1132,17 @@ usethis::use_data(link_legcap_appeldorn_fortunato, overwrite = TRUE)
 
 
 
+link_surveys_raw <- 
+  read_xlsx(here("inst/extdata/link_surveys.xlsx"))
 
+
+link_integrated_state_election_surveys <-
+  link_surveys_raw %>% 
+    filter(!is.na(partyname_short)) %>% 
+    arrange(state, election_date) %>% 
+    mutate(election_date = as_date(election_date))
+
+usethis::use_data(link_integrated_state_election_surveys, overwrite = TRUE)
 
 
 
@@ -1215,6 +1225,12 @@ dir.create(here("release", "bundeslaender_data_release", "link_legcap_appeldorn_
 write_rds(link_legcap_appeldorn_fortunato, here("release", "bundeslaender_data_release", "link_legcap_appeldorn_fortunato", "link_legcap_appeldorn_fortunato.rds"))
 write.csv(link_legcap_appeldorn_fortunato, here("release", "bundeslaender_data_release", "link_legcap_appeldorn_fortunato", "link_legcap_appeldorn_fortunato.csv"))
 link_legcap_appeldorn_fortunato %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_legcap_appeldorn_fortunato", "link_legcap_appeldorn_fortunato.dta"))
+
+dir.create(here("release", "bundeslaender_data_release", "link_integrated_state_election_surveys"))
+write_rds(link_integrated_state_election_surveys, here("release", "bundeslaender_data_release", "link_integrated_state_election_surveys", "link_integrated_state_election_surveys.rds"))
+write.csv(link_integrated_state_election_surveys, here("release", "bundeslaender_data_release", "link_integrated_state_election_surveys", "link_integrated_state_election_surveys.csv"))
+link_integrated_state_election_surveys %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_integrated_state_election_surveys", "link_integrated_state_election_surveys.dta"))
+
 
 
 
