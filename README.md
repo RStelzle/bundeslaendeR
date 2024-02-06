@@ -16,7 +16,6 @@ governments’ coalition agreements available from other sources.
 ## Todo
 
 - [ ] Write brief dataset note
-- [ ] Fix that one Hamburg State Gov
 - [ ] Fix NI AfD/FDP 2022
 
 
