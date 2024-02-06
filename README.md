@@ -16,10 +16,6 @@ governments’ coalition agreements available from other sources.
 ## Todo
 
 - [ ] Write brief dataset note
-- [x] Change link_manifestos to properly include abgeordnetenwatch
-manifesto urls
-- [ ] Add Links to LTW Surveys (see Gesis)
-- [ ] Add Link to State Party Finance data
 - [ ] Fix that one Hamburg State Gov
 - [ ] Fix NI AfD/FDP 2022
 
