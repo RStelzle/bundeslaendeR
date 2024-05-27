@@ -1,7 +1,7 @@
 ---
 title: "Codebook bundeslaendeR"
 author: "Robert Stelzle"
-date: "25.08.2022"
+date: "27.05.2024"
 documentclass: scrartcl
 output:
   pdf_document:
@@ -29,7 +29,7 @@ header-includes:
 - \setkomafont{caption}{\small\sffamily}
 - \usepackage[automark, headsepline=1pt, footsepline=1pt]{scrlayer-scrpage} 
 - \ohead{Codebook bundeslaendeR}
-- \ofoot*{25.08.2022} 
+- \ofoot*{27.05.2024} 
  \ihead{\headmark}
 - \setkomafont{pagenumber}{\itshape}
 - \ifoot*{Seite \pagemark}
@@ -926,7 +926,7 @@ item_start(item_name_code = "party_female_mps",
 
 ```{r, results="asis"}
 
-wbarplot <- 
+wbarplotdata <- 
 ltw_elections %>% 
   select(party_seat_count, party_female_mps, female_party_seats_available) %>% 
   mutate(reason = case_when(
@@ -935,7 +935,10 @@ ltw_elections %>%
     party_seat_count == 0 ~ "Party not in parliament",
     party_female_mps > 0 ~ "Party in parl. and has female MPs"
     )) %>% count(reason) %>%
-  mutate(reason = as_factor(reason) %>% fct_reorder(n)) %>% 
+  mutate(reason = as_factor(reason) %>% fct_reorder(n)) 
+
+wbarplot <-
+wbarplotdata %>%
   ggplot(aes(y = reason, x = n)) +
     geom_col() +
     labs(x = "N", y = NULL)
@@ -944,22 +947,24 @@ ltw_elections %>%
 
 
 whist <-
-ltw_elections %>% 
-  select(party_female_mps, state, state_election_term, party_sshare) %>% 
-  filter(!is.na(party_female_mps)) %>% 
+ltw_elections %>%
+  select(party_female_mps, state, state_election_term, party_sshare) %>%
+  filter(!is.na(party_female_mps)) %>%
   filter(party_sshare > 0) %>%
   ggplot(aes(x = party_female_mps)) +
     geom_histogram(bins = 25) +
     scale_x_continuous(breaks= scales::pretty_breaks(n = 6)) +
     labs(x = "Number of female MPs from party", y = "N")
-    
+
 
 design <- "BBBBBBBBBBBBBB
            BBBBBBBBBBBBBB
            #AAAAAAAAAAAAA"
 
-pfmpcplot <- 
+pfmpcplot <-
 wrap_plots(B = whist, A = wbarplot, design = design)
+
+
 
 
 item_image(ggobj = pfmpcplot,
@@ -2059,7 +2064,7 @@ ltw_elections_meta %>%
 
 
 
-pzdist <- 
+pzdist <-
 ltw_elections_meta %>% 
   select(election_date, state, starts_with("disprop_")) %>% 
   pivot_longer(cols = starts_with("disprop_"), names_to = "measure", values_to = "value") %>% 
@@ -2067,7 +2072,7 @@ ltw_elections_meta %>%
   group_by(measure) %>% 
   mutate(valstd = (value - mean(value)) / sd(value)) %>% 
   ggplot(aes(x = valstd, group = measure)) +
-    geom_density(alpha = 0.6, col = "#810a26", alpha = 0.8) +
+    geom_density( col = "#810a26", alpha = 0.8) +
     theme(panel.background = element_rect(colour = "black")) +
     labs(x = "z-standardized disprop. measure", y = NULL, subtitle = "z-Standardized Dist. per measure")
   
@@ -2563,7 +2568,7 @@ posplotdata %>%
 
 
 
-```{r, results="asis"}
+```{r warning=FALSE, results="asis"}
 
 
 item_image(ggobj = pwibplot,
@@ -2664,12 +2669,13 @@ item_start(item_name_code = "za_nr1",
 
 
 ```{r createsurveyplot, include=FALSE}
-plot_surveys <- 
+plot_surveys <-
 ltw_elections_meta %>% 
   select(state, election_date) %>% 
   left_join(
     link_integrated_state_election_surveys %>% 
       select(state, election_date, za_nr1) %>% 
+      mutate(election_date = as.Date(election_date)) %>% 
       distinct() %>% 
       count(state, election_date, name = "nsurveys")
     ) %>% 
@@ -2727,98 +2733,98 @@ short_item(item_name_code = "m7b",
 \newpage
 
 
-# `de_states_grid_4x4()`
+<!-- # `de_states_grid_4x4()` -->
 
-`de_states_grid_4x4()` exports a data frame containing state IDs, German and English state names and approximate state locations on a 4x4 grid.
-The exported data frame can be used to approximately plot state-facets in their approximate locations using the `ggplot2` extension `geofacet` [@hafenGeofacetGgplot2Faceting2020].
+<!-- `de_states_grid_4x4()` exports a data frame containing state IDs, German and English state names and approximate state locations on a 4x4 grid. -->
+<!-- The exported data frame can be used to approximately plot state-facets in their approximate locations using the `ggplot2` extension `geofacet` [@hafenGeofacetGgplot2Faceting2020]. -->
 
-Please find a comparison of state locations and the grid layout as well as some example code below.
+<!-- Please find a comparison of state locations and the grid layout as well as some example code below. -->
 
-### Example Code:
-
-
-```{r echo=TRUE, message=FALSE, warning=FALSE}
-library(bundeslaendeR)
-library(tidyverse)
-library(geofacet)
-
-turnout_plot <-
-ltw_elections %>% 
-  select(state, election_date, turnout) %>% 
-  distinct() %>% 
-  filter(!(state %in% c("WB", "BA", "WH"))) %>% 
-  filter(!is.na(turnout)) %>% 
-  ggplot(aes(x = election_date, y = turnout)) +
-    geom_line(col = "#810a26", linewidth = 1.2) +
-    facet_geo(grid = de_states_geofacet_grid_4x4(linebreak = T),
-              facets = ~state, label = "name") +
-    scale_y_continuous(limits = c(0,1),
-                       labels = scales::percent) +
-    theme(strip.text = element_text(face = "bold")) +
-    labs(x = NULL, y = "Turnout")
-```
-
-\nocite{runfolaGeoBoundariesGlobalDatabase2020}
-
-```{r message=FALSE, warning=FALSE, include=FALSE}
-
-dir.create(here("codebooks", "sfdl"))
-curl::curl_download("https://www.geoboundaries.org/data/1_3_3/zip/shapefile/DEU/DEU_ADM1.shp.zip",
-                    here("codebooks", "sfdl", "germany.shp.zip"))
-unzip(zipfile = here("codebooks", "sfdl", "germany.shp.zip"), exdir = here("codebooks", "sfdl"))
-
-germany <- 
-  st_read(here("codebooks", "sfdl", "DEU_ADM1.shp"))
-
-unlink(here("codebooks", "sfdl"), recursive = T)
+<!-- ### Example Code: -->
 
 
-cents <-
-germany %>% 
-  st_make_valid() %>% 
-  st_centroid() %>% 
-  st_as_sf() %>%
-  mutate(lat = unlist(map(.$geometry,1)),
-         long = unlist(map(.$geometry,2)))
+<!-- ```{r echo=TRUE, message=FALSE, warning=FALSE} -->
+<!-- library(bundeslaendeR) -->
+<!-- library(tidyverse) -->
+<!-- library(geofacet) -->
+
+<!-- turnout_plot <- -->
+<!-- ltw_elections %>%  -->
+<!--   select(state, election_date, turnout) %>%  -->
+<!--   distinct() %>%  -->
+<!--   filter(!(state %in% c("WB", "BA", "WH"))) %>%  -->
+<!--   filter(!is.na(turnout)) %>%  -->
+<!--   ggplot(aes(x = election_date, y = turnout)) + -->
+<!--     geom_line(col = "#810a26", linewidth = 1.2) + -->
+<!--     facet_geo(grid = de_states_geofacet_grid_4x4(linebreak = T), -->
+<!--               facets = ~state, label = "name") + -->
+<!--     scale_y_continuous(limits = c(0,1), -->
+<!--                        labels = scales::percent) + -->
+<!--     theme(strip.text = element_text(face = "bold")) + -->
+<!--     labs(x = NULL, y = "Turnout") -->
+<!-- ``` -->
+
+<!-- \nocite{runfolaGeoBoundariesGlobalDatabase2020} -->
+
+<!-- ```{r message=FALSE, warning=FALSE, include=FALSE} -->
+
+<!-- dir.create(here("codebooks", "sfdl")) -->
+<!-- curl::curl_download("https://www.geoboundaries.org/data/1_3_3/zip/shapefile/DEU/DEU_ADM1.shp.zip", -->
+<!--                     here("codebooks", "sfdl", "germany.shp.zip")) -->
+<!-- unzip(zipfile = here("codebooks", "sfdl", "germany.shp.zip"), exdir = here("codebooks", "sfdl")) -->
+
+<!-- germany <-  -->
+<!--   st_read(here("codebooks", "sfdl", "DEU_ADM1.shp")) -->
+
+<!-- unlink(here("codebooks", "sfdl"), recursive = T) -->
 
 
-set.seed(123456)
-
-leftplot <-
-germany %>% 
-ggplot() +
-    geom_sf() +
-    geom_sf(data = cents) +
-    geom_label_repel(data = cents,
-                    aes(x = lat, y = long, label = NAME),
-                    point.padding = 5, family = "LibertinusSansSerif") +
-    theme_map() +
-    theme(plot.caption = element_markdown(hjust = 0),
-          text = element_text(family = "LibertinusSansSerif")) +
-    labs(caption = "Map data from *geoBoundaries* (Runfola et al. 2020).")
+<!-- cents <- -->
+<!-- germany %>%  -->
+<!--   st_make_valid() %>%  -->
+<!--   st_centroid() %>%  -->
+<!--   st_as_sf() %>% -->
+<!--   mutate(lat = unlist(map(.$geometry,1)), -->
+<!--          long = unlist(map(.$geometry,2))) -->
 
 
+<!-- set.seed(123456) -->
+
+<!-- leftplot <- -->
+<!-- germany %>%  -->
+<!-- ggplot() + -->
+<!--     geom_sf() + -->
+<!--     geom_sf(data = cents) + -->
+<!--     geom_label_repel(data = cents, -->
+<!--                     aes(x = lat, y = long, label = NAME), -->
+<!--                     point.padding = 5, family = "LibertinusSansSerif") + -->
+<!--     theme_map() + -->
+<!--     theme(plot.caption = element_markdown(hjust = 0), -->
+<!--           text = element_text(family = "LibertinusSansSerif")) + -->
+<!--     labs(caption = "Map data from *geoBoundaries* (Runfola et al. 2020).") -->
 
 
 
 
-```
-
-\newpage
 
 
+<!-- ``` -->
 
-\blandscape
-
-
-```{r map-vs-grid-plot, fig.cap="Comparison of state location and grid layout", fig.height=6, fig.width=10}
-wrap_plots(leftplot, turnout_plot, nrow = 1)
-
-```
+<!-- \newpage -->
 
 
 
-\elandscape
+<!-- \blandscape -->
+
+
+<!-- ```{r map-vs-grid-plot, fig.cap="Comparison of state location and grid layout", fig.height=6, fig.width=10} -->
+<!-- wrap_plots(leftplot, turnout_plot, nrow = 1) -->
+
+<!-- ``` -->
+
+
+
+<!-- \elandscape -->
 
 
 # References
