@@ -1,7 +1,7 @@
 ---
 title: "Codebook bundeslaendeR"
 author: "Robert Stelzle"
-date: "27.05.2024"
+date: "29.08.2025"
 documentclass: scrartcl
 output:
   pdf_document:
@@ -10,8 +10,8 @@ output:
     toc_depth: 1
     citation_package: biblatex
     latex_engine: lualatex
+colorlinks: true
 bibliography: literature.bib
-biblatexoptions: [backend=biber,backref, style=ext-authoryear-comp,maxbibnames=99,maxcitenames=3,isbn=false,date=year,sorting=nyt]
 geometry: "lmargin=2.5cm, rmargin=3.5cm, tmargin=2.5cm, bmargin=2.5cm, includeheadfoot"
 header-includes:
 - \usepackage{longtable}
@@ -29,7 +29,7 @@ header-includes:
 - \setkomafont{caption}{\small\sffamily}
 - \usepackage[automark, headsepline=1pt, footsepline=1pt]{scrlayer-scrpage} 
 - \ohead{Codebook bundeslaendeR}
-- \ofoot*{27.05.2024} 
+- \ofoot*{29.05.2025} 
  \ihead{\headmark}
 - \setkomafont{pagenumber}{\itshape}
 - \ifoot*{Seite \pagemark}
@@ -39,13 +39,21 @@ header-includes:
 - \pretitle{\begin{center}
   \includegraphics[width=2in,height=2in]{../man/figures/hex_light_clipart.png}\LARGE\\}
 - \posttitle{\end{center}}
+- \usepackage[backend=biber, style=ext-authoryear-comp,maxbibnames=99,maxcitenames=3,isbn=false,date=year,sorting=nyt]{biblatex}
+- \AtEveryBibitem{\clearfield{urlyear} 	\clearfield{urlmonth}}
+- \usepackage{hyperref}
+- \usepackage[hyperref]{xcolor}%Für Farbe in Tabellen usw.
+
 ---
+
+
+
 
 
 ```{r, include=FALSE}
 library(here)
 library(tidyverse)
-library(bundeslaendeR)
+# library(bundeslaendeR)
 library(kableExtra)
 library(patchwork)
 library(geofacet)
@@ -61,6 +69,30 @@ knitr::opts_chunk$set(fig.align="center",
                       fig.path = "cbfiles/")
 
 ```
+
+
+
+```{r}
+
+
+
+
+
+for (datapath in list.files(here("data"), full.names = TRUE)) {
+  
+  load(datapath)
+  
+}
+
+
+
+load(here("R/sysdata.rda"))
+
+
+
+```
+
+
 
 
 ```{r, include=FALSE}
@@ -94,7 +126,7 @@ showtext.auto()
 
 
 theme_set(theme_minimal())
-theme_update(text = element_text(family = "LibertinusSansSerif"))
+theme_update(text = element_text(family = "LibertinusSansSerif"), panel.border = element_rect(fill = NA, color = "black"))
 update_geom_defaults("bar", list(fill = "#810a26"))
 # update_geom_defaults("histogramm", list(fill = "#810a26"))
 update_geom_defaults("col", list(fill = "#810a26"))
@@ -192,8 +224,15 @@ fct_case_when <- function(...) {
 
 ```
 
+
+
+
 \clearpage
 
+
+
+\definecolor{Nettrot}{RGB}{108, 0, 28}
+\hypersetup{colorlinks=true, allcolors=Nettrot}
 
 
 # Introduction
@@ -380,7 +419,7 @@ short_item(item_name_code = "state_name_en",
 ```{r, results="asis"}
 item_start(item_name_code = "state_election_\nterm",
            item_name = "Election Term of State",
-           item_desc = "Election term in the state. Counts up from 1.",
+           item_desc = "Election term in the state. Counts up from 1. Note that this count does not necessarily has to line up with the official way the respective legislature counts its legislative terms. For example, \\texttt{bundeslaendeR} includes data from Berlin Stadtverordnetenversammlung elections in 1946 and 1948 prior to the enaction of the new Berlin state constitution in 1950 that established the Abgeordnetenhaus. The Abgeordnetenhaus starts counting its legislative terms in 1950 instead. Similarly, \\texttt{bundeslaendeR} inclues the elections held in Berlin in 2021 as well as the 2023 repeat election and increments the \\texttt{state\\_election\\_term} counter by one, whereas the Abgeordnetenhaus' official way of counting considers the legislative term to have started in 2021 even after the 2023 rerun." ,
            desc_left = FALSE)
 ```
 
@@ -984,7 +1023,7 @@ item_end()
 ```{r, results="asis"}
 item_start(item_name_code = "ppeg_id", 
            item_name = "PPEG ID",
-           item_desc = "If available, party id of the party in the PPEG database \\parencite{ppegDatabasePoliticalParties2022}. These party IDs are chiefly based on party IDs from \\textcite{mackieInternationalAlmanacElectoral1991}.")
+           item_desc = "If available, party id of the party in the PPEG database \\parencite{krausePPEGPoliticalParties2024a}. These party IDs are chiefly based on party IDs from \\textcite{mackieInternationalAlmanacElectoral1991}.")
 ```
 
 
@@ -1103,7 +1142,7 @@ item_end()
 ```{r, results="asis"}
 item_start(item_name_code = "decker_neu",
            item_name = "Chapter Parteienhandbuch",
-           item_desc = "Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by Decker and Neu \\parencite{deckerHandbuchDeutschenParteien2018b} has a chapter on the party.",
+           item_desc = "Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by \\textcite{deckerHandbuchDeutschenParteien2018} has a chapter on the party.",
            desc_left = FALSE)
 ```
 
@@ -2055,7 +2094,7 @@ ltw_elections_meta %>%
     facet_wrap(~measure, scales = "free", ncol = 3) +
     theme(
       strip.text = element_text(family = "mono", face = "bold"),
-      panel.background = element_rect(colour = "black")
+      
     ) +
   labs(
     x = "Disproportionality",
@@ -2143,7 +2182,7 @@ Using the provided datasets `link_manifestos`, `link_coalitionagreements`, `link
 
 ```{r, results='asis'}
 
-cat("\\texttt{link\\_manifestos} provides easy links of \\texttt{bundeslaendeR} data with party manifestos made available from \\url{http://polidoc.net} \\parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocNetCodebook2018} as well as from \\url{abgeordnetenwatch.de}.
+cat("\\texttt{link\\_manifestos} provides easy links of \\texttt{bundeslaendeR} data with party manifestos made available from \\url{http://polidoc.net} \\parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocnetCodebook2018} as well as from \\url{abgeordnetenwatch.de}.
 While file names from polidoc.net follow a naming pattern
 (\\texttt{{partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}}) and abgeordnetenwatch.de provides unique IDs through its API, the provided links make joining the data easier.")
 
@@ -2488,7 +2527,7 @@ item_end()
 
 `link_positions_pwib` provides an easy link of \texttt{bundeslaendeR} data with state parties' policy positions according to measures of  \textcite{braeuningerParteienwettbewerbDeutschenBundeslaendern2020} in *Parteienwettbewerb in den deutschen Bundesländern* (PWIB). The position data is available to download at \url{http://polidoc.net}. The measures of state parties' policy positions are based on automatic content analysis (WordScores. Reference texts: Manifestos of federal parties. Reference scores: Positions of federal parties based on expert surveys.). For more details see \textcite[pp. 59ff.]{braeuningerParteienwettbewerbDeutschenBundeslaendern2020}.
 
-The variables `state`, `election_date`, and `partyname_short` can be used in order to link PWIB policy positions to the `bundeslaendeR` data using `link_coalitionagreements`. Note that the state abbreviations provided in the PWIB data file (`pwib2020_final.dta`) are not capitalized while the state abbreviation in `link_positions_pwib` are.
+The variables `state`, `election_date`, and `partyname_short` can be used in order to link PWIB policy positions to the `bundeslaendeR` data using `link_coalitionagreements`. Note that the state abbreviations provided in the PWIB data file (`ReplicationData_Bräuninger_etal_2020.dta`) are not capitalized while the state abbreviation in `link_positions_pwib` are.
 
 
 ```{r, results="asis"}
@@ -2526,7 +2565,7 @@ ltw_elections %>%
     values_to = "covered"
   ) %>%
   mutate(not_covered = 1 - covered) %>%
-  left_join(tibble(state = sort(bundeslaendeR:::int_grid$code)) %>% mutate(y = row_number() %>% as.double())) %>%
+  left_join(tibble(state = sort(int_grid$code)) %>% mutate(y = row_number() %>% as.double())) %>%
   mutate(x = lubridate::year(election_date)) %>%
   mutate(
     measure = ifelse(measure == "vshare",
@@ -2543,7 +2582,7 @@ posplotdata %>%
   ggplot(aes(x = x, y = y)) +
     # facet_wrap(~measure, ncol = 1, scales = "free") +
     lemon::facet_rep_wrap(~measure, ncol = 1, repeat.tick.labels = "all") +
-    scale_y_continuous(breaks = 1:16, labels = sort(bundeslaendeR:::int_grid$code)) +
+    scale_y_continuous(breaks = 1:16, labels = sort(int_grid$code)) +
     scale_fill_brewer(palette = "Set1", guide = guide_legend(reverse = TRUE, ncol = 1)) +
     theme(
       panel.grid = element_blank(),
@@ -2597,7 +2636,7 @@ item_end()
 
 
 
-`link_legcap_appeldorn_fortunato` provides a link between `bundeslaendeR` data and data on Legislative Capacity in Germany's Parliaments (10.7910/DVN/BA8G7H) provided by \textcite{fortunatoReplicationDataLegislative2021} \parencite[for more details see][]{appeldornLegislativeCapacityGermany2022},
+`link_legcap_appeldorn_fortunato` provides a link between `bundeslaendeR` data and data on Legislative Capacity in Germany's Parliaments (10.7910/DVN/BA8G7H) provided by \textcite{fortunatoReplicationDataLegislative2021} \parencite[for more details see][]{appeldornLegislativeCapacityGermanys2022},
 consolidating minor differences in the spelling of state names and state abbreviations between the two datasets.
 
 Note that Appeldorn and Fortunato provide yearly time-series data, while bundeslaendeR data are based on elections/governments.

@@ -1,6 +1,7 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
 ]{scrartcl}
@@ -70,7 +71,7 @@ includeheadfoot]{geometry}
 \setkomafont{caption}{\small\sffamily}
 \usepackage[automark, headsepline=1pt, footsepline=1pt]{scrlayer-scrpage}
 \ohead{Codebook bundeslaendeR}
-\ofoot*{27.05.2024} \ihead{\headmark}
+\ofoot*{29.05.2025} \ihead{\headmark}
 \setkomafont{pagenumber}{\itshape}
 \ifoot*{Seite \pagemark}
 \chead{}
@@ -78,6 +79,10 @@ includeheadfoot]{geometry}
 \usepackage{titling}
 \pretitle{\begin{center} \includegraphics[width=2in,height=2in]{../man/figures/hex_light_clipart.png}\LARGE\\}
 \posttitle{\end{center}}
+\usepackage[backend=biber, style=ext-authoryear-comp,maxbibnames=99,maxcitenames=3,isbn=false,date=year,sorting=nyt]{biblatex}
+\AtEveryBibitem{\clearfield{urlyear} 	\clearfield{urlmonth}}
+\usepackage{hyperref}
+\usepackage[hyperref]{xcolor}%Für Farbe in Tabellen usw.
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -95,32 +100,39 @@ includeheadfoot]{geometry}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\usepackage[backend=biber,backref,style=ext-authoryear-comp,maxbibnames=99,maxcitenames=3,isbn=false,date=year,sorting=nyt]{biblatex}
+\usepackage[]{biblatex}
 \addbibresource{literature.bib}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
   pdftitle={Codebook bundeslaendeR},
   pdfauthor={Robert Stelzle},
-  hidelinks,
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
 \title{Codebook bundeslaendeR}
 \author{Robert Stelzle}
-\date{27.05.2024}
+\date{29.08.2025}
 
 \begin{document}
 \maketitle
 
 {
+\hypersetup{linkcolor=}
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
 \clearpage
 
-\hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\definecolor{Nettrot}{RGB}{108, 0, 28}
+\hypersetup{colorlinks=true, allcolors=Nettrot}
+
+\section{Introduction}\label{introduction}
 
 Most election results data are provided by the Bundeswahlleiter. A
 machine-readable version of the Bundeswahlleiter's compiled data
@@ -170,8 +182,7 @@ single \texttt{.zip} file including all six datasets as \texttt{.csv},
 
 \newpage
 
-\hypertarget{ltw_elections}{%
-\section{\texorpdfstring{\texttt{ltw\_elections}}{ltw\_elections}}\label{ltw_elections}}
+\section{\texorpdfstring{\texttt{ltw\_elections}}{ltw\_elections}}\label{ltw_elections}
 
 \texttt{ltw\_elections} is a long-form dataset containing one row per
 contesting party per election. For a schematic version of
@@ -205,9 +216,8 @@ The data can be accessed in \texttt{R} using
 
 \end{table}
 
-\hypertarget{ltw_elections-variable-information}{%
 \subsection{\texorpdfstring{\texttt{ltw\_elections} Variable
-Information}{ltw\_elections Variable Information}}\label{ltw_elections-variable-information}}
+Information}{ltw\_elections Variable Information}}\label{ltw_elections-variable-information}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{state} &\textbf{State Abbreviation}\newline 
@@ -235,7 +245,7 @@ English name of the state.
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{state\_election\_
 term} &\textbf{Election Term of State}\newline 
-Election term in the state. Counts up from 1.
+Election term in the state. Counts up from 1. Note that this count does not necessarily has to line up with the official way the respective legislature counts its legislative terms. For example, \texttt{bundeslaendeR} includes data from Berlin Stadtverordnetenversammlung elections in 1946 and 1948 prior to the enaction of the new Berlin state constitution in 1950 that established the Abgeordnetenhaus. The Abgeordnetenhaus starts counting its legislative terms in 1950 instead. Similarly, \texttt{bundeslaendeR} inclues the elections held in Berlin in 2021 as well as the 2023 repeat election and increments the \texttt{state\_election\_term} counter by one, whereas the Abgeordnetenhaus' official way of counting considers the legislative term to have started in 2021 even after the 2023 rerun.
 
 
 
@@ -379,24 +389,24 @@ Number of newly elected female MPs.
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_short} &\textbf{Abbreviated Party Name}\newline 
-Harmonized abbreviation of the party's name. 385 unique parties.
+Harmonized abbreviation of the party's name. 394 unique parties.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname} &\textbf{Party Name}\newline 
-Harmonized name of the party. 385 unique parties.
+Harmonized name of the party. 394 unique parties.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_short\_
 bundeswahlleiter} &\textbf{Party Name Abbreviation from Bundeswahlleiter}\newline 
-Partyname abbreviation as documented by the Bundeswahlleiter. 475 different abbreviations.
+Partyname abbreviation as documented by the Bundeswahlleiter. 486 different abbreviations.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_
 bundeswahlleiter} &\textbf{Party Name from Bundeswahlleiter}\newline 
-Partyname as documented by the Bundeswahlleiter. 517 different names.
+Partyname as documented by the Bundeswahlleiter. 531 different names.
 \end{longtable}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
@@ -466,7 +476,7 @@ Number of female MPs elected for the party. Note that for parties not elected to
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{ppeg\_id} &\textbf{PPEG ID}\newline 
-If available, party id of the party in the PPEG database \parencite{ppegDatabasePoliticalParties2022}. These party IDs are chiefly based on party IDs from \textcite{mackieInternationalAlmanacElectoral1991}.
+If available, party id of the party in the PPEG database \parencite{krausePPEGPoliticalParties2024a}. These party IDs are chiefly based on party IDs from \textcite{mackieInternationalAlmanacElectoral1991}.
 
 
 \hspace*{.25cm}
@@ -509,7 +519,7 @@ If available, ID of the party in the partyfacts database \parencite{doringPartyF
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{decker\_neu} &\textbf{Chapter Parteienhandbuch}\newline 
-Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by Decker and Neu \parencite{deckerHandbuchDeutschenParteien2018b} has a chapter on the party.
+Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by \textcite{deckerHandbuchDeutschenParteien2018} has a chapter on the party.
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -576,8 +586,7 @@ State specific totals.
 
 \newpage
 
-\hypertarget{ltw_governments}{%
-\section{\texorpdfstring{\texttt{ltw\_governments}}{ltw\_governments}}\label{ltw_governments}}
+\section{\texorpdfstring{\texttt{ltw\_governments}}{ltw\_governments}}\label{ltw_governments}
 
 This section of the codebook only concerns variables specific to the
 \texttt{ltw\_governments} dataset. For further variables please refer to
@@ -588,9 +597,8 @@ on governments in the German states. Each row contains information on
 one state government. The data can be accessed in \texttt{R} using
 \texttt{bundeslaendeR::ltw\_governments}.
 
-\hypertarget{ltw_governments-variable-information}{%
 \subsection{\texorpdfstring{\texttt{ltw\_governments} Variable
-Information}{ltw\_governments Variable Information}}\label{ltw_governments-variable-information}}
+Information}{ltw\_governments Variable Information}}\label{ltw_governments-variable-information}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{gov\_no\_within\_
@@ -727,8 +735,7 @@ Share of seats of government parties.
 
 \newpage
 
-\hypertarget{ltw_combined}{%
-\section{\texorpdfstring{\texttt{ltw\_combined}}{ltw\_combined}}\label{ltw_combined}}
+\section{\texorpdfstring{\texttt{ltw\_combined}}{ltw\_combined}}\label{ltw_combined}
 
 This section of the codebook only concerns variables specific to the
 \texttt{ltw\_combined} dataset. For further variables please refer to
@@ -742,9 +749,8 @@ office of one cabinet. For a schematic version of
 The data can be accessed in \texttt{R} using
 \texttt{bundeslaendeR::ltw\_combined}.
 
-\hypertarget{ltw_combined-variable-information}{%
 \subsection{\texorpdfstring{\texttt{ltw\_combined} Variable
-Information}{ltw\_combined Variable Information}}\label{ltw_combined-variable-information}}
+Information}{ltw\_combined Variable Information}}\label{ltw_combined-variable-information}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
 \texttt{gov\_party} &\textbf{Government Party}\newline 
@@ -822,8 +828,7 @@ Is the governments minister president from this party? Note: There are two cases
 
 \newpage
 
-\hypertarget{ltw_elections_meta}{%
-\section{\texorpdfstring{\texttt{ltw\_elections\_meta}}{ltw\_elections\_meta}}\label{ltw_elections_meta}}
+\section{\texorpdfstring{\texttt{ltw\_elections\_meta}}{ltw\_elections\_meta}}\label{ltw_elections_meta}
 
 This section of the codebook only concerns variables specific to the
 \texttt{ltw\_elections\_meta} dataset. For further variables please
@@ -839,9 +844,8 @@ properties see \textcite{niedermayerAnalyseParteiensystemen2013}. For
 descriptions of the various measures of electoral disproportionality see
 \textcite{karpovMeasurementDisproportionalityProportional2008}.
 
-\hypertarget{ltw_elections_meta-variable-information}{%
 \subsection{\texorpdfstring{\texttt{ltw\_elections\_meta} Variable
-Information}{ltw\_elections\_meta Variable Information}}\label{ltw_elections_meta-variable-information}}
+Information}{ltw\_elections\_meta Variable Information}}\label{ltw_elections_meta-variable-information}
 
 Unless specified otherwise, in the following section \(v_i\) refers to
 party \(i\)'s vote share, \(s_i\) to party \(i\)'s seat share and \(n\)
@@ -1048,11 +1052,11 @@ Sainte-Lague index of electoral disproportionality:
 
 \begin{figure}
 
-{\centering \includegraphics{cbfiles/unnamed-chunk-139-1} 
+{\centering \includegraphics{cbfiles/unnamed-chunk-140-1} 
 
 }
 
-\caption{\label{fig:distdisp}Distribution of Disproportionality Measures}\label{fig:unnamed-chunk-139}
+\caption{\label{fig:distdisp}Distribution of Disproportionality Measures}\label{fig:unnamed-chunk-140}
 \end{figure}
 
 \begin{longtable}{p{3.2cm}| p{11cm}}
@@ -1074,20 +1078,18 @@ Legislative turnover \parencite{heinsohnInstitutionalDeterminantsLegislative2014
 
 \clearpage
 
-\hypertarget{linking-to-other-datasets}{%
-\section{Linking to other datasets}\label{linking-to-other-datasets}}
+\section{Linking to other datasets}\label{linking-to-other-datasets}
 
 Using the provided datasets \texttt{link\_manifestos},
 \texttt{link\_coalitionagreements}, \texttt{link\_positions\_pwib} and
 \texttt{link\_legcap\_appeldorn\_fortunato} \texttt{bundeslaendeR} data
 can be linked to other datasets.
 
-\hypertarget{link_manifestos}{%
-\subsection{\texorpdfstring{\texttt{link\_manifestos}}{link\_manifestos}}\label{link_manifestos}}
+\subsection{\texorpdfstring{\texttt{link\_manifestos}}{link\_manifestos}}\label{link_manifestos}
 
 \texttt{link\_manifestos} provides easy links of \texttt{bundeslaendeR}
 data with party manifestos made available from \url{http://polidoc.net}
-\parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocNetCodebook2018}
+\parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocnetCodebook2018}
 as well as from \url{abgeordnetenwatch.de}. While file names from
 polidoc.net follow a naming pattern
 (\texttt{{partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}})
@@ -1143,8 +1145,7 @@ TRUE if the linked manifesto is an electoral manifesto. FALSE if it appears to b
 
 \newpage
 
-\hypertarget{link_coalitionagreements}{%
-\subsection{\texorpdfstring{\texttt{link\_coalitionagreements}}{link\_coalitionagreements}}\label{link_coalitionagreements}}
+\subsection{\texorpdfstring{\texttt{link\_coalitionagreements}}{link\_coalitionagreements}}\label{link_coalitionagreements}
 
 \texttt{link\_coalitionagreements} provides easy links of
 \texttt{bundeslaendeR} data with coalition agreements made available
@@ -1182,8 +1183,7 @@ File name of coalition agreement available in The Political Documents Archive (p
 
 \newpage
 
-\hypertarget{link_positions_pwib}{%
-\subsection{\texorpdfstring{\texttt{link\_positions\_pwib}}{link\_positions\_pwib}}\label{link_positions_pwib}}
+\subsection{\texorpdfstring{\texttt{link\_positions\_pwib}}{link\_positions\_pwib}}\label{link_positions_pwib}
 
 \texttt{link\_positions\_pwib} provides an easy link of
 \texttt{bundeslaendeR} data with state parties' policy positions
@@ -1201,7 +1201,8 @@ The variables \texttt{state}, \texttt{election\_date}, and
 \texttt{partyname\_short} can be used in order to link PWIB policy
 positions to the \texttt{bundeslaendeR} data using
 \texttt{link\_coalitionagreements}. Note that the state abbreviations
-provided in the PWIB data file (\texttt{pwib2020\_final.dta}) are not
+provided in the PWIB data file
+(\texttt{ReplicationData\_Bräuninger\_etal\_2020.dta}) are not
 capitalized while the state abbreviation in
 \texttt{link\_positions\_pwib} are.
 
@@ -1232,14 +1233,13 @@ Name of the party in PWIB position data.
 
 \newpage
 
-\hypertarget{link_legcap_appeldorn_fortunato}{%
-\subsection{\texorpdfstring{\texttt{link\_legcap\_appeldorn\_fortunato}}{link\_legcap\_appeldorn\_fortunato}}\label{link_legcap_appeldorn_fortunato}}
+\subsection{\texorpdfstring{\texttt{link\_legcap\_appeldorn\_fortunato}}{link\_legcap\_appeldorn\_fortunato}}\label{link_legcap_appeldorn_fortunato}
 
 \texttt{link\_legcap\_appeldorn\_fortunato} provides a link between
 \texttt{bundeslaendeR} data and data on Legislative Capacity in
 Germany's Parliaments (10.7910/DVN/BA8G7H) provided by
 \textcite{fortunatoReplicationDataLegislative2021}
-\parencite[for more details see][]{appeldornLegislativeCapacityGermany2022},
+\parencite[for more details see][]{appeldornLegislativeCapacityGermanys2022},
 consolidating minor differences in the spelling of state names and state
 abbreviations between the two datasets.
 
@@ -1268,8 +1268,7 @@ State name in Appeldorn and Fortunato's data.
 
 \newpage
 
-\hypertarget{link_integrated_state_election_surveys}{%
-\subsection{\texorpdfstring{\texttt{link\_integrated\_state\_election\_surveys}}{link\_integrated\_state\_election\_surveys}}\label{link_integrated_state_election_surveys}}
+\subsection{\texorpdfstring{\texttt{link\_integrated\_state\_election\_surveys}}{link\_integrated\_state\_election\_surveys}}\label{link_integrated_state_election_surveys}
 
 Dataset providing a link between ltw\_elections (or ltw\_combined) and
 party names in vote choice in the integrated dataset of state election

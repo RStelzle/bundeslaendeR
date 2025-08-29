@@ -343,6 +343,54 @@ test_that("Reihen LCGov identisch mit anzahl parteien je legper * anzahl govs je
 
 
 
+### count up govnumber
+
+
+test_that("sequential counting of government numbers in lcgov", {
+  expect_equal(
+    ltw_governments %>% 
+      select(state, state_gov_number) %>% 
+      distinct() %>% 
+      group_by(state) %>% 
+      mutate(
+        mingovno = min(state_gov_number),
+        maxgovno = max(state_gov_number),
+        indfstring = paste0(state_gov_number, collapse = ",")
+      ) %>% 
+      select(state, mingovno, maxgovno, indfstring) %>% 
+      distinct() %>% 
+      mutate(seqstring = paste0(mingovno:maxgovno, collapse = ",")) %>% 
+      ungroup() %>% 
+      mutate(test = indfstring == seqstring) %>% 
+      filter(test != TRUE) %>% 
+      nrow(), 0
+  )
+})
+
+
+
+test_that("sequential counting of government numbers in lccomb", {
+  expect_equal(
+    ltw_combined %>% 
+      select(state, state_gov_number) %>% 
+      distinct() %>% 
+      group_by(state) %>% 
+      mutate(
+        mingovno = min(state_gov_number),
+        maxgovno = max(state_gov_number),
+        indfstring = paste0(state_gov_number, collapse = ",")
+      ) %>% 
+      select(state, mingovno, maxgovno, indfstring) %>% 
+      distinct() %>% 
+      mutate(seqstring = paste0(mingovno:maxgovno, collapse = ",")) %>% 
+      ungroup() %>% 
+      mutate(test = indfstring == seqstring) %>% 
+      filter(test != TRUE) %>% 
+      nrow(), 0
+  )
+})
+
+
 
 
 

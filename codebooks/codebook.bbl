@@ -1,0 +1,1270 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{appeldornLegislativeCapacityGermanys2022}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=5dce3424e98e41b04b398feaeea0332e}{%
+           family={Appeldorn},
+           familyi={A\bibinitperiod},
+           given={Niels\bibnamedelima H.},
+           giveni={N\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3a9056c056dcebef64b6a4a83560103a}{%
+           family={Fortunato},
+           familyi={F\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{65d5efc5de23ddafd9d3df0eee77fa2a}
+      \strng{fullhash}{65d5efc5de23ddafd9d3df0eee77fa2a}
+      \strng{fullhashraw}{65d5efc5de23ddafd9d3df0eee77fa2a}
+      \strng{bibnamehash}{65d5efc5de23ddafd9d3df0eee77fa2a}
+      \strng{authorbibnamehash}{65d5efc5de23ddafd9d3df0eee77fa2a}
+      \strng{authornamehash}{65d5efc5de23ddafd9d3df0eee77fa2a}
+      \strng{authorfullhash}{65d5efc5de23ddafd9d3df0eee77fa2a}
+      \strng{authorfullhashraw}{65d5efc5de23ddafd9d3df0eee77fa2a}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0362-9805, 1939-9162}
+      \field{journaltitle}{Legislative Studies Quarterly}
+      \field{langid}{english}
+      \field{month}{5}
+      \field{number}{2}
+      \field{title}{Legislative {{Capacity}} in {{Germany}}'s {{Parliaments}}}
+      \field{urlday}{8}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
+      \field{volume}{47}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \field{pages}{309\bibrangedash 328}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1111/lsq.12338
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\56R9YIZ8\Appeldorn_Fortunato_2022_Legislative Capacity in Germany's Parliaments.pdf
+      \endverb
+    \endentry
+    \entry{benoitChallengesEstimatingPolicy2009}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=3c1ca3e512356959e202dae95044d122}{%
+           family={Benoit},
+           familyi={B\bibinitperiod},
+           given={Kenneth},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f2c91e45e037ffb129887a7eebf24a10}{%
+           family={Bräuninger},
+           familyi={B\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=50bacd5fd322552279deb652771fda1c}{%
+           family={Debus},
+           familyi={D\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a90d7a6f4dc1fba551d3261864fb7eba}
+      \strng{fullhash}{a90d7a6f4dc1fba551d3261864fb7eba}
+      \strng{fullhashraw}{a90d7a6f4dc1fba551d3261864fb7eba}
+      \strng{bibnamehash}{a90d7a6f4dc1fba551d3261864fb7eba}
+      \strng{authorbibnamehash}{a90d7a6f4dc1fba551d3261864fb7eba}
+      \strng{authornamehash}{a90d7a6f4dc1fba551d3261864fb7eba}
+      \strng{authorfullhash}{a90d7a6f4dc1fba551d3261864fb7eba}
+      \strng{authorfullhashraw}{a90d7a6f4dc1fba551d3261864fb7eba}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{0964-4008, 1743-8993}
+      \field{journaltitle}{German Politics}
+      \field{langid}{english}
+      \field{month}{9}
+      \field{number}{3}
+      \field{shorttitle}{Challenges for {{Estimating Policy Preferences}}}
+      \field{title}{Challenges for {{Estimating Policy Preferences}}: {{Announcing}} an {{Open Access Archive}} of {{Political Documents}}}
+      \field{urlday}{14}
+      \field{urlmonth}{10}
+      \field{urlyear}{2020}
+      \field{volume}{18}
+      \field{year}{2009}
+      \field{urldateera}{ce}
+      \field{pages}{441\bibrangedash 454}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1080/09644000903055856
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\5V5R5ZJZ\Benoit etal_2009_Challenges for Estimating Policy Preferences.pdf
+      \endverb
+    \endentry
+    \entry{brauningerPolidocnetCodebook2018}{misc}{}{}
+      \name{author}{4}{ul=3}{%
+        {{un=0,uniquepart=base,hash=f2c91e45e037ffb129887a7eebf24a10}{%
+           family={Bräuninger},
+           familyi={B\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=50bacd5fd322552279deb652771fda1c}{%
+           family={Debus},
+           familyi={D\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3c1ca3e512356959e202dae95044d122}{%
+           family={Benoit},
+           familyi={B\bibinitperiod},
+           given={Kenneth},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=16ce2d5b82c2e5af6fd772760d18b109}{%
+           family={Bernauer},
+           familyi={B\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5510b7e9cc1ecaa30c9a37a69b0f7d49}
+      \strng{fullhash}{53c58766304286d6ff3cff2072a1fe43}
+      \strng{fullhashraw}{53c58766304286d6ff3cff2072a1fe43}
+      \strng{bibnamehash}{53c58766304286d6ff3cff2072a1fe43}
+      \strng{authorbibnamehash}{53c58766304286d6ff3cff2072a1fe43}
+      \strng{authornamehash}{5510b7e9cc1ecaa30c9a37a69b0f7d49}
+      \strng{authorfullhash}{53c58766304286d6ff3cff2072a1fe43}
+      \strng{authorfullhashraw}{53c58766304286d6ff3cff2072a1fe43}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{langid}{english}
+      \field{shorttitle}{Polidoc.{{Net Codebook}}}
+      \field{title}{Polidoc.Net {{Codebook}}}
+      \field{urlday}{24}
+      \field{urlmonth}{8}
+      \field{urlyear}{2020}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb http://dx.doi.org/10.5281/zenodo.1067701
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\ZIGPIKLJ\Bräuninger et al. - 2017 - Polidoc.Net Codebook National And Regional Manife.pdf
+      \endverb
+    \endentry
+    \entry{braeuningerParteienwettbewerbDeutschenBundeslaendern2020}{book}{}{}
+      \name{author}{4}{ul=3}{%
+        {{un=0,uniquepart=base,hash=f2c91e45e037ffb129887a7eebf24a10}{%
+           family={Bräuninger},
+           familyi={B\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=50bacd5fd322552279deb652771fda1c}{%
+           family={Debus},
+           familyi={D\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=43b78e42eb0ef4c422a29f3c3b4e7a5a}{%
+           family={Müller},
+           familyi={M\bibinitperiod},
+           given={Jochen},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f5a34fc891a0488d1d260f2f0f435c0d}{%
+           family={Stecker},
+           familyi={S\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Wiesbaden}%
+      }
+      \list{publisher}{1}{%
+        {Springer Fachmedien Wiesbaden}%
+      }
+      \strng{namehash}{d7d527780d919f36e23e205579d47dc5}
+      \strng{fullhash}{654a73ec69a9bae151c66b45dcd92bf2}
+      \strng{fullhashraw}{654a73ec69a9bae151c66b45dcd92bf2}
+      \strng{bibnamehash}{654a73ec69a9bae151c66b45dcd92bf2}
+      \strng{authorbibnamehash}{654a73ec69a9bae151c66b45dcd92bf2}
+      \strng{authornamehash}{d7d527780d919f36e23e205579d47dc5}
+      \strng{authorfullhash}{654a73ec69a9bae151c66b45dcd92bf2}
+      \strng{authorfullhashraw}{654a73ec69a9bae151c66b45dcd92bf2}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-658-29221-8 978-3-658-29222-5}
+      \field{langid}{ngerman}
+      \field{title}{{Parteienwettbewerb in den deutschen Bundesländern}}
+      \field{urlday}{5}
+      \field{urlmonth}{7}
+      \field{urlyear}{2020}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1007/978-3-658-29222-5
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\2FT8MMDC\Bräuninger et al. - 2020 - Parteienwettbewerb in den deutschen Bundesländern.pdf
+      \endverb
+      \keyw{Pflichttext}
+    \endentry
+    \entry{deckerHandbuchDeutschenParteien2018}{book}{}{}
+      \name{editor}{2}{}{%
+        {{un=0,uniquepart=base,hash=b19fa14e4f3ded7d2b3a5e9d67687a51}{%
+           family={Decker},
+           familyi={D\bibinitperiod},
+           given={Frank},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=44d805469033829061cb2f23080973e5}{%
+           family={Neu},
+           familyi={N\bibinitperiod},
+           given={Viola},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Wiesbaden}%
+      }
+      \list{publisher}{1}{%
+        {Springer Fachmedien Wiesbaden}%
+      }
+      \strng{namehash}{0114ac87b74f319299986b4fbcdddf04}
+      \strng{fullhash}{0114ac87b74f319299986b4fbcdddf04}
+      \strng{fullhashraw}{0114ac87b74f319299986b4fbcdddf04}
+      \strng{bibnamehash}{0114ac87b74f319299986b4fbcdddf04}
+      \strng{editorbibnamehash}{0114ac87b74f319299986b4fbcdddf04}
+      \strng{editornamehash}{0114ac87b74f319299986b4fbcdddf04}
+      \strng{editorfullhash}{0114ac87b74f319299986b4fbcdddf04}
+      \strng{editorfullhashraw}{0114ac87b74f319299986b4fbcdddf04}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{editor}
+      \field{labeltitlesource}{title}
+      \field{edition}{3. Aufl}
+      \field{isbn}{978-3-658-17994-6 978-3-658-17995-3}
+      \field{langid}{ngerman}
+      \field{title}{{Handbuch der deutschen Parteien}}
+      \field{urlday}{14}
+      \field{urlmonth}{6}
+      \field{urlyear}{2021}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1007/978-3-658-17995-3
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\M8R33Y78\Decker und Neu - 2018 - Handbuch der deutschen Parteien.pdf
+      \endverb
+    \endentry
+    \entry{doringPartyFactsDatabase2019}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=290d978c80dfa58f724e22e98f7184a6}{%
+           family={Döring},
+           familyi={D\bibinitperiod},
+           given={Holger},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=654d8e36b417486693c051bdd3925a4f}{%
+           family={Regel},
+           familyi={R\bibinitperiod},
+           given={Sven},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5d6bc1688542cd6b800a807856ff6832}
+      \strng{fullhash}{5d6bc1688542cd6b800a807856ff6832}
+      \strng{fullhashraw}{5d6bc1688542cd6b800a807856ff6832}
+      \strng{bibnamehash}{5d6bc1688542cd6b800a807856ff6832}
+      \strng{authorbibnamehash}{5d6bc1688542cd6b800a807856ff6832}
+      \strng{authornamehash}{5d6bc1688542cd6b800a807856ff6832}
+      \strng{authorfullhash}{5d6bc1688542cd6b800a807856ff6832}
+      \strng{authorfullhashraw}{5d6bc1688542cd6b800a807856ff6832}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{1354-0688, 1460-3683}
+      \field{journaltitle}{Party Politics}
+      \field{langid}{english}
+      \field{month}{3}
+      \field{number}{2}
+      \field{shorttitle}{Party {{Facts}}}
+      \field{title}{Party {{Facts}}: {{A}} Database of Political Parties Worldwide}
+      \field{urlday}{22}
+      \field{urlmonth}{11}
+      \field{urlyear}{2019}
+      \field{volume}{25}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \field{pages}{97\bibrangedash 109}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1177/1354068818820671
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\ZFH49EET\Döring_Regel_2019_Party Facts.pdf
+      \endverb
+    \endentry
+    \entry{fortunatoReplicationDataLegislative2021}{misc}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=3a9056c056dcebef64b6a4a83560103a}{%
+           family={Fortunato},
+           familyi={F\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5dce3424e98e41b04b398feaeea0332e}{%
+           family={Appeldorn},
+           familyi={A\bibinitperiod},
+           given={Niels\bibnamedelima H.},
+           giveni={N\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Harvard Dataverse}%
+      }
+      \strng{namehash}{eb1c2a4aff2f367b9fcbedf031ad047c}
+      \strng{fullhash}{eb1c2a4aff2f367b9fcbedf031ad047c}
+      \strng{fullhashraw}{eb1c2a4aff2f367b9fcbedf031ad047c}
+      \strng{bibnamehash}{eb1c2a4aff2f367b9fcbedf031ad047c}
+      \strng{authorbibnamehash}{eb1c2a4aff2f367b9fcbedf031ad047c}
+      \strng{authornamehash}{eb1c2a4aff2f367b9fcbedf031ad047c}
+      \strng{authorfullhash}{eb1c2a4aff2f367b9fcbedf031ad047c}
+      \strng{authorfullhashraw}{eb1c2a4aff2f367b9fcbedf031ad047c}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{This contains the raw and processed data necessary to recreate the tables and figures in the article or estimate new capacity scales for use in your research.}
+      \field{shorttitle}{Replication {{Data}} For}
+      \field{title}{Replication {{Data}} for: {{Legislative Capacity}} in {{Germany}}'s {{Parliaments}}}
+      \field{urlday}{8}
+      \field{urlmonth}{10}
+      \field{urlyear}{2022}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.7910/DVN/BA8G7H
+      \endverb
+    \endentry
+    \entry{grossDoesEURegional2018}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=a965c87f503edcf9957b416ce6d03919}{%
+           family={Gross},
+           familyi={G\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=50bacd5fd322552279deb652771fda1c}{%
+           family={Debus},
+           familyi={D\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d36d2bbc68cca677eb24ea58adb4c614}
+      \strng{fullhash}{d36d2bbc68cca677eb24ea58adb4c614}
+      \strng{fullhashraw}{d36d2bbc68cca677eb24ea58adb4c614}
+      \strng{bibnamehash}{d36d2bbc68cca677eb24ea58adb4c614}
+      \strng{authorbibnamehash}{d36d2bbc68cca677eb24ea58adb4c614}
+      \strng{authornamehash}{d36d2bbc68cca677eb24ea58adb4c614}
+      \strng{authorfullhash}{d36d2bbc68cca677eb24ea58adb4c614}
+      \strng{authorfullhashraw}{d36d2bbc68cca677eb24ea58adb4c614}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{How does EU funding to European regions affect sub-national parties' support for European integration? This paper aims at analysing whether the EU regional development policy contributes to setting up support for EU institutions and European integration and thus strengthens the whole `European idea' among political parties. To answer this research question, the article analyses election manifestos of parties acting on the regional level in Germany, the Netherlands, Spain and the UK for two EU programming periods: 2007-2013 and 2014-2020. The results show that sub-national parties are more supportive of European integration if regions receive more EU funding and if the parties represent regions that are dependent on EU funding.}
+      \field{issn}{0140-2382, 1743-9655}
+      \field{journaltitle}{West European Politics}
+      \field{langid}{english}
+      \field{month}{5}
+      \field{number}{3}
+      \field{title}{Does {{EU}} Regional Policy Increase Parties' Support for {{European}} Integration?}
+      \field{urlday}{14}
+      \field{urlmonth}{10}
+      \field{urlyear}{2020}
+      \field{volume}{41}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \field{pages}{594\bibrangedash 614}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1080/01402382.2017.1395249
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\XQUKT662\Gross und Debus - 2018 - Does EU regional policy increase parties’ support .pdf
+      \endverb
+    \endentry
+    \entry{heinsohnInstitutionalDeterminantsLegislative2014}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=461fc3f30abd7e939f679369d469202b}{%
+           family={Heinsohn},
+           familyi={H\bibinitperiod},
+           given={Till},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{461fc3f30abd7e939f679369d469202b}
+      \strng{fullhash}{461fc3f30abd7e939f679369d469202b}
+      \strng{fullhashraw}{461fc3f30abd7e939f679369d469202b}
+      \strng{bibnamehash}{461fc3f30abd7e939f679369d469202b}
+      \strng{authorbibnamehash}{461fc3f30abd7e939f679369d469202b}
+      \strng{authornamehash}{461fc3f30abd7e939f679369d469202b}
+      \strng{authorfullhash}{461fc3f30abd7e939f679369d469202b}
+      \strng{authorfullhashraw}{461fc3f30abd7e939f679369d469202b}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{1357-2334, 1743-9337}
+      \field{journaltitle}{The Journal of Legislative Studies}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{number}{4}
+      \field{shorttitle}{Institutional {{Determinants}} of {{Legislative Turnover}} in the {{German State Parliaments}}}
+      \field{title}{Institutional {{Determinants}} of {{Legislative Turnover}} in the {{German State Parliaments}}: 1947--2012}
+      \field{urlday}{28}
+      \field{urlmonth}{4}
+      \field{urlyear}{2023}
+      \field{volume}{20}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \field{pages}{473\bibrangedash 494}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1080/13572334.2014.939433
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\3U85JGXY\Heinsohn - 2014 - Institutional Determinants of Legislative Turnover.pdf
+      \endverb
+    \endentry
+    \entry{jollyChapelHillExpert2022}{article}{}{}
+      \name{author}{8}{}{%
+        {{un=0,uniquepart=base,hash=165b8078581ac67ec8b8d4009fc376a7}{%
+           family={Jolly},
+           familyi={J\bibinitperiod},
+           given={Seth},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dd7645e3441eca9a8ffc6c4e5cdbf089}{%
+           family={Bakker},
+           familyi={B\bibinitperiod},
+           given={Ryan},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e4ad2933e169e05aaed4d368fd2ea894}{%
+           family={Hooghe},
+           familyi={H\bibinitperiod},
+           given={Liesbet},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=be49dffe23b3d645771d1d9a873a3534}{%
+           family={Marks},
+           familyi={M\bibinitperiod},
+           given={Gary},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7752a7c1f4be13e371bd98fbe7c5f667}{%
+           family={Polk},
+           familyi={P\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=00269ca24e78554e21746afd6c2ca9ed}{%
+           family={Rovny},
+           familyi={R\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b3b2ec21a3f54c30893d5a5017d75c5c}{%
+           family={Steenbergen},
+           familyi={S\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d87a7008a48361127e12ccde81ffbf40}{%
+           family={Vachudova},
+           familyi={V\bibinitperiod},
+           given={Milada\bibnamedelima Anna},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b23fd41643dbcb125bc2992e3f0254e0}
+      \strng{fullhash}{5f4d4bf99788dddf617a37f749ee9cc8}
+      \strng{fullhashraw}{5f4d4bf99788dddf617a37f749ee9cc8}
+      \strng{bibnamehash}{5f4d4bf99788dddf617a37f749ee9cc8}
+      \strng{authorbibnamehash}{5f4d4bf99788dddf617a37f749ee9cc8}
+      \strng{authornamehash}{b23fd41643dbcb125bc2992e3f0254e0}
+      \strng{authorfullhash}{5f4d4bf99788dddf617a37f749ee9cc8}
+      \strng{authorfullhashraw}{5f4d4bf99788dddf617a37f749ee9cc8}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Research on party competition and political representation relies on valid cross-national measures of party po\- sitions. This research note reports on the 1999--2019 Chapel Hill expert survey (CHES), which contains measures of national party positioning on European integration, ideology, and several European Union (EU) and non-EU policies for six waves of the survey, from 1999 to 2019. The trend file provides party position measures for all 28 EU countries and 1196 party-year observations. In this article, we analyze the evolving party positions on Eu\- ropean integration from 1999 to 2019, with a particular focus on how EU positions are related to economic leftright and the Green/Alternative/Libertarian-Traditional/Authoritarian/Nationalist dimension (GAL-TAN). The dataset is publicly available on the CHES website.}
+      \field{issn}{02613794}
+      \field{journaltitle}{Electoral Studies}
+      \field{langid}{english}
+      \field{month}{2}
+      \field{title}{Chapel {{Hill Expert Survey}} Trend File, 1999--2019}
+      \field{urlday}{17}
+      \field{urlmonth}{11}
+      \field{urlyear}{2021}
+      \field{volume}{75}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1016/j.electstud.2021.102420
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\VTSKL5TG\Jolly et al. - 2022 - Chapel Hill Expert Survey trend file, 1999–2019.pdf
+      \endverb
+    \endentry
+    \entry{karpovMeasurementDisproportionalityProportional2008}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=eecd7cc39c63a1d3d3adfaaf7e7e98d6}{%
+           family={Karpov},
+           familyi={K\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
+      \strng{fullhash}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
+      \strng{fullhashraw}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
+      \strng{bibnamehash}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
+      \strng{authorbibnamehash}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
+      \strng{authornamehash}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
+      \strng{authorfullhash}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
+      \strng{authorfullhashraw}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Nineteen indices characterizing the disproportionality in a parliament are studied. A classification of these indices is suggested, and computational experiments and an axiomatic approach are used to study their properties. Effects of the number of parties and the degree of disproportionality are considered. The indices are evaluated for parliamentary elections (1995--2007) in Russia.}
+      \field{issn}{08957177}
+      \field{journaltitle}{Mathematical and Computer Modelling}
+      \field{langid}{english}
+      \field{month}{11}
+      \field{number}{9-10}
+      \field{title}{Measurement of Disproportionality in Proportional Representation Systems}
+      \field{urlday}{14}
+      \field{urlmonth}{5}
+      \field{urlyear}{2022}
+      \field{volume}{48}
+      \field{year}{2008}
+      \field{urldateera}{ce}
+      \field{pages}{1421\bibrangedash 1438}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1016/j.mcm.2008.05.027
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\EU5I9MVC\Karpov - 2008 - Measurement of disproportionality in proportional .pdf
+      \endverb
+    \endentry
+    \entry{krausePPEGPoliticalParties2024a}{misc}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=e62a938d82bc78921687fa6e34c9c797}{%
+           family={Krause},
+           familyi={K\bibinitperiod},
+           given={Werner},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=063a8f86e3733a6b99027c94d74f0e7d}{%
+           family={Stelzle},
+           familyi={S\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b446c5f1be1d346397e37bbace0f1fcf}{%
+           family={{WZB Berlin}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Harvard Dataverse}%
+      }
+      \strng{namehash}{6baf01915075f795682f956b3d4bf5a6}
+      \strng{fullhash}{6baf01915075f795682f956b3d4bf5a6}
+      \strng{fullhashraw}{6baf01915075f795682f956b3d4bf5a6}
+      \strng{bibnamehash}{6baf01915075f795682f956b3d4bf5a6}
+      \strng{authorbibnamehash}{6baf01915075f795682f956b3d4bf5a6}
+      \strng{authornamehash}{6baf01915075f795682f956b3d4bf5a6}
+      \strng{authorfullhash}{6baf01915075f795682f956b3d4bf5a6}
+      \strng{authorfullhashraw}{6baf01915075f795682f956b3d4bf5a6}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The PPEG Database contains information on political parties, presidents, elections, and governments around the world. Version 2024v1 covers 73 countries in Africa, the Americas, Asia, Australia, and Europe between 1945 and 2023 including data on 3\,261 political parties, 1\,060 parliamentary elections, 380 presidential elections, and 1\,961 cabinets. \&lt;br\&gt; \&lt;br\&gt; See https://ppeg.wzb.eu/ for additional information. \&lt;br\&gt; \&lt;br\&gt; Current collaborators: Werner Krause (since 2011, University of Potsdam) and Robert Stelzle (since 2020, WZB Berlin). \&lt;br\&gt; \&lt;br\&gt; Past contributors: Sven Regel (2009-2021), Klara Podkowik (2019-2020), Markus Konrad (2017, 2020), Clara Montero (2017-2019), Alexandra Keiner (2016-2019), Dag Tanneberg (2008-2011), Sandra Brunsbach (2005-2007), Felix Schwarzer (2003-2005), Alexander Belussov (2000-2003), Kai-Uwe Schnapp (1999-2002). \&lt;br\&gt; \&lt;br\&gt; Data collection initiated by Edeltraud Roller and Bernhard We{ß}els (1999). \&lt;br\&gt; \&lt;br\&gt; Supported by the WZB Berlin Social Science Center.}
+      \field{title}{{{PPEG}} - {{Political Parties}}, {{Presidents}}, {{Elections}} and {{Governments}}, {{Version}} 2024v1}
+      \field{urlday}{27}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \field{pages}{3754195\bibrangessep 5176526\bibrangessep 1027760\bibrangessep 2015560\bibrangessep 840665\bibrangessep 6945400\bibrangessep 8512654\bibrangessep 1663547\bibrangessep 307242\bibrangessep 273726\bibrangessep 25285\bibrangessep 242712\bibrangessep 260152}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.7910/DVN/K5AJAW
+      \endverb
+      \keyw{Political Parties Presidents Elections Governments Cabinets,Social Sciences}
+    \endentry
+    \entry{laaksoEffectiveNumberParties1979}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=87a216ecf840e0a6770713c930042cca}{%
+           family={Laakso},
+           familyi={L\bibinitperiod},
+           given={Markku},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9bef3d0ab1fa8537b3f391990a8f01f5}{%
+           family={Taagepera},
+           familyi={T\bibinitperiod},
+           given={Rein},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{edbac56149f99c678feb76ac395c2eca}
+      \strng{fullhash}{edbac56149f99c678feb76ac395c2eca}
+      \strng{fullhashraw}{edbac56149f99c678feb76ac395c2eca}
+      \strng{bibnamehash}{edbac56149f99c678feb76ac395c2eca}
+      \strng{authorbibnamehash}{edbac56149f99c678feb76ac395c2eca}
+      \strng{authornamehash}{edbac56149f99c678feb76ac395c2eca}
+      \strng{authorfullhash}{edbac56149f99c678feb76ac395c2eca}
+      \strng{authorfullhashraw}{edbac56149f99c678feb76ac395c2eca}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{journaltitle}{Comparative Political Studies}
+      \field{langid}{english}
+      \field{month}{4}
+      \field{number}{1}
+      \field{shorttitle}{``{{Effective}}'' {{Number}} of {{Parties}}}
+      \field{title}{``{{Effective}}'' {{Number}} of {{Parties}}: {{A Measure}} with {{Application}} to {{West Europe}}}
+      \field{urlday}{3}
+      \field{urlmonth}{12}
+      \field{urlyear}{2018}
+      \field{volume}{12}
+      \field{year}{1979}
+      \field{urldateera}{ce}
+      \field{pages}{3\bibrangedash 27}
+      \range{pages}{25}
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\7BZUDMNY\Laakso and Taagepera - 1979 - “Effective” Number of Parties A Measure with Appl.pdf
+      \endverb
+      \keyw{Methode,Parteiensysteme,Wahlforschung}
+    \endentry
+    \entry{linhartProportionaleMinisterienaufteilungDeutschen2008}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=9c40e41cd751cb4a8ad871af53abddc9}{%
+           family={Linhart},
+           familyi={L\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=93c75fad3fe68031e7816f865deaf40d}{%
+           family={Pappi},
+           familyi={P\bibinitperiod},
+           given={Franz\bibnamedelima Urban},
+           giveni={F\bibinitperiod\bibinitdelim U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fbd58ac9a2b105e018230f9434b057af}{%
+           family={Schmitt},
+           familyi={S\bibinitperiod},
+           given={Ralf},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3c42100b1980fee2f4f50e804b12956e}
+      \strng{fullhash}{3c42100b1980fee2f4f50e804b12956e}
+      \strng{fullhashraw}{3c42100b1980fee2f4f50e804b12956e}
+      \strng{bibnamehash}{3c42100b1980fee2f4f50e804b12956e}
+      \strng{authorbibnamehash}{3c42100b1980fee2f4f50e804b12956e}
+      \strng{authornamehash}{3c42100b1980fee2f4f50e804b12956e}
+      \strng{authorfullhash}{3c42100b1980fee2f4f50e804b12956e}
+      \strng{authorfullhashraw}{3c42100b1980fee2f4f50e804b12956e}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{0032-3470, 1862-2860}
+      \field{journaltitle}{Politische Vierteljahresschrift}
+      \field{langid}{ngerman}
+      \field{month}{3}
+      \field{number}{1}
+      \field{shorttitle}{{Die proportionale Ministerienaufteilung in deutschen Koalitionsregierungen}}
+      \field{title}{{Die proportionale Ministerienaufteilung in deutschen Koalitionsregierungen: Akzeptierte Norm oder das Ausnutzen strategischer Vorteile?}}
+      \field{urlday}{26}
+      \field{urlmonth}{5}
+      \field{urlyear}{2021}
+      \field{volume}{49}
+      \field{year}{2008}
+      \field{urldateera}{ce}
+      \field{pages}{46\bibrangedash 67}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1007/s11615-008-0087-0
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\JP57HLP5\Linhart et al. - 2008 - Die proportionale Ministerienaufteilung in deutsch.pdf
+      \endverb
+    \endentry
+    \entry{loosemoreTheoreticalLimitsMaximum1971}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=a65ec7b9cf1d70df2ff6e70cd2eb9a1d}{%
+           family={Loosemore},
+           familyi={L\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5e76d4f1ed9554a5f9aaec30bdd74230}{%
+           family={Hanby},
+           familyi={H\bibinitperiod},
+           given={Victor\bibnamedelima J.},
+           giveni={V\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a5a8149819838ea11e18cd26fddf472e}
+      \strng{fullhash}{a5a8149819838ea11e18cd26fddf472e}
+      \strng{fullhashraw}{a5a8149819838ea11e18cd26fddf472e}
+      \strng{bibnamehash}{a5a8149819838ea11e18cd26fddf472e}
+      \strng{authorbibnamehash}{a5a8149819838ea11e18cd26fddf472e}
+      \strng{authornamehash}{a5a8149819838ea11e18cd26fddf472e}
+      \strng{authorfullhash}{a5a8149819838ea11e18cd26fddf472e}
+      \strng{authorfullhashraw}{a5a8149819838ea11e18cd26fddf472e}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The role of the electoral system in the political process is one which has long concerned political scientists. Traditionally, the emphasis has been on the `mechanical' effects that such systems have or are assumed to have, on such features as the number and strength of parties in a given political system. More often the debate became of a polemical nature, fought on the respective merits of one or other of the major electoral systems. The culmination of all this effort was that, until recently, research in this area of the discipline consisted almost entirely of a body of material, basically unsystematic in scope and essentially descriptive by nature. More contemporary research has concentrated on discovering the precise nature of the empirical relationship between electoral systems and party systems, with some degree of success. Our concern in this paper however, is not to contribute to the knowledge of the `mechanical' effects of electoral systems but, in a related fashion, to examine some possible theoretical properties that may have an equal importance for democratic theory.}
+      \field{issn}{0007-1234, 1469-2112}
+      \field{journaltitle}{British Journal of Political Science}
+      \field{langid}{english}
+      \field{number}{4}
+      \field{shorttitle}{The {{Theoretical Limits}} of {{Maximum Distortion}}}
+      \field{title}{The {{Theoretical Limits}} of {{Maximum Distortion}}: {{Some Analytic Expressions}} for {{Electoral Systems}}}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2022}
+      \field{volume}{1}
+      \field{year}{1971}
+      \field{urldateera}{ce}
+      \field{pages}{467\bibrangedash 477}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1017/S000712340000925X
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\5B2YMINE\Loosemore und Hanby - 1971 - The Theoretical Limits of Maximum Distortion Some.pdf
+      \endverb
+    \endentry
+    \entry{mackieInternationalAlmanacElectoral1991}{book}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=c2ca91290d66f9b25b34991b82f148f7}{%
+           family={Mackie},
+           familyi={M\bibinitperiod},
+           given={Thomas\bibnamedelima T},
+           giveni={T\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=584d69b3738bb11a922ffbe60610654d}{%
+           family={Rose},
+           familyi={R\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {London}%
+      }
+      \list{publisher}{1}{%
+        {Palgrave Macmillan Limited}%
+      }
+      \strng{namehash}{65321bebc46195867eb1c890995a1647}
+      \strng{fullhash}{65321bebc46195867eb1c890995a1647}
+      \strng{fullhashraw}{65321bebc46195867eb1c890995a1647}
+      \strng{bibnamehash}{65321bebc46195867eb1c890995a1647}
+      \strng{authorbibnamehash}{65321bebc46195867eb1c890995a1647}
+      \strng{authornamehash}{65321bebc46195867eb1c890995a1647}
+      \strng{authorfullhash}{65321bebc46195867eb1c890995a1647}
+      \strng{authorfullhashraw}{65321bebc46195867eb1c890995a1647}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{annotation}{OCLC: 1085175753}
+      \field{edition}{3}
+      \field{isbn}{978-1-349-09851-4}
+      \field{langid}{english}
+      \field{title}{The {{International Almanac}} of {{Electoral History}}}
+      \field{urlday}{27}
+      \field{urlmonth}{1}
+      \field{urlyear}{2022}
+      \field{year}{1991}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\R5EHNTT2\Mackie etal_2016_The International Almanac of Electoral History.pdf
+      \endverb
+    \endentry
+    \entry{niedermayerAnalyseParteiensystemen2013}{incollection}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2a584c618a6ecca38012cceff1c93c87}{%
+           family={Niedermayer},
+           familyi={N\bibinitperiod},
+           given={Oskar},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=2a584c618a6ecca38012cceff1c93c87}{%
+           family={Niedermayer},
+           familyi={N\bibinitperiod},
+           given={Oskar},
+           giveni={O\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Wiesbaden}%
+      }
+      \list{publisher}{1}{%
+        {Springer Fachmedien Wiesbaden}%
+      }
+      \strng{namehash}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{fullhash}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{fullhashraw}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{bibnamehash}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{authorbibnamehash}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{authornamehash}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{authorfullhash}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{authorfullhashraw}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{editorbibnamehash}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{editornamehash}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{editorfullhash}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{editorfullhashraw}{2a584c618a6ecca38012cceff1c93c87}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{Handbuch Parteienforschung}}
+      \field{isbn}{978-3-531-17698-7 978-3-531-18932-1}
+      \field{langid}{ngerman}
+      \field{title}{{Die Analyse von Parteiensystemen}}
+      \field{urlday}{14}
+      \field{urlmonth}{5}
+      \field{urlyear}{2022}
+      \field{year}{2013}
+      \field{urldateera}{ce}
+      \field{pages}{83\bibrangedash 117}
+      \range{pages}{35}
+      \verb{doi}
+      \verb 10.1007/978-3-531-18932-1_3
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\68WZLYKS\Niedermayer - 2013 - Handbuch Parteienforschung.pdf
+      \endverb
+    \endentry
+    \entry{pappiPartyElectionProgrammes2009}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=93c75fad3fe68031e7816f865deaf40d}{%
+           family={Pappi},
+           familyi={P\bibinitperiod},
+           given={Franz\bibnamedelima Urban},
+           giveni={F\bibinitperiod\bibinitdelim U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0b03fb621029f73643ecca026a80693b}{%
+           family={Seher},
+           familyi={S\bibinitperiod},
+           given={Nicole\bibnamedelima Michaela},
+           giveni={N\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{fullhash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{fullhashraw}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{bibnamehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{authorbibnamehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{authornamehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{authorfullhash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{authorfullhashraw}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \field{extraname}{1}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{0964-4008, 1743-8993}
+      \field{journaltitle}{German Politics}
+      \field{langid}{english}
+      \field{month}{9}
+      \field{number}{3}
+      \field{shorttitle}{Party {{Election Programmes}}, {{Signalling Policies}} and {{Salience}} of {{Specific Policy Domains}}}
+      \field{title}{Party {{Election Programmes}}, {{Signalling Policies}} and {{Salience}} of {{Specific Policy Domains}}: {{The German Parties}} from 1990 to 2005}
+      \field{urlday}{14}
+      \field{urlmonth}{10}
+      \field{urlyear}{2020}
+      \field{volume}{18}
+      \field{year}{2009}
+      \field{urldateera}{ce}
+      \field{pages}{403\bibrangedash 425}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1080/09644000903055831
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\ZE8CKIQU\Pappi und Seher - 2009 - Party Election Programmes, Signalling Policies and.pdf
+      \endverb
+    \endentry
+    \entry{pappiPolitikpositionenDeutschenLandtagsparteien2014}{incollection}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=93c75fad3fe68031e7816f865deaf40d}{%
+           family={Pappi},
+           familyi={P\bibinitperiod},
+           given={Franz\bibnamedelima Urban},
+           giveni={F\bibinitperiod\bibinitdelim U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0b03fb621029f73643ecca026a80693b}{%
+           family={Seher},
+           familyi={S\bibinitperiod},
+           given={Nicole\bibnamedelima Michaela},
+           giveni={N\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=9c40e41cd751cb4a8ad871af53abddc9}{%
+           family={Linhart},
+           familyi={L\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=7face3e0af167ca1eeb2d2a18395dcfd}{%
+           family={Kittel},
+           familyi={K\bibinitperiod},
+           given={Bernhard},
+           giveni={B\bibinitperiod}}}%
+        {{hash=911a9fb3fa09686b7bc2aa76d7680f10}{%
+           family={Bächtiger},
+           familyi={B\bibinitperiod},
+           given={André},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Wiesbaden}%
+      }
+      \list{publisher}{1}{%
+        {Springer VS}%
+      }
+      \strng{namehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{fullhash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{fullhashraw}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{bibnamehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{authorbibnamehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{authornamehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{authorfullhash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{authorfullhashraw}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{editorbibnamehash}{ddbb1dc6c95785a514bf0c771e0f40cb}
+      \strng{editornamehash}{ddbb1dc6c95785a514bf0c771e0f40cb}
+      \strng{editorfullhash}{ddbb1dc6c95785a514bf0c771e0f40cb}
+      \strng{editorfullhashraw}{ddbb1dc6c95785a514bf0c771e0f40cb}
+      \field{extraname}{2}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{Jahrbuch für Handlungs- und Entscheidungstheorie. Räumliche Modelle der Politik.}}
+      \field{isbn}{978-3-658-05007-8 978-3-658-05008-5}
+      \field{langid}{ngerman}
+      \field{title}{{Die Politikpositionen der deutschen Landtagsparteien und ihr Einfluss auf die Koalitionsbildung}}
+      \field{urlday}{14}
+      \field{urlmonth}{10}
+      \field{urlyear}{2020}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \field{pages}{171\bibrangedash 205}
+      \range{pages}{35}
+      \verb{doi}
+      \verb 10.1007/978-3-658-05008-5_6
+      \endverb
+    \endentry
+    \entry{pedersenDynamicsEuropeanParty1979}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=e5edf9de130f6471a7c48bffdc110bbe}{%
+           family={Pedersen},
+           familyi={P\bibinitperiod},
+           given={Mogens\bibnamedelima N.},
+           giveni={M\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e5edf9de130f6471a7c48bffdc110bbe}
+      \strng{fullhash}{e5edf9de130f6471a7c48bffdc110bbe}
+      \strng{fullhashraw}{e5edf9de130f6471a7c48bffdc110bbe}
+      \strng{bibnamehash}{e5edf9de130f6471a7c48bffdc110bbe}
+      \strng{authorbibnamehash}{e5edf9de130f6471a7c48bffdc110bbe}
+      \strng{authornamehash}{e5edf9de130f6471a7c48bffdc110bbe}
+      \strng{authorfullhash}{e5edf9de130f6471a7c48bffdc110bbe}
+      \strng{authorfullhashraw}{e5edf9de130f6471a7c48bffdc110bbe}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{0304-4130, 1475-6765}
+      \field{journaltitle}{European Journal of Political Research}
+      \field{langid}{english}
+      \field{month}{3}
+      \field{number}{1}
+      \field{shorttitle}{{{THE DYNAMICS OF EUROPEAN PARTY SYSTEMS}}}
+      \field{title}{The {{Dynamics}} of {{European Party Systems}}: {{Changing Patterns}} of {{Electoral Volatility}}}
+      \field{urlday}{14}
+      \field{urlmonth}{5}
+      \field{urlyear}{2022}
+      \field{volume}{7}
+      \field{year}{1979}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 26}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1111/j.1475-6765.1979.tb01267.x
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\7JHFH8EL\Pedersen - 1979 - THE DYNAMICS OF EUROPEAN PARTY SYSTEMS CHANGING P.pdf
+      \endverb
+    \endentry
+    \entry{raeNoteFractionalizationEuropean1968}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2fce812fb6ac351ba24302a7a3420fca}{%
+           family={Rae},
+           familyi={R\bibinitperiod},
+           given={Douglas\bibnamedelima W.},
+           giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{fullhash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{fullhashraw}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{bibnamehash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{authorbibnamehash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{authornamehash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{authorfullhash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{authorfullhashraw}{2fce812fb6ac351ba24302a7a3420fca}
+      \field{extraname}{1}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0010-4140, 1552-3829}
+      \field{journaltitle}{Comparative Political Studies}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{number}{3}
+      \field{title}{A {{Note}} on the {{Fractionalization}} of {{Some European Party Systems}}}
+      \field{urlday}{14}
+      \field{urlmonth}{5}
+      \field{urlyear}{2022}
+      \field{volume}{1}
+      \field{year}{1968}
+      \field{urldateera}{ce}
+      \field{pages}{413\bibrangedash 418}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1177/001041406800100305
+      \endverb
+      \verb{file}
+      \verb C:\Users\au785183\Zotero\storage\RPHJA5RA\Rae - 1968 - A Note on the Fractionalization of Some European P.pdf
+      \endverb
+    \endentry
+    \entry{raePoliticalConsequencesElectoral1971}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2fce812fb6ac351ba24302a7a3420fca}{%
+           family={Rae},
+           familyi={R\bibinitperiod},
+           given={Douglas\bibnamedelima W.},
+           giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {New Haven}%
+      }
+      \list{publisher}{1}{%
+        {Yale University Press}%
+      }
+      \strng{namehash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{fullhash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{fullhashraw}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{bibnamehash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{authorbibnamehash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{authornamehash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{authorfullhash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{authorfullhashraw}{2fce812fb6ac351ba24302a7a3420fca}
+      \field{extraname}{2}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Rev. ed.}
+      \field{isbn}{978-0-300-01517-1 978-0-300-01518-8}
+      \field{title}{The Political Consequences of Electoral Laws}
+      \field{year}{1971}
+    \endentry
+    \entry{scheuchGermanFederalState2015}{misc}{}{}
+      \name{author}{9}{}{%
+        {{un=0,uniquepart=base,hash=f78393fa5c57e778d6c6764f4525b552}{%
+           family={Scheuch},
+           familyi={S\bibinitperiod},
+           given={Erwin\bibnamedelima K.},
+           giveni={E\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=619475b02bd261073d1bb8660fcafc04}{%
+           family={Wildenmann},
+           familyi={W\bibinitperiod},
+           given={Rudolf},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0105a91b8de98d3de16291982450a60d}{%
+           family={Baumert},
+           familyi={B\bibinitperiod},
+           given={Gerhard},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cc7c4d8181e3c57da25ab299b0616182}{%
+           family={Klingemann},
+           familyi={K\bibinitperiod},
+           given={Hans-Dieter},
+           giveni={H\bibinithyphendelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b1564dc31e8207c8ea10fcf31464f389}{%
+           family={Kaase},
+           familyi={K\bibinitperiod},
+           given={Max},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=073890e6da468c2d3e37966d06306bb6}{%
+           family={Adrian},
+           familyi={A\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5b0e972ffc63b08a2445714a05c612f7}{%
+           family={Berger},
+           familyi={B\bibinitperiod},
+           given={Manfred},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6364bb911b56a549ed166648b011c87f}{%
+           family={INFRATEST},
+           familyi={I\bibinitperiod},
+           given={München},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4a4a0f2fce7940c265365a7b8d8c4880}{%
+           family={FORSA},
+           familyi={F\bibinitperiod},
+           given={Berlin},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {GESIS Data Archive}%
+      }
+      \strng{namehash}{e2a56621cb4262469d65bdda415af41e}
+      \strng{fullhash}{40417aa30a0254637cb61f7bff94e9d9}
+      \strng{fullhashraw}{40417aa30a0254637cb61f7bff94e9d9}
+      \strng{bibnamehash}{40417aa30a0254637cb61f7bff94e9d9}
+      \strng{authorbibnamehash}{40417aa30a0254637cb61f7bff94e9d9}
+      \strng{authornamehash}{e2a56621cb4262469d65bdda415af41e}
+      \strng{authorfullhash}{40417aa30a0254637cb61f7bff94e9d9}
+      \strng{authorfullhashraw}{40417aa30a0254637cb61f7bff94e9d9}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Kumulierter Datensatz der Studien zu den Landtagswahlen,Bürgerschaftswahlen und den Wahlen zum Abgeordnetenhaus inverschiedenen Bundesländern von 1962 bis 2004. Themen: Aufgelistet sind alle Variablen, die im kumulierten Datensatzenthalten sind. Das bedeutet, dass nicht alle Themen zu jedem Zeitpunktund in jedem Bundesland erhoben wurden. Eigene Wahlbeteiligung an der kommenden Landtagswahl undBundestagswahl (Sonntagsfrage); Wahlverhalten bei der letzten sowie beider nächsten Bundestagswahl; Parteiwahl bei der letzten sowie bei dernächsten Landtagswahl; Kandidatenwahl bei der nächsten Landtagswahl;wichtigste Probleme in Deutschland; Sympathie-Skalometer für CDU, SPD,FDP, Grüne, PDS, Republikaner und NPD auf Bundesebene und aufLandesebene; Einfluss von Landtagswahlen auf die Bundesebene;Sympathie-Skalometer für die Politiker Manfred Brunner, Ernst Albrecht,Alfred Dregger, Franz Josef Strauss, Walter Leissler Kiep, BernhardVogel, Uwe Barschel, Max Streibl, Edmund Stoiber, Eberhard Diepgen,Peter Lorenz, Richard von Weizsäcker, Erik Blumenfeld, HartmutPerschau, Dirk Fischer, Ole von Beust, Walter Wallmann, ManfredKanther, Roland Koch, Petra Roth, Wolfgang Schäuble, Peter MichaelDiestel, Lothar de Maiziere, Alfred Gomolka, Willibald Böck, KurtBiedenkopf, Rita Süssmuth, Christian Wulff, Norbert Blüm, BernhardWorms, Johannes Gerster, Carl-Ludwig Wagner, Hans-Otto Wilhelm, LudwigErhard, Peter Altmeier, Otto Schmidt, Theo Waigel, Helmut Kohl, BerndtSeite, Gottfried Milde, Lothar Späth, Herrmann Höcherl, Otto Schedl,Ludwig Huber, Alfons Goppel, Rainer Barzel, Franz Heubl, Frank Steffel,Angela Merkel, Christoph Böhr, Konrad Adenauer, Franz Meyers, KurtGeorg Kiesinger, Gerhard Stoltenberg, Jürgen Rüttgers, Helmut Linssen,Georg Milbradt, Eckhardt Rehberg, Wilhelm Fay, Heinrich von Bretano,Peter Widmann, Fritz Pirkl, Wilhelm Vorndran, Oskar Stübinger, WilhelmLenz, Heinrich Köppler, Richard Langenheine, Wilfried Hasselmann, BrunoBrandes, Gerhard Gies, Karheinz Weimar, Hans-Dietrich Genscher,Heinrich Jürgens, Ekkehard Gries, Hans Jürgen Jäger, Klaus Brunnstein,Dr. Günther Storch, Hans-Günther Heinz, Neithardt Neitzel, WalterRasch, Guido Brunner, Horst Rehberger, Achim Rohde, Rolf Bialas, HelgaSchuchhardt, Ingo von Münch, Gisela Wild, Frank-Michael Wiegand, RuthWagner, Rötger Gro{ß}, Walter Hirche, Hans-Michael Goldmann, RainerBrüderle, Wolfgang Gerhardt, Jürgen Möllemann, Walter Scheel, JosefErtl, Günter Rexrodt, Rudolf Lange, Hildegard Hamm-Brücher, ReinhardSoltau, Hans-Artur Bauckhage, Erich Mende, Willy Weyer, Rainer Ortleb,Holger Zastrow, Wolfgang Mischnik, Heinz Herbert Karry, WinfriedHedergott, Sabine Leutheuser-Schnarrenberger, Wolfgang Lüders, DieterBiallas, Klaus Dehler, Otto Bezold, Klaus Ebermann, Roland Vogt, KristaSager, Joschka Fischer, Priska Hinz, Iris Blaul, Rebecca Harms,Elfriede Grützmacher, Heidemarie Bischoff-Pflanz, Renate Künast, SybillKlotz, Christa Götsch, Ise Thomas, Bärbel Höhn, Gunda Röstel, AntjeHermenau, Evelin Schönhut-Keil, Margarete Bause, Dirk Treber, GregorGysi, Carola Freundl, Harald Wolf, Peter Porsch, Hermann Müller, HelmutHolter, Catherina Muth, Karl-Heinz Hiersemann, Johannes Rau, KarlRavens, Holger Börner, Helmut Rothemund, Klaus von Dohnanyi, HugoBrandt, Björn Engholm, Oskar Lafontaine, Renate Schmidt, RudolfScharping, Walter Momper, Hans Apel, Dietrich Stobbe, Hans-JochenVogel, Ingrid Stahmer, Henning Voscherau, Hans Eichel, Jockel Fuchs,Hans Krollmann, Volker Hauff, Harald Ringstorff, Wolfgang Thierse,Manfred Stolpe, Reinhard Höppner, Friedhelm Farthmann, Anke Fuchs,Gerhard Glogowski, Kurt Beck, Willy Brandt, Karl-Heinz Kunckel, GerhardSchröder, Herbert Wehner, Volkmar Gabert, Klaus Wowereit, Ortwin Runde,Thomas Mirow, Sigmar Gabriel, Fritz Erler, Heinz Kühn, Helmut Schmidt,Karl Schiller, Wolfgang Clement, Thomas Jurk, Georg August Zinn, AlbertOsswald, Gerhard Bökel, Fritz Holthoff, Georg Diederichs, RichardLehners, Alfred Kubel, Klaus Klinger, Franz Maget, Waldemar vonKnoeringen, Wilhelm Hoegner, Hans-Ulrich Klose, Ronald Schill, DirkNockemann, Adolf von Thadden, Franz Schönhuber, Jürgen Hunke;Wahlberechtigung des Befragten; Nutzung von Wahllokal oder Briefwahl;Sicherheit und Zeitpunkt der eigenen Wahlentscheidung bei derLandtagswahl; vermuteter Gewinner der Landtagswahl; Wahrscheinlichkeitvon Landtagssitzen für FDP, Republikaner, Grüne, FW/FWG, STATT-Partei,DVU und NPD; Einstellung zu Landtagssitzen für FDP, Grüne, Republikanerund NPD; Gründe für die Wahlentscheidung: Kernkraftwerk, Schule,Schulpolitik, Raketen, Hafenerweiterung, Umweltschutz,Arbeitslosigkeit, Preisstabilität, Kriminalitätsbekämpfung,Rentensicherung, Energieversorgung, Ausländer; Parteianhänger mitaktivstem Wahlkampf; Politikinteresse; Parteineigung;Parteiidentifikation; stärkste und zweitstärkste Parteisympathie;nicht-wählbare Parteien (CDU, SPD, FDP); Zufriedenheit mitSpitzenkandidat; Ministerpräsidentenpräferenz; herausragendeEigenschaften des bevorzugten Spitzenkandidaten: Glaubwürdigkeit,Tatkraft, Sympathie, Verantwortungsbewusstsein, Sachverstand,Siegertyp, Führungsstärke, Bürgernähe, Modernität, Soziabilität,Ehrlichkeit, Vertrautheit mit dem Land; Bewertung desMinisterpräsidenten; kompetenteste Partei bzw. Regierung für: dieBekämpfung von Arbeitslosigkeit, den Umweltschutz, dieAusländerpolitik, die Verbesserung der wirtschaftlichen Lage, dieSchaffung neuer Arbeitsplätze, die Bildungspolitik, dieKriminalitätsbekämpfung, die Verbesserung des Wohnungsmarktes, dieLösung aktueller wirtschaftlicher Probleme, die Verkehrspolitik und dieLösung zukünftiger Probleme; Koalitionspräferenz; Einstellung zurAlleinregierung einer gro{ß}en Partei und zu einer Gro{ß}en Koalition;Zufriedenheits-Skalometer für die Bundesregierung und dieLandesregierung; Zufriedenheits-Skalometer für die Parteien in derLandesregierung (CDU, SPD, FDP, Grüne, PDS, STATT-Partei und ParteiRechtsstaatliche Offensive) sowie zu den Parteien in der Opposition(CDU, SPD, FDP, Grüne und PDS); Beeinflussung der Wahlentscheidungdurch Bundes- oder Landespolitik; Wichtigkeit der Bundespolitik für dieWahlentscheidung; Kenntnis der Spitzenkandidaten von CDU, PDS und SPD;Bewertung der wirtschaftlichen Lage allgemein sowie erwartetewirtschaftliche Lage in einem Jahr; Einschätzung derKonjunkturentwicklung; Vergleich der wirtschaftlichen Lage desBundeslandes mit der der gesamten Bundesrepublik; Vergleich derwirtschaftlichen Lage des eigenen Bundeslandes in den neuenBundesländern mit dem Rest von Ostdeutschland; Bewertung derwirtschaftlichen Lage der BRD; Bewertung der eigenen wirtschaftlichenLage; Wichtigkeit von Umweltschutz; Bedrohung durch Kriminalität;Forderungen an die Regierung bezüglich Raketenstopp bzw. Stationierungneuer Raketen in der BRD; Forderungen nach Ausländerzuzugs-Stopp;Einstellung zu Ausländern, Asyl und Asylrecht; Wichtigkeit derBekämpfung von Arbeitslosigkeit im jeweiligen Bundesland; Vorbereitungdes Landes auf die Herausforderungen der Zukunft; Kirchgangshäufigkeit;Einstellung zur Erhöhung der Einkommenssteuer und Mineralölsteuer;Zufriedenheit mit der Wohnungsmarktsituation; Wichtigkeit von Ruhe undOrdnung; Einstellung zum Bruch der PDS mit der SED-Vergangenheit sowiezum Umgang der anderen Parteien mit der PDS; Forderungen an die SPD unddie Grünen; Bewertung einer SPD/Grünen-Regierung unter PDS-Duldung;Bewertung einer SPD/PDS-Koalition; Rangplatz von CDU, SPD, FDP, Grünen,NPD und DKP; Einstellung zur Stilllegung von Atomkraftwerken sowie zumNeubau von Atomkraftwerken; Bedeutung unterschiedlicher Regierungen fürdas Land; Vor- und Nachteile der Wiedervereinigung für das jeweiligeBundesland in den Bereichen Arbeitsplätze, Wohnungsmarkt, sozialesNetz, Steuererhöhung, Staatsverschuldung, Wirtschaft, Neutralität undNachteile für den Westen; Einstellung zur Vereinigung; Beurteilung desUmtauschverhältnisses der Ostmark; Steuererhöhung zur Finanzierung derdeutschen Einheit; gerechtfertigte Unzufriedenheit der Ostdeutschen mitder Angleichung der Lebensverhältnisse; Vor- und Nachteile derWiedervereinigung auf lange Sicht; Wichtigkeit des Wirtschaftswachstumsim jeweiligen Bundesland; Wichtigkeit der finanziellen Unterstützungfür die Landwirtschaft; Zufriedenheit mit den Verkehrsverhältnissen;Kompetenz einer Koalition aus CDU/CSU und FDP bzw. aus SPD und Grünenbei der Arbeitslosigkeitsbekämpfung; kompetenteste Regierung zurBekämpfung der Kriminalität, in der Schulpolitik und in derUmweltschutzpolitik; Regierung mit Verkehrspolitik im Sinne desBefragten; kompetenteste Partei für die Angleichung derOst-West-Lebensverhältnisse. Demographie: Geschlecht; Familienstand; Stellung des Befragten imHaushalt (Haushaltsvorstand); Befragter als Hauptverdiener im Haushalt;Konfession; Heimatvertriebener oder Flüchtling; DDR-Flüchtlingsstatusdes Befragten, des Vaters, der Mutter, des Ehepartners oder andererFamilienmitglieder; Alter; Haushaltsgrö{ß}e; Zusammenleben mit einemPartner; Berufstätigkeit; Angestelltenstatus; Berufsgruppe;Beamtenstatus; Arbeitsplatzgefährdung des Befragten sowie nahestehender Personen; Arbeitslosigkeit nahe stehender Personen;Berufstätigkeit, Angestelltenstatus, Berufsgruppe und Beamtenstatus desHaushaltsvorstands; angestrebter Schulabschluss; Schulabschluss;Berufsausbildung; Gesellenprüfung des Haushaltsvorstandes; Wohnstatus(zur Miete oder Eigentum); Ortsgrö{ß}e des Wohnsitzes; sozialeBeschreibung der Wohngegend; Mitgliedschaft in Gewerkschaften;Militärstatus des Befragten sowie des Haushaltsvorstands;Haushaltsausstattung: Kfz, Telefon, Fernsehgerät; Sorge um denArbeitsplatz; Betroffenheit von Arbeitslosigkeit.}
+      \field{langid}{ngerman}
+      \field{title}{{German Federal State Election Studies - Integrated Dataset 1964-2004Landtagswahlen - Integrierter Datensatz 1964-2004}}
+      \field{urlday}{12}
+      \field{urlmonth}{11}
+      \field{urlyear}{2023}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.4232/1.12389
+      \endverb
+      \keyw{Community urban and rural life,Conflict security and peace,Economic conditions and indicators,Economic policy public expenditure and revenue,Economic systems and development,Elections,Energiequellen und naturliche Rohstoffquellen,Energy and natural resources,Gemeinde Wohnumgebung Stadtleben und Landleben,Government political systems and organisations,Housing,KAT15 Political Attitudes and Behavior,Konflikte Sicherheit und Frieden,Migration,Political behaviour and attitudes,Political ideology,Politische Ideologie,Politisches Verhalten und politische Einstellungen,Regierung politische Systeme Parteien und Organisationen,Wahlen,Wirtschaftliche Lage und Indikatoren,Wirtschaftspolitik offentliche Ausgaben und Einnahmen,Wirtschaftssysteme und wirtschaftliche Entwicklung,Wohnraum}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

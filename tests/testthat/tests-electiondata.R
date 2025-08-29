@@ -194,3 +194,72 @@ test_that("hab ich fälle, wo ich party female mps aber nicht total female mps h
 })
 
 
+
+
+
+# state election term zählt vernünftig hoch
+# state gov num zaehlt vernuenftig hoch
+# all election dates on sundays
+
+
+
+
+
+
+
+test_that("sequential counting of state legislative terms", {
+  expect_equal(
+    ltw_elections %>% 
+      select(state, state_election_term) %>% 
+      distinct() %>% 
+      group_by(state) %>% 
+      mutate(
+        minterm = min(state_election_term),
+        maxterm = max(state_election_term),
+        indfstring = paste0(state_election_term, collapse = ",")
+      ) %>% 
+      select(state, minterm, maxterm, indfstring) %>% 
+      distinct() %>% 
+      mutate(seqstring = paste0(minterm:maxterm, collapse = ",")) %>% 
+      ungroup() %>% 
+      mutate(test = indfstring == seqstring) %>% 
+      filter(test != TRUE) %>% 
+      nrow(), 0
+  )
+})
+
+
+
+
+
+
+
+
+
+test_that("all election dates on sunday", {
+  expect_equal(
+    ltw_elections %>% 
+      select(election_date) %>% 
+      distinct() %>% 
+      mutate(weekday = weekdays(election_date)) %>% 
+      filter(weekday != "Sunday") %>% 
+      nrow(), 0
+  )
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
