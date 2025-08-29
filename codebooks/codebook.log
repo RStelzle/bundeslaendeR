@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2025.2.18)  29 AUG 2025 11:58
+This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2025.2.18)  29 AUG 2025 13:53
  restricted system commands enabled.
 **codebook.tex
 (./codebook.tex
@@ -4789,7 +4789,7 @@ tf><c:/Windows/Fonts/consolai.ttf><c:/Windows/Fonts/consola.ttf><c:/texlive/2024
 :/Windows/Fonts/consolab.ttf><c:/texlive/2024/texmf-dist/fonts/opentype/public/l
 ibertinus-fonts/LibertinusSans-Bold.otf><c:/texlive/2024/texmf-dist/fonts/openty
 pe/public/libertinus-fonts/LibertinusSerif-Regular.otf>
-Output written on codebook.pdf (32 pages, 3263609 bytes).
+Output written on codebook.pdf (32 pages, 3263607 bytes).
 
 PDF statistics: 590 PDF objects out of 1000 (max. 8388607)
  437 compressed objects within 5 object streams

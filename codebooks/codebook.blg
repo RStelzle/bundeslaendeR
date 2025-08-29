@@ -1,21 +1,21 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
 [0] Config.pm:311> INFO - Logfile is 'codebook.blg'
-[101] biber-MSWIN64:340> INFO - === 
-[138] Biber.pm:420> INFO - Reading 'codebook.bcf'
-[250] Biber.pm:994> INFO - Found 23 citekeys in bib section 0
-[263] Biber.pm:4463> INFO - Processing section 0
-[274] Biber.pm:4654> INFO - Looking for bibtex file 'literature.bib' for section 0
-[348] bibtex.pm:1713> INFO - LaTeX decoding ...
-[631] bibtex.pm:1519> INFO - Found BibTeX data source 'literature.bib'
-[805] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[805] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[805] Biber.pm:4283> INFO - Sorting list 'nyt/global//global/global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[805] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
-[826] bbl.pm:676> INFO - Writing 'codebook.bbl' with encoding 'UTF-8'
-[843] bbl.pm:779> INFO - Output to codebook.bbl
-[844] Biber.pm:131> WARN - ISBN '978-3-658-17994-6 978-3-658-17995-3' in entry 'deckerHandbuchDeutschenParteien2018' is invalid - run biber with '--validate_datamodel' for details.
-[844] Biber.pm:131> WARN - ISBN '978-3-531-17698-7 978-3-531-18932-1' in entry 'niedermayerAnalyseParteiensystemen2013' is invalid - run biber with '--validate_datamodel' for details.
-[844] Biber.pm:131> WARN - ISBN '978-0-300-01517-1 978-0-300-01518-8' in entry 'raePoliticalConsequencesElectoral1971' is invalid - run biber with '--validate_datamodel' for details.
-[844] Biber.pm:131> WARN - ISBN '978-3-658-05007-8 978-3-658-05008-5' in entry 'pappiPolitikpositionenDeutschenLandtagsparteien2014' is invalid - run biber with '--validate_datamodel' for details.
-[844] Biber.pm:131> WARN - ISBN '978-3-658-29221-8 978-3-658-29222-5' in entry 'braeuningerParteienwettbewerbDeutschenBundeslaendern2020' is invalid - run biber with '--validate_datamodel' for details.
-[844] Biber.pm:133> INFO - WARNINGS: 5
+[253] biber-MSWIN64:340> INFO - === 
+[399] Biber.pm:420> INFO - Reading 'codebook.bcf'
+[511] Biber.pm:994> INFO - Found 23 citekeys in bib section 0
+[527] Biber.pm:4463> INFO - Processing section 0
+[571] Biber.pm:4654> INFO - Looking for bibtex file 'literature.bib' for section 0
+[675] bibtex.pm:1713> INFO - LaTeX decoding ...
+[932] bibtex.pm:1519> INFO - Found BibTeX data source 'literature.bib'
+[1291] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1291] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1291] Biber.pm:4283> INFO - Sorting list 'nyt/global//global/global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[1291] Biber.pm:4289> INFO - No sort tailoring available for locale 'en-US'
+[1314] bbl.pm:676> INFO - Writing 'codebook.bbl' with encoding 'UTF-8'
+[1332] bbl.pm:779> INFO - Output to codebook.bbl
+[1332] Biber.pm:131> WARN - ISBN '978-3-658-17994-6 978-3-658-17995-3' in entry 'deckerHandbuchDeutschenParteien2018' is invalid - run biber with '--validate_datamodel' for details.
+[1332] Biber.pm:131> WARN - ISBN '978-3-531-17698-7 978-3-531-18932-1' in entry 'niedermayerAnalyseParteiensystemen2013' is invalid - run biber with '--validate_datamodel' for details.
+[1333] Biber.pm:131> WARN - ISBN '978-0-300-01517-1 978-0-300-01518-8' in entry 'raePoliticalConsequencesElectoral1971' is invalid - run biber with '--validate_datamodel' for details.
+[1333] Biber.pm:131> WARN - ISBN '978-3-658-05007-8 978-3-658-05008-5' in entry 'pappiPolitikpositionenDeutschenLandtagsparteien2014' is invalid - run biber with '--validate_datamodel' for details.
+[1333] Biber.pm:131> WARN - ISBN '978-3-658-29221-8 978-3-658-29222-5' in entry 'braeuningerParteienwettbewerbDeutschenBundeslaendern2020' is invalid - run biber with '--validate_datamodel' for details.
+[1333] Biber.pm:133> INFO - WARNINGS: 5
