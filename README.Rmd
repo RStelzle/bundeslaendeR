@@ -21,35 +21,20 @@ knitr::opts_chunk$set(
 
 # bundeslaendeR <img src='man/figures/hex_light_clipart.png' align="right" height="139" />
 
- <!-- badges: start -->
-  [![R-CMD-check](https://github.com/RStelzle/bundeslaendeR/workflows/R-CMD-check/badge.svg)](https://github.com/RStelzle/bundeslaendeR/actions)
-  <!-- badges: end -->
 
 The goal of `bundeslaendeR` is to provide easy and cleaned up access to data regarding
 election results as well as government constellations in the German states.
-Further, data is provided in order to easily link the election/government data with state parties' manifestos/state governments' coalition agreements available from other sources.
+Data is available either as a download or as an R package.
+Further, data is provided in order to easily link the election/government data with other datasets on German state politics.
 For a more detailed description, please refer to the codebook.
 
 
 
-## Todo
-
-[x] Add standalone government dataset
-
-[x] Add standalone elections meta dataset (ENP, etc.)
-
-  [] Double Check calculation of these indices
-
-[x] Change govelec remarks to PPEG
-
-[ ] Write out codebook
-
-[ ] Write brief dataset note
-
-[ ] Change link_manifestos to properly include abgeordnetenwatch manifesto urls
-
 
 ## Installation
+
+You can download the data from the release folder in this repository.
+
 
 
 (While the project is still under development in a private repository,

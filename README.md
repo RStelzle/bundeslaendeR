@@ -9,19 +9,14 @@
 
 The goal of `bundeslaendeR` is to provide easy and cleaned up access to
 data regarding election results as well as government constellations in
-the German states. Further, data is provided in order to easily link the
-election/government data with state parties’ manifestos/state
-governments’ coalition agreements available from other sources.
-
-## Todo
-
-- [ ] Write brief dataset note
-
-
-
-
+the German states. Data is available either as a download or as an R
+package. Further, data is provided in order to easily link the
+election/government data with other datasets on German state politics.
+For a more detailed description, please refer to the codebook.
 
 ## Installation
+
+You can download the data from the release folder in this repository.
 
 (While the project is still under development in a private repository, I
 didn’t manage to get it installed using `git2r`. Thus, I would recommend
