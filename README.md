@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# bundeslaendeR <img src='man/figures/hex_light_clipart.png' align="right" height="139" />
+# bundeslaendeR - Election Results and Government Constellations in the German States <img src='man/figures/hex_light_clipart.png' align="right" height="139" />
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/RStelzle/bundeslaendeR/workflows/R-CMD-check/badge.svg)](https://github.com/RStelzle/bundeslaendeR/actions)
