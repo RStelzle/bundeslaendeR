@@ -12,6 +12,7 @@ A tibble containing one row per contesting party per election.
 \item{state_name_de}{chr German name of the state}
 \item{state_name_en}{chr English name of the state}
 \item{election_date}{date Election date}
+\item{state_election_term}{dbl Election term in the state. Counts up from 1. Note that this count does not necessarily has to line up with the official way the respective legislature counts its legislative terms. For example, bundeslaendeR includes data from Berlin Stadtverordnetenversammlung elections in 1946 and 1948 prior to the enaction of the new Berlin state constitution in 1950 that established the Abgeordnetenhaus. The Abgeordnetenhaus starts counting its legislative terms in 1950 instead. Similarly, bundeslaendeR includes the election held in Berlin in 2021 as well as the 2023 repeat election and increments the state_election_term counter by one, whereas the Abgeordnetenhaus' official way of counting considers the legislative term to have started in 2021 even after the 2023 rerun.}
 \item{electorate}{dbl Number of eligible voters. For more totals also see the last three columns.}
 \item{turnout}{dbl Turnout. Share of eligible voters turning out.}
 \item{total_seats_parliament}{dbl Total number of members of the newly elected Landtag.}

@@ -1,11 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# bundeslaendeR - Election Results and Government Constellations in the German States <img src='man/figures/hex_light_clipart.png' align="right" height="139" />
-
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/RStelzle/bundeslaendeR/workflows/R-CMD-check/badge.svg)](https://github.com/RStelzle/bundeslaendeR/actions)
-<!-- badges: end -->
+# bundeslaendeR <img src='man/figures/hex_light_clipart.png' align="right" height="139" />
 
 The goal of `bundeslaendeR` is to provide easy and cleaned up access to
 data regarding election results as well as government constellations in

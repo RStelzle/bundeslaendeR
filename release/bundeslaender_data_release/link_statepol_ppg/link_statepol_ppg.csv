@@ -1,0 +1,573 @@
+"","state","state_election_term","partyname_short","landtag_state_abb","electoralperiod","ppg","link_notes"
+"1","BB",1,"Grüne","bb",1,"Bündnis 90",NA
+"2","BB",1,"CDU","bb",1,"CDU",NA
+"3","BB",1,"FDP","bb",1,"FDP",NA
+"4","BB",1,"Linke","bb",1,"PDS-LL",NA
+"5","BB",1,"SPD","bb",1,"SPD",NA
+"6","BB",1,NA,"bb",1,"fraktionslos",NA
+"7","BB",2,"CDU","bb",2,"CDU",NA
+"8","BB",2,"Linke","bb",2,"PDS",NA
+"9","BB",2,"SPD","bb",2,"SPD",NA
+"10","BB",2,NA,"bb",2,"fraktionslos",NA
+"11","BB",3,"CDU","bb",3,"CDU",NA
+"12","BB",3,"DVU","bb",3,"DVU",NA
+"13","BB",3,"Linke","bb",3,"PDS",NA
+"14","BB",3,"SPD","bb",3,"SPD",NA
+"15","BB",3,NA,"bb",3,"fraktionslos",NA
+"16","BB",4,"CDU","bb",4,"CDU",NA
+"17","BB",4,"DVU","bb",4,"DVU",NA
+"18","BB",4,"Linke","bb",4,"Die Linke",NA
+"19","BB",4,"Linke","bb",4,"PDS","1 MdL as PDS MdL in the ppg var. As Linke in ppg_id var."
+"20","BB",4,"SPD","bb",4,"SPD",NA
+"21","BB",5,"Grüne","bb",5,"Bündnis 90/Die Grünen",NA
+"22","BB",5,"CDU","bb",5,"CDU",NA
+"23","BB",5,"Linke","bb",5,"Die Linke",NA
+"24","BB",5,"FDP","bb",5,"FDP",NA
+"25","BB",5,"SPD","bb",5,"SPD",NA
+"26","BB",5,NA,"bb",5,"fraktionslos",NA
+"27","BB",6,"AfD","bb",6,"AfD",NA
+"28","BB",6,"FW-BB","bb",6,"BVB/Freie Wähler",NA
+"29","BB",6,"CDU","bb",6,"CDU",NA
+"30","BB",6,"Linke","bb",6,"Die Linke",NA
+"31","BB",6,"Grüne","bb",6,"GRÜNE",NA
+"32","BB",6,"SPD","bb",6,"SPD",NA
+"33","BB",6,NA,"bb",6,"fraktionslos",NA
+"34","BE",14,"Bü90GrüUFV","be",12,"Bündnis 90/Die Grünen (AL) / UFV",NA
+"35","BE",14,"Grüne","be",12,"Bündnis 90/Die Grünen (AL) / UFV","Consisting of politicians from Grüne/AL and Bü90/Grüne/UFV"
+"36","BE",14,"CDU","be",12,"CDU",NA
+"37","BE",14,"FDP","be",12,"FDP",NA
+"38","BE",14,NA,"be",12,"Neues Forum/ Bürgerbewegung","Consisting of people elected from Green/Alternative Lists"
+"39","BE",14,"Linke","be",12,"PDS",NA
+"40","BE",14,"SPD","be",12,"SPD",NA
+"41","BE",14,NA,"be",12,"fraktionslos",NA
+"42","BE",15,"CDU","be",13,"CDU",NA
+"43","BE",15,"Grüne","be",13,"Grüne",NA
+"44","BE",15,"Linke","be",13,"PDS",NA
+"45","BE",15,"SPD","be",13,"SPD",NA
+"46","BE",15,NA,"be",13,"fraktionslos",NA
+"47","BE",16,"CDU","be",14,"CDU",NA
+"48","BE",16,NA,"be",14,"FDP","One defector from CDU"
+"49","BE",16,"Grüne","be",14,"GRÜNE",NA
+"50","BE",16,"Linke","be",14,"PDS",NA
+"51","BE",16,"SPD","be",14,"SPD",NA
+"52","BE",16,NA,"be",14,"fraktionslos",NA
+"53","BE",17,"CDU","be",15,"CDU",NA
+"54","BE",17,"FDP","be",15,"FDP",NA
+"55","BE",17,"Grüne","be",15,"GRÜNE",NA
+"56","BE",17,"Linke","be",15,"PDS",NA
+"57","BE",17,"SPD","be",15,"SPD",NA
+"58","BE",17,NA,"be",15,"fraktionslos",NA
+"59","BE",18,"CDU","be",16,"CDU",NA
+"60","BE",18,"Linke","be",16,"Die Linke",NA
+"61","BE",18,"FDP","be",16,"FDP",NA
+"62","BE",18,"Grüne","be",16,"Grüne",NA
+"63","BE",18,"SPD","be",16,"SPD",NA
+"64","BE",18,NA,"be",16,"fraktionslos",NA
+"65","BE",19,"CDU","be",17,"CDU",NA
+"66","BE",19,"Linke","be",17,"Die Linke",NA
+"67","BE",19,"Grüne","be",17,"GRÜNE",NA
+"68","BE",19,"Piraten","be",17,"PIRATEN",NA
+"69","BE",19,"SPD","be",17,"SPD",NA
+"70","BE",19,NA,"be",17,"fraktionslos",NA
+"71","BE",20,"AfD","be",18,"AfD",NA
+"72","BE",20,"CDU","be",18,"CDU",NA
+"73","BE",20,"Linke","be",18,"Die Linke",NA
+"74","BE",20,"FDP","be",18,"FDP",NA
+"75","BE",20,"Grüne","be",18,"GRÜNE",NA
+"76","BE",20,"SPD","be",18,"SPD",NA
+"77","BE",20,NA,"be",18,"fraktionslos",NA
+"78","BW",10,"CDU","bw",10,"CDU",NA
+"79","BW",10,"FDP","bw",10,"FDP/DVP",NA
+"80","BW",10,"Grüne","bw",10,"GRÜNE",NA
+"81","BW",10,"SPD","bw",10,"SPD",NA
+"82","BW",11,"CDU","bw",11,"CDU",NA
+"83","BW",11,"FDP","bw",11,"FDP/DVP",NA
+"84","BW",11,"Grüne","bw",11,"GRÜNE",NA
+"85","BW",11,"Rep","bw",11,"REP",NA
+"86","BW",11,"SPD","bw",11,"SPD",NA
+"87","BW",11,NA,"bw",11,"fraktionslos",NA
+"88","BW",12,"CDU","bw",12,"CDU",NA
+"89","BW",12,"FDP","bw",12,"FDP/DVP",NA
+"90","BW",12,"Grüne","bw",12,"Grüne",NA
+"91","BW",12,"Rep","bw",12,"REP",NA
+"92","BW",12,"SPD","bw",12,"SPD",NA
+"93","BW",13,"CDU","bw",13,"CDU",NA
+"94","BW",13,"FDP","bw",13,"FDP/DVP",NA
+"95","BW",13,"Grüne","bw",13,"Grüne",NA
+"96","BW",13,"SPD","bw",13,"SPD",NA
+"97","BW",14,"CDU","bw",14,"CDU",NA
+"98","BW",14,"FDP","bw",14,"FDP",NA
+"99","BW",14,"FDP","bw",14,"FDP/DVP","1 MdL as FDP/DVP MdL in the ppg var. As FDP in ppg_id var."
+"100","BW",14,"Grüne","bw",14,"Grüne",NA
+"101","BW",14,"SPD","bw",14,"SPD",NA
+"102","BW",15,"CDU","bw",15,"CDU",NA
+"103","BW",15,"FDP","bw",15,"FDP/DVP",NA
+"104","BW",15,"Grüne","bw",15,"Grüne",NA
+"105","BW",15,"SPD","bw",15,"SPD",NA
+"106","BW",16,NA,"bw",16,"ABW","Temporary split from the AfD"
+"107","BW",16,"AfD","bw",16,"AfD",NA
+"108","BW",16,"CDU","bw",16,"CDU",NA
+"109","BW",16,"FDP","bw",16,"FDP/DVP",NA
+"110","BW",16,"Grüne","bw",16,"GRÜNE",NA
+"111","BW",16,"SPD","bw",16,"SPD",NA
+"112","BW",16,NA,"bw",16,"fraktionslos",NA
+"113","BY",12,"CSU","by",12,"CSU",NA
+"114","BY",12,"FDP","by",12,"FDP",NA
+"115","BY",12,"Grüne","by",12,"Grüne",NA
+"116","BY",12,"SPD","by",12,"SPD",NA
+"117","BY",12,NA,"by",12,"fraktionslos",NA
+"118","BY",13,"Grüne","by",13,"Bündnis 90/Die Grünen",NA
+"119","BY",13,"CSU","by",13,"CSU",NA
+"120","BY",13,"SPD","by",13,"SPD",NA
+"121","BY",13,NA,"by",13,"fraktionslos",NA
+"122","BY",14,"Grüne","by",14,"Bündnis 90/Die Grünen",NA
+"123","BY",14,"CSU","by",14,"CSU",NA
+"124","BY",14,"SPD","by",14,"SPD",NA
+"125","BY",14,NA,"by",14,"fraktionslos",NA
+"126","BY",15,"Grüne","by",15,"Bündnis 90/Die Grünen",NA
+"127","BY",15,"CSU","by",15,"CSU",NA
+"128","BY",15,"SPD","by",15,"SPD",NA
+"129","BY",16,"Grüne","by",16,"Bündnis 90/Die Grünen",NA
+"130","BY",16,"CSU","by",16,"CSU",NA
+"131","BY",16,"FDP","by",16,"FDP",NA
+"132","BY",16,"FW-BY","by",16,"Freie Wähler",NA
+"133","BY",16,"SPD","by",16,"SPD",NA
+"134","BY",16,NA,"by",16,"fraktionslos",NA
+"135","BY",17,"Grüne","by",17,"Bündnis 90/Die Grünen",NA
+"136","BY",17,"CSU","by",17,"CSU",NA
+"137","BY",17,NA,"by",17,"FDP","One defector from FW-BY"
+"138","BY",17,"FW-BY","by",17,"Freie Wähler",NA
+"139","BY",17,"SPD","by",17,"SPD",NA
+"140","BY",17,NA,"by",17,"fraktionslos",NA
+"141","HB",12,"CDU","hb",12,"CDU",NA
+"142","HB",12,"DVU","hb",12,"DVU",NA
+"143","HB",12,"FDP","hb",12,"FDP",NA
+"144","HB",12,"Grüne","hb",12,"Grüne",NA
+"145","HB",12,"SPD","hb",12,"SPD",NA
+"146","HB",13,"CDU","hb",13,"CDU",NA
+"147","HB",13,"DVU","hb",13,"DVU",NA
+"148","HB",13,"FDP","hb",13,"FDP",NA
+"149","HB",13,"Grüne","hb",13,"Grüne",NA
+"150","HB",13,"SPD","hb",13,"SPD",NA
+"151","HB",14,"AFB","hb",14,"AFB",NA
+"152","HB",14,"CDU","hb",14,"CDU",NA
+"153","HB",14,"Grüne","hb",14,"Grüne",NA
+"154","HB",14,"SPD","hb",14,"SPD",NA
+"155","HB",15,"CDU","hb",15,"CDU",NA
+"156","HB",15,"DVU","hb",15,"DVU",NA
+"157","HB",15,"Grüne","hb",15,"Grüne",NA
+"158","HB",15,"SPD","hb",15,"SPD",NA
+"159","HB",16,"CDU","hb",16,"CDU",NA
+"160","HB",16,"DVU","hb",16,"DVU",NA
+"161","HB",16,"FDP","hb",16,"FDP",NA
+"162","HB",16,"Grüne","hb",16,"Grüne",NA
+"163","HB",16,"SPD","hb",16,"SPD",NA
+"164","HB",17,"BIW","hb",17,"BIW",NA
+"165","HB",17,"CDU","hb",17,"CDU",NA
+"166","HB",17,"DVU","hb",17,"DVU",NA
+"167","HB",17,"FDP","hb",17,"FDP",NA
+"168","HB",17,"Grüne","hb",17,"Grüne",NA
+"169","HB",17,"Linke","hb",17,"Linke",NA
+"170","HB",17,"SPD","hb",17,"SPD",NA
+"171","HB",17,NA,"hb",17,"fraktionslos",NA
+"172","HB",18,"BIW","hb",18,"BIW",NA
+"173","HB",18,"CDU","hb",18,"CDU",NA
+"174","HB",18,"Linke","hb",18,"Die Linke",NA
+"175","HB",18,"Grüne","hb",18,"Grüne",NA
+"176","HB",18,"SPD","hb",18,"SPD",NA
+"177","HB",18,NA,"hb",18,"fraktionlos",NA
+"178","HB",19,NA,"hb",19,"ALFA","Split from the AfD"
+"179","HB",19,"AfD","hb",19,"AfD",NA
+"180","HB",19,"BIW","hb",19,"BIW",NA
+"181","HB",19,"CDU","hb",19,"CDU",NA
+"182","HB",19,"Linke","hb",19,"Die Linke",NA
+"183","HB",19,"FDP","hb",19,"FDP",NA
+"184","HB",19,"Grüne","hb",19,"Grüne",NA
+"185","HB",19,"SPD","hb",19,"SPD",NA
+"186","HB",19,NA,"hb",19,"fraktionslos",NA
+"187","HE",12,"CDU","he",12,"CDU",NA
+"188","HE",12,"Grüne","he",12,"Die Grünen",NA
+"189","HE",12,"FDP","he",12,"FDP",NA
+"190","HE",12,"SPD","he",12,"SPD",NA
+"191","HE",13,"CDU","he",13,"CDU",NA
+"192","HE",13,"Grüne","he",13,"Die Grünen",NA
+"193","HE",13,"FDP","he",13,"FDP",NA
+"194","HE",13,"SPD","he",13,"SPD",NA
+"195","HE",14,"CDU","he",14,"CDU",NA
+"196","HE",14,"Grüne","he",14,"Die Grünen",NA
+"197","HE",14,"FDP","he",14,"FDP",NA
+"198","HE",14,"SPD","he",14,"SPD",NA
+"199","HE",14,NA,"he",14,"fraktionslos",NA
+"200","HE",15,"CDU","he",15,"CDU",NA
+"201","HE",15,"Grüne","he",15,"Die Grünen",NA
+"202","HE",15,"FDP","he",15,"FDP",NA
+"203","HE",15,"SPD","he",15,"SPD",NA
+"204","HE",16,"CDU","he",16,"CDU",NA
+"205","HE",16,"Grüne","he",16,"Die Grünen",NA
+"206","HE",16,"FDP","he",16,"FDP",NA
+"207","HE",16,"SPD","he",16,"SPD",NA
+"208","HE",17,"CDU","he",17,"CDU",NA
+"209","HE",17,"Linke","he",17,"Die Linke",NA
+"210","HE",17,"FDP","he",17,"FDP",NA
+"211","HE",17,"Grüne","he",17,"Grüne",NA
+"212","HE",17,"SPD","he",17,"SPD",NA
+"213","HE",18,"CDU","he",18,"CDU",NA
+"214","HE",18,"Linke","he",18,"Die Linke",NA
+"215","HE",18,"FDP","he",18,"FDP",NA
+"216","HE",18,"Grüne","he",18,"Grüne",NA
+"217","HE",18,"SPD","he",18,"SPD",NA
+"218","HE",18,NA,"he",18,"fraktionslos",NA
+"219","HE",19,"CDU","he",19,"CDU",NA
+"220","HE",19,"Linke","he",19,"Die Linke",NA
+"221","HE",19,"FDP","he",19,"FDP",NA
+"222","HE",19,"Grüne","he",19,"GRÜNE",NA
+"223","HE",19,"SPD","he",19,"SPD",NA
+"224","HE",19,NA,"he",19,"fraktionslos",NA
+"225","HH",14,"CDU","hh",14,"CDU",NA
+"226","HH",14,"FDP","hh",14,"FDP",NA
+"227","HH",14,"Grüne","hh",14,"GAL",NA
+"228","HH",14,"SPD","hh",14,"SPD",NA
+"229","HH",14,NA,"hh",14,"fraktionslos",NA
+"230","HH",15,"CDU","hh",15,"CDU",NA
+"231","HH",15,NA,"hh",15,"Fraktionslos (über die STATT Partei eingezogen)",NA
+"232","HH",15,"Grüne","hh",15,"GAL",NA
+"233","HH",15,"SPD","hh",15,"SPD",NA
+"234","HH",15,"STATT","hh",15,"STATT Partei",NA
+"235","HH",15,NA,"hh",15,"STATT Partei/Fraktionslos",NA
+"236","HH",15,NA,"hh",15,"STATT Partei/fraktionslos",NA
+"237","HH",16,"CDU","hh",16,"CDU",NA
+"238","HH",16,"Grüne","hh",16,"GAL",NA
+"239","HH",16,NA,"hh",16,"Regenbogen – Für eine neue Linke","Split from the Greens"
+"240","HH",16,"SPD","hh",16,"SPD",NA
+"241","HH",17,"CDU","hh",17,"CDU",NA
+"242","HH",17,"FDP","hh",17,"FDP",NA
+"243","HH",17,"Grüne","hh",17,"GAL",NA
+"244","HH",17,"PRO (Schill)","hh",17,"Partei Rechtsstaatlicher Offensive",NA
+"245","HH",17,NA,"hh",17,"Ronald-Schill-Fraktion","Split from the Partei Rechtsstaatlicher Offensive"
+"246","HH",17,"SPD","hh",17,"SPD",NA
+"247","HH",17,NA,"hh",17,"fraktionslos",NA
+"248","HH",18,"CDU","hh",18,"CDU",NA
+"249","HH",18,"Grüne","hh",18,"GAL",NA
+"250","HH",18,"SPD","hh",18,"SPD",NA
+"251","HH",19,"CDU","hh",19,"CDU",NA
+"252","HH",19,"Linke","hh",19,"Die Linke",NA
+"253","HH",19,"Grüne","hh",19,"GAL",NA
+"254","HH",19,"SPD","hh",19,"SPD",NA
+"255","HH",19,NA,"hh",19,"fraktionslos",NA
+"256","HH",20,"CDU","hh",20,"CDU",NA
+"257","HH",20,"Linke","hh",20,"DIE LINKE",NA
+"258","HH",20,"FDP","hh",20,"FDP",NA
+"259","HH",20,"Grüne","hh",20,"GAL",NA
+"260","HH",20,"SPD","hh",20,"SPD",NA
+"261","HH",20,NA,"hh",20,"fraktionslos",NA
+"262","HH",21,"AfD","hh",21,"AfD",NA
+"263","HH",21,"CDU","hh",21,"CDU",NA
+"264","HH",21,"FDP","hh",21,"FDP",NA
+"265","HH",21,"Grüne","hh",21,"GRÜNE",NA
+"266","HH",21,"Linke","hh",21,"LINKE",NA
+"267","HH",21,"SPD","hh",21,"SPD",NA
+"268","HH",21,NA,"hh",21,"fraktionslos",NA
+"269","MV",1,"CDU","mv",1,"CDU",NA
+"270","MV",1,"FDP","mv",1,"FDP",NA
+"271","MV",1,"Linke","mv",1,"LL/PDS",NA
+"272","MV",1,"SPD","mv",1,"SPD",NA
+"273","MV",1,NA,"mv",1,"fraktionslos",NA
+"274","MV",2,"CDU","mv",2,"CDU",NA
+"275","MV",2,"Linke","mv",2,"PDS",NA
+"276","MV",2,"SPD","mv",2,"SPD",NA
+"277","MV",3,"CDU","mv",3,"CDU",NA
+"278","MV",3,"Linke","mv",3,"PDS",NA
+"279","MV",3,"SPD","mv",3,"SPD",NA
+"280","MV",4,"CDU","mv",4,"CDU",NA
+"281","MV",4,"Linke","mv",4,"PDS",NA
+"282","MV",4,"SPD","mv",4,"SPD",NA
+"283","MV",5,"CDU","mv",5,"CDU",NA
+"284","MV",5,"Linke","mv",5,"Die Linke",NA
+"285","MV",5,"FDP","mv",5,"FDP",NA
+"286","MV",5,"NPD","mv",5,"NPD",NA
+"287","MV",5,"SPD","mv",5,"SPD",NA
+"288","MV",5,NA,"mv",5,"fraktionslos",NA
+"289","MV",6,"Grüne","mv",6,"Bündnis 90/Die Grünen",NA
+"290","MV",6,"CDU","mv",6,"CDU",NA
+"291","MV",6,"Linke","mv",6,"Die Linke",NA
+"292","MV",6,"NPD","mv",6,"NPD",NA
+"293","MV",6,"SPD","mv",6,"SPD",NA
+"294","MV",6,NA,"mv",6,"fraktionslos",NA
+"295","MV",7,"AfD","mv",7,"AfD",NA
+"296","MV",7,"CDU","mv",7,"CDU",NA
+"297","MV",7,"Linke","mv",7,"Die Linke",NA
+"298","MV",7,NA,"mv",7,"FREIE WÄHLER/BMV","Split from the AfD"
+"299","MV",7,"SPD","mv",7,"SPD",NA
+"300","MV",7,NA,"mv",7,"fraktionslos",NA
+"301","NI",12,"CDU","ni",12,"CDU",NA
+"302","NI",12,"FDP","ni",12,"FDP",NA
+"303","NI",12,"Grüne","ni",12,"GRÜNE",NA
+"304","NI",12,"SPD","ni",12,"SPD",NA
+"305","NI",12,NA,"ni",12,"fraktionslos",NA
+"306","NI",13,"CDU","ni",13,"CDU",NA
+"307","NI",13,"Grüne","ni",13,"GRÜNE",NA
+"308","NI",13,"SPD","ni",13,"SPD",NA
+"309","NI",14,"CDU","ni",14,"CDU",NA
+"310","NI",14,"Grüne","ni",14,"GRÜNE",NA
+"311","NI",14,"SPD","ni",14,"SPD",NA
+"312","NI",14,NA,"ni",14,"fraktionslos",NA
+"313","NI",15,"CDU","ni",15,"CDU",NA
+"314","NI",15,"FDP","ni",15,"FDP",NA
+"315","NI",15,"Grüne","ni",15,"GRÜNE",NA
+"316","NI",15,"SPD","ni",15,"SPD",NA
+"317","NI",16,"CDU","ni",16,"CDU",NA
+"318","NI",16,"Linke","ni",16,"Die Linke",NA
+"319","NI",16,"FDP","ni",16,"FDP",NA
+"320","NI",16,"Grüne","ni",16,"GRÜNE",NA
+"321","NI",16,"SPD","ni",16,"SPD",NA
+"322","NI",16,NA,"ni",16,"fraktionslos",NA
+"323","NI",17,"CDU","ni",17,"CDU",NA
+"324","NI",17,"FDP","ni",17,"FDP",NA
+"325","NI",17,"Grüne","ni",17,"GRÜNE",NA
+"326","NI",17,"SPD","ni",17,"SPD",NA
+"327","NI",18,"AfD","ni",18,"AfD",NA
+"328","NI",18,"CDU","ni",18,"CDU",NA
+"329","NI",18,"FDP","ni",18,"FDP",NA
+"330","NI",18,"Grüne","ni",18,"GRÜNE",NA
+"331","NI",18,"SPD","ni",18,"SPD",NA
+"332","NI",18,NA,"ni",18,"fraktionslos",NA
+"333","NW",11,"CDU","nw",11,"CDU",NA
+"334","NW",11,"FDP","nw",11,"FDP",NA
+"335","NW",11,"Grüne","nw",11,"Grüne",NA
+"336","NW",11,"SPD","nw",11,"SPD",NA
+"337","NW",11,NA,"nw",11,"fraktionslos",NA
+"338","NW",12,"CDU","nw",12,"CDU",NA
+"339","NW",12,"Grüne","nw",12,"Grüne",NA
+"340","NW",12,"SPD","nw",12,"SPD",NA
+"341","NW",13,"CDU","nw",13,"CDU",NA
+"342","NW",13,NA,"nw",13,"FAKT","Single MdL moving from Greens to FDP then founding FAKT"
+"343","NW",13,"FDP","nw",13,"FDP",NA
+"344","NW",13,"Grüne","nw",13,"Grüne",NA
+"345","NW",13,"SPD","nw",13,"SPD",NA
+"346","NW",13,NA,"nw",13,"fraktionslos",NA
+"347","NW",14,"Grüne","nw",14,"Bündnis 90/Die Grünen",NA
+"348","NW",14,"CDU","nw",14,"CDU",NA
+"349","NW",14,NA,"nw",14,"Die Linke","Single MdL from the Greens founds a Linke party group"
+"350","NW",14,"FDP","nw",14,"FDP",NA
+"351","NW",14,"SPD","nw",14,"SPD",NA
+"352","NW",14,NA,"nw",14,"fraktionslos",NA
+"353","NW",15,"CDU","nw",15,"CDU",NA
+"354","NW",15,"Linke","nw",15,"Die Linke",NA
+"355","NW",15,"FDP","nw",15,"FDP",NA
+"356","NW",15,"Grüne","nw",15,"Grüne",NA
+"357","NW",15,"SPD","nw",15,"SPD",NA
+"358","NW",16,"CDU","nw",16,"CDU",NA
+"359","NW",16,"FDP","nw",16,"FDP",NA
+"360","NW",16,"Grüne","nw",16,"GRÜNE",NA
+"361","NW",16,"Piraten","nw",16,"PIRATEN",NA
+"362","NW",16,"SPD","nw",16,"SPD",NA
+"363","NW",16,NA,"nw",16,"fraktionslos",NA
+"364","NW",17,"AfD","nw",17,"AfD",NA
+"365","NW",17,NA,"nw",17,"Blaue Partei","Split from the AfD"
+"366","NW",17,"CDU","nw",17,"CDU",NA
+"367","NW",17,"FDP","nw",17,"FDP",NA
+"368","NW",17,"Grüne","nw",17,"GRÜNE",NA
+"369","NW",17,"SPD","nw",17,"SPD",NA
+"370","NW",17,NA,"nw",17,"fraktionslos",NA
+"371","RP",12,"CDU","rp",12,"CDU",NA
+"372","RP",12,"FDP","rp",12,"FDP",NA
+"373","RP",12,"Grüne","rp",12,"Grüne",NA
+"374","RP",12,"SPD","rp",12,"SPD",NA
+"375","RP",13,"CDU","rp",13,"CDU",NA
+"376","RP",13,"FDP","rp",13,"FDP",NA
+"377","RP",13,"Grüne","rp",13,"Grüne",NA
+"378","RP",13,"SPD","rp",13,"SPD",NA
+"379","RP",14,"CDU","rp",14,"CDU",NA
+"380","RP",14,"FDP","rp",14,"FDP",NA
+"381","RP",14,"Grüne","rp",14,"GRÜNE",NA
+"382","RP",14,"SPD","rp",14,"SPD",NA
+"383","RP",15,"CDU","rp",15,"CDU",NA
+"384","RP",15,"FDP","rp",15,"FDP",NA
+"385","RP",15,"SPD","rp",15,"SPD",NA
+"386","RP",16,"CDU","rp",16,"CDU",NA
+"387","RP",16,"Grüne","rp",16,"Grüne",NA
+"388","RP",16,"SPD","rp",16,"SPD",NA
+"389","RP",16,NA,"rp",16,"fraktionslos",NA
+"390","RP",17,"AfD","rp",17,"AfD",NA
+"391","RP",17,"CDU","rp",17,"CDU",NA
+"392","RP",17,"FDP","rp",17,"FDP",NA
+"393","RP",17,"Grüne","rp",17,"GRÜNE",NA
+"394","RP",17,"SPD","rp",17,"SPD",NA
+"395","RP",17,NA,"rp",17,"fraktionslos",NA
+"396","SH",12,"CDU","sh",12,"CDU",NA
+"397","SH",12,"SPD","sh",12,"SPD",NA
+"398","SH",12,"SSW","sh",12,"SSW",NA
+"399","SH",13,"CDU","sh",13,"CDU",NA
+"400","SH",13,NA,"sh",13,"DLVH","Split from DVU"
+"401","SH",13,"DVU","sh",13,"DVU",NA
+"402","SH",13,"FDP","sh",13,"FDP",NA
+"403","SH",13,"SPD","sh",13,"SPD",NA
+"404","SH",13,"SSW","sh",13,"SSW",NA
+"405","SH",13,NA,"sh",13,"fraktionslos",NA
+"406","SH",14,"CDU","sh",14,"CDU",NA
+"407","SH",14,"FDP","sh",14,"FDP",NA
+"408","SH",14,"Grüne","sh",14,"Grüne",NA
+"409","SH",14,"SPD","sh",14,"SPD",NA
+"410","SH",14,"SSW","sh",14,"SSW",NA
+"411","SH",14,NA,"sh",14,"fraktionslos",NA
+"412","SH",15,"CDU","sh",15,"CDU",NA
+"413","SH",15,"FDP","sh",15,"FDP",NA
+"414","SH",15,"Grüne","sh",15,"Grüne",NA
+"415","SH",15,"SPD","sh",15,"SPD",NA
+"416","SH",15,"SSW","sh",15,"SSW",NA
+"417","SH",16,"CDU","sh",16,"CDU",NA
+"418","SH",16,"FDP","sh",16,"FDP",NA
+"419","SH",16,"Grüne","sh",16,"Grüne",NA
+"420","SH",16,"SPD","sh",16,"SPD",NA
+"421","SH",16,"SSW","sh",16,"SSW",NA
+"422","SH",17,"CDU","sh",17,"CDU",NA
+"423","SH",17,"Linke","sh",17,"Die Linke",NA
+"424","SH",17,"FDP","sh",17,"FDP",NA
+"425","SH",17,"Grüne","sh",17,"GRÜNE",NA
+"426","SH",17,"SPD","sh",17,"SPD",NA
+"427","SH",17,"SSW","sh",17,"SSW",NA
+"428","SH",18,"CDU","sh",18,"CDU",NA
+"429","SH",18,"FDP","sh",18,"FDP",NA
+"430","SH",18,"Grüne","sh",18,"GRÜNE",NA
+"431","SH",18,"Piraten","sh",18,"PIRATEN",NA
+"432","SH",18,"SPD","sh",18,"SPD",NA
+"433","SH",18,"SSW","sh",18,"SSW",NA
+"434","SH",19,"AfD","sh",19,"AfD",NA
+"435","SH",19,"CDU","sh",19,"CDU",NA
+"436","SH",19,"FDP","sh",19,"FDP",NA
+"437","SH",19,"Grüne","sh",19,"GRÜNE",NA
+"438","SH",19,"SPD","sh",19,"SPD",NA
+"439","SH",19,"SSW","sh",19,"SSW",NA
+"440","SH",19,NA,"sh",19,"fraktionslos",NA
+"441","SL",10,"CDU","sl",10,"CDU",NA
+"442","SL",10,"FDP","sl",10,"FDP",NA
+"443","SL",10,"SPD","sl",10,"SPD",NA
+"444","SL",11,"CDU","sl",11,"CDU",NA
+"445","SL",11,"Grüne","sl",11,"GRÜNE",NA
+"446","SL",11,"SPD","sl",11,"SPD",NA
+"447","SL",12,"CDU","sl",12,"CDU",NA
+"448","SL",12,"SPD","sl",12,"SPD",NA
+"449","SL",13,"CDU","sl",13,"CDU",NA
+"450","SL",13,"FDP","sl",13,"FDP",NA
+"451","SL",13,"Grüne","sl",13,"GRÜNE",NA
+"452","SL",13,"SPD","sl",13,"SPD",NA
+"453","SL",13,NA,"sl",13,"fraktionslos",NA
+"454","SL",14,"CDU","sl",14,"CDU",NA
+"455","SL",14,"Linke","sl",14,"Die Linke",NA
+"456","SL",14,"FDP","sl",14,"FDP",NA
+"457","SL",14,"Grüne","sl",14,"Grüne",NA
+"458","SL",14,"SPD","sl",14,"SPD",NA
+"459","SL",15,"CDU","sl",15,"CDU",NA
+"460","SL",15,"Linke","sl",15,"Die Linke",NA
+"461","SL",15,"Grüne","sl",15,"GRÜNE",NA
+"462","SL",15,"Piraten","sl",15,"PIRATEN",NA
+"463","SL",15,"SPD","sl",15,"SPD",NA
+"464","SL",16,"AfD","sl",16,"AfD",NA
+"465","SL",16,"CDU","sl",16,"CDU",NA
+"466","SL",16,"Linke","sl",16,"LINKE",NA
+"467","SL",16,"SPD","sl",16,"SPD",NA
+"468","SL",16,NA,"sl",16,"Saar-Linke","Split from Linke"
+"469","SL",16,NA,"sl",16,"fraktionslos",NA
+"470","SN",1,"CDU","sn",1,"CDU",NA
+"471","SN",1,"FDP","sn",1,"FDP",NA
+"472","SN",1,"Linke","sn",1,"LL/PDS",NA
+"473","SN",1,"Forum","sn",1,"Neues Forum - Bündnis - Grüne (Forum)",NA
+"474","SN",1,"SPD","sn",1,"SPD",NA
+"475","SN",1,NA,"sn",1,"fraktionslos",NA
+"476","SN",2,"CDU","sn",2,"CDU",NA
+"477","SN",2,"Linke","sn",2,"PDS",NA
+"478","SN",2,"SPD","sn",2,"SPD",NA
+"479","SN",3,"CDU","sn",3,"CDU",NA
+"480","SN",3,"Linke","sn",3,"PDS",NA
+"481","SN",3,"SPD","sn",3,"SPD",NA
+"482","SN",3,NA,"sn",3,"fraktionslos",NA
+"483","SN",4,"CDU","sn",4,"CDU",NA
+"484","SN",4,NA,"sn",4,"DSU","Split from NPD"
+"485","SN",4,"Linke","sn",4,"Die Linke",NA
+"486","SN",4,"FDP","sn",4,"FDP",NA
+"487","SN",4,"Grüne","sn",4,"Grüne",NA
+"488","SN",4,"NPD","sn",4,"NPD",NA
+"489","SN",4,"SPD","sn",4,"SPD",NA
+"490","SN",4,NA,"sn",4,"SVP","Split from NPD"
+"491","SN",4,NA,"sn",4,"fraktionslos",NA
+"492","SN",5,"CDU","sn",5,"CDU",NA
+"493","SN",5,"Linke","sn",5,"Die Linke",NA
+"494","SN",5,"FDP","sn",5,"FDP",NA
+"495","SN",5,"Grüne","sn",5,"Grüne",NA
+"496","SN",5,"NPD","sn",5,"NPD",NA
+"497","SN",5,"SPD","sn",5,"SPD",NA
+"498","SN",5,NA,"sn",5,"fraktionslos",NA
+"499","SN",6,"AfD","sn",6,"AfD",NA
+"500","SN",6,"CDU","sn",6,"CDU",NA
+"501","SN",6,"Linke","sn",6,"Die Linke",NA
+"502","SN",6,"Grüne","sn",6,"GRÜNE",NA
+"503","SN",6,"SPD","sn",6,"SPD",NA
+"504","SN",6,NA,"sn",6,"fraktionslos",NA
+"505","ST",1,"Grüne","st",1,"Bündnis 90/Die Grünen",NA
+"506","ST",1,"CDU","st",1,"CDU",NA
+"507","ST",1,NA,"st",1,"DS-Fraktion","New PPG founded in 1993"
+"508","ST",1,NA,"st",1,"DSU","New PPG founded in 1992"
+"509","ST",1,"FDP","st",1,"FDP",NA
+"510","ST",1,NA,"st",1,"FUA","New PPG founded in 1994"
+"511","ST",1,NA,"st",1,"Freie Fraktion","New PPG founded in 1991"
+"512","ST",1,"Linke","st",1,"PDS",NA
+"513","ST",1,"SPD","st",1,"SPD",NA
+"514","ST",1,NA,"st",1,"fraktionslos",NA
+"515","ST",2,"Grüne","st",2,"Bündnis 90/Die Grünen",NA
+"516","ST",2,"CDU","st",2,"CDU",NA
+"517","ST",2,"Linke","st",2,"PDS",NA
+"518","ST",2,"SPD","st",2,"SPD",NA
+"519","ST",3,"CDU","st",3,"CDU",NA
+"520","ST",3,"DVU","st",3,"DVU",NA
+"521","ST",3,NA,"st",3,"DVU - FL","Split from DVU"
+"522","ST",3,NA,"st",3,"FDVP","Split from DVU"
+"523","ST",3,"Linke","st",3,"PDS",NA
+"524","ST",3,"SPD","st",3,"SPD",NA
+"525","ST",3,NA,"st",3,"fraktionslos",NA
+"526","ST",4,"CDU","st",4,"CDU",NA
+"527","ST",4,"FDP","st",4,"FDP",NA
+"528","ST",4,"Linke","st",4,"PDS",NA
+"529","ST",4,"SPD","st",4,"SPD",NA
+"530","ST",5,"CDU","st",5,"CDU",NA
+"531","ST",5,"Linke","st",5,"Die Linke",NA
+"532","ST",5,"FDP","st",5,"FDP",NA
+"533","ST",5,"SPD","st",5,"SPD",NA
+"534","ST",5,NA,"st",5,"fraktionslos",NA
+"535","ST",6,"Grüne","st",6,"Bündnis 90/Die Grünen",NA
+"536","ST",6,"CDU","st",6,"CDU",NA
+"537","ST",6,"Linke","st",6,"Die Linke",NA
+"538","ST",6,"SPD","st",6,"SPD",NA
+"539","ST",7,"AfD","st",7,"AfD",NA
+"540","ST",7,"Grüne","st",7,"Bündnis 90/Die Grünen",NA
+"541","ST",7,"CDU","st",7,"CDU",NA
+"542","ST",7,"Linke","st",7,"Die Linke",NA
+"543","ST",7,"SPD","st",7,"SPD",NA
+"544","ST",7,NA,"st",7,"fraktionslos",NA
+"545","TH",1,"CDU","th",1,"CDU",NA
+"546","TH",1,NA,"th",1,"DJ","Ran on Green List"
+"547","TH",1,"FDP","th",1,"FDP",NA
+"548","TH",1,"Grüne","th",1,"GRÜNE",NA
+"549","TH",1,NA,"th",1,"NF","Ran on Green List"
+"550","TH",1,"Linke","th",1,"PDS",NA
+"551","TH",1,"SPD","th",1,"SPD",NA
+"552","TH",1,NA,"th",1,"fraktionslos",NA
+"553","TH",2,"CDU","th",2,"CDU",NA
+"554","TH",2,"Linke","th",2,"PDS",NA
+"555","TH",2,"SPD","th",2,"SPD",NA
+"556","TH",3,"CDU","th",3,"CDU",NA
+"557","TH",3,"Linke","th",3,"PDS",NA
+"558","TH",3,"SPD","th",3,"SPD",NA
+"559","TH",4,"CDU","th",4,"CDU",NA
+"560","TH",4,"Linke","th",4,"Die Linke",NA
+"561","TH",4,"SPD","th",4,"SPD",NA
+"562","TH",5,"CDU","th",5,"CDU",NA
+"563","TH",5,"Linke","th",5,"Die Linke",NA
+"564","TH",5,"FDP","th",5,"FDP",NA
+"565","TH",5,"Grüne","th",5,"GRÜNE",NA
+"566","TH",5,"SPD","th",5,"SPD",NA
+"567","TH",6,"AfD","th",6,"AfD",NA
+"568","TH",6,"CDU","th",6,"CDU",NA
+"569","TH",6,"Linke","th",6,"Die Linke",NA
+"570","TH",6,"Grüne","th",6,"GRÜNE",NA
+"571","TH",6,"SPD","th",6,"SPD",NA
+"572","TH",6,NA,"th",6,"fraktionslos",NA

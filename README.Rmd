@@ -36,12 +36,6 @@ For a more detailed description, please refer to the codebook.
 You can download the data from the release folder in this repository.
 
 
-
-(While the project is still under development in a private repository,
-I didn't manage to get it installed using `git2r`. Thus, I would recommend
-cloning the repository and installing the package using `R devtools::install_local()`
-from within the cloned repository)
-
 Install the development version from [GitHub](https://github.com/) with:
 
 ``` r

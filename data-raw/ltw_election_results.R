@@ -633,7 +633,7 @@ ltw_combined_int <- ltw_election_results_and_gov
 
 ltw_governments <- 
 ltw_combined_int %>% 
-  select(state, nuts1, state_name_de, state_name_en, election_date, total_seats_parliament, partyname_short,
+  select(state, nuts1, state_name_de, state_name_en, election_date, state_election_term, total_seats_parliament, partyname_short,
          party_vshare, party_seat_count, party_sshare, gov_no_within_legterm, gov_id, state_gov_number, gov_start_date,
          gov_source, gov_party, nmin_party, gov_remarks_stelzle, minister_president, mp_party, is_mp_party) %>% 
   filter(gov_party == TRUE) %>% 
@@ -661,7 +661,7 @@ ltw_combined_int %>%
   distinct() %>% 
   bind_rows(
     ltw_combined_int %>% 
-      select(state, nuts1, state_name_de, state_name_en, election_date, total_seats_parliament, gov_no_within_legterm,
+      select(state, nuts1, state_name_de, state_name_en, election_date, state_election_term, total_seats_parliament, gov_no_within_legterm,
              gov_id, state_gov_number, gov_start_date,
              gov_source, gov_remarks_stelzle, minister_president, mp_party) %>% 
       filter(gov_id == 11318) %>% 
@@ -951,7 +951,7 @@ read_xlsx(here("inst", "extdata", "legislative_turnover.xlsx")) %>%
 
 ltw_elections_meta <- 
 ltw_elections %>% 
-  select(state, nuts1, state_name_de, state_name_en, election_date, electorate, turnout, total_seats_parliament, total_female_mps_parliament) %>% 
+  select(state, nuts1, state_name_de, state_name_en, election_date, state_election_term, electorate, turnout, total_seats_parliament, total_female_mps_parliament) %>% 
   distinct() %>% 
   left_join(number_parties, by = c("state", "election_date")) %>% 
   left_join(number_parties_parliament, by = c("state", "election_date")) %>% 
@@ -1147,6 +1147,27 @@ usethis::use_data(link_integrated_state_election_surveys, overwrite = TRUE)
 
 
 
+link_statepol_ppg <- 
+readxl::read_excel("inst/extdata/link_statepol_ppg.xlsx") %>% 
+  select(state, state_election_term, partyname_short, landtag_state_abb, electoralperiod, ppg, link_notes = notes) 
+
+
+usethis::use_data(link_statepol_ppg, overwrite = TRUE)
+
+
+
+
+link_statepol_cabinets <- 
+readxl::read_xlsx("inst/extdata/link_statepol_cabinets.xlsx") %>% 
+  select(state, gov_id, landtag_state_abb, cabinet)
+
+usethis::use_data(link_statepol_cabinets, overwrite = TRUE)
+
+
+
+
+
+
 
 
 
@@ -1230,6 +1251,20 @@ dir.create(here("release", "bundeslaender_data_release", "link_integrated_state_
 write_rds(link_integrated_state_election_surveys, here("release", "bundeslaender_data_release", "link_integrated_state_election_surveys", "link_integrated_state_election_surveys.rds"))
 write.csv(link_integrated_state_election_surveys, here("release", "bundeslaender_data_release", "link_integrated_state_election_surveys", "link_integrated_state_election_surveys.csv"))
 link_integrated_state_election_surveys %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_integrated_state_election_surveys", "link_integrated_state_election_surveys.dta"))
+
+
+dir.create(here("release", "bundeslaender_data_release", "link_statepol_ppg"))
+write_rds(link_statepol_ppg, here("release", "bundeslaender_data_release", "link_statepol_ppg", "link_statepol_ppg.rds"))
+write.csv(link_statepol_ppg, here("release", "bundeslaender_data_release", "link_statepol_ppg", "link_statepol_ppg.csv"))
+link_statepol_ppg %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_statepol_ppg", "link_statepol_ppg.dta"))
+
+
+
+dir.create(here("release", "bundeslaender_data_release", "link_statepol_cabinets"))
+write_rds(link_statepol_cabinets, here("release", "bundeslaender_data_release", "link_statepol_cabinets", "link_statepol_cabinets.rds"))
+write.csv(link_statepol_cabinets, here("release", "bundeslaender_data_release", "link_statepol_cabinets", "link_statepol_cabinets.csv"))
+link_statepol_cabinets %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_statepol_cabinets", "link_statepol_cabinets.dta"))
+
 
 
 

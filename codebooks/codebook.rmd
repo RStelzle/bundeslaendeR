@@ -1,7 +1,7 @@
 ---
 title: "Codebook bundeslaendeR"
 author: "Robert Stelzle"
-date: "29.08.2025"
+date: "12.09.2025"
 documentclass: scrartcl
 output:
   pdf_document:
@@ -41,8 +41,6 @@ header-includes:
 - \posttitle{\end{center}}
 - \usepackage[backend=biber, style=ext-authoryear-comp,maxbibnames=99,maxcitenames=3,isbn=false,date=year,sorting=nyt]{biblatex}
 - \AtEveryBibitem{\clearfield{urlyear} 	\clearfield{urlmonth}}
-- \usepackage{hyperref}
-- \usepackage[hyperref]{xcolor}%Für Farbe in Tabellen usw.
 
 ---
 
@@ -1142,7 +1140,7 @@ item_end()
 ```{r, results="asis"}
 item_start(item_name_code = "decker_neu",
            item_name = "Chapter Parteienhandbuch",
-           item_desc = "Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by \\textcite{deckerHandbuchDeutschenParteien2018} has a chapter on the party.",
+           item_desc = "Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by \\textcite{deckerHandbuchDeutschenParteien2018b} has a chapter on the party.",
            desc_left = FALSE)
 ```
 
@@ -2174,7 +2172,7 @@ item_end()
 <!-- ({partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}), the provided links make joining the data easier. -->
 
 
-Using the provided datasets `link_manifestos`, `link_coalitionagreements`, `link_positions_pwib` and `link_legcap_appeldorn_fortunato` `bundeslaendeR` data can be linked to other datasets.
+Using the provided datasets `link_manifestos`, `link_coalitionagreements`, `link_positions_pwib`, `link_integrated_state_election_surveys`, `link_statepol_ppg`, `link_statepol_cabinets` and  `link_legcap_appeldorn_fortunato` `bundeslaendeR` data can be linked to other datasets.
 
 ## `link_manifestos`
 
@@ -2636,7 +2634,7 @@ item_end()
 
 
 
-`link_legcap_appeldorn_fortunato` provides a link between `bundeslaendeR` data and data on Legislative Capacity in Germany's Parliaments (10.7910/DVN/BA8G7H) provided by \textcite{fortunatoReplicationDataLegislative2021} \parencite[for more details see][]{appeldornLegislativeCapacityGermanys2022},
+`link_legcap_appeldorn_fortunato` provides a link between `bundeslaendeR` data and data on Legislative Capacity in Germany's Parliaments (10.7910/DVN/BA8G7H) provided by \textcite{fortunatoReplicationDataLegislative2021} \parencite[for more details see][]{appeldornLegislativeCapacityGermany2022},
 consolidating minor differences in the spelling of state names and state abbreviations between the two datasets.
 
 Note that Appeldorn and Fortunato provide yearly time-series data, while bundeslaendeR data are based on elections/governments.
@@ -2671,7 +2669,7 @@ short_item(item_name_code = "state_name_\nappeldorn_fortunato",
 
 
 
-Dataset providing a link between ltw_elections (or ltw_combined) and party names in vote choice in the integrated dataset of state election surveys availabel on GESIS (ZAZA4182) \parencite{scheuchGermanFederalState2015}.
+Dataset providing a link between ltw_elections (or ltw_combined) and party names in vote choice in the integrated dataset of state election surveys availabel on GESIS (ZAZA4182) \parencite{scheuchGermanFederalState2015}. Currently linked to StatePol version 
 
 
 
@@ -2768,8 +2766,73 @@ short_item(item_name_code = "m7b",
 )
 ```
 
+\newpage
+
+## `link_statepol_ppg`
+
+Dataset providing a link between `ltw_elections` (or `ltw_combined`) and data on parliamentary party groups in the StatePol database \parencite{kochStatePolDatenbankMitgliedern2024a}. 
+
+Use the `ppg` variable in the StatePol PPG dataset (not the `ppg_id` variable) to link StatePol and `bundeslaendeR` data. Party groups that are founded later in the legislative cycle cannot be linked to electoral outcome data. See `link_notes` for details on such cases. 
+
+The Bündnis 90/Die Grünen (AL) / UFV party group links to the election results of both Bü90GrüUFV and Grüne in the 1990 Berlin state elections as MdLs running on both lists formed a joint party group immediately following the election.
+
+
+```{r, results="asis"}
+short_item(item_name_code = "landtag_state_abb",
+           item_name = "State name abbreviation in StatePol",
+           item_desc = "State name abbreviation in StatePol dataset.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "electoralperiod",
+           item_name = "State electoral period in StatePol",
+           item_desc = "State electoral period in StatePol dataset. Note that this count does not neccesarily match the number \\texttt{state\\_election\\_term}. See the describtion of the \\texttt{state\\_election\\_term} variable above.",
+           desc_left = FALSE)
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "ppg",
+           item_name = "Name of Parliamentary Party Group on StatePol",
+           item_desc = "Name of Parliamentary Party Group on StatePol. Note that the \\texttt{ppg} column is different from the \\texttt{ppg\\_id} column in the original StatePol dataset.",
+           desc_left = FALSE)
+```
+
 
 \newpage
+
+## `link_statepol_cabinets`
+
+Dataset providing links between government data in `ltw_governments` and `ltw_combined` and cabinet data from StatePol database \parencite{kochStatePolDatenbankMitgliedern2024a}.
+
+In some cases one cabinet in the StatePol database is assigned two `gov_ids` in `bundeslaendeR` data as StatePol covers parties leaving a coalition using time variant cabinet membership of party ministers whereas `bundeslaendeR` creates a new government entry. In these cases there are two values in the `gov_id` column, separated by a semi-colon.
+
+
+```{r, results="asis"}
+short_item(item_name_code = "landtag_state_abb",
+           item_name = "State name abbreviation in StatePol",
+           item_desc = "State name abbreviation in StatePol dataset.",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "cabinet",
+           item_name = "Cabinet name in StatePol",
+           item_desc = "Cabinet name in StatePol dataset.",
+           desc_left = FALSE)
+```
+
+
+
+
+\newpage
+
 
 
 <!-- # `de_states_grid_4x4()` -->
