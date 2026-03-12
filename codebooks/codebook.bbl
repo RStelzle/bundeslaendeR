@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.2 $
+% $ biblatex bbl format version 3.3 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -18,8 +18,8 @@
 
 
 \refsection{0}
-  \datalist[entry]{nyt/global//global/global}
-    \entry{appeldornLegislativeCapacityGermany2022}{article}{}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{appeldornLegislativeCapacityGermany2022}{article}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=5dce3424e98e41b04b398feaeea0332e}{%
            family={Appeldorn},
@@ -36,10 +36,12 @@
       }
       \strng{namehash}{65d5efc5de23ddafd9d3df0eee77fa2a}
       \strng{fullhash}{65d5efc5de23ddafd9d3df0eee77fa2a}
+      \strng{fullhashraw}{65d5efc5de23ddafd9d3df0eee77fa2a}
       \strng{bibnamehash}{65d5efc5de23ddafd9d3df0eee77fa2a}
       \strng{authorbibnamehash}{65d5efc5de23ddafd9d3df0eee77fa2a}
       \strng{authornamehash}{65d5efc5de23ddafd9d3df0eee77fa2a}
       \strng{authorfullhash}{65d5efc5de23ddafd9d3df0eee77fa2a}
+      \strng{authorfullhashraw}{65d5efc5de23ddafd9d3df0eee77fa2a}
       \field{sortinit}{A}
       \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{extradatescope}{labelyear}
@@ -65,7 +67,7 @@
       \verb /Users/robertstelzle/Zotero/storage/56R9YIZ8/Appeldorn_Fortunato_2022_Legislative Capacity in Germany's Parliaments.pdf
       \endverb
     \endentry
-    \entry{benoitChallengesEstimatingPolicy2009}{article}{}
+    \entry{benoitChallengesEstimatingPolicy2009}{article}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=3c1ca3e512356959e202dae95044d122}{%
            family={Benoit},
@@ -88,10 +90,12 @@
       }
       \strng{namehash}{a90d7a6f4dc1fba551d3261864fb7eba}
       \strng{fullhash}{a90d7a6f4dc1fba551d3261864fb7eba}
+      \strng{fullhashraw}{a90d7a6f4dc1fba551d3261864fb7eba}
       \strng{bibnamehash}{a90d7a6f4dc1fba551d3261864fb7eba}
       \strng{authorbibnamehash}{a90d7a6f4dc1fba551d3261864fb7eba}
       \strng{authornamehash}{a90d7a6f4dc1fba551d3261864fb7eba}
       \strng{authorfullhash}{a90d7a6f4dc1fba551d3261864fb7eba}
+      \strng{authorfullhashraw}{a90d7a6f4dc1fba551d3261864fb7eba}
       \field{sortinit}{B}
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{extradatescope}{labelyear}
@@ -118,7 +122,7 @@
       \verb /Users/robertstelzle/Zotero/storage/5V5R5ZJZ/Benoit etal_2009_Challenges for Estimating Policy Preferences.pdf
       \endverb
     \endentry
-    \entry{brauningerPolidocnetCodebook2018}{misc}{}
+    \entry{brauningerPolidocnetCodebook2018}{misc}{}{}
       \name{author}{4}{ul=3}{%
         {{un=0,uniquepart=base,hash=f2c91e45e037ffb129887a7eebf24a10}{%
            family={Bräuninger},
@@ -147,10 +151,12 @@
       }
       \strng{namehash}{5510b7e9cc1ecaa30c9a37a69b0f7d49}
       \strng{fullhash}{53c58766304286d6ff3cff2072a1fe43}
+      \strng{fullhashraw}{53c58766304286d6ff3cff2072a1fe43}
       \strng{bibnamehash}{53c58766304286d6ff3cff2072a1fe43}
       \strng{authorbibnamehash}{53c58766304286d6ff3cff2072a1fe43}
       \strng{authornamehash}{5510b7e9cc1ecaa30c9a37a69b0f7d49}
       \strng{authorfullhash}{53c58766304286d6ff3cff2072a1fe43}
+      \strng{authorfullhashraw}{53c58766304286d6ff3cff2072a1fe43}
       \field{sortinit}{B}
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{extradatescope}{labelyear}
@@ -169,7 +175,7 @@
       \verb /Users/robertstelzle/Zotero/storage/ZIGPIKLJ/Bräuninger et al. - 2017 - Polidoc.Net Codebook National And Regional Manife.pdf
       \endverb
     \endentry
-    \entry{braeuningerParteienwettbewerbDeutschenBundeslaendern2020}{book}{}
+    \entry{braeuningerParteienwettbewerbDeutschenBundeslaendern2020}{book}{}{}
       \name{author}{4}{ul=3}{%
         {{un=0,uniquepart=base,hash=f2c91e45e037ffb129887a7eebf24a10}{%
            family={Bräuninger},
@@ -204,10 +210,12 @@
       }
       \strng{namehash}{d7d527780d919f36e23e205579d47dc5}
       \strng{fullhash}{654a73ec69a9bae151c66b45dcd92bf2}
+      \strng{fullhashraw}{654a73ec69a9bae151c66b45dcd92bf2}
       \strng{bibnamehash}{654a73ec69a9bae151c66b45dcd92bf2}
       \strng{authorbibnamehash}{654a73ec69a9bae151c66b45dcd92bf2}
       \strng{authornamehash}{d7d527780d919f36e23e205579d47dc5}
       \strng{authorfullhash}{654a73ec69a9bae151c66b45dcd92bf2}
+      \strng{authorfullhashraw}{654a73ec69a9bae151c66b45dcd92bf2}
       \field{sortinit}{B}
       \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{extradatescope}{labelyear}
@@ -227,7 +235,7 @@
       \endverb
       \keyw{Pflichttext}
     \endentry
-    \entry{deckerHandbuchDeutschenParteien2018b}{book}{}
+    \entry{deckerHandbuchDeutschenParteien2018b}{book}{}{}
       \name{editor}{2}{}{%
         {{un=0,uniquepart=base,hash=b19fa14e4f3ded7d2b3a5e9d67687a51}{%
            family={Decker},
@@ -250,10 +258,12 @@
       }
       \strng{namehash}{0114ac87b74f319299986b4fbcdddf04}
       \strng{fullhash}{0114ac87b74f319299986b4fbcdddf04}
+      \strng{fullhashraw}{0114ac87b74f319299986b4fbcdddf04}
       \strng{bibnamehash}{0114ac87b74f319299986b4fbcdddf04}
       \strng{editorbibnamehash}{0114ac87b74f319299986b4fbcdddf04}
       \strng{editornamehash}{0114ac87b74f319299986b4fbcdddf04}
       \strng{editorfullhash}{0114ac87b74f319299986b4fbcdddf04}
+      \strng{editorfullhashraw}{0114ac87b74f319299986b4fbcdddf04}
       \field{sortinit}{D}
       \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
       \field{extradatescope}{labelyear}
@@ -273,7 +283,7 @@
       \verb /Users/robertstelzle/Zotero/storage/M8R33Y78/Decker und Neu - 2018 - Handbuch der deutschen Parteien.pdf
       \endverb
     \endentry
-    \entry{doringPartyFactsDatabase2019}{article}{}
+    \entry{doringPartyFactsDatabase2019}{article}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=290d978c80dfa58f724e22e98f7184a6}{%
            family={Döring},
@@ -290,10 +300,12 @@
       }
       \strng{namehash}{5d6bc1688542cd6b800a807856ff6832}
       \strng{fullhash}{5d6bc1688542cd6b800a807856ff6832}
+      \strng{fullhashraw}{5d6bc1688542cd6b800a807856ff6832}
       \strng{bibnamehash}{5d6bc1688542cd6b800a807856ff6832}
       \strng{authorbibnamehash}{5d6bc1688542cd6b800a807856ff6832}
       \strng{authornamehash}{5d6bc1688542cd6b800a807856ff6832}
       \strng{authorfullhash}{5d6bc1688542cd6b800a807856ff6832}
+      \strng{authorfullhashraw}{5d6bc1688542cd6b800a807856ff6832}
       \field{sortinit}{D}
       \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
       \field{extradatescope}{labelyear}
@@ -320,7 +332,7 @@
       \verb /Users/robertstelzle/Zotero/storage/ZFH49EET/Döring_Regel_2019_Party Facts.pdf
       \endverb
     \endentry
-    \entry{fortunatoReplicationDataLegislative2021}{dataset}{}
+    \entry{fortunatoReplicationDataLegislative2021}{dataset}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=3a9056c056dcebef64b6a4a83560103a}{%
            family={Fortunato},
@@ -340,10 +352,12 @@
       }
       \strng{namehash}{eb1c2a4aff2f367b9fcbedf031ad047c}
       \strng{fullhash}{eb1c2a4aff2f367b9fcbedf031ad047c}
+      \strng{fullhashraw}{eb1c2a4aff2f367b9fcbedf031ad047c}
       \strng{bibnamehash}{eb1c2a4aff2f367b9fcbedf031ad047c}
       \strng{authorbibnamehash}{eb1c2a4aff2f367b9fcbedf031ad047c}
       \strng{authornamehash}{eb1c2a4aff2f367b9fcbedf031ad047c}
       \strng{authorfullhash}{eb1c2a4aff2f367b9fcbedf031ad047c}
+      \strng{authorfullhashraw}{eb1c2a4aff2f367b9fcbedf031ad047c}
       \field{sortinit}{F}
       \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{extradatescope}{labelyear}
@@ -359,7 +373,7 @@
       \verb 10.7910/DVN/BA8G7H
       \endverb
     \endentry
-    \entry{grossDoesEURegional2018}{article}{}
+    \entry{grossDoesEURegional2018}{article}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=a965c87f503edcf9957b416ce6d03919}{%
            family={Gross},
@@ -376,10 +390,12 @@
       }
       \strng{namehash}{d36d2bbc68cca677eb24ea58adb4c614}
       \strng{fullhash}{d36d2bbc68cca677eb24ea58adb4c614}
+      \strng{fullhashraw}{d36d2bbc68cca677eb24ea58adb4c614}
       \strng{bibnamehash}{d36d2bbc68cca677eb24ea58adb4c614}
       \strng{authorbibnamehash}{d36d2bbc68cca677eb24ea58adb4c614}
       \strng{authornamehash}{d36d2bbc68cca677eb24ea58adb4c614}
       \strng{authorfullhash}{d36d2bbc68cca677eb24ea58adb4c614}
+      \strng{authorfullhashraw}{d36d2bbc68cca677eb24ea58adb4c614}
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{extradatescope}{labelyear}
@@ -407,7 +423,7 @@
       \verb /Users/robertstelzle/Zotero/storage/XQUKT662/Gross und Debus - 2018 - Does EU regional policy increase parties’ support .pdf
       \endverb
     \endentry
-    \entry{heinsohnInstitutionalDeterminantsLegislative2014}{article}{}
+    \entry{heinsohnInstitutionalDeterminantsLegislative2014}{article}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=461fc3f30abd7e939f679369d469202b}{%
            family={Heinsohn},
@@ -418,10 +434,12 @@
       }
       \strng{namehash}{461fc3f30abd7e939f679369d469202b}
       \strng{fullhash}{461fc3f30abd7e939f679369d469202b}
+      \strng{fullhashraw}{461fc3f30abd7e939f679369d469202b}
       \strng{bibnamehash}{461fc3f30abd7e939f679369d469202b}
       \strng{authorbibnamehash}{461fc3f30abd7e939f679369d469202b}
       \strng{authornamehash}{461fc3f30abd7e939f679369d469202b}
       \strng{authorfullhash}{461fc3f30abd7e939f679369d469202b}
+      \strng{authorfullhashraw}{461fc3f30abd7e939f679369d469202b}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{extradatescope}{labelyear}
@@ -449,7 +467,7 @@
       \verb /Users/robertstelzle/Zotero/storage/3U85JGXY/Heinsohn - 2014 - Institutional Determinants of Legislative Turnover.pdf
       \endverb
     \endentry
-    \entry{jollyChapelHillExpert2022}{article}{}
+    \entry{jollyChapelHillExpert2022}{article}{}{}
       \name{author}{8}{}{%
         {{un=0,uniquepart=base,hash=165b8078581ac67ec8b8d4009fc376a7}{%
            family={Jolly},
@@ -502,10 +520,12 @@
       }
       \strng{namehash}{b23fd41643dbcb125bc2992e3f0254e0}
       \strng{fullhash}{5f4d4bf99788dddf617a37f749ee9cc8}
+      \strng{fullhashraw}{5f4d4bf99788dddf617a37f749ee9cc8}
       \strng{bibnamehash}{5f4d4bf99788dddf617a37f749ee9cc8}
       \strng{authorbibnamehash}{5f4d4bf99788dddf617a37f749ee9cc8}
       \strng{authornamehash}{b23fd41643dbcb125bc2992e3f0254e0}
       \strng{authorfullhash}{5f4d4bf99788dddf617a37f749ee9cc8}
+      \strng{authorfullhashraw}{5f4d4bf99788dddf617a37f749ee9cc8}
       \field{sortinit}{J}
       \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
       \field{extradatescope}{labelyear}
@@ -529,7 +549,7 @@
       \verb /Users/robertstelzle/Zotero/storage/VTSKL5TG/Jolly et al. - 2022 - Chapel Hill Expert Survey trend file, 1999–2019.pdf
       \endverb
     \endentry
-    \entry{karpovMeasurementDisproportionalityProportional2008}{article}{}
+    \entry{karpovMeasurementDisproportionalityProportional2008}{article}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=eecd7cc39c63a1d3d3adfaaf7e7e98d6}{%
            family={Karpov},
@@ -540,10 +560,12 @@
       }
       \strng{namehash}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
       \strng{fullhash}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
+      \strng{fullhashraw}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
       \strng{bibnamehash}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
       \strng{authorbibnamehash}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
       \strng{authornamehash}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
       \strng{authorfullhash}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
+      \strng{authorfullhashraw}{eecd7cc39c63a1d3d3adfaaf7e7e98d6}
       \field{sortinit}{K}
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
       \field{extradatescope}{labelyear}
@@ -570,7 +592,7 @@
       \verb /Users/robertstelzle/Zotero/storage/EU5I9MVC/Karpov - 2008 - Measurement of disproportionality in proportional .pdf
       \endverb
     \endentry
-    \entry{kochStatePolDatenbankMitgliedern2024a}{article}{}
+    \entry{kochStatePolDatenbankMitgliedern2024a}{article}{}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=bc65011ec056347aa8c367b1ab6919f4}{%
            family={Koch},
@@ -599,10 +621,12 @@
       }
       \strng{namehash}{c65aff22c2600822f8e1b60960c11298}
       \strng{fullhash}{ceba82a1349bba2052cf88f2fab4ed32}
+      \strng{fullhashraw}{ceba82a1349bba2052cf88f2fab4ed32}
       \strng{bibnamehash}{ceba82a1349bba2052cf88f2fab4ed32}
       \strng{authorbibnamehash}{ceba82a1349bba2052cf88f2fab4ed32}
       \strng{authornamehash}{c65aff22c2600822f8e1b60960c11298}
       \strng{authorfullhash}{ceba82a1349bba2052cf88f2fab4ed32}
+      \strng{authorfullhashraw}{ceba82a1349bba2052cf88f2fab4ed32}
       \field{sortinit}{K}
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
       \field{extradatescope}{labelyear}
@@ -629,7 +653,7 @@
       \verb /Users/robertstelzle/Zotero/storage/GCZW62TG/Koch et al. - 2024 - StatePol – Eine Datenbank zu den Mitgliedern von Regierungen und Parlamenten in den 16 Bundesländern.pdf
       \endverb
     \endentry
-    \entry{krausePPEGPoliticalParties2024a}{dataset}{}
+    \entry{krausePPEGPoliticalParties2024a}{dataset}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=e62a938d82bc78921687fa6e34c9c797}{%
            family={Krause},
@@ -662,13 +686,16 @@
       }
       \strng{namehash}{6bec3920979dc3ac480e357e28e19d72}
       \strng{fullhash}{6bec3920979dc3ac480e357e28e19d72}
+      \strng{fullhashraw}{6bec3920979dc3ac480e357e28e19d72}
       \strng{bibnamehash}{6bec3920979dc3ac480e357e28e19d72}
       \strng{authorbibnamehash}{6bec3920979dc3ac480e357e28e19d72}
       \strng{authornamehash}{6bec3920979dc3ac480e357e28e19d72}
       \strng{authorfullhash}{6bec3920979dc3ac480e357e28e19d72}
+      \strng{authorfullhashraw}{6bec3920979dc3ac480e357e28e19d72}
       \strng{nameabibnamehash}{e62a938d82bc78921687fa6e34c9c797}
       \strng{nameanamehash}{e62a938d82bc78921687fa6e34c9c797}
       \strng{nameafullhash}{e62a938d82bc78921687fa6e34c9c797}
+      \strng{nameafullhashraw}{e62a938d82bc78921687fa6e34c9c797}
       \field{sortinit}{K}
       \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
       \field{extradatescope}{labelyear}
@@ -688,7 +715,7 @@
       \verb 10.7910/DVN/K5AJAW
       \endverb
     \endentry
-    \entry{laaksoEffectiveNumberParties1979}{article}{}
+    \entry{laaksoEffectiveNumberParties1979}{article}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=87a216ecf840e0a6770713c930042cca}{%
            family={Laakso},
@@ -705,10 +732,12 @@
       }
       \strng{namehash}{edbac56149f99c678feb76ac395c2eca}
       \strng{fullhash}{edbac56149f99c678feb76ac395c2eca}
+      \strng{fullhashraw}{edbac56149f99c678feb76ac395c2eca}
       \strng{bibnamehash}{edbac56149f99c678feb76ac395c2eca}
       \strng{authorbibnamehash}{edbac56149f99c678feb76ac395c2eca}
       \strng{authornamehash}{edbac56149f99c678feb76ac395c2eca}
       \strng{authorfullhash}{edbac56149f99c678feb76ac395c2eca}
+      \strng{authorfullhashraw}{edbac56149f99c678feb76ac395c2eca}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{extradatescope}{labelyear}
@@ -731,7 +760,7 @@
       \endverb
       \keyw{Methode,Parteiensysteme,Wahlforschung}
     \endentry
-    \entry{linhartProportionaleMinisterienaufteilungDeutschen2008}{article}{}
+    \entry{linhartProportionaleMinisterienaufteilungDeutschen2008}{article}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=9c40e41cd751cb4a8ad871af53abddc9}{%
            family={Linhart},
@@ -754,10 +783,12 @@
       }
       \strng{namehash}{3c42100b1980fee2f4f50e804b12956e}
       \strng{fullhash}{3c42100b1980fee2f4f50e804b12956e}
+      \strng{fullhashraw}{3c42100b1980fee2f4f50e804b12956e}
       \strng{bibnamehash}{3c42100b1980fee2f4f50e804b12956e}
       \strng{authorbibnamehash}{3c42100b1980fee2f4f50e804b12956e}
       \strng{authornamehash}{3c42100b1980fee2f4f50e804b12956e}
       \strng{authorfullhash}{3c42100b1980fee2f4f50e804b12956e}
+      \strng{authorfullhashraw}{3c42100b1980fee2f4f50e804b12956e}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{extradatescope}{labelyear}
@@ -784,7 +815,7 @@
       \verb /Users/robertstelzle/Zotero/storage/JP57HLP5/Linhart et al. - 2008 - Die proportionale Ministerienaufteilung in deutsch.pdf
       \endverb
     \endentry
-    \entry{loosemoreTheoreticalLimitsMaximum1971}{article}{}
+    \entry{loosemoreTheoreticalLimitsMaximum1971}{article}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=a65ec7b9cf1d70df2ff6e70cd2eb9a1d}{%
            family={Loosemore},
@@ -801,10 +832,12 @@
       }
       \strng{namehash}{a5a8149819838ea11e18cd26fddf472e}
       \strng{fullhash}{a5a8149819838ea11e18cd26fddf472e}
+      \strng{fullhashraw}{a5a8149819838ea11e18cd26fddf472e}
       \strng{bibnamehash}{a5a8149819838ea11e18cd26fddf472e}
       \strng{authorbibnamehash}{a5a8149819838ea11e18cd26fddf472e}
       \strng{authornamehash}{a5a8149819838ea11e18cd26fddf472e}
       \strng{authorfullhash}{a5a8149819838ea11e18cd26fddf472e}
+      \strng{authorfullhashraw}{a5a8149819838ea11e18cd26fddf472e}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{extradatescope}{labelyear}
@@ -831,7 +864,7 @@
       \verb /Users/robertstelzle/Zotero/storage/5B2YMINE/Loosemore und Hanby - 1971 - The Theoretical Limits of Maximum Distortion Some.pdf
       \endverb
     \endentry
-    \entry{mackieInternationalAlmanacElectoral1991}{book}{}
+    \entry{mackieInternationalAlmanacElectoral1991}{book}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=c2ca91290d66f9b25b34991b82f148f7}{%
            family={Mackie},
@@ -854,10 +887,12 @@
       }
       \strng{namehash}{65321bebc46195867eb1c890995a1647}
       \strng{fullhash}{65321bebc46195867eb1c890995a1647}
+      \strng{fullhashraw}{65321bebc46195867eb1c890995a1647}
       \strng{bibnamehash}{65321bebc46195867eb1c890995a1647}
       \strng{authorbibnamehash}{65321bebc46195867eb1c890995a1647}
       \strng{authornamehash}{65321bebc46195867eb1c890995a1647}
       \strng{authorfullhash}{65321bebc46195867eb1c890995a1647}
+      \strng{authorfullhashraw}{65321bebc46195867eb1c890995a1647}
       \field{sortinit}{M}
       \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
       \field{extradatescope}{labelyear}
@@ -885,7 +920,7 @@
       \verb https://public.ebookcentral.proquest.com/choice/publicfullrecord.aspx?p=5662358
       \endverb
     \endentry
-    \entry{niedermayerAnalyseParteiensystemen2013}{incollection}{}
+    \entry{niedermayerAnalyseParteiensystemen2013}{incollection}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=2a584c618a6ecca38012cceff1c93c87}{%
            family={Niedermayer},
@@ -909,13 +944,16 @@
       }
       \strng{namehash}{2a584c618a6ecca38012cceff1c93c87}
       \strng{fullhash}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{fullhashraw}{2a584c618a6ecca38012cceff1c93c87}
       \strng{bibnamehash}{2a584c618a6ecca38012cceff1c93c87}
       \strng{authorbibnamehash}{2a584c618a6ecca38012cceff1c93c87}
       \strng{authornamehash}{2a584c618a6ecca38012cceff1c93c87}
       \strng{authorfullhash}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{authorfullhashraw}{2a584c618a6ecca38012cceff1c93c87}
       \strng{editorbibnamehash}{2a584c618a6ecca38012cceff1c93c87}
       \strng{editornamehash}{2a584c618a6ecca38012cceff1c93c87}
       \strng{editorfullhash}{2a584c618a6ecca38012cceff1c93c87}
+      \strng{editorfullhashraw}{2a584c618a6ecca38012cceff1c93c87}
       \field{sortinit}{N}
       \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
       \field{extradatescope}{labelyear}
@@ -937,7 +975,7 @@
       \verb /Users/robertstelzle/Zotero/storage/68WZLYKS/Niedermayer - 2013 - Handbuch Parteienforschung.pdf
       \endverb
     \endentry
-    \entry{pappiPartyElectionProgrammes2009}{article}{}
+    \entry{pappiPartyElectionProgrammes2009}{article}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=93c75fad3fe68031e7816f865deaf40d}{%
            family={Pappi},
@@ -954,10 +992,12 @@
       }
       \strng{namehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
       \strng{fullhash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{fullhashraw}{e4a781ff2bb8866ad4f6a9db8cc26745}
       \strng{bibnamehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
       \strng{authorbibnamehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
       \strng{authornamehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
       \strng{authorfullhash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{authorfullhashraw}{e4a781ff2bb8866ad4f6a9db8cc26745}
       \field{extraname}{1}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
@@ -985,7 +1025,7 @@
       \verb /Users/robertstelzle/Zotero/storage/ZE8CKIQU/Pappi und Seher - 2009 - Party Election Programmes, Signalling Policies and.pdf
       \endverb
     \endentry
-    \entry{pappiPolitikpositionenDeutschenLandtagsparteien2014}{incollection}{}
+    \entry{pappiPolitikpositionenDeutschenLandtagsparteien2014}{incollection}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=93c75fad3fe68031e7816f865deaf40d}{%
            family={Pappi},
@@ -1025,13 +1065,16 @@
       }
       \strng{namehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
       \strng{fullhash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{fullhashraw}{e4a781ff2bb8866ad4f6a9db8cc26745}
       \strng{bibnamehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
       \strng{authorbibnamehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
       \strng{authornamehash}{e4a781ff2bb8866ad4f6a9db8cc26745}
       \strng{authorfullhash}{e4a781ff2bb8866ad4f6a9db8cc26745}
+      \strng{authorfullhashraw}{e4a781ff2bb8866ad4f6a9db8cc26745}
       \strng{editorbibnamehash}{ddbb1dc6c95785a514bf0c771e0f40cb}
       \strng{editornamehash}{ddbb1dc6c95785a514bf0c771e0f40cb}
       \strng{editorfullhash}{ddbb1dc6c95785a514bf0c771e0f40cb}
+      \strng{editorfullhashraw}{ddbb1dc6c95785a514bf0c771e0f40cb}
       \field{extraname}{2}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
@@ -1051,7 +1094,7 @@
       \verb 10.1007/978-3-658-05008-5_6
       \endverb
     \endentry
-    \entry{pedersenDynamicsEuropeanParty1979}{article}{}
+    \entry{pedersenDynamicsEuropeanParty1979}{article}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=e5edf9de130f6471a7c48bffdc110bbe}{%
            family={Pedersen},
@@ -1062,10 +1105,12 @@
       }
       \strng{namehash}{e5edf9de130f6471a7c48bffdc110bbe}
       \strng{fullhash}{e5edf9de130f6471a7c48bffdc110bbe}
+      \strng{fullhashraw}{e5edf9de130f6471a7c48bffdc110bbe}
       \strng{bibnamehash}{e5edf9de130f6471a7c48bffdc110bbe}
       \strng{authorbibnamehash}{e5edf9de130f6471a7c48bffdc110bbe}
       \strng{authornamehash}{e5edf9de130f6471a7c48bffdc110bbe}
       \strng{authorfullhash}{e5edf9de130f6471a7c48bffdc110bbe}
+      \strng{authorfullhashraw}{e5edf9de130f6471a7c48bffdc110bbe}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
       \field{extradatescope}{labelyear}
@@ -1092,7 +1137,7 @@
       \verb /Users/robertstelzle/Zotero/storage/7JHFH8EL/Pedersen - 1979 - THE DYNAMICS OF EUROPEAN PARTY SYSTEMS CHANGING P.pdf
       \endverb
     \endentry
-    \entry{raeNoteFractionalizationEuropean1968}{article}{}
+    \entry{raeNoteFractionalizationEuropean1968}{article}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=2fce812fb6ac351ba24302a7a3420fca}{%
            family={Rae},
@@ -1103,10 +1148,12 @@
       }
       \strng{namehash}{2fce812fb6ac351ba24302a7a3420fca}
       \strng{fullhash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{fullhashraw}{2fce812fb6ac351ba24302a7a3420fca}
       \strng{bibnamehash}{2fce812fb6ac351ba24302a7a3420fca}
       \strng{authorbibnamehash}{2fce812fb6ac351ba24302a7a3420fca}
       \strng{authornamehash}{2fce812fb6ac351ba24302a7a3420fca}
       \strng{authorfullhash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{authorfullhashraw}{2fce812fb6ac351ba24302a7a3420fca}
       \field{extraname}{1}
       \field{sortinit}{R}
       \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
@@ -1133,7 +1180,7 @@
       \verb /Users/robertstelzle/Zotero/storage/RPHJA5RA/Rae - 1968 - A Note on the Fractionalization of Some European P.pdf
       \endverb
     \endentry
-    \entry{raePoliticalConsequencesElectoral1971}{book}{}
+    \entry{raePoliticalConsequencesElectoral1971}{book}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=2fce812fb6ac351ba24302a7a3420fca}{%
            family={Rae},
@@ -1150,10 +1197,12 @@
       }
       \strng{namehash}{2fce812fb6ac351ba24302a7a3420fca}
       \strng{fullhash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{fullhashraw}{2fce812fb6ac351ba24302a7a3420fca}
       \strng{bibnamehash}{2fce812fb6ac351ba24302a7a3420fca}
       \strng{authorbibnamehash}{2fce812fb6ac351ba24302a7a3420fca}
       \strng{authornamehash}{2fce812fb6ac351ba24302a7a3420fca}
       \strng{authorfullhash}{2fce812fb6ac351ba24302a7a3420fca}
+      \strng{authorfullhashraw}{2fce812fb6ac351ba24302a7a3420fca}
       \field{extraname}{2}
       \field{sortinit}{R}
       \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
@@ -1168,7 +1217,7 @@
       \field{year}{1971}
       \field{dateera}{ce}
     \endentry
-    \entry{scheuchGermanFederalState2015}{dataset}{}
+    \entry{scheuchGermanFederalState2015}{dataset}{}{}
       \name{author}{9}{}{%
         {{un=0,uniquepart=base,hash=f78393fa5c57e778d6c6764f4525b552}{%
            family={Scheuch},
@@ -1235,13 +1284,16 @@
       }
       \strng{namehash}{e2a56621cb4262469d65bdda415af41e}
       \strng{fullhash}{40417aa30a0254637cb61f7bff94e9d9}
+      \strng{fullhashraw}{40417aa30a0254637cb61f7bff94e9d9}
       \strng{bibnamehash}{40417aa30a0254637cb61f7bff94e9d9}
       \strng{authorbibnamehash}{40417aa30a0254637cb61f7bff94e9d9}
       \strng{authornamehash}{e2a56621cb4262469d65bdda415af41e}
       \strng{authorfullhash}{40417aa30a0254637cb61f7bff94e9d9}
+      \strng{authorfullhashraw}{40417aa30a0254637cb61f7bff94e9d9}
       \strng{nameabibnamehash}{837288d296fbad02657faaf12ad5fa42}
       \strng{nameanamehash}{837288d296fbad02657faaf12ad5fa42}
       \strng{nameafullhash}{837288d296fbad02657faaf12ad5fa42}
+      \strng{nameafullhashraw}{837288d296fbad02657faaf12ad5fa42}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{extradatescope}{labelyear}
