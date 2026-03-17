@@ -4,7 +4,10 @@
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
-]{scrartcl}
+  a4paper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
 \usepackage{amsmath,amssymb}
 \usepackage{iftex}
 \ifPDFTeX
@@ -12,13 +15,13 @@
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math} % this also loads fontspec
+  \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
 \usepackage{lmodern}
-\ifPDFTeX\else
-  % xetex/luatex font selection
+\ifPDFTeX\else  
+    % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -39,6 +42,30 @@
 \usepackage{xcolor}
 \usepackage[lmargin=2.5cm, rmargin=3.5cm, tmargin=2.5cm, bmargin=2.5cm,
 includeheadfoot]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -52,10 +79,21 @@ includeheadfoot]{geometry}
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{float}
@@ -71,43 +109,72 @@ includeheadfoot]{geometry}
 \setkomafont{caption}{\small\sffamily}
 \usepackage[automark, headsepline=1pt, footsepline=1pt]{scrlayer-scrpage}
 \ohead{Codebook bundeslaendeR}
-\ofoot*{29.05.2025} \ihead{\headmark}
+\ofoot*{29.05.2025}
+\ihead{\headmark}
 \setkomafont{pagenumber}{\itshape}
 \ifoot*{Seite \pagemark}
 \chead{}
 \cfoot*{}
 \usepackage{titling}
-\pretitle{\begin{center} \includegraphics[width=2in,height=2in]{../man/figures/hex_light_clipart.png}\LARGE\\}
+\pretitle{\begin{center}
+  \includegraphics[width=2in,height=2in]{../man/figures/hex_light_clipart.png}\LARGE\\}
 \posttitle{\end{center}}
-\usepackage[backend=biber, style=ext-authoryear-comp,maxbibnames=99,maxcitenames=3,isbn=false,date=year,sorting=nyt]{biblatex}
-\AtEveryBibitem{\clearfield{urlyear} 	\clearfield{urlmonth}}
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage{array}
-\usepackage{multirow}
-\usepackage{wrapfig}
-\usepackage{float}
-\usepackage{colortbl}
-\usepackage{pdflscape}
-\usepackage{tabu}
-\usepackage{threeparttable}
-\usepackage{threeparttablex}
-\usepackage[normalem]{ulem}
-\usepackage{makecell}
-\usepackage{xcolor}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\usepackage[]{biblatex}
+\usepackage[style=ext-authoryear-comp,backend=biber,maxbibnames=99,maxcitenames=3,isbn=false,date=year,sorting=nyt]{biblatex}
 \addbibresource{literature.bib}
 \usepackage{bookmark}
+
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same}
+\urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={Codebook bundeslaendeR},
   pdfauthor={Robert Stelzle},
   colorlinks=true,
-  linkcolor={Maroon},
+  linkcolor={blue},
   filecolor={Maroon},
   citecolor={Blue},
   urlcolor={Blue},
@@ -115,11 +182,12 @@ includeheadfoot]{geometry}
 
 \title{Codebook bundeslaendeR}
 \author{Robert Stelzle}
-\date{12.09.2025}
+\date{2026-03-17}
 
 \begin{document}
 \maketitle
 
+\renewcommand*\contentsname{Table of contents}
 {
 \hypersetup{linkcolor=}
 \setcounter{tocdepth}{1}
@@ -163,7 +231,7 @@ in elections after June 2021) are still available
 Information on governments is mainly taken from replication data from
 \textcite{linhartProportionaleMinisterienaufteilungDeutschen2008} which
 can be found online here:
-\url{https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten.php}.
+https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten.php.
 Information outside the timeframe of Linhart et al.~as well as
 information on the names and party affiliations of the
 Ministerpräsidenten was collected by me, mainly from German Wikipedia.
@@ -217,35 +285,33 @@ The data can be accessed in \texttt{R} using
 \subsection{\texorpdfstring{\texttt{ltw\_elections} Variable
 Information}{ltw\_elections Variable Information}}\label{ltw_elections-variable-information}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{state} &\textbf{State Abbreviation}\newline 
 ISO 3166-2:DE-code of the state;
            including BA for the former state of Baden, WH for the former state
            of Württemberg-Hohenzollern and WB for the former state of
            Württemberg-Baden.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{nuts1} &\textbf{NUTS1 Code of State}\newline 
 NUTS1 code of state. NA for former states Baden, Württemberg-Baden, Württemberg-Hohenzollern.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{state\_name\_de} &\textbf{German Name of State}\newline 
 German name of the state.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{state\_name\_en} &\textbf{English Name of State.}\newline 
 English name of the state.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{state\_election\_
 term} &\textbf{Election Term of State}\newline 
 Election term in the state. Counts up from 1. Note that this count does not necessarily has to line up with the official way the respective legislature counts its legislative terms. For example, \texttt{bundeslaendeR} includes data from Berlin Stadtverordnetenversammlung elections in 1946 and 1948 prior to the enaction of the new Berlin state constitution in 1950 that established the Abgeordnetenhaus. The Abgeordnetenhaus starts counting its legislative terms in 1950 instead. Similarly, \texttt{bundeslaendeR} inclues the election held in Berlin in 2021 as well as the 2023 repeat election and increments the \texttt{state\_election\_term} counter by one, whereas the Abgeordnetenhaus' official way of counting considers the legislative term to have started in 2021 even after the 2023 rerun.
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -254,17 +320,11 @@ Election term in the state. Counts up from 1. Note that this count does not nece
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{election\_date} &\textbf{Election Date}\newline 
 Date of the election.  ISO 8601 or R-Date format.
-
-
-
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -273,25 +333,21 @@ Date of the election.  ISO 8601 or R-Date format.
 \end{minipage}
 
 
+\end{longtable*}
 
-
-
-
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{election\_id\_
 bundeswahlleiter} &\textbf{Election ID Bundeswahlleiter}\newline 
 Specific election\_id as denoted by the Bundeswahlleiter. Note that BA, WH and WH are named as BW and the number counts down. NA for cases taken from Landeswahlleiters (i.e. elections after ST 2021).
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{election\_remarks\_
 wahlleiter} &\textbf{Election Remarks Bundeswahlleiter}\newline 
 Remarks on the election as given by the Bundeswahlleiter.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{electorate} &\textbf{Size of the Electorate}\newline 
 Number of eligible voters. For more totals also see the last six columns.
 
@@ -302,9 +358,9 @@ Number of eligible voters. For more totals also see the last six columns.
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{number\_of\_voters} &\textbf{Number of Voters}\newline 
 Number of voters turning out. For more totals also see the last six columns.
 
@@ -315,9 +371,9 @@ Number of voters turning out. For more totals also see the last six columns.
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{turnout} &\textbf{Turnout}\newline 
 Turnout. Share of eligible voters turning out.
 
@@ -328,9 +384,9 @@ Turnout. Share of eligible voters turning out.
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{valid\_votes} &\textbf{Valid Votes}\newline 
 Number of valid votes. Does not have to be equal to the number of ballots cast, as sometimes a ballot contains multiple votes! For more totals also see the last six columns.
 
@@ -341,9 +397,9 @@ Number of valid votes. Does not have to be equal to the number of ballots cast, 
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{total\_seats\_
 parliament} &\textbf{Total Seats in Parliament}\newline 
 Total number of members of the newly elected Landtag.
@@ -355,9 +411,9 @@ Total number of members of the newly elected Landtag.
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{female\_party\_
 seats\_available} &\textbf{Number of female MdLs available per party}\newline 
 Denotes whether information on the no. of female members of the Landtag per party is available for this election. Note that for parties not elected to the new Landtag party\_female\_mps always is marked as missing.
@@ -369,9 +425,9 @@ Denotes whether information on the no. of female members of the Landtag per part
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{total\_female\_
 mps\_parliament} &\textbf{Number of Female MPs in Parliament}\newline 
 Number of newly elected female MPs.
@@ -383,31 +439,31 @@ Number of newly elected female MPs.
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_short} &\textbf{Abbreviated Party Name}\newline 
 Harmonized abbreviation of the party's name. 394 unique parties.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{partyname} &\textbf{Party Name}\newline 
 Harmonized name of the party. 394 unique parties.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_short\_
 bundeswahlleiter} &\textbf{Party Name Abbreviation from Bundeswahlleiter}\newline 
 Partyname abbreviation as documented by the Bundeswahlleiter. 486 different abbreviations.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{partyname\_
 bundeswahlleiter} &\textbf{Party Name from Bundeswahlleiter}\newline 
 Partyname as documented by the Bundeswahlleiter. 531 different names.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{party\_vote\_count} &\textbf{Party Vote Count}\newline 
 Number of votes recieved by the party.
 
@@ -418,9 +474,9 @@ Number of votes recieved by the party.
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{party\_vshare} &\textbf{Party Vote Share}\newline 
 Share of votes recieved by the party.
 
@@ -431,9 +487,9 @@ Share of votes recieved by the party.
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{party\_seat\_count} &\textbf{Party Seat Count}\newline 
 Number of seats recieved by the party.
 
@@ -444,9 +500,9 @@ Number of seats recieved by the party.
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{party\_sshare} &\textbf{Party Seat Share}\newline 
 Share of seats recieved by the party.
 
@@ -457,9 +513,9 @@ Share of seats recieved by the party.
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{party\_female\_mps} &\textbf{Number of female MPs from party}\newline 
 Number of female MPs elected for the party. Note that for parties not elected to the new Landtag party\_female\_mps always is marked as missing.
 
@@ -470,12 +526,11 @@ Number of female MPs elected for the party. Note that for parties not elected to
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{ppeg\_id} &\textbf{PPEG ID}\newline 
 If available, party id of the party in the PPEG database \parencite{krausePPEGPoliticalParties2024a}. These party IDs are chiefly based on party IDs from \textcite{mackieInternationalAlmanacElectoral1991}.
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -484,12 +539,11 @@ If available, party id of the party in the PPEG database \parencite{krausePPEGPo
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{ches\_id} &\textbf{CHES ID}\newline 
 If available, ID of the party in the Chapel-Hill Expert Survey \parencite{jollyChapelHillExpert2022}.
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -498,10 +552,9 @@ If available, ID of the party in the Chapel-Hill Expert Survey \parencite{jollyC
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{partyfacts\_id} &\textbf{PartyFacts ID}\newline 
 If available, ID of the party in the partyfacts database \parencite{doringPartyFactsDatabase2019}.
 
@@ -512,10 +565,9 @@ If available, ID of the party in the partyfacts database \parencite{doringPartyF
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{decker\_neu} &\textbf{Chapter Parteienhandbuch}\newline 
 Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by \textcite{deckerHandbuchDeutschenParteien2018b} has a chapter on the party.
 
@@ -526,61 +578,60 @@ Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by \textcite{decker
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{url\_info} &\textbf{URL with additional info on the party}\newline 
 URL to informaton on the party on the web. Can contain multiple URLs!
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{party\_remarks\_
 stelzle} &\textbf{Party remarks Stelzle}\newline 
 Remarks on the party by me.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{party\_remarks\_
 bundeswahlleiter} &\textbf{Party remarks Bundeswahlleiter}\newline 
 Remarks on the party as listed by the Bundeswahlleiter.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gueltige\_stimm
 -zettel\_hh\_hb} &\textbf{Gültige Stimmzettel HH and HB}\newline 
 State specific totals.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gesamtstimmen\_by} &\textbf{Gesamtstimmen BY}\newline 
 State specific totals.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{ausgefallene\_
 stimmen\_be} &\textbf{Ausgefallene Stimmen BE}\newline 
 State specific totals.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{abgegebene\_
 stimmen\_hh} &\textbf{Abgegebene Stimmen HH}\newline 
 State specific totals.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{ungueltige\_
 stimmen\_except\_
 hh\_hb} &\textbf{Ungültige Stimmen except in HH and HB}\newline 
 State specific totals.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{ungueltige\_
 stimmzettel\_hh\_hb} &\textbf{Ungültige Stimmzettel in HH and HB}\newline 
 State specific totals.
-\end{longtable}
+\end{longtable*}
 
 \newpage
 
@@ -598,12 +649,10 @@ one state government. The data can be accessed in \texttt{R} using
 \subsection{\texorpdfstring{\texttt{ltw\_governments} Variable
 Information}{ltw\_governments Variable Information}}\label{ltw_governments-variable-information}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gov\_no\_within\_
 legterm} &\textbf{Number of cabinet within legislative term}\newline 
 Number of cabinet within legislative term (e.g. First/Second/Third/... cabinet in the 1990-1994 legislative term of state X).
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -612,21 +661,18 @@ Number of cabinet within legislative term (e.g. First/Second/Third/... cabinet i
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gov\_id} &\textbf{Government ID}\newline 
 Unique ID of government. Taken from Linhart et al. However, this ID is not counting up within state by time. In cases where Governments were 
            missing from Linhart et al. before the timeframe covered by Linhart et al. (eg. in Berlin) these earlyer governments have a higher ID than later cabinets 
            contained in Linhart et al. data.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{state\_gov\_number} &\textbf{Number of government in state.}\newline 
 Number of government in state.
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -635,17 +681,11 @@ Number of government in state.
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gov\_start\_date} &\textbf{Government Starting Date}\newline 
 Starting date of the government.  ISO 8601 or R-Date format.
-
-
-
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -654,39 +694,35 @@ Starting date of the government.  ISO 8601 or R-Date format.
 \end{minipage}
 
 
+\end{longtable*}
 
-
-
-
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gov\_source} &\textbf{Government Source}\newline 
 Source of the information on the government. Either Linhart et al. or the URL of the German Wikipedia Page containing information on the cabinet.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gov\_remarks\_
 stelzle} &\textbf{Governments remarks Stelzle}\newline 
 My remarks on governments.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{minister\_president} &\textbf{Name of minister president}\newline 
 Name of minister president.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{mp\_party} &\textbf{Minister President's Party}\newline 
 Party of the minister president. partyname\_short format used. Note: There is a single cabinet with an independent minister president: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955. Further note that there is a single case where the party denoted as \texttt{mp\_party} is not part of the set of parties in \texttt{gov\_parties}. Hamburg's mayor Kurt Sieveking (1953-1957) was a member of the CDU and is denoted as such in \texttt{mp\_party}. However, the CDU contested the 1953 Hamburg election as part of the Hamburg-Block electoral alliance together with the FDP, the DP and the BHE. Thus, as there are no separate election results for the member-parties of the electoral alliance available, \texttt{gov\_parties} is here just denoted as \texttt{HamburgBlock/VBH}.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gov\_parties} &\textbf{Names of Government Parties}\newline 
 String containing the names (partyname\_short format) of all government parties separated by ' $\sim$ '. The MP's party first, followed by other government parties in the order of their seatshare.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gov\_vshare} &\textbf{Government Vote Share}\newline 
 Collective vote share of government parties.
 
@@ -697,9 +733,9 @@ Collective vote share of government parties.
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gov\_seat\_count} &\textbf{Government Seat Count}\newline 
 Collective number of seats of government parties.
 
@@ -710,9 +746,9 @@ Collective number of seats of government parties.
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gov\_sshare} &\textbf{Government Seat Share}\newline 
 Share of seats of government parties.
 
@@ -723,13 +759,13 @@ Share of seats of government parties.
 \end{minipage}
 
 
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gov\_tog} &\textbf{Type of Government}\newline 
 \begin{flushleft}\vspace{-0.8cm}Type of Government:\setlist{nolistsep}\begin{itemize}[noitemsep]\item Single Party Majority \item Oversized Coalition \item Minimal Winning Coalition \item Single Party Minority \item Multi Party Majority \item Caretaker. \end{itemize}Note that this classification is done automatically based on the number of seats of each governing party \emph{at the beginning of the legislative term}. MPs defecting between parties and thus potentially changing the majority status of governments can thus not be incorporated!
 \end{flushleft}
-\end{longtable}
+\end{longtable*}
 
 \newpage
 
@@ -750,16 +786,14 @@ The data can be accessed in \texttt{R} using
 \subsection{\texorpdfstring{\texttt{ltw\_combined} Variable
 Information}{ltw\_combined Variable Information}}\label{ltw_combined-variable-information}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{gov\_party} &\textbf{Government Party}\newline 
 Boolean wether the party was a cabinet party. Note: There is a single cabinet where no party is marked as part of the cabinet: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{nmin\_party} &\textbf{Number of Ministers of Party}\newline 
 Number of ministers of party. Note that the number of party-independent ministers is not collected. Thus, the sum of the number of ministers of all government parties can not reliably be understood as the size of the cabinet.
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -768,17 +802,16 @@ Number of ministers of party. Note that the number of party-independent minister
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{is\_mp\_party} &\textbf{Is MP Party?}\newline 
 Is the governments minister president from this party? Note: There are two cases of cabinets where the minister president is not part of any party contesting the election: 1) Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955. 2) Hamburg's mayor Kurt Sieveking (1953-1957) was a member of the CDU and is denoted as such in \texttt{mp\_party}. However, the CDU contested the 1953 Hamburg election as part of the Hamburg-Block electoral alliance together with the FDP, the DP and the BHE. Thus, as there are no separate election results for the member-parties of the electoral alliance available and only the election result of the entire electoral alliance is reported, \texttt{is\_mp\_party} is set to \texttt{FALSE} for all parties during the cabinet's tenure, including for the Hamburg-Block.
-\end{longtable}
+\end{longtable*}
 
 \newpage
 
-\begin{landscape}
+\blandscape
 
     \setcounter{table}{1}
 \begin{table}
@@ -822,7 +855,7 @@ Is the governments minister president from this party? Note: There are two cases
 \end{tabular}}
 \end{table}
 
-\end{landscape}
+\elandscape
 
 \newpage
 
@@ -849,11 +882,9 @@ Unless specified otherwise, in the following section \(v_i\) refers to
 party \(i\)'s vote share, \(s_i\) to party \(i\)'s seat share and \(n\)
 refers to the number of parties contesting a given election.
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{number\_parties} &\textbf{Number of parties contesting the election}\newline 
 Number of parties $n$ contesting the election.
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -862,15 +893,12 @@ Number of parties $n$ contesting the election.
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{number\_parties\_
 parliament} &\textbf{Number of parties gaining seats in the state parliament}\newline 
 Number of parties gaining seats in the state parliament.
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -879,15 +907,12 @@ Number of parties gaining seats in the state parliament.
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{fragmentation\_enep} &\textbf{Effective number of parties in the electorate}\newline 
 Effective number of parties in the electorate $N_{2 \text{ electorate}}$ \parencite{laaksoEffectiveNumberParties1979}:
            \begin{equation}N_{2 \text{ electorate}} = \frac{1}{\sum_{i = 1}^{n}v_{i}^{2}}. \end{equation}
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -896,15 +921,12 @@ Effective number of parties in the electorate $N_{2 \text{ electorate}}$ \parenc
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{fragmentation\_enpp} &\textbf{Effective number of parties in parliament}\newline 
 Effective number of parties in parliament $N_{2 \text{ parliament}}$ \parencite{laaksoEffectiveNumberParties1979}:
            \begin{equation}N_{2 \text{ parliament}} = \frac{1}{\sum_{i = 1}^{n}s_{i}^{2}}. \end{equation}
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -913,15 +935,12 @@ Effective number of parties in parliament $N_{2 \text{ parliament}}$ \parencite{
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{fragmentation\_rae} &\textbf{Rae's index of fragmentation}\newline 
 Rae's index of fragmentation \parencite{raeNoteFractionalizationEuropean1968}:
            \begin{equation}F = 1 - \sum_{i = 1}^{n}v_{i}^{2}.\end{equation}
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -930,17 +949,14 @@ Rae's index of fragmentation \parencite{raeNoteFractionalizationEuropean1968}:
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{volatility\_pedersen} &\textbf{Pederson Index of electoral volatility}\newline 
 Pederson Index of electoral volatility \parencite{pedersenDynamicsEuropeanParty1979}:
            \begin{equation} V_t = \sum_{i = 1}^{n_t \wedge n_{t-1}}|v_{i,t} - v_{i,t-1}|.  \end{equation} 
            If a party did not contest an election $t$ or $t-1$ it's voteshare for the respective election $v_t$ or $v_{t-1}$ is $0$.
            Attention: These figures probably slightly overestimate the real extent of electoral volatility, as party splits/mergers are not considered: If parties A ($7\%$ at $t-1$) and B ($4\%$ at $t-1$) contest election $t-1$ separately but merge before contesting election $t$ and gaining $15\%$ under the label of party A, they really only contribute $|(7\% + 4\%) - 15\%| = 4\%$ to the calculation of the Pedersen Index. Here, they would contribute $|7\% - 15\%| + |4\% - 0\%| = 12\%$ to the calculation as the merger is not properly accounted for.
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -949,8 +965,7 @@ Pederson Index of electoral volatility \parencite{pedersenDynamicsEuropeanParty1
 \end{minipage}
 
 
-
-\end{longtable}
+\end{longtable*}
 
 All of the disproportionality measures presented here, their calculation
 and properties are presented and discussed in
@@ -958,111 +973,111 @@ and properties are presented and discussed in
 distributions of these measures are presented in figure
 \ref{fig:distdisp} below.
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_
 max\_deviation} &\textbf{Maximum deviation index of electoral disproportionality}\newline 
 Maximum deviation index of electoral disproportionality:
            \begin{equation}MD = \max_{i=\overline{1,n}} |s_i - v_i|.\end{equation}
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_rae} &\textbf{Rae's index of electoral disproportionality}\newline 
 Rae's index of electoral disproportionality \parencite{raePoliticalConsequencesElectoral1971}:
            \begin{equation}I_{\text{Rae}} = \frac{1}{n}\sum_{i = 1}^{n}|s_i - v_i|.\end{equation}
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_
 loosmore\_hanby} &\textbf{Loosemore-Hanby index of electoral disproportionality}\newline 
 Loosemore-Hanby index of electoral disproportionality \parencite{loosemoreTheoreticalLimitsMaximum1971}:
            \begin{equation}I_{\text{LH}} = \frac{1}{2}\sum_{i = 1}^{n}|s_i - v_i|.\end{equation}
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_grofman} &\textbf{Grofman index of electoral disproportionality}\newline 
 Grofman index of electoral disproportionality:
            \begin{equation}I_{\text{G}} = \frac{1}{N_{2\text{ electorate}}}\sum_{i=1}^{n}|s_i - v_i|.\end{equation}
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_lijphart} &\textbf{Lijphart index of electoral disproportionality}\newline 
 Lijphart index of electoral disproportionality:
            \begin{equation}I_{\text{L}} = \frac{|s_i - v_i| + |s_i - v_i|}{2}\end{equation}
            where only the two largest parties are considered.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_gallagher} &\textbf{Gallagher index of electoral disproportionality}\newline 
 Gallagher index of electoral disproportionality / least squares index (Lsq):
           \begin{equation}Lsq = \sqrt{\frac{1}{2}\sum_{i = 1}^{n}\left(s_i - v_i\right)}.\end{equation}
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_monroe} &\textbf{Monroe index of electoral disproportionality}\newline 
 Monroe index of electoral disproportionality:
            \begin{equation}I_{\text{Monroe}} = \sqrt{\frac{\sum_{i=1}^{n}\left(s_i - v_i\right)^2}{1 + \sum_{i=1}^{n}v_i^2}}.\end{equation}
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_gatev} &\textbf{Gatev index of electoral disproportionality}\newline 
 Gatev index of electoral disproportionality:
            \begin{equation}I_{\text{Gatev}} = \sqrt{\frac{\sum_{i=1}^{n}\left(s_i - v_i\right)^2}{\sum_{i=1}^{n}\left(s_i^2 + v_i^2\right)}}\end{equation}
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_ryabtsev} &\textbf{Ryabtsev  index of electoral disproportionality}\newline 
 Ryabtsev  index of electoral disproportionality:
            \begin{equation}I_{\text{Ryabtsev}} = \sqrt{\frac{\sum_{i=1}^{n}\left(s_i - v_i\right)^2}{\sum_{i=1}^{n}\left(s_i + v_i\right)^2}}.\end{equation}
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_szalai} &\textbf{Szalai index of electoral disproportionality}\newline 
 Szalai index of electoral disproportionality:
            \begin{equation}I_{\text{Szalai}} = \sqrt{\frac{\sum_{i=1}^{n}\left(\frac{s_i-v_i}{s_i+v_i}\right)^2}{n}}.\end{equation}
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_
 szalai\_weighted} &\textbf{Weighted Szalai index of electoral disproportionality}\newline 
 Weighted Szalai index of electoral disproportionality:
            \begin{equation}\tilde{I}_{\text{Szalai}} = \sqrt{\frac{1}{2}\sum_{i=1}^{n}\frac{\left(s_i-v_i\right)^2}{s_i+v_i}}.\end{equation}
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_
 aleskerov\_platonov} &\textbf{Aleskerov-Platonov index of electoral disproportionality}\newline 
 Aleskerov-Platonov index of electoral disproportionality:
            \begin{equation}R = \frac{1}{k}\sum_{i=1}^{k}\frac{s_i}{v_i}\end{equation}
            where only overrepresented parties are considered.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_dhondt} &\textbf{D'Hondt index of electoral disproportionality}\newline 
 D'Hondt index of electoral disproportionality:
            \begin{equation}H = \max_{i=\overline{1,n}}\frac{s_i}{v_i}.\end{equation}
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_sainte\_lague} &\textbf{Sainte-Lague index of electoral disproportionality}\newline 
 Sainte-Lague index of electoral disproportionality:
            \begin{equation}SL = \sum_{i=1}^{n}v_i\left(\frac{s_i}{v_i}-1\right)^2.\end{equation}
-\end{longtable}
+\end{longtable*}
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics{cbfiles/unnamed-chunk-140-1} 
+{\centering \includegraphics{cbfiles/distdisp-1.pdf}
 
 }
 
-\caption{\label{fig:distdisp}Distribution of Disproportionality Measures}\label{fig:unnamed-chunk-140}
-\end{figure}
+\caption{\label{fig:distdisp}Distribution of Disproportionality
+Measures}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\end{figure}%
+
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{legislative\_turnover
 \_heinsohn} &\textbf{Legislative turnover \parencite{heinsohnInstitutionalDeterminantsLegislative2014}}\newline 
 Legislative turnover \parencite{heinsohnInstitutionalDeterminantsLegislative2014}.
-
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -1071,8 +1086,7 @@ Legislative turnover \parencite{heinsohnInstitutionalDeterminantsLegislative2014
 \end{minipage}
 
 
-
-\end{longtable}
+\end{longtable*}
 
 \clearpage
 
@@ -1112,38 +1126,36 @@ The variables \texttt{state}, \texttt{election\_date}, and
 manifestos are available per election is plotted in
 figure\(~\)\ref{figure:manifestoavailability}.
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{polidoc\_filename and polidoc\_filename\_2} &\textbf{Polidoc File Name of Party Manifesto}\newline 
 File name of state party manifesto (or 2nd manifesto if available) in \texttt{.txt} format available in The Political Documents Archive (polidoc.net).
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{agwatch\_pdf\_url} &\textbf{URL of Manifesto on \texttt{abgeordnetenwatch.de}}\newline 
 URL of the manifesto in \texttt{.pdf} format on \texttt{abgeordnetenwatch.de}.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{agwatch\_election\_
 manifesto} &\textbf{Is an electoral manifesto not just a general manifesto}\newline 
 TRUE if the linked manifesto is an electoral manifesto. FALSE if it appears to be a more general manifesto of the party (Grundsatzprogramm) independent of any specific state election.
-\end{longtable}
+\end{longtable*}
 
-\newpage
+\blandscape
 
-\begin{landscape}
+\begin{figure}[H]
 
-\begin{figure}
-
-{\centering \includegraphics{cbfiles/printmanifestoplot-1} 
+{\centering \includegraphics{cbfiles/printmanifestoplot-1.pdf}
 
 }
 
-\caption{\label{figure:manifestoavailability}Availability of manifestos from polidoc.net and abgeordnetenwatch.de}\label{fig:printmanifestoplot}
-\end{figure}
+\caption{\label{figure:manifestoavailability}Availability of manifestos
+from polidoc.net and abgeordnetenwatch.de}
 
-\end{landscape}
+\end{figure}%
 
-\newpage
+\elandscape
 
 \subsection{\texorpdfstring{\texttt{link\_coalitionagreements}}{link\_coalitionagreements}}\label{link_coalitionagreements}
 
@@ -1164,10 +1176,9 @@ The variables \texttt{state}, \texttt{election\_date}, and
 the \texttt{bundeslaendeR} data (\texttt{ltw\_governments} or
 \texttt{ltw\_combined}) using \texttt{link\_coalitionagreements}.
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{polidoc\_filename} &\textbf{Polidoc File Name of Coalition Agreement}\newline 
 File name of coalition agreement available in The Political Documents Archive (polidoc.net).
-
 
 \hspace*{.25cm}
 \begin{minipage}[t]{\linewidth }
@@ -1176,10 +1187,7 @@ File name of coalition agreement available in The Political Documents Archive (p
 \end{minipage}
 
 
-
-
-
-\end{longtable}
+\end{longtable*}
 
 \newpage
 
@@ -1206,14 +1214,9 @@ provided in the PWIB data file
 capitalized while the state abbreviation in
 \texttt{link\_positions\_pwib} are.
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{party\_pwib} &\textbf{Party name in PWIB Data.}\newline 
 Name of the party in PWIB position data.
-
-
-
-
-
 
 
 
@@ -1224,12 +1227,7 @@ Name of the party in PWIB position data.
 \end{minipage}
 
 
-
-
-
-
-
-\end{longtable}
+\end{longtable*}
 
 \newpage
 
@@ -1254,17 +1252,17 @@ in order to link Appeldorn and Fortunato's data on legislative capacity
 to the \texttt{bundeslaendeR} data using
 \texttt{link\_legcap\_appeldorn\_fortunato}.
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{state\_abb\_
 appeldorn\_fortunato} &\textbf{State abbreviation in Appeldorn and Fortunato's data}\newline 
 State abbreviation in Appeldorn and Fortunato's data.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{state\_name\_
 appeldorn\_fortunato} &\textbf{State name in Appeldorn and Fortunato's data}\newline 
 State name in Appeldorn and Fortunato's data.
-\end{longtable}
+\end{longtable*}
 
 \newpage
 
@@ -1295,18 +1293,14 @@ the integrated dataset of state election surveys to
 \texttt{bundeslaendeR} data using
 \texttt{link\_integrated\_state\_election\_surveys}.
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{bland} &\textbf{State name in integrated survey file}\newline 
 State name in integrated survey file.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{za\_nr1} &\textbf{GESIS ID original state election survey}\newline 
 GESIS ID of original state election survey. The GESIS ID is the sole variable identifying a specific election in the integrated dataset.
-
-
-
-
 
 
 
@@ -1317,18 +1311,17 @@ GESIS ID of original state election survey. The GESIS ID is the sole variable id
 \end{minipage}
 
 
+\end{longtable*}
 
-\end{longtable}
-
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{m7} &\textbf{Party name integrated survey file (after 1973)}\newline 
 Party names in vote choice variable in integrated survey file (after 1973).
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{m7b} &\textbf{Party name integrated survey file (before 1970)}\newline 
 Party names in vote choice variable in integrated survey file (before 1970).
-\end{longtable}
+\end{longtable*}
 
 \newpage
 
@@ -1349,20 +1342,20 @@ results of both Bü90GrüUFV and Grüne in the 1990 Berlin state elections
 as MdLs running on both lists formed a joint party group immediately
 following the election.
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{landtag\_state\_abb} &\textbf{State name abbreviation in StatePol}\newline 
 State name abbreviation in StatePol dataset.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{electoralperiod} &\textbf{State electoral period in StatePol}\newline 
 State electoral period in StatePol dataset. Note that this count does not neccesarily match the number \texttt{state\_election\_term}. See the describtion of the \texttt{state\_election\_term} variable above.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{ppg} &\textbf{Name of Parliamentary Party Group on StatePol}\newline 
 Name of Parliamentary Party Group on StatePol. Note that the \texttt{ppg} column is different from the \texttt{ppg\_id} column in the original StatePol dataset.
-\end{longtable}
+\end{longtable*}
 
 \newpage
 
@@ -1380,18 +1373,20 @@ party ministers whereas \texttt{bundeslaendeR} creates a new government
 entry. In these cases there are two values in the \texttt{gov\_id}
 column, separated by a semi-colon.
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{landtag\_state\_abb} &\textbf{State name abbreviation in StatePol}\newline 
 State name abbreviation in StatePol dataset.
-\end{longtable}
+\end{longtable*}
 
-\begin{longtable}{p{3.2cm}| p{11cm}}
+\begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{cabinet} &\textbf{Cabinet name in StatePol}\newline 
 Cabinet name in StatePol dataset.
-\end{longtable}
+\end{longtable*}
 
 \newpage
 
+
 \printbibliography[title=References]
+
 
 \end{document}

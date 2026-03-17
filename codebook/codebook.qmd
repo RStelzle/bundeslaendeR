@@ -1,0 +1,2804 @@
+---
+title: "Codebook bundeslaendeR"
+author: "Robert Stelzle"
+date: "2026-03-17"
+
+format:
+  pdf:
+    papersize: a4
+    toc: true
+    toc-depth: 1
+    keep-tex: true
+    pdf-engine: lualatex
+    colorlinks: true
+    cite-method: biblatex
+    biblatexoptions: [style=ext-authoryear-comp,backend=biber,maxbibnames=99,maxcitenames=3,isbn=false,date=year,sorting=nyt]
+
+bibliography: literature.bib
+
+geometry: "lmargin=2.5cm, rmargin=3.5cm, tmargin=2.5cm, bmargin=2.5cm, includeheadfoot"
+
+include-in-header:
+  - text: |
+      \usepackage{longtable}
+      \usepackage{booktabs}
+      \usepackage{float}
+      \usepackage{graphicx}
+      \usepackage{pdflscape}
+      \newcommand{\blandscape}{\begin{landscape}}
+      \newcommand{\elandscape}{\end{landscape}}
+      \usepackage{fontspec}
+      \usepackage{libertinus}
+      \usepackage{enumitem}
+      \setmonofont[Scale=MatchLowercase,FakeStretch=0.9]{Consolas}
+      \setkomafont{captionlabel}{\bfseries\small\sffamily}
+      \setkomafont{caption}{\small\sffamily}
+      \usepackage[automark, headsepline=1pt, footsepline=1pt]{scrlayer-scrpage}
+      \ohead{Codebook bundeslaendeR}
+      \ofoot*{29.05.2025}
+      \ihead{\headmark}
+      \setkomafont{pagenumber}{\itshape}
+      \ifoot*{Seite \pagemark}
+      \chead{}
+      \cfoot*{}
+      \usepackage{titling}
+      \pretitle{\begin{center}
+        \includegraphics[width=2in,height=2in]{../man/figures/hex_light_clipart.png}\LARGE\\}
+      \posttitle{\end{center}}
+---
+
+
+
+
+
+```{r}
+#| include: false
+
+library(here)
+library(tidyverse)
+# library(bundeslaendeR)
+library(kableExtra)
+library(patchwork)
+library(geofacet)
+library(sf)
+library(ggrepel)
+library(ggthemes)
+library(ggtext)
+library(gt)
+
+
+
+knitr::opts_chunk$set(echo = FALSE, fig.path = "cbfiles/")
+
+
+```
+
+
+
+```{r}
+
+
+
+
+
+for (datapath in list.files(here("data"), full.names = TRUE)) {
+  
+  load(datapath)
+  
+}
+
+
+
+load(here("R/sysdata.rda"))
+
+
+
+```
+
+
+
+
+```{r}
+#| include: false
+
+if (isFALSE(file.exists(here("codebook", "fntdl", "libertinus.zip")))) {
+  dir.create(here("codebook", "fntdl"))
+curl::curl_download("http://mirrors.ctan.org/fonts/libertinus-fonts.zip",
+                    here("codebook", "fntdl", "libertinus.zip"))
+  unzip(zipfile =  here("codebook", "fntdl", "libertinus.zip"), exdir = here("codebook", "fntdl"))
+}
+
+
+
+
+
+
+library(showtext)
+
+font_add("LibertinusSansSerif",
+         regular = here("codebook", "fntdl", "libertinus-fonts", "otf", "LibertinusSans-Regular.otf"),
+         bold = here("codebook", "fntdl", "libertinus-fonts", "otf", "LibertinusSans-Bold.otf"),
+         italic = here("codebook", "fntdl", "libertinus-fonts", "otf", "LibertinusSans-Italic.otf"))
+
+showtext.auto()
+
+
+theme_set(theme_minimal())
+theme_update(
+  text = element_text(family = "LibertinusSansSerif"),
+  # panel.background = element_rect(fill = NA, color = "black"),
+  panel.border = element_rect(fill = NA, color = "black")
+  # panel.grid = element_blank()
+  
+  )
+update_geom_defaults("bar", list(fill = "#810a26"))
+# update_geom_defaults("histogramm", list(fill = "#810a26"))
+update_geom_defaults("col", list(fill = "#810a26"))
+update_geom_defaults("rug", list(fill = "#810a26", col = "#810a26"))
+
+```
+
+
+
+
+```{r}
+# Design des longtables low key von Werner Krause geklaut
+
+item_start <- function(item_name_code, item_name, item_desc, desc_left = FALSE) {
+  item_name_code <- str_replace_all(item_name_code, pattern = r"{_}", replacement = r"{\\_}")
+  cat("\\begin{longtable}{p{3.2cm}| p{11cm}}")
+  cat("\n")
+  cat(paste0("\\texttt{", item_name_code, "} &"))
+  cat(paste0("\\textbf{", item_name, "}"))
+  cat("\\newline \n")
+  
+  if (desc_left == FALSE) {
+    cat(item_desc)
+  }
+  if (desc_left == TRUE) {
+    cat("\\begin{flushleft}")
+    cat(item_desc)
+    cat("\n")
+    cat("\\end{flushleft}")
+    cat("\n")
+  }
+  
+}
+
+
+item_image <- function(ggobj, filenameimg, width, height) {
+  
+  ggsave(plot = ggobj, filename = filenameimg, width = width, height = height)
+  
+  cat("\\hspace*{.25cm}")
+  cat("\n")
+  cat("\\begin{minipage}[t]{\\linewidth }")
+  cat("\n")
+  cat("\\vspace{0pt}")
+  cat("\n")
+  cat("\\includegraphics[width = \\linewidth]{")
+  cat(filenameimg)
+  cat("}")
+  cat("\n")
+  cat("\\end{minipage}")
+  
+}
+
+
+item_end <- function(add_desc = "") {
+  cat(add_desc)
+  cat("\n")
+  cat("\\end{longtable}")
+  
+}
+
+
+
+short_item <- function(item_name_code, item_name, item_desc, desc_left = FALSE) {
+  
+  item_name_code <- str_replace_all(item_name_code, pattern = r"{_}", replacement = r"{\\_}")
+  cat("\\begin{longtable}{p{3.2cm}| p{11cm}}")
+  cat("\n")
+  cat(paste0("\\texttt{", item_name_code, "} &"))
+  cat(paste0("\\textbf{", item_name, "}"))
+  cat("\\newline \n")
+  
+  if (desc_left == FALSE) {
+    cat(item_desc)
+  }
+  if (desc_left == TRUE) {
+    cat("\\begin{flushleft}")
+    cat(item_desc)
+    cat("\n")
+    cat("\\end{flushleft}")}
+    cat("\n")
+    cat("\\end{longtable}")
+  
+}
+
+
+## fct_case_when taken from https://stackoverflow.com/a/69333730
+fct_case_when <- function(...) {
+  args <- as.list(match.call())
+  levels <- sapply(args[-1], function(f) f[[3]])  # extract RHS of formula
+  levels <- levels[!is.na(levels)]
+  factor(dplyr::case_when(...), levels=levels)
+}
+
+
+```
+
+
+
+
+\clearpage
+
+
+
+\definecolor{Nettrot}{RGB}{108, 0, 28}
+\hypersetup{colorlinks=true, allcolors=Nettrot}
+
+
+# Introduction
+
+Most election results data are provided by the Bundeswahlleiter.
+A machine-readable version of the Bundeswahlleiter's compiled data contained in
+the -periodically published- pdf available here
+(\url{https://www.bundeswahlleiter.de/service/landtagswahlen.html}) was kindly
+provided to me.
+Election data outside the timeframe covered by Bundeswahlleiter's data provided
+to me was collected from the states' local election authorities'
+(Landeswahlleiter) websites.
+More information on parties and the continuity of parties under different labels
+was collected by me.
+
+The Bundeswahlleiter's election data in many cases contains differing names for
+the same party. Both between states (eg. "Christlich Demokratische Union
+Deutschlands" vs. "Christlich Demokratische Union Deutschlands in
+Niedersachsen") as well as within states between elections -in many cases due to
+parties being renamed- ("BÜNDNIS 90/DIE GRÜNEN, Landesverband Hamburg,
+Grün-Alternative Liste" vs. "BÜNDNIS 90/DIE GRÜNEN, Landesverband Hamburg").
+Efforts were made to reconcile both of these inconsistencies by adding two new,
+harmonized variables identifying parties (`partyname_short` and `partyname`).
+This harmonized party identifier also covers merging of parties. The partyname
+given to the resulting party (eg. "Linke", "Grüne") is given to the largest of
+the preceding parties contesting an election unless a smaller party joined a
+government following the election.
+The original names provided by the Bundeswahlleiter (and Landeswahlleiters in 
+elections after June 2021) are still available
+(`partyname_short_bundeswahlleiter` and `partyname_bundeswahlleiter`).
+
+
+
+Information on governments is mainly taken from replication data from
+@linhartProportionaleMinisterienaufteilungDeutschen2008
+which can be found online here:
+https://www.tu-chemnitz.de/phil/politik/pspi/forschung/daten.php.
+Information outside the timeframe of Linhart et al. as well as information on
+the names and party affiliations of the Ministerpräsidenten
+was collected by me, mainly from German Wikipedia.
+
+
+All datasets can be accessed through the `R` Package `bundeslaendeR`.
+\footnote{Calling \texttt{bundeslaender::ltw\_elections}, \texttt{bundeslaender::ltw\_governments} , \texttt{bundeslaender::ltw\_combined},
+\texttt{bundeslaender::ltw\_elections\_meta}, \texttt{bundeslaender::link\_manifestos} and \texttt{bundeslaender::link\_coalitionagreements}.}
+This package further includes one function -`bundeslaendeR::de_states_geofacet_grid_4x4()`- that is documented below.
+Alternatively all datasets can be downloaded in a single `.zip` file including
+all six datasets as `.csv`, `.rds` and `.dta` files.
+
+
+
+
+
+\newpage
+
+
+# `ltw_elections`
+
+`ltw_elections` is a long-form dataset  containing one row per contesting party per election.
+For a schematic version of `ltw_elections`'s structure see table$~$\ref{strltwelecres}.
+The data can be accessed in `R` using `bundeslaendeR::ltw_elections`.
+
+
+
+```{=latex}
+
+
+
+\begin{table}
+\centering
+\caption{Structure of \texttt{ltw\_elections}}
+\label{strltwelecres}
+\tiny
+\texttt{
+\begin{tabular}{llrllrllrllr}
+			\toprule
+			\multicolumn{3}{c}{\textbf{\textsf{State Variables}}} & \multicolumn{3}{c}{\textbf{\textsf{Election Variables}}} & \multicolumn{3}{c}{\textbf{\textsf{Party Variables}}} & \multicolumn{3}{c}{\textbf{\textsf{Party-Election Variables}}}\\
+			\multicolumn{3}{c}{\textsf{Name, Abbreviation, NUTS1 Code}} & \multicolumn{3}{c}{\textsf{Election date, Size Electorate, Turnout, ...}} & \multicolumn{3}{c}{\textsf{Names, Abbreviations, several IDs}} & \multicolumn{3}{c}{\textsf{Vote Count, -Share, Seat Count, -Share, ...}}\\
+			\cmidrule(r){1-3}\cmidrule(lr){4-6}\cmidrule(lr){7-9}\cmidrule(l){10-12}
+			\textbf{state} & \textbf{nuts1} & \textbf{...} & \textbf{election\_date} & \textbf{turnout} & \textbf{...} & \textbf{partyname\_short} & \textbf{ches\_id} & \textbf{...} & \textbf{party\_vshare} & \textbf{party\_seat\_count} & \textbf{...} \\
+			\midrule
+			BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party A & 001 & ... & 0.45 & 46 & ...\\
+			BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party B & 002 & ... & 0.30 & 12 & ...\\
+			BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party C & 003 & ... & 0.25 & 18 & ...\\
+		&&&&&&&&&&&\\[-2ex]
+			NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party A & 001 & ... & 0.17 & 12 & ...\\
+			NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party B & 002 & ... & 0.33 & 27 & ...\\
+			NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party D & 004 & ... & 0.50 & 46 & ...\\
+			\bottomrule
+	\end{tabular}}
+
+
+\end{table}
+```
+
+
+## `ltw_elections` Variable Information
+
+```{r, results="asis"}
+short_item(item_name_code = "state",
+           item_name = "State Abbreviation",
+           item_desc = "ISO 3166-2:DE-code of the state;
+           including BA for the former state of Baden, WH for the former state
+           of Württemberg-Hohenzollern and WB for the former state of
+           Württemberg-Baden.",
+           desc_left = FALSE)
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "nuts1",
+           item_name = "NUTS1 Code of State",
+           item_desc = "NUTS1 code of state. NA for former states Baden, Württemberg-Baden, Württemberg-Hohenzollern.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "state_name_de",
+           item_name = "German Name of State",
+           item_desc = "German name of the state.",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "state_name_en",
+           item_name = "English Name of State.",
+           item_desc = "English name of the state.",
+           desc_left = FALSE)
+```
+
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "state_election_\nterm",
+           item_name = "Election Term of State",
+           item_desc = "Election term in the state. Counts up from 1. Note that this count does not necessarily has to line up with the official way the respective legislature counts its legislative terms. For example, \\texttt{bundeslaendeR} includes data from Berlin Stadtverordnetenversammlung elections in 1946 and 1948 prior to the enaction of the new Berlin state constitution in 1950 that established the Abgeordnetenhaus. The Abgeordnetenhaus starts counting its legislative terms in 1950 instead. Similarly, \\texttt{bundeslaendeR} inclues the election held in Berlin in 2021 as well as the 2023 repeat election and increments the \\texttt{state\\_election\\_term} counter by one, whereas the Abgeordnetenhaus' official way of counting considers the legislative term to have started in 2021 even after the 2023 rerun." ,
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+electiontermplot <-
+ltw_elections %>% 
+  select(state_election_term, election_date, state) %>%
+  distinct() %>% 
+  ggplot(aes(x = state_election_term)) +
+    geom_bar() +
+    scale_y_continuous(breaks= scales::pretty_breaks()) +
+    labs(x = "State Election Term", y = "N") 
+  
+
+item_image(ggobj = electiontermplot,
+           filenameimg = "cbfiles/electiontermplot.pdf",
+           width = 5,
+           height = 5/3.5)
+
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+```{r, results="asis"}
+item_start(item_name_code = "election_date",
+           item_name = "Election Date",
+           item_desc = "Date of the election.  ISO 8601 or R-Date format.",
+           desc_left = FALSE)
+
+```
+
+
+
+
+
+
+```{r, results="asis"}
+electiondatesplot <- 
+ltw_elections %>% 
+  select(election_date, state) %>%
+  distinct() %>% 
+  mutate(year = lubridate::year(election_date)) %>% 
+  count(year) %>% 
+  ggplot(aes(x = year, y = n)) +
+    geom_col() +
+    scale_y_continuous(breaks= scales::pretty_breaks()) +
+    scale_x_continuous(breaks= scales::pretty_breaks()) +
+    labs(x = "Year", y = "N")
+
+
+item_image(ggobj = electiondatesplot,
+           filenameimg = "cbfiles/electiondatesplot.pdf",
+           width = 5,
+           height = 5/3.5)
+```
+
+
+
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "election_id_\nbundeswahlleiter",
+           item_name = "Election ID Bundeswahlleiter",
+           item_desc = "Specific election\\_id as denoted by the Bundeswahlleiter. Note that BA, WH and WH are named as BW and the number counts down. NA for cases taken from Landeswahlleiters (i.e. elections after ST 2021).",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "election_remarks_\nwahlleiter",
+           item_name = "Election Remarks Bundeswahlleiter",
+           item_desc = "Remarks on the election as given by the Bundeswahlleiter.",
+           desc_left = FALSE)
+```
+
+
+```{r, results="asis"}
+item_start(item_name_code = "electorate",
+           item_name = "Size of the Electorate",
+           item_desc = "Number of eligible voters. For more totals also see the last six columns.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+electorateplot <-
+ltw_elections %>% 
+  select(electorate, state, state_election_term) %>% 
+  distinct() %>% 
+  ggplot(aes(x = electorate)) +
+    geom_histogram(bins = 20) +
+    scale_x_continuous(labels = scales::comma) +
+    labs(x = "Size of the Electorate", y = "N")
+
+
+item_image(ggobj = electorateplot,
+           filenameimg = "cbfiles/electorateplot.pdf",
+           width = 5,
+           height = 5/3.5)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "number_of_voters",
+           item_name = "Number of Voters",
+           item_desc = "Number of voters turning out. For more totals also see the last six columns.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+nvotersplot <-
+ltw_elections %>% 
+  select(number_of_voters, state, state_election_term) %>% 
+  distinct() %>% 
+  filter(!is.na(number_of_voters)) %>% 
+  ggplot(aes(x = number_of_voters)) +
+    geom_histogram(bins = 20) +
+    scale_x_continuous(labels = scales::comma) +
+    labs(x = "Number of Voters", y = "N",
+         caption = "One missing observation: 1946 HB election.")
+
+
+item_image(ggobj = nvotersplot,
+           filenameimg = "cbfiles/nvotersplot.pdf",
+           width = 5,
+           height = 5/3.5)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+```{r, results="asis"}
+item_start(item_name_code = "turnout",
+           item_name = "Turnout",
+           item_desc = "Turnout. Share of eligible voters turning out.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+turnoutplot <-
+ltw_elections %>% 
+  select(turnout, state, state_election_term) %>% 
+  distinct() %>% 
+  filter(!is.na(turnout)) %>%
+  ggplot(aes(x = turnout)) +
+    geom_histogram(bins = 20) +
+    scale_x_continuous(labels = scales::comma) +
+    labs(x = "Turnout", y = "N",
+         caption = "One missing observation: 1946 HB election.")
+
+
+item_image(ggobj = turnoutplot,
+           filenameimg = "cbfiles/turnoutplot.pdf",
+           width = 5,
+           height = 5/3.8)
+```
+
+```{r, results="asis"}
+item_end()
+```
+ 
+
+```{r, results="asis"}
+item_start(item_name_code = "valid_votes",
+           item_name = "Valid Votes",
+           item_desc = "Number of valid votes. Does not have to be equal to the number of ballots cast, as sometimes a ballot contains multiple votes! For more totals also see the last six columns.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+validvoteplot <-
+ltw_elections %>% 
+  select(valid_votes, state, state_election_term) %>% 
+  distinct() %>% 
+  # filter(!is.na(valid_votes)) %>%
+  ggplot(aes(x = valid_votes)) +
+    geom_histogram(bins = 20) +
+    scale_x_continuous(labels = scales::comma) +
+    labs(x = "Valid Votes", y = "N")
+
+
+item_image(ggobj = validvoteplot,
+           filenameimg = "cbfiles/validvoteplot.pdf",
+           width = 5,
+           height = 5/3.8)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "total_seats_\nparliament",
+           item_name = "Total Seats in Parliament",
+           item_desc = "Total number of members of the newly elected Landtag.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+tseatsparlplot <-
+ltw_elections %>% 
+  select(total_seats_parliament, state, state_election_term) %>% 
+  distinct() %>% 
+  # filter(!is.na(valid_votes)) %>%
+  ggplot(aes(x = total_seats_parliament)) +
+    geom_histogram(bins = 20) +
+    scale_x_continuous(labels = scales::comma) +
+    labs(x = "Total Seats in Parliament", y = "N")
+
+
+item_image(ggobj = tseatsparlplot,
+           filenameimg = "cbfiles/tseatsparlplot.pdf",
+           width = 5,
+           height = 5/2.8)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "female_party_\nseats_available",
+           item_name = "Number of female MdLs available per party",
+           item_desc = "Denotes whether information on the no. of female members of the Landtag per party is available for this election. Note that for parties not elected to the new Landtag party\\_female\\_mps always is marked as missing.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+fpsaplot <-
+ltw_elections %>% 
+  select(female_party_seats_available, state, state_election_term) %>% 
+  distinct() %>% 
+  ggplot(aes(y = female_party_seats_available)) +
+    geom_bar() +
+    labs(x = "Number of Elections", y = "Number of female\nMdLs available\nper party") +
+    theme(
+      axis.title.y = element_text(angle = 0, vjust = 0.5)
+    )
+
+item_image(ggobj = fpsaplot,
+           filenameimg = "cbfiles/fpsaplot.pdf",
+           width = 5,
+           height = 1)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "total_female_\nmps_parliament",
+           item_name = "Number of Female MPs in Parliament",
+           item_desc = "Number of newly elected female MPs.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+totfemmpsplot <-
+ltw_elections %>% 
+  select(total_female_mps_parliament, state, state_election_term) %>% 
+  distinct() %>% 
+  filter(!is.na(total_female_mps_parliament)) %>% 
+  select(total_female_mps_parliament) %>% 
+  mutate(total_female_mps_parliament = mltools::bin_data(total_female_mps_parliament,
+                                                         bins = 15) %>%
+                                        as.character()) %>% 
+  mutate(lb = str_extract(string = total_female_mps_parliament,pattern = "(?<=\\[).*?(?=,)") %>% as.numeric() %>% round(1)) %>% 
+  mutate(ub = str_extract(string = total_female_mps_parliament,pattern = "(?<=, )(.*)(?=\\)|])") %>% as.numeric()%>% round(1)) %>% 
+  mutate(int = case_when(
+    ub == max(ub) ~ paste0("[", lb, ",", ub, "]"),
+    TRUE ~ paste0("[", lb, ",", ub, ")")
+  )) %>% 
+  mutate(int = as_factor(int) %>% fct_reorder(lb) %>% fct_expand("NA")) %>% 
+  count(int) %>% 
+  bind_rows(
+    tibble(
+      int = as_factor("NA"),
+      n = ltw_elections %>% 
+          select(total_female_mps_parliament, state, state_election_term) %>% 
+          distinct() %>% 
+          filter(is.na(total_female_mps_parliament)) %>% 
+          nrow()
+    )
+  ) %>% 
+  ggplot(aes(x = int, y= n)) +
+    geom_col() +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    labs(x = "Number of newly elected female MPs", y = "N")
+  
+
+  
+
+
+
+item_image(ggobj = totfemmpsplot,
+           filenameimg = "cbfiles/totfemmpsplot.pdf",
+           width = 5,
+           height = 5/3)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "partyname_short",
+           item_name = "Abbreviated Party Name",
+           item_desc = paste("Harmonized abbreviation of the party's name.", 
+                             length(unique(ltw_elections$partyname_short)),
+                             "unique parties."),
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "partyname",
+           item_name = "Party Name",
+           item_desc = paste("Harmonized name of the party.", 
+                             length(unique(ltw_elections$partyname_short)),
+                             "unique parties."),
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "partyname_short_\nbundeswahlleiter",
+           item_name = "Party Name Abbreviation from Bundeswahlleiter",
+           item_desc = paste("Partyname abbreviation as documented by the Bundeswahlleiter.", 
+                             length(unique(ltw_elections$partyname_short_bundeswahlleiter)),
+                             "different abbreviations."),
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "partyname_\nbundeswahlleiter",
+           item_name = "Party Name from Bundeswahlleiter",
+           item_desc = paste("Partyname as documented by the Bundeswahlleiter.", 
+                             length(unique(ltw_elections$partyname_bundeswahlleiter)),
+                             "different names."),
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "party_vote_count",
+           item_name = "Party Vote Count",
+           item_desc = "Number of votes recieved by the party.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+pvcplot <-
+ltw_elections %>% 
+  select(party_vote_count, state, state_election_term) %>% 
+  filter(party_vote_count > 0) %>% 
+  ggplot(aes(x = party_vote_count)) +
+    geom_histogram(bins = 20) +
+    scale_x_log10(labels = scales::comma) +
+    labs(x = "Number of votes recieved by party\n(Plotted on log10 scale)", y = "N")
+
+
+item_image(ggobj = pvcplot,
+           filenameimg = "cbfiles/pvcplot.pdf",
+           width = 5,
+           height = 5/3.5)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "party_vshare",
+           item_name = "Party Vote Share",
+           item_desc = "Share of votes recieved by the party.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+pvsplot <-
+ltw_elections %>% 
+  select(party_vshare, state, state_election_term) %>% 
+  filter(party_vshare > 0) %>% 
+  ggplot(aes(x = party_vshare)) +
+    geom_histogram(bins = 20) +
+    scale_x_continuous(breaks = seq(0,1,0.05), labels = scales::percent) +
+    # theme(axis.text.x = element_text(90)) +
+    labs(x = "Share of votes recieved by the party", y = "N")
+
+
+item_image(ggobj = pvsplot,
+           filenameimg = "cbfiles/pvsplot.pdf",
+           width = 6.5,
+           height = 6/3.9)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+```{r, results="asis"}
+item_start(item_name_code = "party_seat_count",
+           item_name = "Party Seat Count",
+           item_desc = "Number of seats recieved by the party.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+xlabstring <- 
+paste0("Number of seats recieved by the party\n(",
+ltw_elections %>% 
+  filter(party_seat_count > 0) %>% 
+  pull(party_seat_count) %>%
+  length(), " parties without seats not plotted)")
+  
+
+
+pscplot <-
+ltw_elections %>% 
+  select(party_seat_count, state, state_election_term) %>% 
+  filter(party_seat_count > 0) %>%
+  ggplot(aes(x = party_seat_count)) +
+    geom_histogram(bins = 30) +
+    scale_x_continuous(breaks = seq(1,max(ltw_elections$party_seat_count),5)) +
+    theme(axis.text.x = element_text(angle = 45)) +
+    labs(x = xlabstring, y = "N")
+
+
+item_image(ggobj = pscplot,
+           filenameimg = "cbfiles/pscplot.pdf",
+           width = 5,
+           height = 5/3)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "party_sshare",
+           item_name = "Party Seat Share",
+           item_desc = "Share of seats recieved by the party.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+xlabstring <-
+paste0("Share of seats recieved by the party\n(",
+ltw_elections %>% 
+  filter(party_sshare > 0) %>% 
+  pull(party_sshare) %>%
+  length(), " parties without seats not plotted)")
+  
+
+
+pssplot <-
+ltw_elections %>% 
+  select(party_sshare, state, state_election_term) %>% 
+  filter(party_sshare > 0) %>%
+  ggplot(aes(x = party_sshare)) +
+    geom_histogram(bins = 30) +
+    scale_x_continuous(breaks = seq(0.01,max(ltw_elections$party_sshare),0.05),
+                       labels = scales::percent) +
+    theme(axis.text.x = element_text(angle = 45)) +
+    labs(x = xlabstring, y = "N")
+
+
+item_image(ggobj = pssplot,
+           filenameimg = "cbfiles/pssplot.pdf",
+           width = 5,
+           height = 5/2.5)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "party_female_mps",
+           item_name = "Number of female MPs from party",
+           item_desc = "Number of female MPs elected for the party. Note that for parties not elected to the new Landtag party\\_female\\_mps always is marked as missing.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+
+wbarplotdata <- 
+ltw_elections %>% 
+  select(party_seat_count, party_female_mps, female_party_seats_available) %>% 
+  mutate(reason = case_when(
+    party_female_mps == 0 ~ "Party in parl., but no female MPs",
+    party_seat_count > 0 & female_party_seats_available == FALSE ~ "Party in parl., but no data about women",
+    party_seat_count == 0 ~ "Party not in parliament",
+    party_female_mps > 0 ~ "Party in parl. and has female MPs"
+    )) %>% count(reason) %>%
+  mutate(reason = as_factor(reason) %>% fct_reorder(n)) 
+
+wbarplot <-
+wbarplotdata %>%
+  ggplot(aes(y = reason, x = n)) +
+    geom_col() +
+    labs(x = "N", y = NULL)
+
+
+
+
+whist <-
+ltw_elections %>%
+  select(party_female_mps, state, state_election_term, party_sshare) %>%
+  filter(!is.na(party_female_mps)) %>%
+  filter(party_sshare > 0) %>%
+  ggplot(aes(x = party_female_mps)) +
+    geom_histogram(bins = 25) +
+    scale_x_continuous(breaks= scales::pretty_breaks(n = 6)) +
+    labs(x = "Number of female MPs from party", y = "N")
+
+
+design <- "BBBBBBBBBBBBBB
+           BBBBBBBBBBBBBB
+           #AAAAAAAAAAAAA"
+
+pfmpcplot <-
+wrap_plots(B = whist, A = wbarplot, design = design)
+
+
+
+
+item_image(ggobj = pfmpcplot,
+           filenameimg = "cbfiles/pfmpcplot.pdf",
+           width = 5,
+           height = 5/1.7)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "ppeg_id", 
+           item_name = "PPEG ID",
+           item_desc = "If available, party id of the party in the PPEG database \\parencite{krausePPEGPoliticalParties2024a}. These party IDs are chiefly based on party IDs from \\textcite{mackieInternationalAlmanacElectoral1991}.")
+```
+
+
+```{r, results="asis"}
+govelecplot <-
+ltw_elections %>% 
+  select(partyname_short, ppeg_id) %>% 
+  distinct() %>% 
+  mutate(avail = !is.na(ppeg_id)) %>% 
+  count(avail) %>% 
+  ggplot(aes(y = avail, x = n)) +
+    geom_col() +
+    labs(x = "Number of parties",
+         y = "PPEG ID\navailable") +
+    theme(
+      axis.title.y = element_text(angle = 0, vjust = 0.5)
+    )
+
+item_image(ggobj = govelecplot,
+           filenameimg = "cbfiles/govelecplot.pdf",
+           width = 5,
+           height = 1)
+
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "ches_id", 
+           item_name = "CHES ID",
+           item_desc = "If available, ID of the party in the Chapel-Hill Expert Survey \\parencite{jollyChapelHillExpert2022}.")
+```
+
+
+```{r, results="asis"}
+chesplot <-
+ltw_elections %>% 
+  select(partyname_short, ches_id) %>% 
+  distinct() %>% 
+  mutate(avail = !is.na(ches_id)) %>% 
+  count(avail) %>% 
+  ggplot(aes(y = avail, x = n)) +
+    geom_col() +
+    labs(x = "Number of parties",
+         y = "CHES ID\navailable") +
+    theme(
+      axis.title.y = element_text(angle = 0, vjust = 0.5)
+    )
+
+item_image(ggobj = chesplot,
+           filenameimg = "cbfiles/chesplot.pdf",
+           width = 5,
+           height = 1)
+
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "partyfacts_id",
+           item_name = "PartyFacts ID",
+           item_desc = "If available, ID of the party in the partyfacts database \\parencite{doringPartyFactsDatabase2019}.")
+```
+
+```{r, results="asis"}
+partyfactsplot <-
+ltw_elections %>% 
+  select(partyname_short, partyfacts_id) %>% 
+  distinct() %>% 
+  mutate(avail = !is.na(partyfacts_id)) %>% 
+  count(avail) %>% 
+  ggplot(aes(y = avail, x = n)) +
+    geom_col() +
+    labs(x = "Number of parties",
+         y = "PartyFacts ID\navailable") +
+    theme(
+      axis.title.y = element_text(angle = 0, vjust = 0.5)
+    )
+
+item_image(ggobj = partyfactsplot,
+           filenameimg = "cbfiles/partyfactsplot.pdf",
+           width = 5,
+           height = 1)
+
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "decker_neu",
+           item_name = "Chapter Parteienhandbuch",
+           item_desc = "Denotes, wether the Handbuch der deutschen Parteien (3. ed.) by \\textcite{deckerHandbuchDeutschenParteien2018b} has a chapter on the party.",
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+deckerneuplot <-
+ltw_elections %>% 
+  select(partyname_short, decker_neu) %>% 
+  distinct() %>% 
+  mutate(avail = !is.na(decker_neu)) %>% 
+  count(avail) %>% 
+  ggplot(aes(y = avail, x = n)) +
+    geom_col() +
+    labs(x = "Number of parties",
+         y = "Decker/Neu\nChapter") +
+    theme(
+      axis.title.y = element_text(angle = 0, vjust = 0.5)
+    )
+
+item_image(ggobj = deckerneuplot,
+           filenameimg = "cbfiles/deckerneuplot.pdf",
+           width = 5,
+           height = 1)
+
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "url_info",
+           item_name = "URL with additional info on the party",
+           item_desc = "URL to informaton on the party on the web. Can contain multiple URLs!",
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "party_remarks_\nstelzle",
+           item_name = "Party remarks Stelzle",
+           item_desc = "Remarks on the party by me.",
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "party_remarks_\nbundeswahlleiter",
+           item_name = "Party remarks Bundeswahlleiter",
+           item_desc = "Remarks on the party as listed by the Bundeswahlleiter.",
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "gueltige_stimm\n-zettel_hh_hb",
+           item_name = "Gültige Stimmzettel HH and HB",
+           item_desc = "State specific totals.",
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "gesamtstimmen_by",
+           item_name = "Gesamtstimmen BY",
+           item_desc = "State specific totals.",
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "ausgefallene_\nstimmen_be",
+           item_name = "Ausgefallene Stimmen BE",
+           item_desc = "State specific totals.",
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "abgegebene_\nstimmen_hh",
+           item_name = "Abgegebene Stimmen HH",
+           item_desc = "State specific totals.",
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "ungueltige_\nstimmen_except_\nhh_hb",
+           item_name = "Ungültige Stimmen except in HH and HB",
+           item_desc = "State specific totals.",
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "ungueltige_\nstimmzettel_hh_hb",
+           item_name = "Ungültige Stimmzettel in HH and HB",
+           item_desc = "State specific totals.",
+           desc_left = FALSE)
+```
+
+
+\newpage
+
+# `ltw_governments`
+
+
+This section of the codebook only concerns variables specific to the 
+`ltw_governments` dataset. For further variables
+please refer to the `ltw_elections` section.
+
+`ltw_governments` is a long-form dataset containing information
+on governments in the German states.
+Each row contains information on one state government.
+The data can be accessed in `R` using `bundeslaendeR::ltw_governments`.
+<!-- For a schematic version of `bundeslaendeR::ltw_combined`'s structure see table$~$\ref{strltwelecgov}. -->
+
+
+
+## `ltw_governments` Variable Information
+
+
+```{r, results="asis"}
+item_start(item_name_code = "gov_no_within_\nlegterm",
+           item_name = "Number of cabinet within legislative term",
+           item_desc = "Number of cabinet within legislative term (e.g. First/Second/Third/... cabinet in the 1990-1994 legislative term of state X).",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+govnolegperplot <- 
+ltw_governments %>% 
+  select(state, election_date, gov_id, gov_no_within_legterm) %>% 
+  distinct() %>% 
+  ggplot(aes(x = gov_no_within_legterm)) +
+    geom_bar() +
+    labs(y = "N")
+
+
+item_image(ggobj = govnolegperplot,
+           filenameimg = "cbfiles/govnolegperplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_id",
+           item_name = "Government ID",
+           item_desc = "Unique ID of government. Taken from Linhart et al. However, this ID is not counting up within state by time. In cases where Governments were 
+           missing from Linhart et al. before the timeframe covered by Linhart et al. (eg. in Berlin) these earlyer governments have a higher ID than later cabinets 
+           contained in Linhart et al. data.",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "state_gov_number",
+           item_name = "Number of government in state.",
+           item_desc = "Number of government in state.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+stategovnumplot <-
+ltw_governments %>% 
+  select(state, election_date, gov_id, state_gov_number) %>% 
+  distinct() %>% 
+  ggplot(aes(x = state_gov_number)) +
+    geom_bar() +
+    labs(y = "N")
+
+
+item_image(ggobj = stategovnumplot,
+           filenameimg = "cbfiles/stategovnumplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+```{r, results="asis"}
+item_start(item_name_code = "gov_start_date",
+           item_name = "Government Starting Date",
+           item_desc = "Starting date of the government.  ISO 8601 or R-Date format.",
+           desc_left = FALSE)
+
+```
+
+
+
+
+
+
+```{r, results="asis"}
+govstartdatesplot <- 
+ltw_governments %>% 
+  select(gov_start_date, state) %>%
+  distinct() %>% 
+  mutate(year = lubridate::year(gov_start_date)) %>% 
+  count(year) %>% 
+  ggplot(aes(x = year, y = n)) +
+    geom_col() +
+    scale_y_continuous(breaks= scales::pretty_breaks()) +
+    scale_x_continuous(breaks= scales::pretty_breaks()) +
+    labs(x = "Year", y = "N")
+
+
+item_image(ggobj = govstartdatesplot,
+           filenameimg = "cbfiles/govstartdatesplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_source",
+           item_name = "Government Source",
+           item_desc = "Source of the information on the government. Either Linhart et al. or the URL of the German Wikipedia Page containing information on the cabinet.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_remarks_\nstelzle",
+           item_name = "Governments remarks Stelzle",
+           item_desc = "My remarks on governments.",
+           desc_left = FALSE)
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "minister_president",
+           item_name = "Name of minister president",
+           item_desc = "Name of minister president.",
+           desc_left = FALSE)
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "mp_party",
+           item_name = "Minister President's Party",
+           item_desc = "Party of the minister president. partyname\\_short format used. Note: There is a single cabinet with an independent minister president: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955. Further note that there is a single case where the party denoted as \\texttt{mp\\_party} is not part of the set of parties in \\texttt{gov\\_parties}. Hamburg's mayor Kurt Sieveking (1953-1957) was a member of the CDU and is denoted as such in \\texttt{mp\\_party}. However, the CDU contested the 1953 Hamburg election as part of the Hamburg-Block electoral alliance together with the FDP, the DP and the BHE. Thus, as there are no separate election results for the member-parties of the electoral alliance available, \\texttt{gov\\_parties} is here just denoted as \\texttt{HamburgBlock/VBH}.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_parties",
+           item_name = "Names of Government Parties",
+           item_desc = "String containing the names (partyname\\_short format) of all government parties separated by ' $\\sim$ '. The MP's party first, followed by other government parties in the order of their seatshare.",
+           desc_left = FALSE)
+```
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "gov_vshare",
+           item_name = "Government Vote Share",
+           item_desc = "Collective vote share of government parties.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+gvsplot <-
+  ltw_governments %>%
+  filter(!is.na(gov_vshare)) %>% 
+  select(gov_vshare, state) %>%
+  ggplot(aes(x = gov_vshare)) +
+  geom_histogram(bins = 20) +
+  scale_x_continuous(breaks = seq(0,1,0.1), labels = scales::percent) +
+  labs(x = "Collective vote share of government parties", y = "N")
+
+
+item_image(ggobj = gvsplot,
+           filenameimg = "cbfiles/gvsplot.pdf",
+           width = 6.5,
+           height = 6/3.9)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "gov_seat_count",
+           item_name = "Government Seat Count",
+           item_desc = "Collective number of seats of government parties.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+
+gscplot <-
+  ltw_governments %>%
+  select(gov_seat_count, state) %>%
+  filter(!is.na(gov_seat_count)) %>%
+  ggplot(aes(x = gov_seat_count)) +
+  geom_histogram(bins = 30) +
+  scale_x_continuous(breaks = seq(0,max(ltw_governments$gov_seat_count, na.rm = TRUE),20)) +
+  theme(axis.text.x = element_text(angle = 45)) +
+  labs(x = "Collective number of seats of government parties", y = "N")
+
+
+item_image(ggobj = gscplot,
+           filenameimg = "cbfiles/gscplot.pdf",
+           width = 5,
+           height = 5/3)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "gov_sshare",
+           item_name = "Government Seat Share",
+           item_desc = "Share of seats of government parties.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+
+
+
+gssplot <-
+  ltw_governments %>%
+  select(gov_sshare, state) %>%
+  filter(!is.na(gov_sshare)) %>%
+  ggplot(aes(x = gov_sshare)) +
+  geom_histogram(bins = 30) +
+  scale_x_continuous(breaks = seq(0,1,0.1),
+                     labels = scales::percent) +
+  # theme(axis.text.x = element_text(angle = 45)) +
+  labs(x = "Share of seats of government parties", y = "N")
+
+
+item_image(ggobj = gssplot,
+           filenameimg = "cbfiles/gssplot.pdf",
+           width = 5,
+           height = 5/3.5)
+```
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_tog",
+           item_name = "Type of Government",
+           item_desc = "\\vspace{-0.8cm}Type of Government:\\setlist{nolistsep}\\begin{itemize}[noitemsep]\\item Single Party Majority \\item Oversized Coalition \\item Minimal Winning Coalition \\item Single Party Minority \\item Multi Party Majority \\item Caretaker. \\end{itemize}Note that this classification is done automatically based on the number of seats of each governing party \\emph{at the beginning of the legislative term}. MPs defecting between parties and thus potentially changing the majority status of governments can thus not be incorporated!",
+           desc_left = TRUE)
+```
+
+
+
+
+
+
+\newpage
+
+
+
+# `ltw_combined`
+
+
+This section of the codebook only concerns variables specific to the 
+`ltw_combined` dataset. For further variables
+please refer to the sections on `ltw_elections` and `ltw_governments`.
+
+`ltw_combined` is a long-form dataset containing both election results as well as linked information
+on governments in the German states.
+Each row contains information on one party during the time in office of one cabinet.
+For a schematic version of `ltw_combined`'s structure see table$~$\ref{strltwelecgov}.
+The data can be accessed in `R` using `bundeslaendeR::ltw_combined`.
+
+
+
+
+
+
+
+
+
+## `ltw_combined` Variable Information
+
+
+```{r, results="asis"}
+short_item(item_name_code = "gov_party",
+           item_name = "Government Party",
+           item_desc = "Boolean wether the party was a cabinet party. Note: There is a single cabinet where no party is marked as part of the cabinet: Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955.",
+           desc_left = FALSE)
+```
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "nmin_party",
+           item_name = "Number of Ministers of Party",
+           item_desc = "Number of ministers of party. Note that the number of party-independent ministers is not collected. Thus, the sum of the number of ministers of all government parties can not reliably be understood as the size of the cabinet.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+nminpartyplot <-
+ltw_combined %>% 
+  filter(gov_party == TRUE) %>% 
+  select(state, election_date, gov_id, nmin_party) %>% 
+  distinct() %>% 
+  ggplot(aes(x = nmin_party)) +
+    geom_bar() +
+    labs(y = "N")
+
+
+item_image(ggobj = nminpartyplot,
+           filenameimg = "cbfiles/nminpartyplot.pdf",
+           width = 5,
+           height = 5/3)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "is_mp_party",
+           item_name = "Is MP Party?",
+           item_desc = "Is the governments minister president from this party? Note: There are two cases of cabinets where the minister president is not part of any party contesting the election: 1) Heinrich Welsch's caretaker government in the Saarland (at the time not yet a member of the FRG) in 1955. 2) Hamburg's mayor Kurt Sieveking (1953-1957) was a member of the CDU and is denoted as such in \\texttt{mp\\_party}. However, the CDU contested the 1953 Hamburg election as part of the Hamburg-Block electoral alliance together with the FDP, the DP and the BHE. Thus, as there are no separate election results for the member-parties of the electoral alliance available and only the election result of the entire electoral alliance is reported, \\texttt{is\\_mp\\_party} is set to \\texttt{FALSE} for all parties during the cabinet's tenure, including for the Hamburg-Block.",
+           desc_left = FALSE)
+```
+
+
+
+
+\newpage
+
+\blandscape
+
+```{=latex}
+    \setcounter{table}{1}
+\begin{table}
+
+\normalsize
+\caption{Structure of \texttt{ltw\_combined}}
+\label{strltwelecgov}
+\centering
+\tiny
+\texttt{
+	\begin{tabular}{llrllrllrllrllrllr}
+		\toprule
+		\multicolumn{3}{c}{\textbf{\textsf{State Variables}}} & \multicolumn{3}{c}{\textbf{\textsf{Election Variables}}} & \multicolumn{3}{c}{\textbf{\textsf{Party Variables}}} & \multicolumn{3}{c}{\textbf{\textsf{Party-Election Variables}}} &
+		\multicolumn{3}{c}{\textbf{\textsf{Government Variables}}} &
+		\multicolumn{3}{c}{\textbf{\textsf{Government-Party Variables}}} \\
+		\multicolumn{3}{c}{\textsf{Name, Abbreviation,}} & \multicolumn{3}{c}{\textsf{Election date, Size}} & \multicolumn{3}{c}{\textsf{Names, Abbreviations, several IDs}} & \multicolumn{3}{c}{\textsf{Vote Count, -Share, Seat}}&
+		\multicolumn{3}{c}{\textsf{Inauguration date, PM Name, gov.}} &
+		\multicolumn{3}{c}{\textsf{Status in government, number of}}\\
+		\multicolumn{3}{c}{\textsf{NUTS1 Code}} &
+		\multicolumn{3}{c}{\textsf{Electorate, Turnout, ...}} &
+		\multicolumn{3}{c}{\textsf{several IDs}} &
+		\multicolumn{3}{c}{\textsf{Count, -Share, ...}} &
+		\multicolumn{3}{c}{\textsf{numbering, gov\_id, ...}} &
+		\multicolumn{3}{c}{\textsf{party ministers, ...}} \\
+		\cmidrule(r){1-3}\cmidrule(lr){4-6}\cmidrule(lr){7-9}
+		\cmidrule(lr){10-12}\cmidrule(lr){13-15}\cmidrule(l){16-18}
+		\textbf{state} & \textbf{nuts1} & \textbf{...} & \textbf{election\_date} & \textbf{turnout} & \textbf{...} & \textbf{partyname\_short} & \textbf{ches\_id} & \textbf{...} & \textbf{party\_vshare} & \textbf{party\_seat\_count} & \textbf{...} & \textbf{gov\_start\_date} & \textbf{minister\_president} & \textbf{...} & \textbf{gov\_party} & \textbf{nmin\_party} & \textbf{...} \\
+		\midrule
+		BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party A & 001 & ... & 0.45 & 46 & ... & 2015-10-07 & Mustermann, Max & ... & TRUE & 7 & ... \\
+		BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party B & 002 & ... & 0.30 & 12 & ... & 2015-10-07 & Mustermann, Max & ... & TRUE & 4 & ... \\
+		BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party C & 003 & ... & 0.25 & 18 & ...& 2015-10-07 & Mustermann, Max & ... & FALSE & NA & ... \\
+		&&&&&&&&&&&\\[-2ex]
+		BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party A & 001 & ... & 0.45 & 46 & ... & 2017-02-28 & Mustermann, Max & ... & TRUE & 11 & ... \\
+		BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party B & 002 & ... & 0.30 & 12 & ... & 2017-02-28 & Mustermann, Max & ... & FALSE & NA & ...\\
+		BE & DE3 & ... & 2015-09-18 & 0.765 & ... & Party C & 003 & ... & 0.25 & 18 & ... & 2017-02-28 & Mustermann, Max & ... & FALSE & NA & ...\\
+		&&&&&&&&&&&\\
+		NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party A & 001 & ... & 0.17 & 12 & ... & 2013-01-07 & Musterfrau, Erika & ... & FALSE & NA & ...\\
+		NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party B & 002 & ... & 0.33 & 27 & ... & 2013-01-07 & Musterfrau, Erika & ... & FALSE & NA & ...\\
+		NI & DE9 & ... & 2012-12-16 & 0.560 & ... & Party D & 004 & ... & 0.50 & 46 & ... & 2013-01-07 & Musterfrau, Erika & ... & TRUE & 13 & ...\\
+		\bottomrule
+\end{tabular}}
+\end{table}
+
+
+
+```
+
+\elandscape
+
+\newpage
+
+# `ltw_elections_meta`
+
+This section of the codebook only concerns variables specific to the 
+`ltw_elections_meta` dataset. For further variables
+please refer to the sections on `ltw_elections`.
+
+
+`ltw_elections_meta` is a long-format dataset containing meta information on election results.
+Each row contains information on one election. The data can be accessed in `R`
+using `bundeslaendeR::ltw_elections_meta`.
+
+
+For a discussion of the various measures quantifying party system properties see @niedermayerAnalyseParteiensystemen2013.
+For descriptions of the various measures of electoral disproportionality see @karpovMeasurementDisproportionalityProportional2008.
+
+
+## `ltw_elections_meta` Variable Information
+
+Unless specified otherwise, in the following section $v_i$ refers to party $i$'s vote share, $s_i$ to party $i$'s seat share and $n$ refers to the number of parties contesting a given election.
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "number_parties",
+           item_name = "Number of parties contesting the election",
+           item_desc = "Number of parties $n$ contesting the election.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+npartiesplot <-
+ltw_elections_meta %>% 
+  select(state, election_date, number_parties) %>% 
+  distinct() %>% 
+  ggplot(aes(x = number_parties)) +
+    geom_bar() +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Number of parties contesting the election")
+
+
+item_image(ggobj = npartiesplot,
+           filenameimg = "cbfiles/npartiesplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "number_parties_\nparliament",
+           item_name = "Number of parties gaining seats in the state parliament",
+           item_desc = "Number of parties gaining seats in the state parliament.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+npartiesparlplot <-
+ltw_elections_meta %>% 
+  select(state, election_date, number_parties_parliament) %>% 
+  distinct() %>% 
+  ggplot(aes(x = number_parties_parliament)) +
+    geom_histogram(binwidth = 1) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Number of parties gaining seats in the state parliament")
+
+
+item_image(ggobj = npartiesparlplot,
+           filenameimg = "cbfiles/npartiesparlplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "fragmentation_enep",
+           item_name = "Effective number of parties in the electorate",
+           item_desc = "Effective number of parties in the electorate $N_{2 \\text{ electorate}}$ \\parencite{laaksoEffectiveNumberParties1979}:
+           \\begin{equation}N_{2 \\text{ electorate}} = \\frac{1}{\\sum_{i = 1}^{n}v_{i}^{2}}. \\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+enepplot <-
+ltw_elections_meta %>% 
+  select(state, election_date, fragmentation_enep) %>%
+  # distinct() %>%
+  ggplot(aes(x = fragmentation_enep)) +
+    geom_histogram(bins = 20) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Effective number of parties in the electorate")
+
+
+item_image(ggobj = enepplot,
+           filenameimg = "cbfiles/enepplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "fragmentation_enpp",
+           item_name = "Effective number of parties in parliament",
+           item_desc = "Effective number of parties in parliament $N_{2 \\text{ parliament}}$ \\parencite{laaksoEffectiveNumberParties1979}:
+           \\begin{equation}N_{2 \\text{ parliament}} = \\frac{1}{\\sum_{i = 1}^{n}s_{i}^{2}}. \\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+enppplot <-
+ltw_elections_meta %>% 
+  select(state, election_date, fragmentation_enpp) %>%
+  # distinct() %>%
+  ggplot(aes(x = fragmentation_enpp)) +
+    geom_histogram(bins = 20) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Effective number of parties parliament")
+
+
+item_image(ggobj = enppplot,
+           filenameimg = "cbfiles/enppplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "fragmentation_rae",
+           item_name = "Rae's index of fragmentation",
+           item_desc = "Rae's index of fragmentation \\parencite{raeNoteFractionalizationEuropean1968}:
+           \\begin{equation}F = 1 - \\sum_{i = 1}^{n}v_{i}^{2}.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+fragrae <-
+ltw_elections_meta %>% 
+  select(state, election_date, fragmentation_rae) %>%
+  # distinct() %>%
+  ggplot(aes(x = fragmentation_rae)) +
+    geom_histogram(bins = 20) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Rae's index of fragmentation")
+
+
+item_image(ggobj = fragrae,
+           filenameimg = "cbfiles/fragrae.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+```{r, results="asis"}
+item_start(item_name_code = "volatility_pedersen",
+           item_name = "Pederson Index of electoral volatility",
+           item_desc = "Pederson Index of electoral volatility \\parencite{pedersenDynamicsEuropeanParty1979}:
+           \\begin{equation} V_t = \\sum_{i = 1}^{n_t \\wedge n_{t-1}}|v_{i,t} - v_{i,t-1}|.  \\end{equation} 
+           If a party did not contest an election $t$ or $t-1$ it's voteshare for the respective election $v_t$ or $v_{t-1}$ is $0$.
+           Attention: These figures probably slightly overestimate the real extent of electoral volatility, as party splits/mergers are not considered: If parties A ($7\\%$ at $t-1$) and B ($4\\%$ at $t-1$) contest election $t-1$ separately but merge before contesting election $t$ and gaining $15\\%$ under the label of party A, they really only contribute $|(7\\% + 4\\%) - 15\\%| = 4\\%$ to the calculation of the Pedersen Index. Here, they would contribute $|7\\% - 15\\%| + |4\\% - 0\\%| = 12\\%$ to the calculation as the merger is not properly accounted for.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+pedersenplot <-
+ltw_elections_meta %>% 
+  select(state, election_date, volatility_pedersen) %>%
+  filter(!is.na(volatility_pedersen)) %>% 
+  # distinct() %>%
+  ggplot(aes(x = volatility_pedersen)) +
+    geom_histogram(bins = 30) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Pederson Index of electoral volatility")
+
+
+item_image(ggobj = pedersenplot,
+           filenameimg = "cbfiles/pedersenplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+All of the disproportionality measures presented here, their calculation and properties  are presented and discussed in @karpovMeasurementDisproportionalityProportional2008.
+The distributions of these measures are presented in figure \ref{fig:distdisp} below.
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_\nmax_deviation",
+           item_name = "Maximum deviation index of electoral disproportionality",
+           item_desc = "Maximum deviation index of electoral disproportionality:
+           \\begin{equation}MD = \\max_{i=\\overline{1,n}} |s_i - v_i|.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_rae",
+           item_name = "Rae's index of electoral disproportionality",
+           item_desc = "Rae's index of electoral disproportionality \\parencite{raePoliticalConsequencesElectoral1971}:
+           \\begin{equation}I_{\\text{Rae}} = \\frac{1}{n}\\sum_{i = 1}^{n}|s_i - v_i|.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_\nloosmore_hanby",
+           item_name = "Loosemore-Hanby index of electoral disproportionality",
+           item_desc = "Loosemore-Hanby index of electoral disproportionality \\parencite{loosemoreTheoreticalLimitsMaximum1971}:
+           \\begin{equation}I_{\\text{LH}} = \\frac{1}{2}\\sum_{i = 1}^{n}|s_i - v_i|.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_grofman",
+           item_name = "Grofman index of electoral disproportionality",
+           item_desc = "Grofman index of electoral disproportionality:
+           \\begin{equation}I_{\\text{G}} = \\frac{1}{N_{2\\text{ electorate}}}\\sum_{i=1}^{n}|s_i - v_i|.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_lijphart",
+           item_name = "Lijphart index of electoral disproportionality",
+           item_desc = "Lijphart index of electoral disproportionality:
+           \\begin{equation}I_{\\text{L}} = \\frac{|s_i - v_i| + |s_i - v_i|}{2}\\end{equation}
+           where only the two largest parties are considered.",
+           desc_left = FALSE)
+```
+
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_gallagher",
+           item_name = "Gallagher index of electoral disproportionality",
+           item_desc = "Gallagher index of electoral disproportionality / least squares index (Lsq):
+          \\begin{equation}Lsq = \\sqrt{\\frac{1}{2}\\sum_{i = 1}^{n}\\left(s_i - v_i\\right)}.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_monroe",
+           item_name = "Monroe index of electoral disproportionality",
+           item_desc = "Monroe index of electoral disproportionality:
+           \\begin{equation}I_{\\text{Monroe}} = \\sqrt{\\frac{\\sum_{i=1}^{n}\\left(s_i - v_i\\right)^2}{1 + \\sum_{i=1}^{n}v_i^2}}.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_gatev",
+           item_name = "Gatev index of electoral disproportionality",
+           item_desc = "Gatev index of electoral disproportionality:
+           \\begin{equation}I_{\\text{Gatev}} = \\sqrt{\\frac{\\sum_{i=1}^{n}\\left(s_i - v_i\\right)^2}{\\sum_{i=1}^{n}\\left(s_i^2 + v_i^2\\right)}}\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_ryabtsev",
+           item_name = "Ryabtsev  index of electoral disproportionality",
+           item_desc = "Ryabtsev  index of electoral disproportionality:
+           \\begin{equation}I_{\\text{Ryabtsev}} = \\sqrt{\\frac{\\sum_{i=1}^{n}\\left(s_i - v_i\\right)^2}{\\sum_{i=1}^{n}\\left(s_i + v_i\\right)^2}}.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_szalai",
+           item_name = "Szalai index of electoral disproportionality",
+           item_desc = "Szalai index of electoral disproportionality:
+           \\begin{equation}I_{\\text{Szalai}} = \\sqrt{\\frac{\\sum_{i=1}^{n}\\left(\\frac{s_i-v_i}{s_i+v_i}\\right)^2}{n}}.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_\nszalai_weighted",
+           item_name = "Weighted Szalai index of electoral disproportionality",
+           item_desc = "Weighted Szalai index of electoral disproportionality:
+           \\begin{equation}\\tilde{I}_{\\text{Szalai}} = \\sqrt{\\frac{1}{2}\\sum_{i=1}^{n}\\frac{\\left(s_i-v_i\\right)^2}{s_i+v_i}}.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_\naleskerov_platonov",
+           item_name = "Aleskerov-Platonov index of electoral disproportionality",
+           item_desc = "Aleskerov-Platonov index of electoral disproportionality:
+           \\begin{equation}R = \\frac{1}{k}\\sum_{i=1}^{k}\\frac{s_i}{v_i}\\end{equation}
+           where only overrepresented parties are considered.",
+           desc_left = FALSE)
+```
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_dhondt",
+           item_name = "D'Hondt index of electoral disproportionality",
+           item_desc = "D'Hondt index of electoral disproportionality:
+           \\begin{equation}H = \\max_{i=\\overline{1,n}}\\frac{s_i}{v_i}.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "disprop_sainte_lague",
+           item_name = "Sainte-Lague index of electoral disproportionality",
+           item_desc = "Sainte-Lague index of electoral disproportionality:
+           \\begin{equation}SL = \\sum_{i=1}^{n}v_i\\left(\\frac{s_i}{v_i}-1\\right)^2.\\end{equation}",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:distdisp}Distribution of Disproportionality Measures", fig.width=8*1.1, fig.height=7*1.1, label=distdisp}
+
+pdists <-
+ltw_elections_meta %>% 
+  select(election_date, state, starts_with("disprop_")) %>% 
+  pivot_longer(cols = starts_with("disprop_"), names_to = "measure", values_to = "value") %>%
+  mutate(measure = as_factor(measure)) %>% 
+  ggplot(aes(x = value)) +
+    geom_histogram(bins = 30) +
+    # geom_rug(alpha = 0.6) +
+    facet_wrap(~measure, scales = "free", ncol = 3) +
+    theme(
+      strip.text = element_text(family = "mono", face = "bold"),
+      
+    ) +
+  labs(
+    x = "Disproportionality",
+    y = "Frequency"
+  )
+
+
+
+pzdist <-
+ltw_elections_meta %>% 
+  select(election_date, state, starts_with("disprop_")) %>% 
+  pivot_longer(cols = starts_with("disprop_"), names_to = "measure", values_to = "value") %>% 
+  filter(!is.nan(value)) %>% 
+  group_by(measure) %>% 
+  mutate(valstd = (value - mean(value)) / sd(value)) %>% 
+  ggplot(aes(x = valstd, group = measure)) +
+    geom_density( col = "#810a26", alpha = 0.8) +
+    theme(panel.background = element_rect(colour = "black")) +
+    labs(x = "z-standardized disprop. measure", y = NULL, subtitle = "z-Standardized Dist. per measure")
+  
+
+pdists + patchwork::inset_element(pzdist, align_to = "full",
+                                  right = 1,
+                                  left = 0.7,
+                                  top = 0.22,
+                                  bottom = 0
+                                    )
+
+```
+
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "legislative_turnover\n_heinsohn",
+           item_name = "Legislative turnover \\parencite{heinsohnInstitutionalDeterminantsLegislative2014}",
+           item_desc = "Legislative turnover \\parencite{heinsohnInstitutionalDeterminantsLegislative2014}.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+turnoverplot <-
+ltw_elections_meta %>% 
+  select(state, election_date, legislative_turnover_heinsohn) %>%
+  filter(!is.na(legislative_turnover_heinsohn)) %>% 
+  # distinct() %>%
+  ggplot(aes(x = legislative_turnover_heinsohn)) +
+    geom_histogram(bins = 30) +
+    scale_x_continuous(breaks = scales::pretty_breaks()) +
+    labs(y = "N", x = "Legislative turnover")
+
+
+item_image(ggobj = turnoverplot,
+           filenameimg = "cbfiles/turnoverplot.pdf",
+           width = 5,
+           height = 5/3.7)
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+
+\clearpage
+
+# Linking to other datasets
+
+<!-- `link_manifestos` and `link_coalitionagreements` provide easy links of either `ltw_elections` or `ltw_combined` -->
+<!-- with party manifestos and coalition agreements made available from polidoc.net - The Political Documents Archive. -->
+<!-- While file names from polidoc.net follow a naming pattern -->
+<!-- ({partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}), the provided links make joining the data easier. -->
+
+
+Using the provided datasets `link_manifestos`, `link_coalitionagreements`, `link_positions_pwib`, `link_integrated_state_election_surveys`, `link_statepol_ppg`, `link_statepol_cabinets` and  `link_legcap_appeldorn_fortunato` `bundeslaendeR` data can be linked to other datasets.
+
+## `link_manifestos`
+
+
+
+```{r, results='asis'}
+
+cat("\\texttt{link\\_manifestos} provides easy links of \\texttt{bundeslaendeR} data with party manifestos made available from \\url{http://polidoc.net} \\parencites{benoitChallengesEstimatingPolicy2009}{grossDoesEURegional2018}{pappiPolitikpositionenDeutschenLandtagsparteien2014}{pappiPartyElectionProgrammes2009}[for the codebook see][]{brauningerPolidocnetCodebook2018} as well as from \\url{abgeordnetenwatch.de}.
+While file names from polidoc.net follow a naming pattern
+(\\texttt{{partyID}.{stateID}.{year}.{1}.{number of party manifesto for election}}) and abgeordnetenwatch.de provides unique IDs through its API, the provided links make joining the data easier.")
+
+```
+
+Note that polidoc.net provides a manifesto for the Neue Liberale in the HB 2015 election (41441.005.2015.1.1). Since the party withdrew it's candidacy before the election and is thus not included in the election results in `ltw_elections`, the manifesto id is not included in link_manifestos.
+Several party manifestos made available through abgeordnetenwatch.de's API are also not linked, as the respective parties only contested some nominal districts and not the state-wide list election and thus no election result is included in `ltw_elections`.
+
+
+The variables `state`, `election_date`, and `partyname_short` can be used in order to link manifestos to the `bundeslaendeR` data using `link_manifestos`. How many manifestos are available per election is plotted in figure$~$\ref{figure:manifestoavailability}.
+
+```{r, results="asis"}
+short_item(item_name_code = "polidoc_filename and polidoc_filename_2",
+           item_name = "Polidoc File Name of Party Manifesto",
+           item_desc = "File name of state party manifesto (or 2nd manifesto if available) in \\texttt{.txt} format available in The Political Documents Archive (polidoc.net).",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "agwatch_pdf_url",
+           item_name = "URL of Manifesto on \\texttt{abgeordnetenwatch.de}",
+           item_desc = "URL of the manifesto in \\texttt{.pdf} format on \\texttt{abgeordnetenwatch.de}.",
+           desc_left = FALSE
+)
+
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "agwatch_election_\nmanifesto",
+           item_name = "Is an electoral manifesto not just a general manifesto",
+           item_desc = "TRUE if the linked manifesto is an electoral manifesto. FALSE if it appears to be a more general manifesto of the party (Grundsatzprogramm) independent of any specific state election.",
+           desc_left = FALSE
+)
+
+```
+
+```{r creatingmanifestoplot, message=FALSE, warning=FALSE, include=FALSE}
+elec_polidoc <-
+ltw_elections %>%
+  left_join(link_manifestos,
+            by = c("state", "election_date", "partyname_short")) %>%
+  select(state, election_date, partyname_short, polidoc_filename, polidoc_filename_2) %>%
+  mutate(polidoc_filename = !is.na(polidoc_filename)) %>%
+  mutate(polidoc_filename_2 = !is.na(polidoc_filename_2)) %>%
+  group_by(state, election_date) %>%
+  summarise(
+    number_of_manif = sum(polidoc_filename),
+    number_of_extra_manif = sum(polidoc_filename_2), .groups = "keep"
+  ) %>%
+  ungroup() %>%
+  mutate(no_cat = fct_case_when(
+    number_of_manif == 0 ~ "No manifesto\navailable",
+    number_of_manif > 0 & number_of_extra_manif == 0 ~ "At least one\nmanifesto available",
+    number_of_extra_manif > 0 ~ "At least one party with\ntwo available manifestos"
+  )) %>%
+  mutate(number_of_manif_cat = fct_case_when(
+    number_of_manif == 0 ~ "0",
+    number_of_manif > 0 & number_of_manif <= 3 ~ "<= 3",
+    number_of_manif > 3 & number_of_manif  <= 5 ~ "<= 5",
+    number_of_manif > 5 ~ "> 5"
+  )) %>%
+  ggplot(aes(x = election_date, y = state, shape = no_cat, col = number_of_manif_cat)) +
+    geom_point(size = 4) +
+    scale_color_brewer(type = "qual", palette = "Set1") +
+    guides(shape = guide_legend(order = 1, nrow = 1),
+           col = guide_legend(order = 2, nrow = 1)) +
+    labs(x = "Election Date",
+         y = NULL,
+         shape = "",
+         title = "Polidoc.net",
+         col = "No. of parties with at least one manifesto") +
+    theme(legend.position = "bottom",
+          legend.box = "vertical",
+          axis.text.y = element_text(face = "bold", colour = "black"),
+          plot.title.position = "plot")
+
+
+scatter_polidoc <-
+ltw_elections %>%
+  left_join(link_manifestos,
+            by = c("state", "election_date", "partyname_short")) %>%
+  mutate(manif_avail = !is.na(polidoc_filename)) %>%
+  select(state, election_date, partyname_short, manif_avail, party_vshare) %>%
+  mutate(grp = paste0(as.character(election_date), "~~~",state)) %>%
+  select(grp, partyname_short, manif_avail, party_vshare) %>%
+  group_by(grp) %>%
+  mutate(n_parties_running = n()) %>%
+  group_by(grp, manif_avail, n_parties_running) %>%
+  summarise(n_avail_cat = n(),
+            sum_vshare_cat = sum(party_vshare), .groups = "keep") %>%
+  ungroup() %>%
+  complete(grp, manif_avail) %>%
+  group_by(grp) %>%
+  fill(n_parties_running, .direction = "downup") %>%
+  ungroup() %>%
+  filter(manif_avail == TRUE) %>%
+  mutate(n_avail_cat = ifelse(is.na(n_avail_cat), 0, n_avail_cat),
+         sum_vshare_cat = ifelse(is.na(sum_vshare_cat), 0, sum_vshare_cat)) %>%
+  mutate(share_of_running_parties = n_avail_cat / n_parties_running) %>%
+  separate(grp, into = c("election_date", "state"), sep = "~~~") %>%
+  mutate(election_date = as.Date(election_date)) %>%
+  select(election_date, sum_vshare_cat, share_of_running_parties) %>%
+  pivot_longer(cols = c(sum_vshare_cat, share_of_running_parties)) %>%
+  mutate(name = case_when(
+    name == "share_of_running_parties" ~ "Share of parties running",
+    name == "sum_vshare_cat" ~ "Voteshare of parties with available manifesto"
+  )) %>%
+  ggplot(aes(x = election_date, y = value)) +
+    geom_point() +
+    facet_wrap(~name) +
+    scale_y_continuous(labels = scales::percent) +
+    theme(strip.text = element_text(face = "bold")) +
+    labs(x = NULL, y = NULL)
+
+
+
+
+
+
+
+
+elec_agwatch <-
+ltw_elections %>%
+  left_join(link_manifestos,
+            by = c("state", "election_date", "partyname_short")) %>%
+  select(state, election_date, partyname_short, agwatch_pdf_url) %>%
+  mutate(agwatch_pdf_url = !is.na(agwatch_pdf_url)) %>%
+  group_by(state, election_date) %>%
+  summarise(
+    number_of_manif = sum(agwatch_pdf_url),
+  ) %>%
+  ungroup() %>%
+  mutate(no_cat = fct_case_when(
+    number_of_manif == 0 ~ "No manifesto\navailable",
+    number_of_manif > 0  ~ "At least one\nmanifesto available"
+  )) %>%
+  mutate(number_of_manif_cat = fct_case_when(
+    number_of_manif == 0 ~ "0",
+    number_of_manif > 0 & number_of_manif <= 8 ~ "<= 8",
+    number_of_manif > 8 & number_of_manif  <= 15 ~ "<= 15",
+    number_of_manif > 15 ~ "> 15"
+  )) %>% 
+  ggplot(aes(x = election_date, y = state, shape = no_cat, col = number_of_manif_cat)) +
+    geom_point(size = 4) +
+    scale_color_brewer(type = "qual", palette = "Set1") +
+    guides(shape = guide_legend(order = 1, nrow = 1),
+           col = guide_legend(order = 2, nrow = 1)) +
+    labs(x = "Election Date",
+         y = NULL,
+         shape = "",
+         title = "abgeordnetenwatch.de",
+         col = "No. of parties with at least one manifesto") +
+    theme(legend.position = "bottom",
+          legend.box = "vertical",
+          axis.text.y = element_text(face = "bold", colour = "black"),
+          plot.title.position = "plot")
+
+
+
+
+
+scatter_agwatch <-
+ltw_elections %>%
+  left_join(link_manifestos,
+            by = c("state", "election_date", "partyname_short")) %>%
+  mutate(manif_avail = !is.na(agwatch_pdf_url)) %>%
+  select(state, election_date, partyname_short, manif_avail, party_vshare) %>%
+  mutate(grp = paste0(as.character(election_date), "~~~",state)) %>%
+  select(grp, partyname_short, manif_avail, party_vshare) %>%
+  group_by(grp) %>%
+  mutate(n_parties_running = n()) %>%
+  group_by(grp, manif_avail, n_parties_running) %>%
+  summarise(n_avail_cat = n(),
+            sum_vshare_cat = sum(party_vshare), .groups = "keep") %>%
+  ungroup() %>%
+  complete(grp, manif_avail) %>%
+  group_by(grp) %>%
+  fill(n_parties_running, .direction = "downup") %>%
+  ungroup() %>%
+  filter(manif_avail == TRUE) %>%
+  mutate(n_avail_cat = ifelse(is.na(n_avail_cat), 0, n_avail_cat),
+         sum_vshare_cat = ifelse(is.na(sum_vshare_cat), 0, sum_vshare_cat)) %>%
+  mutate(share_of_running_parties = n_avail_cat / n_parties_running) %>%
+  separate(grp, into = c("election_date", "state"), sep = "~~~") %>%
+  mutate(election_date = as.Date(election_date)) %>%
+  select(election_date, sum_vshare_cat, share_of_running_parties) %>%
+  pivot_longer(cols = c(sum_vshare_cat, share_of_running_parties)) %>%
+  mutate(name = case_when(
+    name == "share_of_running_parties" ~ "Share of parties running",
+    name == "sum_vshare_cat" ~ "Voteshare of parties with available manifesto"
+  )) %>%
+  ggplot(aes(x = election_date, y = value)) +
+    geom_point() +
+    facet_wrap(~name) +
+    scale_y_continuous(labels = scales::percent) +
+    theme(strip.text = element_text(face = "bold")) +
+    labs(x = NULL, y = NULL)
+
+
+
+pltpolidocparties <-
+wrap_plots(elec_polidoc,
+           scatter_polidoc,
+           ncol = 1,
+           heights = c(2,1))
+  
+
+pltagwatch <-
+wrap_plots(elec_agwatch,
+           scatter_agwatch,
+           ncol = 1,
+           heights = c(2,1))
+
+manifestoplots <- 
+wrap_plots(
+  pltpolidocparties,
+  pltagwatch,
+  nrow = 1
+)
+
+
+
+
+```
+
+
+
+
+\blandscape
+```{r printmanifestoplot, fig.cap="\\label{figure:manifestoavailability}Availability of manifestos from polidoc.net and abgeordnetenwatch.de", fig.height=8*0.9, fig.width=12*0.9}
+manifestoplots
+
+```
+\elandscape
+
+
+
+## `link_coalitionagreements`
+
+```{r, results='asis'}
+
+cat("\\texttt{link\\_coalitionagreements} provides easy links of \\texttt{bundeslaendeR} data with coalition agreements made available from \\url{http://polidoc.net}.")
+
+```
+
+Note that polidoc.net provides a coalition agreement between the SPD and the Greens following the 2008 HE election (41001.006.2008.1.1). Since this potential coalition under leadership of SPD politician Andrea Ypsilanti never came to be due to several SPD MPs opposing the red-green minority cabinet being externally supported by Die Linke the coalition agreement can't be matched with a government in `ltw_combined` and is thus not included.
+
+
+The variables `state`, `election_date`, and `gov_id` can be used in order to link coalition agreements to the `bundeslaendeR` data (`ltw_governments` or `ltw_combined`) using `link_coalitionagreements`.
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "polidoc_filename",
+           item_name = "Polidoc File Name of Coalition Agreement",
+           item_desc = "File name of coalition agreement available in The Political Documents Archive (polidoc.net).",
+           desc_left = FALSE)
+
+```
+
+
+```{r creatcoalagreementplot, results="asis"}
+pltpolidocgov <-
+ltw_combined %>% 
+  left_join(
+    link_coalitionagreements,
+    by = c("state", "election_date", "gov_id")
+  ) %>% 
+  mutate(coalagreement_avail = !is.na(polidoc_filename)) %>% 
+  select(state, election_date, gov_id, gov_start_date, coalagreement_avail) %>%
+  distinct() %>% 
+  arrange(state, gov_start_date) %>% 
+  group_by(state) %>% 
+  mutate(gov_end_date = lead(gov_start_date)) %>% 
+  ungroup() %>% 
+  mutate(gov_end_date = case_when(
+    is.na(gov_end_date) & state %in% c("BA", "WH", "WB") ~ ltw_elections %>% 
+                                                            select(state, election_date) %>% 
+                                                            filter(state == "BW") %>% 
+                                                            filter(election_date == min(election_date)) %>% 
+                                                            distinct() %>%
+                                                            pull(election_date),
+    is.na(gov_end_date) & !(state %in% c("BA", "WH", "WB")) ~ Sys.Date(),
+    TRUE ~ gov_end_date
+  )) %>% 
+  ggplot() +
+    geom_segment(aes(x = gov_start_date, xend = gov_end_date,
+                     y = state, yend = state,
+                     col = coalagreement_avail),
+                 linewidth = 5) +
+    geom_segment(aes(x = gov_start_date, xend = gov_start_date + lubridate::duration(4, units = "weeks"),
+                     y = state, yend = state),
+                 col = "white",
+                 linewidth = 5) +
+    geom_segment(
+      data = ltw_elections %>%
+              select(state, election_date) %>%
+              distinct() %>% 
+              mutate(xend = election_date + lubridate::duration(4, units = "weeks")),
+      aes(x = election_date, xend = xend,
+          y = state, yend = state),
+      linewidth = 5,
+      col = "black"
+    ) +
+  scale_color_manual(values = c("grey", "#4dae49")) +
+    theme(legend.position = "bottom",
+          text = element_text(size = 21),
+          plot.caption = element_textbox_simple(hjust = 0),
+          plot.caption.position = "plot") +
+    labs(x = NULL, y = NULL, col = "Coalition Agreement Available",
+         caption = "Black vertical bars mark election dates. White vertical bars mark start date of government.")
+
+
+item_image(ggobj = pltpolidocgov,
+           filenameimg = "cbfiles/pltpolidocgov.pdf",
+           width = 7,
+           height = 5)
+
+
+```
+
+
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+\newpage
+
+## `link_positions_pwib`
+
+`link_positions_pwib` provides an easy link of \texttt{bundeslaendeR} data with state parties' policy positions according to measures of  \textcite{braeuningerParteienwettbewerbDeutschenBundeslaendern2020} in *Parteienwettbewerb in den deutschen Bundesländern* (PWIB). The position data is available to download at \url{http://polidoc.net}. The measures of state parties' policy positions are based on automatic content analysis (WordScores. Reference texts: Manifestos of federal parties. Reference scores: Positions of federal parties based on expert surveys.). For more details see \textcite[pp. 59ff.]{braeuningerParteienwettbewerbDeutschenBundeslaendern2020}.
+
+The variables `state`, `election_date`, and `partyname_short` can be used in order to link PWIB policy positions to the `bundeslaendeR` data using `link_coalitionagreements`. Note that the state abbreviations provided in the PWIB data file (`ReplicationData_Bräuninger_etal_2020.dta`) are not capitalized while the state abbreviation in `link_positions_pwib` are.
+
+
+```{r, results="asis"}
+item_start(item_name_code = "party_pwib",
+           item_name = "Party name in PWIB Data.",
+           item_desc = "Name of the party in PWIB position data.",
+           desc_left = FALSE)
+
+```
+
+
+
+```{r createpwibplot, include=FALSE}
+posplotdata <-
+ltw_elections %>%
+  select(state, election_date, partyname_short, party_vshare) %>%
+  left_join(
+    link_positions_pwib,
+    by = c("state", "election_date", "partyname_short")
+  ) %>%
+  mutate(position_available = !is.na(party_pwib)) %>%
+  filter(position_available == TRUE) %>%
+  left_join(
+    ltw_elections_meta %>% select(state, election_date, number_parties)
+  ) %>%
+  group_by(state, election_date) %>%
+    summarise(
+      vshare = sum(party_vshare),
+      numberparties = n() / mean(number_parties)
+    ) %>%
+  ungroup() %>%
+  pivot_longer(
+    cols = c(vshare, numberparties),
+    names_to = "measure",
+    values_to = "covered"
+  ) %>%
+  mutate(not_covered = 1 - covered) %>%
+  left_join(tibble(state = sort(int_grid$code)) %>% mutate(y = row_number() %>% as.double())) %>%
+  mutate(x = lubridate::year(election_date)) %>%
+  mutate(
+    measure = ifelse(measure == "vshare",
+                     "Voteshare of parties with an available / no available policy position",
+                     "Number of parties with an available / no available policy position")
+    ) %>%
+  rename(
+    "Policy position available" = covered,
+    "Policy position not available" = not_covered
+  )
+
+pwibplot <-
+posplotdata %>%
+  ggplot(aes(x = x, y = y)) +
+    # facet_wrap(~measure, ncol = 1, scales = "free") +
+    lemon::facet_rep_wrap(~measure, ncol = 1, repeat.tick.labels = "all") +
+    scale_y_continuous(breaks = 1:16, labels = sort(int_grid$code)) +
+    scale_fill_brewer(palette = "Set1", guide = guide_legend(reverse = TRUE, ncol = 1)) +
+    theme(
+      panel.grid = element_blank(),
+      panel.grid.major.y = element_line(),
+      legend.position = "bottom",
+      strip.text = element_text(face = "bold"),
+      text = element_text(size = 20)
+    ) +
+  scatterpie::geom_scatterpie(
+    data = posplotdata,
+    cols = rev(c("Policy position available", "Policy position not available")), pie_scale = 0.8,
+    color = NA
+    ) +
+  coord_equal() +
+  labs(
+    x = "Election Date",
+    y = NULL,
+    fill = NULL
+  )
+```
+
+
+
+
+```{r warning=FALSE, results="asis"}
+
+
+item_image(ggobj = pwibplot,
+           filenameimg = "cbfiles/pwibplot.pdf",
+           width = 8.6*1.1,
+           height = 9.7*1.1)
+
+```
+
+
+
+
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+
+
+\newpage
+
+## `link_legcap_appeldorn_fortunato`
+
+
+
+
+`link_legcap_appeldorn_fortunato` provides a link between `bundeslaendeR` data and data on Legislative Capacity in Germany's Parliaments (10.7910/DVN/BA8G7H) provided by \textcite{fortunatoReplicationDataLegislative2021} \parencite[for more details see][]{appeldornLegislativeCapacityGermany2022},
+consolidating minor differences in the spelling of state names and state abbreviations between the two datasets.
+
+Note that Appeldorn and Fortunato provide yearly time-series data, while bundeslaendeR data are based on elections/governments.
+
+Note that Appeldorn and Fortunato use the state-abbreviation `"BE"` twice, once for Berlin and once for the federal level.
+
+The variables `state`, and `state_name_en` can be used in order to link Appeldorn and Fortunato's data on legislative capacity to the `bundeslaendeR` data using `link_legcap_appeldorn_fortunato`.
+
+```{r, results="asis"}
+short_item(item_name_code = "state_abb_\nappeldorn_fortunato",
+           item_name = "State abbreviation in Appeldorn and Fortunato's data",
+           item_desc = "State abbreviation in Appeldorn and Fortunato's data.",
+           desc_left = FALSE
+)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "state_name_\nappeldorn_fortunato",
+           item_name = "State name in Appeldorn and Fortunato's data",
+           item_desc = "State name in Appeldorn and Fortunato's data.",
+           desc_left = FALSE
+)
+```
+
+
+
+\newpage
+
+
+
+## `link_integrated_state_election_surveys`
+
+
+
+Dataset providing a link between ltw_elections (or ltw_combined) and party names in vote choice in the integrated dataset of state election surveys availabel on GESIS (ZAZA4182) \parencite{scheuchGermanFederalState2015}. Currently linked to StatePol version 
+
+
+
+Note that not all parties running in an election were necessarily asked about in the election surcey. Vice versa, not all parties that were asked about in the election survey did necessarily actually contested the election.
+
+
+Note that for some state elections multiple surveys are available in the integrated survey dataset. See column za_nr1 for GESIS ID of original survey. The GESIS ID is the sole variable identifying a specific election in the integrated dataset.
+
+
+Note that the integrated survey uses different variables for elections until 1970 (m7b) and after 1973 (m7).
+
+
+The variables `state`, and `election_date` and `partyname_short` can be used in order to link survey data from the integrated dataset of state election surveys to `bundeslaendeR` data using `link_integrated_state_election_surveys`.
+
+
+```{r, results="asis"}
+short_item(item_name_code = "bland",
+           item_name = "State name in integrated survey file",
+           item_desc = "State name in integrated survey file.",
+           desc_left = FALSE
+)
+```
+
+
+
+```{r, results="asis"}
+item_start(item_name_code = "za_nr1",
+           item_name = "GESIS ID original state election survey",
+           item_desc = "GESIS ID of original state election survey. The GESIS ID is the sole variable identifying a specific election in the integrated dataset.",
+           desc_left = FALSE)
+
+```
+
+
+
+```{r createsurveyplot, include=FALSE}
+plot_surveys <-
+ltw_elections_meta %>% 
+  select(state, election_date) %>% 
+  left_join(
+    link_integrated_state_election_surveys %>% 
+      select(state, election_date, za_nr1) %>% 
+      mutate(election_date = as.Date(election_date)) %>% 
+      distinct() %>% 
+      count(state, election_date, name = "nsurveys")
+    ) %>% 
+  mutate(nsurveys = ifelse(is.na(nsurveys), 0, nsurveys)) %>% 
+  filter(!(state %in% c("BA", "WB", "WH"))) %>% 
+  ggplot(aes(y = state, x = election_date, col = as_factor(nsurveys))) +
+    geom_point(size = 2) +
+    scale_color_brewer(palette = "Set1") +
+    theme(legend.position = "bottom") +
+    labs(
+      x = NULL,
+      y = NULL,
+      col = "Number of surveys\nin integrated dataset"
+    )
+
+
+
+```
+
+
+
+```{r, results="asis"}
+
+
+item_image(ggobj = plot_surveys,
+           filenameimg = "cbfiles/plot_surveys.pdf",
+           width = 3.5*1.25,
+           height = 1.9*1.25)
+
+```
+
+
+```{r, results="asis"}
+item_end()
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "m7",
+           item_name = "Party name integrated survey file (after 1973)",
+           item_desc = "Party names in vote choice variable in integrated survey file (after 1973).",
+           desc_left = FALSE
+)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "m7b",
+           item_name = "Party name integrated survey file (before 1970)",
+           item_desc = "Party names in vote choice variable in integrated survey file (before 1970).",
+           desc_left = FALSE
+)
+```
+
+\newpage
+
+## `link_statepol_ppg`
+
+Dataset providing a link between `ltw_elections` (or `ltw_combined`) and data on parliamentary party groups in the StatePol database \parencite{kochStatePolDatenbankMitgliedern2024a}. 
+
+Use the `ppg` variable in the StatePol PPG dataset (not the `ppg_id` variable) to link StatePol and `bundeslaendeR` data. Party groups that are founded later in the legislative cycle cannot be linked to electoral outcome data. See `link_notes` for details on such cases. 
+
+The Bündnis 90/Die Grünen (AL) / UFV party group links to the election results of both Bü90GrüUFV and Grüne in the 1990 Berlin state elections as MdLs running on both lists formed a joint party group immediately following the election.
+
+
+```{r, results="asis"}
+short_item(item_name_code = "landtag_state_abb",
+           item_name = "State name abbreviation in StatePol",
+           item_desc = "State name abbreviation in StatePol dataset.",
+           desc_left = FALSE)
+```
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "electoralperiod",
+           item_name = "State electoral period in StatePol",
+           item_desc = "State electoral period in StatePol dataset. Note that this count does not neccesarily match the number \\texttt{state\\_election\\_term}. See the describtion of the \\texttt{state\\_election\\_term} variable above.",
+           desc_left = FALSE)
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "ppg",
+           item_name = "Name of Parliamentary Party Group on StatePol",
+           item_desc = "Name of Parliamentary Party Group on StatePol. Note that the \\texttt{ppg} column is different from the \\texttt{ppg\\_id} column in the original StatePol dataset.",
+           desc_left = FALSE)
+```
+
+
+\newpage
+
+## `link_statepol_cabinets`
+
+Dataset providing links between government data in `ltw_governments` and `ltw_combined` and cabinet data from StatePol database \parencite{kochStatePolDatenbankMitgliedern2024a}.
+
+In some cases one cabinet in the StatePol database is assigned two `gov_ids` in `bundeslaendeR` data as StatePol covers parties leaving a coalition using time variant cabinet membership of party ministers whereas `bundeslaendeR` creates a new government entry. In these cases there are two values in the `gov_id` column, separated by a semi-colon.
+
+
+```{r, results="asis"}
+short_item(item_name_code = "landtag_state_abb",
+           item_name = "State name abbreviation in StatePol",
+           item_desc = "State name abbreviation in StatePol dataset.",
+           desc_left = FALSE)
+```
+
+
+
+
+```{r, results="asis"}
+short_item(item_name_code = "cabinet",
+           item_name = "Cabinet name in StatePol",
+           item_desc = "Cabinet name in StatePol dataset.",
+           desc_left = FALSE)
+```
+
+
+
+
+\newpage
+
+
+
+
+
+# References
+
+
+
+
+

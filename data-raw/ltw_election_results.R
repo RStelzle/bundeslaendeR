@@ -1133,7 +1133,7 @@ usethis::use_data(link_legcap_appeldorn_fortunato, overwrite = TRUE)
 
 
 link_surveys_raw <- 
-  read_xlsx(here("inst/extdata/link_surveys.xlsx"))
+  read_xlsx(here("inst", "extdata", "link_surveys.xlsx"))
 
 
 link_integrated_state_election_surveys <-
@@ -1148,7 +1148,7 @@ usethis::use_data(link_integrated_state_election_surveys, overwrite = TRUE)
 
 
 link_statepol_ppg <- 
-readxl::read_excel("inst/extdata/link_statepol_ppg.xlsx") %>% 
+readxl::read_excel(here("inst","extdata", "link_statepol_ppg.xlsx")) %>% 
   select(state, state_election_term, partyname_short, landtag_state_abb, electoralperiod, ppg, link_notes = notes) 
 
 
@@ -1158,7 +1158,7 @@ usethis::use_data(link_statepol_ppg, overwrite = TRUE)
 
 
 link_statepol_cabinets <- 
-readxl::read_xlsx("inst/extdata/link_statepol_cabinets.xlsx") %>% 
+readxl::read_xlsx(here("inst", "extdata", "link_statepol_cabinets.xlsx")) %>% 
   select(state, gov_id, landtag_state_abb, cabinet)
 
 usethis::use_data(link_statepol_cabinets, overwrite = TRUE)
@@ -1270,8 +1270,8 @@ link_statepol_cabinets %>% set_variable_labels(.labels = labelslist, .strict = F
 
 
 
+quarto::quarto_render(here("codebook", "codebook.qmd"))
 
-rmarkdown::render(here("codebooks", "codebook.rmd"))
 
 file.copy(
   from = here("codebooks", "codebook.pdf"),
