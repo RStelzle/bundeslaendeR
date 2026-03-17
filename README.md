@@ -6,10 +6,11 @@
 
 The goal of `bundeslaendeR` is to provide easy and cleaned up access to
 data regarding election results as well as government constellations in
-the German states. Data is available either as a download or as an R
+the German states. Data is available either as a download or as an `R`
 package. Further, data is provided in order to easily link the
 election/government data with other datasets on German state politics.
-For a more detailed description, please refer to the codebook.
+For a more detailed description, please refer to the codebook or
+documentation through `R`.
 
 ## Installation
 
