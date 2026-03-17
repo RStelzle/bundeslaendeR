@@ -13,7 +13,7 @@ For a more detailed description, please refer to the codebook.
 
 ## Installation
 
-You can download the data from the release folder in this repository.
+You can download the data from the `release` folder in this repository.
 
 Install the development version from [GitHub](https://github.com/) with:
 
