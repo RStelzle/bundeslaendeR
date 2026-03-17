@@ -1,4 +1,5 @@
 
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # bundeslaendeR <img src='man/figures/hex_light_clipart.png' align="right" height="139" />
@@ -13,11 +14,6 @@ For a more detailed description, please refer to the codebook.
 ## Installation
 
 You can download the data from the release folder in this repository.
-
-(While the project is still under development in a private repository, I
-didn’t manage to get it installed using `git2r`. Thus, I would recommend
-cloning the repository and installing the package using
-`R devtools::install_local()` from within the cloned repository)
 
 Install the development version from [GitHub](https://github.com/) with:
 
@@ -75,7 +71,7 @@ ltw_elections %>%
 
 <br><br>
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example-1.png" style="width:100.0%" />
 
 ### Here is a quick example showing the government compositions across time in all states.
 
@@ -125,4 +121,4 @@ ltw_combined %>%
 
 <br><br>
 
-<img src="man/figures/README-example2-1.png" width="100%" />
+<img src="man/figures/README-example2-1.png" style="width:100.0%" />
