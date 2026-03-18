@@ -937,6 +937,22 @@ ltw_elections %>%
 
 
 
+disprop_gallagher_normalized <-
+ltw_elections %>% 
+  select(state, election_date, party_vshare, party_sshare) %>% 
+  mutate(deviation = abs(party_sshare - party_vshare)) %>%
+  group_by(state, election_date) %>% 
+  summarise(
+    enep = 1 / sum(party_vshare^2),
+    disprop_gallagher_normalized = sqrt( (enep/(enep+1)) * sum(deviation^2) )
+  ) %>% 
+  ungroup() %>% 
+  select(-enep)
+
+
+
+
+
 
 
 
@@ -965,6 +981,7 @@ ltw_elections %>%
   left_join(disprop_grofman, by = c("state", "election_date")) %>% 
   left_join(disprop_lijphart, by = c("state", "election_date")) %>% 
   left_join(disprop_gallagher, by = c("state", "election_date")) %>% 
+  left_join(disprop_gallagher_normalized, by = c("state", "election_date")) %>% 
   left_join(disprop_monroe, by = c("state", "election_date")) %>% 
   left_join(disprop_gatev, by = c("state", "election_date")) %>% 
   left_join(disprop_ryabtsev, by = c("state", "election_date")) %>% 

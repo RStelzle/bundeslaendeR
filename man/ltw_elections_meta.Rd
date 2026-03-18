@@ -29,6 +29,7 @@ A tibble containing one row per contesting party per election.
 \item{disprop_grofman}{dbl Grofman index of electoral disproportionality.}
 \item{disprop_lijphart}{dbl Lijphart index of electoral disproportionality.}
 \item{disprop_gallagher}{dbl Gallagher index of electoral disproportionality.}
+\item{disprop_gallagher_normalized}{dbl Gallagher index of electoral disproportionality, normalized by effective number of parties (Bailey 2026).}
 \item{disprop_monroe}{dbl Monroe index of electoral disproportionality.}
 \item{disprop_gatev}{dbl Gatev index of electoral disproportionality.}
 \item{disprop_ryabtsev}{dbl Ryabtsev index of electoral disproportionality.}
@@ -53,5 +54,7 @@ Dataset containing meta information on elections in the German states (Bundeslae
 Niedermayer, Oskar. 2013. "Die Analyse von Parteiensystemen." In Handbuch Parteienforschung, ed. Oskar Niedermayer. Wiesbaden: Springer Fachmedien Wiesbaden, 83–117.
 
 Karpov, Alexander. 2008. "Measurement of Disproportionality in Proportional Representation Systems." Mathematical and Computer Modelling 48(9–10): 1421–38.
+
+Bailey, Jack. 2026. "Disproportionality is Sensitive to the Number of Parties. A Note on the Gallagher Index and a New Normalised Measure." APSA Preprints Comparative Politics.
 }
 \keyword{datasets}

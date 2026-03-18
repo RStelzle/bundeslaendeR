@@ -45,14 +45,28 @@ includeheadfoot]{geometry}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 % Make \paragraph and \subparagraph free-standing
+\makeatletter
 \ifx\paragraph\undefined\else
   \let\oldparagraph\paragraph
-  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
 \fi
 \ifx\subparagraph\undefined\else
   \let\oldsubparagraph\subparagraph
-  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
+\makeatother
 
 
 \providecommand{\tightlist}{%
@@ -68,15 +82,17 @@ includeheadfoot]{geometry}
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 
@@ -161,9 +177,7 @@ includeheadfoot]{geometry}
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
+
 \usepackage[style=ext-authoryear-comp,backend=biber,maxbibnames=99,maxcitenames=3,isbn=false,date=year,sorting=nyt]{biblatex}
 \addbibresource{literature.bib}
 \usepackage{bookmark}
@@ -180,6 +194,7 @@ includeheadfoot]{geometry}
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
+
 \title{Codebook bundeslaendeR}
 \author{Robert Stelzle}
 \date{2026-03-17}
@@ -193,6 +208,7 @@ includeheadfoot]{geometry}
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
+
 \clearpage
 
 \definecolor{Nettrot}{RGB}{108, 0, 28}
@@ -259,7 +275,7 @@ The data can be accessed in \texttt{R} using
 \begin{table}
 \centering
 \caption{Structure of \texttt{ltw\_elections}}
-\label{strltwelecres}
+
 \tiny
 \texttt{
 \begin{tabular}{llrllrllrllr}
@@ -818,7 +834,7 @@ Is the governments minister president from this party? Note: There are two cases
 
 \normalsize
 \caption{Structure of \texttt{ltw\_combined}}
-\label{strltwelecgov}
+
 \centering
 \tiny
 \texttt{
@@ -1009,7 +1025,7 @@ Lijphart index of electoral disproportionality:
 \begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{disprop\_gallagher} &\textbf{Gallagher index of electoral disproportionality}\newline 
 Gallagher index of electoral disproportionality / least squares index (Lsq):
-          \begin{equation}Lsq = \sqrt{\frac{1}{2}\sum_{i = 1}^{n}\left(s_i - v_i\right)}.\end{equation}
+          \begin{equation}Lsq = \sqrt{\frac{1}{2}\sum_{i = 1}^{n}\left(s_i - v_i\right)^2}.\end{equation}
 \end{longtable*}
 
 \begin{longtable*}{p{3.2cm}| p{11cm}}
@@ -1063,9 +1079,16 @@ Sainte-Lague index of electoral disproportionality:
            \begin{equation}SL = \sum_{i=1}^{n}v_i\left(\frac{s_i}{v_i}-1\right)^2.\end{equation}
 \end{longtable*}
 
+\begin{longtable*}{p{3.2cm}| p{11cm}}
+\texttt{disprop\_
+gallagher\_normalized} &\textbf{Normalized Gallagher index of electoral disproportionality}\newline 
+Gallagher index of electoral disproportionality normalized by effective number of vote winning parties \parencite{Bailey_2026}:
+          \begin{equation}I_{GNorm} = \sqrt{\frac{N_{2 \text{ electorate}}}{N_{2 \text{ electorate}} + 1}\sum_{i = 1}^{n}\left(s_i - v_i\right)^2}.\end{equation}
+\end{longtable*}
+
 \begin{figure}[H]
 
-{\centering \includegraphics{cbfiles/distdisp-1.pdf}
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{cbfiles/distdisp-1.pdf}}
 
 }
 
@@ -1146,7 +1169,7 @@ TRUE if the linked manifesto is an electoral manifesto. FALSE if it appears to b
 
 \begin{figure}[H]
 
-{\centering \includegraphics{cbfiles/printmanifestoplot-1.pdf}
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{cbfiles/printmanifestoplot-1.pdf}}
 
 }
 
@@ -1387,6 +1410,7 @@ Cabinet name in StatePol dataset.
 
 
 \printbibliography[title=References]
+
 
 
 \end{document}

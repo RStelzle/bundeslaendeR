@@ -109,7 +109,7 @@ curl::curl_download("http://mirrors.ctan.org/fonts/libertinus-fonts.zip",
 }
 
 
-
+dir.create(here("codebook", "cbfiles"))
 
 
 
@@ -1946,7 +1946,7 @@ short_item(item_name_code = "disprop_lijphart",
 short_item(item_name_code = "disprop_gallagher",
            item_name = "Gallagher index of electoral disproportionality",
            item_desc = "Gallagher index of electoral disproportionality / least squares index (Lsq):
-          \\begin{equation}Lsq = \\sqrt{\\frac{1}{2}\\sum_{i = 1}^{n}\\left(s_i - v_i\\right)}.\\end{equation}",
+          \\begin{equation}Lsq = \\sqrt{\\frac{1}{2}\\sum_{i = 1}^{n}\\left(s_i - v_i\\right)^2}.\\end{equation}",
            desc_left = FALSE)
 ```
 
@@ -2041,7 +2041,13 @@ short_item(item_name_code = "disprop_sainte_lague",
            desc_left = FALSE)
 ```
 
-
+```{r, results="asis"}
+short_item(item_name_code = "disprop_\ngallagher_normalized",
+           item_name = "Normalized Gallagher index of electoral disproportionality",
+           item_desc = "Gallagher index of electoral disproportionality normalized by effective number of vote winning parties \\parencite{Bailey_2026}:
+          \\begin{equation}I_{GNorm} = \\sqrt{\\frac{N_{2 \\text{ electorate}}}{N_{2 \\text{ electorate}} + 1}\\sum_{i = 1}^{n}\\left(s_i - v_i\\right)^2}.\\end{equation}",
+           desc_left = FALSE)
+```
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="\\label{fig:distdisp}Distribution of Disproportionality Measures", fig.width=8*1.1, fig.height=7*1.1, label=distdisp}
@@ -2064,27 +2070,28 @@ ltw_elections_meta %>%
     y = "Frequency"
   )
 
+pdists
 
-
-pzdist <-
-ltw_elections_meta %>% 
-  select(election_date, state, starts_with("disprop_")) %>% 
-  pivot_longer(cols = starts_with("disprop_"), names_to = "measure", values_to = "value") %>% 
-  filter(!is.nan(value)) %>% 
-  group_by(measure) %>% 
-  mutate(valstd = (value - mean(value)) / sd(value)) %>% 
-  ggplot(aes(x = valstd, group = measure)) +
-    geom_density( col = "#810a26", alpha = 0.8) +
-    theme(panel.background = element_rect(colour = "black")) +
-    labs(x = "z-standardized disprop. measure", y = NULL, subtitle = "z-Standardized Dist. per measure")
-  
-
-pdists + patchwork::inset_element(pzdist, align_to = "full",
-                                  right = 1,
-                                  left = 0.7,
-                                  top = 0.22,
-                                  bottom = 0
-                                    )
+# 
+# pzdist <-
+# ltw_elections_meta %>% 
+#   select(election_date, state, starts_with("disprop_")) %>% 
+#   pivot_longer(cols = starts_with("disprop_"), names_to = "measure", values_to = "value") %>% 
+#   filter(!is.nan(value)) %>% 
+#   group_by(measure) %>% 
+#   mutate(valstd = (value - mean(value)) / sd(value)) %>% 
+#   ggplot(aes(x = valstd, group = measure)) +
+#     geom_density( col = "#810a26", alpha = 0.8) +
+#     theme(panel.background = element_rect(colour = "black")) +
+#     labs(x = "z-standardized disprop. measure", y = NULL, subtitle = "z-Standardized Dist. per measure")
+#   
+# 
+# pdists + patchwork::inset_element(pzdist, align_to = "full",
+#                                   right = 1,
+#                                   left = 0.7,
+#                                   top = 0.22,
+#                                   bottom = 0
+#                                     )
 
 ```
 

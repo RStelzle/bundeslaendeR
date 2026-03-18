@@ -48,7 +48,7 @@ linhartetal <- linhartetal_cabinet %>%
 
 
 linhartetal_ready <- linhartetal %>% 
-  mutate(across(c(election_date, gov_start_date, gov_end_date), ~as_date(., format = "%d.%m.%Y"))) %>% 
+  mutate(across(c(election_date, gov_start_date, gov_end_date), ~as_date(., format = "%d.%m.%Y") %>% suppressWarnings())) %>% 
   select(gov_id, state, state_election_term, election_date, state_gov_number, gov_start_date, gov_end_date, party, nmin_party) %>% 
   mutate(state = case_when(
     state == "baden" ~ "BA",
