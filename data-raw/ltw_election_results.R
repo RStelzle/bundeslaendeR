@@ -1183,6 +1183,15 @@ usethis::use_data(link_statepol_cabinets, overwrite = TRUE)
 
 
 
+link_stateparl <-
+  readxl::read_xlsx(here("inst", "extdata", "link_stateparl.xlsx")) %>% 
+    rename(link_notes = notes) %>% 
+    rename(state_bundeslaender = state_bundeslaendeR)
+
+usethis::use_data(link_stateparl, overwrite = TRUE)
+
+
+
 
 
 

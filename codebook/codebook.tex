@@ -1408,6 +1408,51 @@ Cabinet name in StatePol dataset.
 
 \newpage
 
+\subsection{\texorpdfstring{\texttt{link\_stateparl}}{link\_stateparl}}\label{link_stateparl}
+
+Dataset providing a link between \texttt{ltw\_elections} (or
+\texttt{ltw\_combined}) and data on parliamentary speeches from the
+StateParl database (paragraphs dataset) \parencite{baltermann_2025}.
+Party groups that are founded later in the legislative cycle cannot be
+linked to electoral outcome data. See \texttt{link\_notes} for details
+on such cases. Note that StateParl treats the time before and after the
+re-election of the Berlin Abgeordnetenhaus in 2023 (re-running the 2021
+election) as the same electoral period. In the \texttt{bundeslaendeR}
+data the \texttt{state\_election\_term} count gets incremented. The
+\texttt{election\_date} variable in \texttt{link\_stateparl} thus
+contains both election dates for this electoral period, separated by a
+semi-colon. Also use the the \texttt{date} variable from StateParl's
+paragraphs dataset to link the data for this electoral period. Note that
+StateParl's \texttt{affiliation} variable denotes the political position
+instead of the party affiliation for some speeches, in particular for
+members of the state parliament presidency and -more crucially- for
+members of the state government. \texttt{link\_stateparl} thus cannot
+not help with linking these politicians' speeches to party level
+election results, etc. Please refer to the StateParl codebook for more
+information.
+
+\begin{longtable*}{p{3.2cm}| p{11cm}}
+\texttt{state} &\textbf{State name abbreviation in StateParl}\newline 
+State name abbreviation in StateParl dataset.
+\end{longtable*}
+
+\begin{longtable*}{p{3.2cm}| p{11cm}}
+\texttt{period} &\textbf{State electoral period in StateParl}\newline 
+State electoral period in StateParl dataset.
+\end{longtable*}
+
+\begin{longtable*}{p{3.2cm}| p{11cm}}
+\texttt{affiliation} &\textbf{Party affiliation in StateParl}\newline 
+Speakers' party affiliation in StateParl dataset.
+\end{longtable*}
+
+\begin{longtable*}{p{3.2cm}| p{11cm}}
+\texttt{state\_bundeslaender} &\textbf{State name abbreviation in bundeslaendeR}\newline 
+Speakers' party affiliation in bundeslaendeR dataset.
+\end{longtable*}
+
+\newpage
+
 
 \printbibliography[title=References]
 
