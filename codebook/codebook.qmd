@@ -2843,7 +2843,7 @@ short_item(item_name_code = "affiliation",
 ```{r, results="asis"}
 short_item(item_name_code = "state_bundeslaender",
            item_name = "State name abbreviation in bundeslaendeR",
-           item_desc = "Speakers' party affiliation in bundeslaendeR dataset.",
+           item_desc = "State name abbreviation in bundeslaendeR.",
            desc_left = FALSE)
 ```
 
@@ -2854,7 +2854,61 @@ short_item(item_name_code = "state_bundeslaender",
 
 \newpage
 
+## `link_gerda`
 
+
+Dataset providing a link between `ltw_elections` (or `ltw_combined`) and state election
+results at the municipal level from GERDA - German Election Database \parencite{Heddesheimer2025GERDA}.
+
+
+```{r, results="asis"}
+short_item(item_name_code = "state_gerda",
+           item_name = "State number in GERDA data",
+           item_desc = "State number in GERDA data.",
+           desc_left = FALSE)
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "state",
+           item_name = "State name abbreviation in bundeslaendeR",
+           item_desc = "State name abbreviation in bundeslaendeR.",
+           desc_left = FALSE)
+```
+
+
+```{r, results="asis"}
+item_start(item_name_code = "election_date",
+           item_name = "Election Date",
+           item_desc = "Date of the election.  ISO 8601 or R-Date format.",
+           desc_left = FALSE)
+
+```
+
+```{r, results="asis"}
+short_item(item_name_code = "partyname_gerda",
+           item_name = "Party name in GERDA data",
+           item_desc = "Party name in GERDA data.",
+           desc_left = FALSE)
+```
+
+
+```{r, results="asis"}
+short_item(item_name_code = "partyname_short",
+           item_name = "Abbreviated Party Name",
+           item_desc = "Party abbreviation in bundeslaendeR data.",
+           desc_left = FALSE)
+```
+
+
+
+
+
+
+
+
+
+
+\newpage
 
 
 

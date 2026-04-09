@@ -1192,9 +1192,13 @@ usethis::use_data(link_stateparl, overwrite = TRUE)
 
 
 
+link_gerda <- 
+read_csv(here("inst", "extdata", "link_gerda.csv")) %>% 
+  select(-contains("vshare")) %>% 
+  drop_na() %>% 
+  select(state_gerda = state, state = state_abb, election_date, partyname_gerda, partyname_short)
 
-
-
+usethis::use_data(link_gerda, overwrite = TRUE)
 
 
 
@@ -1292,6 +1296,19 @@ write.csv(link_statepol_cabinets, here("release", "bundeslaender_data_release", 
 link_statepol_cabinets %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_statepol_cabinets", "link_statepol_cabinets.dta"))
 
 
+
+dir.create(here("release", "bundeslaender_data_release", "link_stateparl"))
+write_rds(link_stateparl, here("release", "bundeslaender_data_release", "link_stateparl", "link_stateparl.rds"))
+write.csv(link_stateparl, here("release", "bundeslaender_data_release", "link_stateparl", "link_stateparl.csv"))
+link_stateparl %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_stateparl", "link_stateparl.dta"))
+
+
+
+
+dir.create(here("release", "bundeslaender_data_release", "link_gerda"))
+write_rds(link_gerda, here("release", "bundeslaender_data_release", "link_gerda", "link_gerda.rds"))
+write.csv(link_gerda, here("release", "bundeslaender_data_release", "link_gerda", "link_gerda.csv"))
+link_gerda %>% set_variable_labels(.labels = labelslist, .strict = FALSE) %>% haven::write_dta(here("release", "bundeslaender_data_release", "link_gerda", "link_gerda.dta"))
 
 
 
