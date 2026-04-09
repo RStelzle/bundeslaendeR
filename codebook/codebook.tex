@@ -45,28 +45,14 @@ includeheadfoot]{geometry}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 % Make \paragraph and \subparagraph free-standing
-\makeatletter
 \ifx\paragraph\undefined\else
   \let\oldparagraph\paragraph
-  \renewcommand{\paragraph}{
-    \@ifstar
-      \xxxParagraphStar
-      \xxxParagraphNoStar
-  }
-  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
-  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
 \fi
 \ifx\subparagraph\undefined\else
   \let\oldsubparagraph\subparagraph
-  \renewcommand{\subparagraph}{
-    \@ifstar
-      \xxxSubParagraphStar
-      \xxxSubParagraphNoStar
-  }
-  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
-  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
-\makeatother
 
 
 \providecommand{\tightlist}{%
@@ -82,17 +68,15 @@ includeheadfoot]{geometry}
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\newsavebox\pandoc@box
-\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
-  \sbox\pandoc@box{#1}%
-  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
-  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
-  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
-  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
-  \else\usebox{\pandoc@box}%
-  \fi%
-}
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 % Set default figure placement to htbp
+\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 
@@ -177,7 +161,9 @@ includeheadfoot]{geometry}
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
-
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
 \usepackage[style=ext-authoryear-comp,backend=biber,maxbibnames=99,maxcitenames=3,isbn=false,date=year,sorting=nyt]{biblatex}
 \addbibresource{literature.bib}
 \usepackage{bookmark}
@@ -194,7 +180,6 @@ includeheadfoot]{geometry}
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
-
 \title{Codebook bundeslaendeR}
 \author{Robert Stelzle}
 \date{2026-03-17}
@@ -208,7 +193,6 @@ includeheadfoot]{geometry}
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-
 \clearpage
 
 \definecolor{Nettrot}{RGB}{108, 0, 28}
@@ -275,7 +259,7 @@ The data can be accessed in \texttt{R} using
 \begin{table}
 \centering
 \caption{Structure of \texttt{ltw\_elections}}
-
+\label{strltwelecres}
 \tiny
 \texttt{
 \begin{tabular}{llrllrllrllr}
@@ -834,7 +818,7 @@ Is the governments minister president from this party? Note: There are two cases
 
 \normalsize
 \caption{Structure of \texttt{ltw\_combined}}
-
+\label{strltwelecgov}
 \centering
 \tiny
 \texttt{
@@ -1088,7 +1072,7 @@ Gallagher index of electoral disproportionality normalized by effective number o
 
 \begin{figure}[H]
 
-{\centering \pandocbounded{\includegraphics[keepaspectratio]{cbfiles/distdisp-1.pdf}}
+{\centering \includegraphics{cbfiles/distdisp-1.pdf}
 
 }
 
@@ -1169,7 +1153,7 @@ TRUE if the linked manifesto is an electoral manifesto. FALSE if it appears to b
 
 \begin{figure}[H]
 
-{\centering \pandocbounded{\includegraphics[keepaspectratio]{cbfiles/printmanifestoplot-1.pdf}}
+{\centering \includegraphics{cbfiles/printmanifestoplot-1.pdf}
 
 }
 
@@ -1448,14 +1432,47 @@ Speakers' party affiliation in StateParl dataset.
 
 \begin{longtable*}{p{3.2cm}| p{11cm}}
 \texttt{state\_bundeslaender} &\textbf{State name abbreviation in bundeslaendeR}\newline 
-Speakers' party affiliation in bundeslaendeR dataset.
+State name abbreviation in bundeslaendeR.
+\end{longtable*}
+
+\newpage
+
+\subsection{\texorpdfstring{\texttt{link\_gerda}}{link\_gerda}}\label{link_gerda}
+
+Dataset providing a link between \texttt{ltw\_elections} (or
+\texttt{ltw\_combined}) and state election results at the municipal
+level from GERDA - German Election Database
+\parencite{Heddesheimer2025GERDA}.
+
+\begin{longtable*}{p{3.2cm}| p{11cm}}
+\texttt{state\_gerda} &\textbf{State number in GERDA data}\newline 
+State number in GERDA data.
+\end{longtable*}
+
+\begin{longtable*}{p{3.2cm}| p{11cm}}
+\texttt{state} &\textbf{State name abbreviation in bundeslaendeR}\newline 
+State name abbreviation in bundeslaendeR.
+\end{longtable*}
+
+\begin{longtable*}{p{3.2cm}| p{11cm}}
+\texttt{election\_date} &\textbf{Election Date}\newline 
+Date of the election.  ISO 8601 or R-Date format.
+\end{longtable*}
+
+\begin{longtable*}{p{3.2cm}| p{11cm}}
+\texttt{partyname\_gerda} &\textbf{Party name in GERDA data}\newline 
+Party name in GERDA data.
+\end{longtable*}
+
+\begin{longtable*}{p{3.2cm}| p{11cm}}
+\texttt{partyname\_short} &\textbf{Abbreviated Party Name}\newline 
+Party abbreviation in bundeslaendeR data.
 \end{longtable*}
 
 \newpage
 
 
 \printbibliography[title=References]
-
 
 
 \end{document}

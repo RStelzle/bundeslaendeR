@@ -21,24 +21,26 @@
 #' @examples
 #' \dontrun{
 #'
-#' 
-#'link_stateparl %>%
-#'  separate(
-#'    col = election_date,
-#'    into = c("election_date_1", "election_date_2"),
-#'    sep = ";"
-#'  ) %>%
-#'  pivot_longer(
-#'    cols = c(election_date_1, election_date_2),
-#'    values_to = "election_date",
-#'    names_to = "tmp"
-#'  ) %>%
-#'  filter(!is.na(election_date)) %>%
-#'  select(-tmp) %>%
-#'  mutate(election_date = as.Date(election_date)) %>%
+#'state_unharm %>% 
+#'pivot_longer(
+#'  cols = "50plus":442,
+#'  names_to = "partyname_gerda",
+#'  values_to = "vshare"
+#') %>% 
+#'  drop_na() %>%  
+#'  filter(!str_detect(partyname_gerda, "flag_")) %>%
+#'  filter(!str_detect(partyname_gerda, "cdu_csu")) %>% 
+#'  select(state, election_date,ags, partyname_gerda, valid_votes, vshare) %>% 
+#'  mutate(votes = vshare*valid_votes) %>% 
+#'  group_by(state, election_date, partyname_gerda) %>% 
+#'  summarise(votes = sum(votes)) %>% 
+#'  group_by(state, election_date) %>% 
+#'  mutate(aggregated_vshare_gerda = votes / sum(votes)) %>% 
+#'  ungroup() %>% 
+#'  rename(state_gerda = state) %>% 
 #'  left_join(
-#'    ltw_elections,
-#'    by = c("state_bundeslaender" = "state", "election_date", "partyname_short")
+#'    link_gerda,
+#'    by = c("state_gerda", "election_date", "partyname_gerda")
 #'  )
 #' }
 #' 

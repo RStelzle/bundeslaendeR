@@ -2877,7 +2877,7 @@ short_item(item_name_code = "state",
 
 
 ```{r, results="asis"}
-item_start(item_name_code = "election_date",
+short_item(item_name_code = "election_date",
            item_name = "Election Date",
            item_desc = "Date of the election.  ISO 8601 or R-Date format.",
            desc_left = FALSE)
